@@ -1,0 +1,13 @@
+title: Papen Drafts Sweeping Amendments to the Constitution!
+subtitle: Despite his extreme unpopularity, the chancellor has ordered his cabinet to begin drafting sweeping constitutional amendments.
+view-if: chancellor = "Papen" and papen_time and papen_post_2
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/weimar_constitution.jpg
+
+= Constitutional Amendment
+
+As part of Papen’s previously announced ambition to create a “New State”—a reform of the constitution aimed at transforming Germany into a dictatorship reminiscent of the former <span class="tooltip-text" title="good mod">Kaiserreich</span>—the continued political deadlock has led him to pursue changes to the system itself. Lacking both popular support and a parliamentary majority, it's unclear how Papen would institute such changes. Nonetheless, such a move would almost certainly provoke civil war—one the Reichswehr is in no position to easily win.
+
+Papen's increasing independence and assertiveness, distancing himself from Schleicher's control, has alarmed the latter, who had previously sought to manipulate him. His open calls for dictatorship, along with the risks involved in keeping such an unpopular chancellor by circumventing the constitution, would unite the legions of organized labor against the government—something Schleicher is anxious to avoid. After all, a civil war would severely impede Germany's rearmament.

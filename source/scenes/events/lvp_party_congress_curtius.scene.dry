@@ -1,0 +1,238 @@
+title: <span style="color: #FFCC00;">**LVP**</span> Party Vote
+subtitle: Julius Curtius has resigned!
+view-if: curtius_explosion_timer == time and lvp_leader == "Curtius" and lvp_formed
+on-arrival: {!
+
+Q.curtius_resign_lvp = 1;
+
+Q.heuss_points = 0;
+Q.dietrich_points = 0;
+Q.dingeldey_points = 1;
+
+if (Q.in_grand_coalition || Q.in_weimar_coalition) {
+    Q.lvp_relation += 4;
+    Q.lvp_left += 1;
+} else if (Q.in_popular_front || Q.in_left_front) {
+    Q.lvp_right += 4;
+    Q.lvp_relation -= 10;
+}
+
+if (Q.agriculture_minister_party == "LVP" || Q.economic_minister_party == "LVP" || (Q.chancellor == "Brüning" && !Q.spd_in_government)) {
+    Q.dietrich_points += 1;
+}
+
+if (Q.spd_votes >= 30) {
+    Q.dingeldey_points += 2;
+}
+
+if (Q.chancellor == "Brüning" && Q.spd_toleration) {
+    Q.dietrich_points += 1;
+    Q.dingeldey_points += 2;
+    Q.lvp_right += 3;
+}
+
+if (Q.lvp_relation >= 50) {
+    Q.lvp_left += 3;
+    Q.heuss_points += 2;
+    Q.dingeldey_points -= 2;
+} else if (Q.lvp_relation < 40) {
+    Q.lvp_right += 3;
+    Q.dingeldey_points += 2;
+    Q.heuss_points -= 1;
+}
+
+if (Q.nationalism >= 50) {
+    Q.lvp_right += 2;
+}
+
+if (Q.pro_republic >= 60) {
+    Q.heuss_points += 2;
+    Q.lvp_left += 2;
+} else if (Q.pro_republic < 50) {
+    Q.dingeldey_points += 1;
+    Q.lvp_right += 1;
+}
+
+if (Q.lvp_votes >= 8) {
+    if (Q.lvp_ideology == "Right") {
+        Q.lvp_left += 3;
+    } else if (Q.lvp_ideology == "Left") {
+        Q.lvp_right += 3;
+    }
+} else if (Q.lvp_votes < 8 && Q.nsdap_votes >= (Q.lvp_votes + 5)) {
+    Q.lvp_right += 5;
+    Q.dingeldey_points += 2;
+}
+
+if (Q.lvp_right > (Q.lvp_left*1.5) || (Q.lvp_right > (Q.lvp_left + 5))) {
+    Q.lvp_ideology = "Right"
+} else if (Q.lvp_left > (Q.lvp_right*1.5) || (Q.lvp_left > (Q.lvp_right + 5))) {
+    Q.lvp_ideology = "Left"
+} else {
+    Q.lvp_ideology = "Moderate"
+}
+
+if (Q.lvp_ideology == "Right") {
+   Q.dingeldey_points += 2;
+}
+if (Q.lvp_ideology == "Moderate") {
+    Q.dietrich_points += 2;
+}
+if (Q.lvp_ideology == "Left") {
+    Q.heuss_points += 2;
+}
+
+if ((Q.heuss_points - 2) >= Q.dietrich_points && (Q.heuss_points - 2) >= Q.dingeldey_points) {
+    Q.heuss_lead = 1;
+} else {
+    Q.heuss_lead = 0;
+}
+
+if ((Q.dietrich_points - 2) >= Q.heuss_points && (Q.dietrich_points - 2) >= Q.dingeldey_points) {
+    Q.dietrich_lead = 1;
+} else {
+    Q.dietrich_lead = 0;
+}
+
+if ((Q.dingeldey_points - 2) >= Q.heuss_points && (Q.dingeldey_points - 2) >= Q.dietrich_points) {
+    Q.dingeldey_lead = 1;
+} else {
+    Q.dingeldey_lead = 0;
+}
+
+if (!Q.dietrich_lead && !Q.heuss_lead && !Q.dingeldey_lead) {
+    Q.lvp_deadlock = 1;
+} else {
+    Q.lvp_deadlock = 0;
+}
+
+!}
+max-visits: 1
+tags: event
+face-image: img/weimar_coalition_3.jpg
+new-page: true
+
+= <span style="color: #FFCC00;">**LVP**</span> Party Vote
+
+Following the disastrous Austrian customs union project, which he was the architect of, he has tendered his resignation from both the Foreign Ministry and the leadership of the <span style="color: #FFCC00;">**LVP**</span>. This debacle has significantly discredited him and his allies, leading to a rightward shift within the <span style="color: #FFCC00;">**LVP**</span>.
+
+An internal election must now be held to determine Curtius’s successor. Many candidates who have previously lost to him in the last party congress have once again stepped up to replace him, significantly crowding the field. Newer candidates have also thrown their hats in the ring. The right wing of the <span style="color: #FFCC00;">**LVP**</span> will rally behind Dingeldey, the left <span style="color: #c00000;">Social</span> <span style="color: #000000;">Repu</span><span style="color: #DD0000;">bli</span><span style="color: #FFCC00;">cans</span> will support Heuss, and the pragmatic center prefers Dietrich. While the new candidates have a low chance of winning, they may emerge as a compromise if no candidate secures a majority.
+
+- @heuss
+- @dietrich
+- @dingeldey
+- @deadlock
+
+@heuss
+title: Theodor Heuss is elected!
+subtitle: Heuss is a <span style="color: #c00000;">Social</span> <span style="color: #000000;">Rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span>, and a member of the former <span style="color: #D3C24D;">**[+ ddp_name +]**</span>.
+unavailable-subtitle: The wider <span style="color: #FFCC00;">LVP</span> perceive him as too left-wing, despite his previous affiliation with the <span style="color: #D3C24D;">[+ ddp_name +]</span>'s business wing.
+choose-if: heuss_lead
+on-arrival: lvp_relation += 12; lvp_left += 7; lvp_leader = "Heuss"; pro_republic += (lvp_votes / 2); workers_lvp += 2; workers_spd -= 2; new_middle_lvp += 6; old_middle_lvp -= 3; old_middle_other += 5 if (dnvp_ideology == "Radical"); old_middle_dnvp += 5 if dnvp_ideology == "Moderate"; old_middle_kvp += 5; rural_lvp -= 5; rural_other += 5 if (dnvp_ideology == "Radical" and not kvp_formed); rural_dnvp += 5 if dnvp_ideology == "Moderate"; rural_kvp += 5; catholics_lvp += 3; catholics_spd -= 3; coalition_dissent -= 1; heuss_explode_time = time + 8; heuss_election_time = time
+face-image: img/portraits/heuss.jpg
+
+Theodor Heuss, a rising star and former member of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>, has been elected chairman of the <span style="color: #FFCC00;">Liberal People's Party</span>. Backed primarily by the 'Social Republican Circle,' composed of former <span style="color: #D3C24D;">**[+ ddp_name +]**</span> members and liberal intellectuals and newspapers, Heuss has also garnered support from the broader party due to his decently conservative stances on economic and national issues.
+
+Heuss's victory empowers the '<span style="color: #c00000;">Social</span> <span style="color: #000000;">Rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span>' wing, strengthening our cooperation. Despite his personal leanings toward the right, Heuss remains one of the most committed and genuine supporters for <span style="color: #FFCC00;">liberal</span> <span style="color: #586593;">democracy</span> within the <span style="color: #FFCC00;">**LVP**</span>.
+
+@dietrich
+title: Hermann Dietrich is elected!
+subtitle: Dietrich was the former leader of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s business wing, and is somewhat skeptical of cooperation with us.
+unavailable-subtitle: [? if not heuss_lead: The wider <span style="color: #FFCC00;">LVP</span> perceive him as too left-wing, despite his previous affiliation with the <span style="color: #D3C24D;">[+ ddp_name +]</span>'s business wing. ?][? if heuss_lead: His lack of energy and the burden of his governmental roles have led the party to favor Heuss instead. ?]
+choose-if: dietrich_lead
+on-arrival: lvp_relation += 5; lvp_left += 2; lvp_leader = "Dietrich"; pro_republic += 5; old_middle_lvp += 4; rural_lvp += 4; new_middle_lvp -= 4; dietrich_lvp_explode_time = time + 8; dietrich_election_time = time
+face-image: img/portraits/dietrich.jpg
+
+Hermann Dietrich, formerly affiliated with the business wing of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>, has been elected chairman of the <span style="color: #FFCC00;">**LVP**</span>. Dietrich is mainly supported by smaller businesses and ruralites, and [? if chancellor == "Brüning" and not spd_in_government: is known for formulating Brüning's emergency decrees during his tenure as Finance Minister.?][? if not (chancellor == "Brüning" and not spd_in_government): is known for his fiscal conservatism.?]
+
+Despite this, Dietrich is not as extreme as the industrialists on the right of the party and remains open to cooperation with us if there is no other majority. However, his leadership has been quite uninspiring, to say the least. [? if agriculture_minister_party == "LVP" or economic_minister_party == "LVP": The responsibilities of his ministry prevent him from being involved in the day-to-day running of his party, which is now delegated to a group of his associates in the business wing. ?]
+
+@dingeldey
+title: Eduard Dingeldey is elected.
+subtitle: Dingeldey was a member of the former <span style="color: #C0A054;">**DVP**</span>, and commonly associated with the industrial-right of the party.
+unavailable-subtitle: The right-industrial faction of the <span style="color: #FFCC00;">LVP</span> lack the power necessary to install their candidate.
+choose-if: dingeldey_lead
+on-arrival: lvp_relation -= 8; lvp_right += 5; lvp_leader = "Dingeldey"; new_middle_lvp -= 4; workers_lvp -= 2; old_middle_lvp += 3; coalition_dissent += 1; dingeldey_explode_time = time + 8; dingeldey_election_time = time
+face-image: img/portraits/dingeldey.jpg
+
+Eduard Dingeldey, previously part of the movement for bourgeois unity, has now been elected chairman of the <span style="color: #FFCC00;">**LVP**</span>. Dingeldey is backed by the industrial forces on the right of the party, alongside former <span style="color: #C0A054;">**DVP**</span> members. He appears to be focused on fostering closer cooperation with the array of parties between the <span style="color: #FFCC00;">**LVP**</span> and the <span style="color: #3E88B3;">**DNVP**</span>.
+
+However, Dingeldey has thus far proven to be an ineffectual leader, often capitulating to the right wing of the <span style="color: #FFCC00;">**LVP**</span>. Recently, we’ve observed a deterioration in relations with his party, alongside a noticeable rightward shift in the <span style="color: #FFCC00;">**LVP**</span>'s internal politics.
+
+@deadlock
+title: The vote has been deadlocked!
+subtitle: No candidate is able to gather a sufficient amount of votes.
+view-if: lvp_deadlock
+on-arrival: {!
+if (((Q.workers_spd_normalized < 40 || Q.unions_independent) || Q.new_middle_lvp_normalized >= 50 || Q.nationalism >= 55) && Q.dnvp_leader != "Lambach") Q.glatzel_lvp_unlock = 1;
+if ((Q.nationalism >= 60) && Q.womens_rights >= 4) Q.baumer_lvp_unlock = 1;
+if (((Q.lvp_ideology == "Left" || Q.lvp_relation >= 50) || (Q.new_middle_lvp_normalized + Q.old_middle_lvp_normalized >= 65)) && Q.confronting_antisemitism >= 1 && Q.stolper_program_adopted) Q.stolper_lvp_unlock = 1;
+if (Q.baumer_lvp_unlock) {
+    Q.glatzel_lvp_unlock = 0;
+    Q.stolper_lvp_unlock = 0;
+} else if (Q.glatzel_lvp_unlock) {
+    Q.baumer_lvp_unlock = 0;
+    Q.stolper_lvp_unlock = 0;
+} else if (Q.stolper_lvp_unlock) {
+    Q.glatzel_lvp_unlock = 0;
+    Q.baumer_lvp_unlock = 0;
+}
+if (!Q.stolper_lvp_unlock && !Q.baumer_lvp_unlock && !Q.glatzel_lvp_unlock) Q.kardorff_lvp_unlock = 1;
+!}
+
+The vote has been deadlocked, with no candidate ahead by enough to constitute a majority. New compromise candidates have stepped forth.
+
+- @stolper
+- @glatzel
+- @kardorff
+- @baumer
+
+
+@glatzel
+title: Frank Glatzel is elected!
+subtitle: Glatzel, a former member of the <span style="color: #3E88B3;">**DNVP**</span> and <span style="color: #C0A054;">**DVP**</span>, advocates the idea of broadening the party's appeal to workers.
+unavailable-subtitle: His trade union membership has made him a non-option in the eyes of the <span style="color: #FFCC00;">LVP</span>, and his supporters lack meaningful influence.
+choose-if: glatzel_lvp_unlock
+on-arrival: lvp_leader = "Glatzel"; bourgeois_cooperation -= 3; workers_lvp += 12; workers_dnvp -= 4; workers_dnf -= 4; workers_other -= 4; workers_nsdap -= 4; workers_spd -= 4; workers_z -= 2; new_middle_lvp += 8; new_middle_nsdap -= 4; new_middle_other -= 2; new_middle_spd -= 2; catholics_lvp += 6; catholics_other -= 2; catholics_dnvp -= 2; catholics_z -= 2; old_middle_lvp += 4; old_middle_dnvp -= 4; rural_lvp -= 6; rural_dnvp += 4; rural_other += 2; rural_dnvp += 2 if dnvp_ideology == "Moderate"; rural_kvp += 2 if kvp_formed
+face-image: img/portraits/glatzel.jpg
+achievement: neuer_nationalismus
+
+Frank Glatzel, a trade unionist affiliated with the conservative white-collar union, the DHV, has been elected the new leader of the <span style="color: #FFCC00;">**LVP**</span>. He advocates for a "New Nationalism," emphasizing solidarity among all classes to defend the country's "<span class="tooltip-text" title="Lebensraum">living space</span>" and to foster freedom for the people. In his push for *Volksgemeinschaft*, aimed at reducing class conflict, he has incorporated more nationalistic and corporatist elements into the party platform. This vision gained him the support of nationalists and Stresemannites within the <span style="color: #FFCC00;">**LVP**</span>, with the paramilitary group "Young German Order" even backing his leadership bid.
+
+As expected, this shift has caused concern among the remaining industrialists in the <span style="color: #FFCC00;">**LVP**</span>, as the party moves away from its traditional sole focus on middle-class interests. This has resulted in a significant change in the party’s financial backing, with funding from big business dwindling and being replaced by donations and newly established dues. His <span class="tooltip-text" title="good mod">dynamic</span> leadership should be closely watched.
+
+@kardorff
+title: Siegfried von Kardorff is elected!
+subtitle: Kardorff is able to secure the continuation of Curtius's leadership.
+unavailable-subtitle: His closeness to Curtius has undermined his position.
+choose-if: kardorff_lvp_unlock
+on-arrival: lvp_leader = "Kardorff"; dvp_left += 3 if in_grand_coalition; bourgeois_cooperation += 1; dvp_relation += 5 if in_grand_coalition; new_middle_lvp += 4; catholics_lvp += 2; rural_lvp += 2; old_middle_lvp += 2; pro_republic += 3
+face-image: img/portraits/kardorff.jpg
+
+Kardorff is elected to succeed Curtius as the leader of the <span style="color: #FFCC00;">**LVP**</span>. He is expected to be a continuation of Curtius's leadership, being another Stresemann follower and supporter of constructive cooperation with the <span style="color: #c00000;">**SPD**</span>. [? if ui0_seen: He even rallied his parliamentary faction to save our Grand Coalition back in 1929.?]
+
+[? if bruning_time: He is also one of the strongest supporters of the Brüning government, frequently coming into conflict with the right of the party over support for it. ?]
+
+@stolper
+title: Gustav Stolper is elected!
+subtitle: Creator of the famed Stolper Program, and a <span style="color: #005EB8;">Jew</span>.
+unavailable-subtitle: The <span style="color: #FFCC00;">LVP</span> prefers not to exacerbate their reputation as the party for <span style="color: #005EB8;">Jews</span>.
+choose-if: stolper_lvp_unlock
+on-arrival: lvp_leader = "Stolper"; lvp_relation += 6; lvp_left += 3; rural_lvp *= 0.6; rural_nsdap += 4; new_middle_lvp *= 1.5; old_middle_lvp *= 1.2; pro_republic += 5
+face-image: img/portraits/stolper.jpg
+
+Gustav Stolper, a German-Austrian economist and the son of <span style="color: #005EB8;">Jewish</span> immigrants from Poland, has been elected chairman of the <span style="color: #FFCC00;">**LVP**</span>, reinforcing a stereotype the party has long struggled to dispel. Despite this, Stolper—renowned for the economic program bearing his name—could be exactly what the <span style="color: #FFCC00;">**LVP**</span> needs to revitalize its middle-class support.
+
+Relations have improved compared to Curtius's tenure, as Stolper's strained ties with parties to the right of the <span style="color: #FFCC00;">**LVP**</span>—due to anti-Semitism—have made cooperation with us easier.
+
+@baumer
+title: Gertrud Bäumer is elected!
+subtitle: Leader of the <span style="color: #FFCC00;">**LVP**</span>'s women's wing, and a moderate feminist. Has questionable views on the "national questions".
+unavailable-subtitle: The <span style="color: #FFCC00;">LVP</span> will never accept a woman as their leader.
+choose-if: baumer_lvp_unlock
+on-arrival: lvp_leader = "Bäumer"; lvp_relation += 5; nationalism += lvp_votes; workers_lvp += 6; workers_other -= 2; workers_spd -= 4; new_middle_lvp += 20; new_middle_spd -= 15; new_middle_kpd -= 5; old_middle_lvp -= 20; old_middle_dnvp += 5; old_middle_dnvp += 10 if dnvp_ideology == "Moderate"; old_middle_nsdap += 5; old_middle_kvp += 10; old_middle_other += 5; rural_lvp *= 0.5; rural_nsdap += 5; rural_dnvp += 5 if not kvp_formed; rural_kvp += 5; pro_republic -= 5
+face-image: img/portraits/baumer.jpg
+
+Somehow, Gertrud Bäumer, long-time deputy leader of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> and now the leader of the <span style="color: #FFCC00;">**LVP**</span>'s women's wing, has been elected to the leadership of the <span style="color: #FFCC00;">**LVP**</span>. This is quite a bizarre development, but her victory can be attributed to her passionate nationalism and romanticism, as well as her questionable views on <span style="color: #005EB8;">Jews</span> and race, which have garnered the support of nationalists within the party. Additionally, some within the party cynically believe that by electing a woman, they can appeal to a broader female electorate.
+
+For us, Bäumer's background as a former <span style="color: #D3C24D;">**[+ ddp_name +]**</span> member may work in our favor, improving our relationship with the <span style="color: #FFCC00;">**LVP**</span>. However, it remains to be seen whether she will gain more votes than she loses due to her moderate feminist stance, as many refuse to support her purely out of misogyny.

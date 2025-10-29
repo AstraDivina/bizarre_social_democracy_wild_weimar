@@ -1,0 +1,31 @@
+title: Lausanne Conference Begins
+subtitle: On the question of reparations...
+view-if: chancellor == "Papen" and papen_time == 3 and not reparations_resolved
+new-page: true
+max-visits: 1
+tags: event
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/lausanne.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Lausanne Conference Begins
+
+At the Lausanne Conference, the Allies will meet with German representatives to settle the reparations question once and for all. With the global economic crisis still raging, most now accept that Germany cannot resume payments once the current moratorium expires.
+
+But with the reactionary nationalist Papen at the helm, Germany’s negotiating hand is weakened. The absence of the internationally respected Brüning, coupled with Papen’s reckless ambition to press for rearmament and a deletion of the 'war guilt' clause, threatens to derail the entire process.
+
+- @lausanne
+
+@lausanne
+title: Anyhow, the German delegation is off to Switzerland.
+
+At the opening session, our delegation demands the complete cancellation of reparations. This position has found sympathy from the <span style="color: #C8102E;">British</span> and the <span style="color: #B31942;">Amer</span><span style="color: #0A3161;">icans</span>. France’s new left-wing government has softened its stance as well—though they still insist that Germany enter a pact with the <span style="color: #0A3161;">Western</span> <span style="color: #C8102E;">Allies</span>, including provisions for military détente. Negotiations will continue in the coming weeks.

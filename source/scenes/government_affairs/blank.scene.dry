@@ -1,0 +1,18 @@
+title: Missing Report
+on-arrival: month_actions += 1
+view-if: chancellor == "Schleicher" and schleicher_time and schleicher_time >= 8 and schleicher_spd_influence >= 2
+card-image: img/black.jpg
+is-card: true
+new-page: true
+tags: party_affairs, govt_affairs
+frequency: 200
+
+= &nbsp;
+
+...
+
+- @help: &nbsp;
+
+@help
+
+&nbsp;

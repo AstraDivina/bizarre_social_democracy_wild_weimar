@@ -1,0 +1,17 @@
+title: The Death of Gustav Stresemann
+view-if: year = 1929 and month >= 10 and not lvp_formed
+frequency: 1000
+max-visits: 1
+tags: event
+on-arrival: stresemann_dead = 1; dvp_relation -= 6; dvp_relation -= 2 if dvp_reform = 0; dvp_right += 3.5; dvp_right += 1.5 if dvp_reform = 0; dvp_leader = "Scholz"; dvp_leader = "Curtius" if dvp_reform; foreign_minister = "Curtius" if foreign_minister = "Stresemann"
+priority: -1
+face-image: img/portraits/Stresemann.jpg
+new-page: true
+
+= The Death of Gustav Stresemann
+
+Gustav Stresemann, leader of the <span style="color: #C0A054;">**DVP**</span> and longtime foreign minister, has died at the tragically young age of 51. He was the primary force driving his party to support democracy; without him, the democratic forces in the Republic will be so much weaker.
+
+A hole has been left within the liberal movement at the worse possible time, and it is likely that the industrial wing of the party will complete their takeover and subsequently end cooperation with us. 
+
+[? if dvp_leader == "Scholz": Ernst Scholz, his arch enemy on the right wing has succeeded him as leader of the <span style="color: #C0A054;">**DVP**</span>, and leadership election will be conducted in two months.?][? if dvp_leader == "Curtius": Julius Curtius, his successor in foreign affairs, and ally in the left wing of the party, has succeeded him as leader of the <span style="color: #C0A054;">**DVP**</span>, and leadership election will be conducted in two months.?]

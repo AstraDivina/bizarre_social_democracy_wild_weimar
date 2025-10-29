@@ -1,0 +1,97 @@
+title: Right coalition collapses
+subtitle: The right-wing coalition has collapsed...
+new-page: true
+tags: event
+view-if: dnf_formed and year = 1928 and month = 11 and right_coalition < 50 and in_right_coalition and not lvp_formed
+max-visits: 1
+
+= Hugenberg's exit from the coalition
+
+When Hugenberg established his own party, he successfully attracted a significant number of former <span style="color: #3E88B3;">**DNVP**</span> Reichstag members to join his party and to oppose the current right-wing coalition. The current government lacks a majority within the Reichstag and may be taken down with a no-confidence vote.
+
+The <span style="color: #D3C24D;">**[+ ddp_name +]**</span> has indicated their willingness to join the government now that the <span style="color: #3E88B3;">**DNVP**</span> has rid of their radical right elements. [? if center_right_coalition >= 50 : This is enough to form a functional government without us. ?][? if center_right_coalition < 50 : Although, this still doesn't provide a sufficient majority. ?]
+
+[? if center_right_coalition < 50 : We can either vote to bring down the government and hold new elections, or "tolerate" a government led by the remaining bourgeois parties. It would be extremely unpopular within our party to support a government that has the participation of the <span style="color: #3E88B3;">**DNVP**</span>—despite their removal of the most extreme factions—would be highly unpopular within our party. ?]
+
+- @center_right
+- @vonc_yes
+- @vonc_no
+- @no_matter
+
+@center_right
+title: The <span style="color: #D3C24D;">**[+ ddp_name +]**</span> shall enter government.
+subtitle: The coalition will live for another day.
+view-if: center_right_coalition >= 50
+on-arrival: spd_in_government = 0; in_center_right_coalition = 1; in_right_coalition = 0; old_middle_dnf -= 2; rural_dnf -= 2; ddp_right += 2; ddp_cohesion -= 1.5; liberal_cooperation += 1; bourgeois_cooperation += 2
+go-to: new_prussia_election if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+The bourgeois has survived without our toleration, but it's unlikely that this governing arrangement will last much longer.
+
+@vonc_yes
+title: Support the vote of no confidence, voting against the government.
+subtitle: The government will collapse, and there will be new elections.
+view-if: cordon_sanitaire >= 50 and center_right_coalition < 50
+on-arrival: time_to_election = 3; spd_in_government = 0; in_right_coalition = 0; in_grand_coalition = 0; spd_toleration = 0; spd_toleration_right = 0; pro_republic -= 2; dvp_relation -= 4; z_relation -= 4; dnvp_relation -= 4; ddp_relation -= 4; ddp_cohesion -= 1; ddp_right += 1; old_middle_dnf += 3; rural_dnf += 3
+call: set_next_election_time
+go-to: new_prussia_election if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+The right-wing coalition has fallen. New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@vonc_no
+title: Oppose the vote of no confidence, voting for the government.
+subtitle: We would essentially provide "toleration" to a bourgeois government.
+view-if: cordon_sanitaire >= 50 and center_right_coalition < 50
+choose-if: (reformist_strength >= center_strength + left_strength)
+unavailable-subtitle: [? if (center_strength + left_strength >= reformist_strength) : Most of the party is in complete opposition to this. ?]
+on-arrival: spd_toleration = 1; spd_toleration_right = 1; in_right_coalition = 0; in_center_right_coalition = 0; left_dissent += 30; center_dissent += 25; labor_dissent += 20; reformist_dissent += 10; workers_spd -= 3; new_middle_spd -= 6; old_middle_spd -= 6; rural_spd -= 4; catholics_spd -= 5; dvp_left += 1; ddp_left += 1; liberal_cooperation += 1; bourgeois_cooperation += 2
+go-to: new_prussia_election if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+By supporting the government, we have essentially entered into a "toleration" arrangement with the [+ chancellor +] government. We do not have a voice in the government, but we are responsible for its continued stability. This is wildly unpopular within the party and our supporters, as we allowed a right-wing government to form twice now.
+
+@no_matter
+title: It does not matter what we do.
+subtitle: The anti-government parties have over 50% of the vote, no matter our choices.
+view-if: cordon_sanitaire < 50
+call: set_next_election_time
+on-arrival: time_to_election = 3; spd_in_government = 0; in_right_coalition = 0; in_grand_coalition = 0; spd_toleration = 0; spd_toleration_right = 0; pro_republic -= 5
+go-to: new_prussia_election if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+The right-wing coalition has fallen. New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@new_prussia_election
+on-arrival: prussia_coalition_trigger = 1 if center_right_coalition_prussia < 50
+
+Hugenberg has also attracted some members of the <span style="color: #3E88B3;">**DNVP**</span> to split into the <span style="color: #003755;">**DNF**</span> in the Prussian Landtag too, [? if center_right_coalition_prussia < 50: even if the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> were to join in, they still lack a sufficient majority. ?][? if center_right_coalition_prussia >= 50: but if the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> were to enter, they would have a governing coalition. ?]
+
+We have an opportunity to change the composition of the Prussian coalition.
+
+
+- @prussia_coalition
+- @new_prussia_election_oppo: We will stay in opposition.
+- @prussian_coalition_formation: Negotiate a new Prussian coalition.
+- @new_prussia_election_called: Refuse to form a coalition, so new elections are to be called.
+
+@prussia_coalition
+title: Use our resources to convince the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> to reconsider.
+subtitle: -1 resources
+unavailable-subtitle: Not enough resources (need 1).
+view-if: center_right_coalition_prussia >= 50
+choose-if: resources >= 1
+on-arrival: resources -= 1; ddp_left += 2; ddp_cohesion -= 1; liberal_cooperation -= 1 if liberal_parliament = 1; prussia_coalition_trigger = 1
+
+We have successfully bribed the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>. 
+
+- @prussian_coalition_formation: Negotiate a new Prussian coalition.
+
+@new_prussia_election_oppo
+view-if: center_right_coalition_prussia >= 50
+on-arrival: in_right_coalition_prussia = 0; in_center_right_coalition_prussia = 1; right_prussia = 1; bourgeois_cooperation += 1; liberal_cooperation += 1
+
+And so we remain.
+
+@new_prussia_election_called
+view-if: center_right_coalition_prussia < 50
+on-arrival: was_in_weimar_coalition_prussia = 1 if (in_weimar_coalition_prussia == 1 or in_minority_weimar_coalition_prussia == 1); was_in_grand_coalition_prussia = 1 if (in_grand_coalition_prussia == 1 or in_minority_grand_coalition_prussia == 1); in_right_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_minority_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_center_right_coalition_prussia = 0; in_far_right_coalition_prussia = 0; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; right_prussia = 0; ddp_in_popular_front_prussia = 0; spd_toleration_prussia = 0; kpd_goals_seen_prussia = 0
+call: set_next_election_time_prussia
+
+New Prussian elections have been set for [+ next_election_month_prussia : month +] [+ next_election_year_prussia +].

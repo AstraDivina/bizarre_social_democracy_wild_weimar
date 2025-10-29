@@ -1,0 +1,52 @@
+title: Panzerkreuzer A
+subtitle: A political question
+tags: event, govt_affairs
+is-card: true
+on-arrival: panzerkreuzer_seen = 1
+face-image: img/panzerkreuzer.jpg
+view-if: panzerkreuzer_seen = 0 and year = 1928 and month >= 8 and month < 10 and reichswehr_minister_party != "SPD" and spd_in_government = 1
+new-page: true
+
+= Panzerkreuzer
+
+The Reichswehr Ministry is demanding the construction of a new battlecruiser, as part of Germany's rearmament. Our coalition partners are united in support. While many of our members are vehemently against new military spending, this vote may be necessary to preserve the coalition. The [? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span> have also switched their positions for construction, fragmenting their party.?]
+
+[? if not panzerkreuzer_campaign: Our lack of an electoral campaign against the ship's construction will limit the backlash among our working-class base. ?][? if panzerkreuzer_campaign: We campaigned on food for children instead of battlecruisers. Will we really betray our campaign promises? ?]
+
+- @vote_yes: Vote yes, for constructing the battlecruiser.
+- @vote_no: Vote no, against constructing the battlecruiser.
+- @abstain: Abstain from the vote.
+
+@vote_yes
+on-arrival: left_dissent += 10; labor_dissent += 5; center_dissent += 5; reformist_dissent += 5; neorevisionist_dissent += 5; panzerkreuzer_funded = 1; kpd_coalition_dissent += 1; kpd_relation -= 6; workers_spd -= 2; workers_spd -= 4 if panzerkreuzer_campaign; unemployed_spd -= 2 if panzerkreuzer_campaign; dvp_left += 1; ddp_right += 1; ddp_cohesion -= 1; lvp_left += 1; goal_spd_cancel += 1; hindenburg_angry -= 5
+
+Our grassroots party members are shocked by our intransigence! Many party branches have begun agitating against the cabinet, and our Reichstag members even plan a full vote on the proposal, contravening the government's decision. [? if panzerkreuzer_campaign: Our working-class base feels betrayed—we had promised to block the ship’s construction and fund children’s meals instead. ?]
+
+The campaign against the battlecruiser fails, with only the dissident <span style="color: #c00000;">**SPD**</span> and <span style="color: #700000;">**KPD**</span> members voting against. The ship will be built.
+
+@vote_no
+on-arrival: dvp_relation -= 8; lvp_relation -= 5; z_relation -= 5; pacifism += 1; nationalism -= 2*(1-dissent); coalition_dissent += 1; dvp_right += 1; ddp_left += 1; ddp_cohesion -= 1; lvp_right += 1; hindenburg_angry += 5; panzerkreuzer_no = 1;
+go-to: vote_no_chancellor if chancellor_party = "SPD"; vote_no_pass if chancellor_party != "SPD"
+
+@vote_no_chancellor
+go-to: braun if chancellor = "Braun"; muller if chancellor = "Müller"
+
+@braun
+on-arrival: panzerkreuzer_funded = 0; nationalism -= 6*(1-dissent); reichswehr_loyalty -= 0.05; left_dissent -= 10; labor_dissent -= 10; center_dissent -= 5; reformist_dissent -= 5; neorevisionist_dissent -= 5; panzerkreuzer_failed = 1; workers_spd += 5*(1-dissent); ddp_left += 1; ddp_cohesion += 1; pacifism += 1; kpd_relation += 5; reichswehr_goal_spd += 1; hindenburg_angry += 5; coup_progress += 1
+
+Our coalition partners are shocked by our intransigence! However, Chancellor Braun manages to persuade our cabinet ministers to drop the plan to vote on the battlecruiser. The ship will not be built! Pacifism is starting to find support in the [? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if lvp_formed: <span style="color: #FFCC00;">**LVP**</span>?].
+
+@muller
+on-arrival: panzerkreuzer_funded = 1
+
+Our coalition partners are shocked by our intransigence! Despite Chancellor Müller's rejection of the proposal, the other parties bring the matter to a Reichstag vote, which easily passes, with only the <span style="color: #c00000;">**SPD**</span> and <span style="color: #700000;">**KPD**</span> voting against. The ship will be built.
+
+@vote_no_pass
+on-arrival: panzerkreuzer_funded = 1
+
+Our coalition partners are shocked by our intransigence! Chancellor [+ chancellor +] brings the matter to a Reichstag vote, which passes with all parties in favor except the <span style="color: #c00000;">**SPD**</span> and <span style="color: #700000;">**KPD**</span>. The ship will be built.
+
+@abstain
+on-arrival: dvp_relation -= 5; lvp_relation -= 3; z_relation -= 3; workers_spd -= 4 if panzerkreuzer_campaign; unemployed_spd -= 2 if panzerkreuzer_campaign; left_dissent += 5; labor_dissent += 5; panzerkreuzer_funded = 1; kpd_relation -= 3; ddp_right += 1; ddp_cohesion -= 1
+
+Our coalition partners are shocked by our intransigence! [? if panzerkreuzer_campaign: Our working-class base feels betrayed—we had promised to block the ship’s construction and fund children’s meals instead. ?]Despite our abstention, the vote in the Reichstag goes through, with all parties in favor except the <span style="color: #c00000;">**SPD**</span> and <span style="color: #700000;">**KPD**</span>. The ship will be built.

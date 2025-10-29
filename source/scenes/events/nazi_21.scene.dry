@@ -1,0 +1,46 @@
+title: The <span style="color: #7A3C00;">**NSDAP**</span> Splinters!
+subtitle: Their internal contradictions have finally caught up with them.
+view-if: chancellor = "Schleicher" and schleicher_time == 10 and hitler_dead
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/hitler_dead.jpg";  
+
+    cardEl.appendChild(image);
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= The <span style="color: #7A3C00;">**NSDAP**</span> Splinters!
+
+Those who follow Hitler, even after death, constitute of the Hitlerite faction, who remain in control of the <span style="color: #7A3C00;">**NSDAP**</span>. This group consists of people like Goebbels and Göring.
+
+Those who follow Gregor Strasser, and his line of governmental participation, form the <span style="color: #6A1E1E;">German Social Union</span> (<span style="color: #6A1E1E;">**DSU**</span>). This group consists of people like Strasser and Frick. The former having come back from retirement.
+
+Those who follow Ernst Röhm, and his belief that an anti-capitalist revolution should be led by the <span style="color: #7A3C00;">**SA**</span>, form the <span style="color: #142e20;">National People's Front</span> (<span style="color: #142e20;">**NVF**</span>). This group consists of people like Röhm and Rudolf Hess.
+
+- @nazi_2: Without funds and without support. 
+
+@nazi_2
+on-arrival: {!
+Q.nsdap_split = 1;
+Q.dsu_exist = 1;
+Q.dsu_leader = "Strasser";
+Q.nvf_exist = 1;
+
+Q.nazi_funds -= 3;
+
+Q.dsu_r = Math.round(Q.nsdap_r*0.3 * 10) / 10;
+Q.nvf_r = Math.round(Q.nsdap_r*0.15 * 10) / 10;
+Q.nsdap_hitler_r = Math.round((Q.nsdap_r - Q.dsu_r - Q.nvf_r) * 10) / 10;
+!}
+
+These parties are doomed to eternal infighting and, eventually, irrelevance. However, the polarization caused by this, coupled with the potential for participationist <span style="color: #7A3C00;">Nazis</span> entering the government, may still have far-reaching consequences.
+
+We must not get complacent.

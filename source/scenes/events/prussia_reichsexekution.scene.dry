@@ -1,0 +1,25 @@
+title: Prussian Government Dismissed
+subtitle: The President had enough over the political deadlock.
+view-if: president = "Hindenburg" and no_majority_elections_prussia >= 2 and (not in_weimar_coalition_prussia and not in_grand_coalition_prussia and not in_far_right_coalition_prussia and not in_popular_front_prussia and not in_left_front_prussia and not in_center_right_coalition_prussia and not in_right_coalition_prussia and not prussia_leader == "Papen" and chancellor != nsdap_chancellor) and not presidential_powers and prussian_coup_seen = 0 and prussian_reichsexekution = 0
+on-arrival: prussian_reichsexekution = 1; no_majority_reichsexekution = 1; strife += 1; hindenburg_angry += 10
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/Reichswehr.jpg
+
+= Prussian Government Dismissed
+
+President [+ president +] has invoked the <i>Reichsexekution</i> to dismiss the Prussian government, citing its "ungovernable" state caused by the repeated failure to form a functioning government amidst escalating clashes between the <span style="color: #7A3C00;">**SA**</span>, Reichsbanner, and other paramilitary groups. 
+
+Although the action has decent justification behind it, rumor has it that President [+ president +] will install a <span style="color: #808080;">reactionary</span> conservative as <i>Reichskommissar</i> for the foreseeable future.
+
+- @surrender
+
+@surrender
+title: There is nothing we can do.
+subtitle: This isn't worth dying over.
+on-arrival: in_right_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_center_right_coalition_prussia = 0; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; prussia_leader = "Goerdeler"; workers_spd -= 3; workers_kpd -= 3; unemployed_kpd -= 3; unemployed_spd -= 3; left_dissent += 5; labor_dissent += 5; rb_militancy = rb_militancy/1.5; rb_strength -= 300; rfb_banned = 1; rfb_strength -= 100; rfb_militancy -= 0.1; prussian_reichsexekution_timer = 12; next_election_time_prussia = time + 48; next_election_year_prussia = year + 4
+
+Hindenburg appoints the <span style="color: #3E88B3;">nationalist</span> Carl Friedrich Goerdeler, who renounces his party affiliation, to govern over Prussia as a <i>Reichskommissar</i>, charged with dismantling the democratic systems we worked hard to build.
+
+Future state elections have been postponed indefinitely, to be held only when the situation is deemed "stable enough."

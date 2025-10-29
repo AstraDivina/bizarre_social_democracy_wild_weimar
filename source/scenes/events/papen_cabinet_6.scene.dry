@@ -1,0 +1,32 @@
+title: The 'Potempa Five' Stand Trial for Murder
+subtitle: The <span style="color: #7A3C00;">Nazis</span> are to exploit their conviction as a propaganda tool.
+view-if: chancellor = "Papen" and papen_time == 11
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/potempa5.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= The 'Potempa Five' Stand Trial for Murder
+
+The so-called "Potempa Five"—the <span style="color: #7A3C00;">**SA**</span> men who broke into the home of a <span style="color: #700000;">**Communist**</span> miner and brutally beat him to death—are set to stand trial in Papen’s newly established special courts, designed to fast-track death penalty cases. The <span style="color: #7A3C00;">Nazis</span> have wasted no time in slandering the victim, referring to him as subhuman for being both <span style="color: #700000;">**Communist**</span> and Polish, in a vile attempt to sway public opinion in favor of the murderers.
+
+- @papen
+
+@papen
+title: The verdict goes down...
+on-arrival: sa_militancy += 0.05; rfb_strength += 25; rfb_militancy += 0.02; new_middle_nsdap -= 3; new_middle_dvp += 2; new_middle_lvp += 3; old_middle_nsdap -= 5; old_middle_dnvp += 5 if dnvp_ideology == "Radical"; old_middle_dvp += 2; old_middle_dnf += 3; rural_nsdap -= 3; rural_dnvp += 3 if dnvp_ideology == "Radical"; rural_dvp += 1; rural_dnf += 3; pro_republic -= 3; workers_kpd += 4; unemployed_kpd += 4; hindenburg_hitler_r -= 1; potempa_five_convicted = 1
+
+Convicted! The five <span style="color: #7A3C00;">**SA**</span> men have been sentenced to death for their atrocious crime. Yet the <span style="color: #7A3C00;">Nazis</span> have only intensified their propaganda, portraying the killers as national heroes and the murder as a patriotic act. This grotesque campaign has emboldened the <span style="color: #7A3C00;">**SA**</span>, with the <span style="color: #7A3C00;">**NSDAP**</span> now calling for an escalation in violence to render Germany "ungovernable."
+
+Rumors have arisen that Papen’s government may commute the sentences to win <span style="color: #7A3C00;">Nazi</span> support when the Reichstag reconvenes. But this has dealt a serious blow to [+ nsdap_chancellor +]’s so-called “oath of legality.” Public revulsion at the Potempa murders—and the <span style="color: #7A3C00;">Nazis</span>’ open approval—has triggered a backlash among their former supporters. Many religious and conservative voters are horrified, and even President Hindenburg is reportedly sickened by the affair.

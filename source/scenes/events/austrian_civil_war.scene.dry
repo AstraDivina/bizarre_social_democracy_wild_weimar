@@ -1,0 +1,88 @@
+title: Uprising in Austria
+new-page: true
+subtitle: In response to police attacks, the <span style="color: #A50034;">Austrian socialists</span> are rising up...
+view-if: year = 1934 and (month = 2 or month = 3) and austrian_parliament_seen
+max-visits: 1
+on-arrival: austrian_civil_war_seen = 1
+face-image: img/schutzbund.png
+tags: event
+
+= Uprising in Austria
+
+# pre-emptive democratic victory if sdapo strength >= 6
+# long civil war if sdapo_strength = 5 or 4 - opportunity for interference/forced peace
+# instant defeat if sdapo_strength < 4
+
+The crisis in Austria is continuing. The "<span style="color: #7A3C00;">Austrofascist</span>" government led by Engelbert Dollfuß continues to rule by emergency decree. It has been persecuting its political opposition, primarily the <span style="color: #A50034;">social democrats</span> of the <span style="color: #A50034;">**SDAPÖ**</span>.
+
+[? if sdapo_strength < 6: Now, Austria is entering a state of civil war. When the police attempted to seize weapons from the Republikanischer Schutzbund, the Schutzbund responded with force, shooting at the government troops. Fighting has sporadically broken out between Schutzbund and government forces all over Austria. ?]
+
+[? if sdapo_strength >= 6: The government's attempts to suppress the <span style="color: #A50034;">socialist</span> party and the Schutzbund were met with mass protest, supported by the <span style="color: #c00000;">**SPD**</span>[? if foreign_minister_party = "SPD":&nbsp;and the German government?]. [? if eu_austria: They are also supported by the recently formed <span style="color: #001489;">European</span> <span style="color: #FFDD00;">Union</span>, with economic sanctions targeting the government. ?] ?]
+
+Eventually...
+
+- @crushed
+- @long_war
+- @sdapo_victory
+
+@crushed
+title: The rebellious Schutzbund has been crushed.
+on-arrival: austria_defeat = 1
+view-if: sdapo_strength < 4
+
+The uprising lasted for no more than a few days before it was crushed. The Schutzbund and <span style="color: #A50034;">**SDAPÖ**</span> were too weak and too divided to stand against the forces of the state.
+
+@long_war
+title: It is a civil war.
+view-if: sdapo_strength = 5 or sdapo_strength = 4
+on-arrival: austria_civil_war = 1
+
+Neither side is backing down, and the <span style="color: #A50034;">**SDAPÖ**</span> have formed an alternative government after defeating the government troops in some cities. Austria is in a state of civil war.
+
+- @support_sdapo_party
+- @support_sdapo_govt
+- @force_peace
+- @long_war_2
+
+@support_sdapo_party
+title: As a party, the <span style="color: #c00000;">**SPD**</span> will provide the <span style="color: #A50034;">**SDAPÖ**</span> with support.
+subtitle: -2 resources
+choose-if: resources >= 2
+on-arrival: resources -= 2; sdapo_strength += 1
+go-to: sdapo_victory if sdapo_strength >= 6; long_war_2 if sdapo_strength < 6
+
+The <span style="color: #c00000;">**SPD**</span> raises its resources to provide arms and volunteers for the <span style="color: #A50034;">**SDAPÖ**</span>.
+
+@support_sdapo_govt
+title: The Foreign Ministry will support the democratic Austrian forces.
+view-if: spd_in_government and foreign_minister_party = "SPD"
+on-arrival: sdapo_strength += 1
+go-to: sdapo_victory if sdapo_strength >= 6; long_war_2 if sdapo_strength < 6
+
+We provide diplomatic and some financial and material support to the <span style="color: #A50034;">**SDAPÖ**</span> forces.
+
+@force_peace
+title: Can we bring the sides together for a peace?
+view-if: spd_in_government and foreign_minister_party = "SPD" and sdapo_strength = 5
+on-arrival: austria_peace = 1; pro_republic += 3; coup_progress -= 1; ddp_left += 2; dvp_left += 2; lvp_left += 2
+
+The Austrian government obviously sees us as biased, so there is no way they will let us host peace negotiations. However, negotiations begin nonetheless. In Switzerland, with <span style="color: #7A3C00;">Fascist</span> Italy as the <span style="color: #7A3C00;">Austrofascists</span>' protector and Germany as the <span style="color: #A50034;">**SDAPÖ**</span>'s, a peace deal is hammered out. The <span style="color: #A50034;">socialists</span> are disarmed and give up all pretense of revolution, while the <span style="color: #ABDDA4;">right-wing</span> paramilitaries are also disarmed. Dictatorship ends, and normal government is restored, with free elections.
+
+Given the <span style="color: #A50034;">**SDAPÖ**</span>'s starting position, this is treated as a victory. Now begins the long work of reconstruction...
+
+@long_war_2
+title: There is nothing we can do.
+on-arrival: z_relation -= 6; dvp_relation -= 6; ddp_relation -= 3; catholics_spd -= 5; old_middle_spd -= 5; coalition_dissent += 1; economic_growth -= 0.5; ddp_right += 2; dvp_right += 2; lvp_right += 2
+
+No matter our efforts, the war continues. Too many lives are extinguished. Refugees begin to flow into Germany, and trade suffers. Many are calling our Austrian interference a mistake.
+
+
+@sdapo_victory
+title: The <span style="color: #7A3C00;">Austrofascists</span> are backing down!
+on-arrival: sdapo_win = 1; pro_republic += 5; west_relation += 1; east_relation += 1; austria_victory = 1; reichswehr_loyalty += 0.1; coup_progress -= 2; ddp_left += 3; dvp_left += 3; lvp_left += 3
+view-if: sdapo_strength >= 6
+achievement: arbeiter_von_wien
+
+The result is that the <span style="color: #7A3C00;">Austrofascists</span> have backed down! Caught in an untenable position domestically and abroad, they have agreed to restore the National Council and resign from government, holding new elections. Now begins the long work of reconstruction. Our countries are likely to be brought closer together as a result.
+
+[? if eu_austria: This is a great success of the new <span style="color: #001489;">European</span> <span style="color: #FFDD00;">Union</span>, and its prestige is seen to rise internationally. ?]

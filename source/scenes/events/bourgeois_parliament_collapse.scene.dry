@@ -1,0 +1,18 @@
+title: Bourgeois Parliamentary Group Collapses!
+new-page: true
+subtitle: Crazy stuffs.
+tags: event
+view-if: bruning_time >= 6 and (in_center_right_coalition or in_right_coalition or spd_toleration_right) and (bourgeois_parliament or bourgeois_parliament_no_liberals) and bruning_coalition_dissent >= 3 and not cvp_formed
+on-arrival: pro_republic -= 3; dvp_right += 5; ddp_cohesion -= 3 if bourgeois_coalition_ddp; ddp_right += 3 if bourgeois_coalition_ddp; lvp_right += 3
+max-visits: 1
+
+= Bourgeois Parliamentary Group Collapses!
+
+The various disagreements that have arisen between the bourgeois parties themselves, as well as with Chancellor Brüning, have caused the parliamentary group to fracture, with each party now going its own separate way. This division significantly weakens their collective influence over Brüning and his policies, granting him greater autonomy as he now negotiates with each party individually.
+
+- @damn: The affairs of the bourgeois parties don't concern us.
+
+@damn
+on-arrival: bourgeois_parliament = 0; bourgeois_parliament_no_liberals = 0; bourgeois_parliament_ddp = 0; bourgeois_parliament_kvp = 0; bourgeois_list = 0; bourgeois_list_ddp = 0; bourgeois_list_kvp = 0
+
+Brüning’s austerity measures will likely intensify from this point forward.

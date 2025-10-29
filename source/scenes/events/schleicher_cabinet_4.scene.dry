@@ -1,0 +1,69 @@
+title: Schleicher Learns of the Plot
+subtitle: Hindenburg's loyalty is put to the test.
+view-if: chancellor = "Schleicher" and schleicher_time == 7 and schleicher_explode
+on-arrival: {!
+if ((Q.hindenburg_schleicher_r <= 0 || Q.schleicher_strength <= 1) && (Q.schleicher_spd_adopted || Q.schleicher_spd_r >= 4) && Q.pro_republic >= 40 || Q.constructive_vonc) {
+    Q.schleicher_cabinet_smart = 1;
+}
+!}
+new-page: true
+tags: event
+priority: 2
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/hindenburg_gang_rise_up.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Emergency Decree Request
+
+Following the Camarilla’s meeting with Papen and [+ nsdap_leader +], Schleicher questions Meissner about what transpired at Ribbentrop’s estate—and finally grasps the precariousness of his position. He decides to test Hindenburg’s loyalty, arranging an appointment with the President just hours after the Camarilla’s own visit.
+
+The course Schleicher pursues is one of three options developed by his colleagues in the Defense Ministry. The first two involve unconstitutional maneuvers: either postponing elections or forcing the Reichstag into indefinite adjournment.
+
+The third option, however, is more intriguing—a constructive vote of no confidence. Legal advisors have identified a loophole in the Republic’s constitution: while a hostile Reichstag majority can pass a no-confidence vote, it cannot unite to support a new cabinet. In the event of <span style="color: #7A3C00;">**NSDAP**</span> and <span style="color: #700000;">**KPD**</span> “cooperation,” this mechanism could paralyze governance.
+
+To remedy this, the Defense Ministry proposes a constitutional amendment requiring the Reichstag to propose a viable replacement cabinet alongside any no-confidence motion—thereby curbing purely negative obstruction.
+
+This option is favored within the Defense Ministry: it has the potential to attract <span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> support and avoid the civil unrest that the other two would likely provoke. Schleicher could remain in office as a caretaker indefinitely.
+[? if wurttemberg_vonc: A precedent has even been set in Württemberg, where the Bolz government ignored a no-confidence vote from a purely negative majority and continued to rule by decree. ?]Crucially, this approach requires nothing from Hindenburg beyond passive acquiescence.
+
+- @schleicher_2: Schleicher's second new lease on life?
+- @schleicher_4: Schleicher's second new lease on life?
+
+@schleicher_2
+view-if: not schleicher_cabinet_smart
+
+Despite the clear advantages of the third option, Schleicher rejects it. He hints that even if the Reichstag cannot oust him directly, a hostile majority could still repeal his emergency decrees—rendering his position untenable. True to Prussian military tradition, which favors offense over defense and prizes personal courage in the face of adversity, Schleicher may find it too humiliating to swallow his pride and retreat from his earlier threats to dissolve the Reichstag.
+
+Nevertheless, he decides to ask the President for authorization to dissolve the Reichstag and postpone new elections—despite Oskar likely having convinced his father to oppose this course weeks ago. His position is weakened by the fact that he previously brought down Papen, in front of the very cabinet members he retains today, by claiming the Reichswehr could not handle the outrage such a blatantly unconstitutional move would provoke.
+
+Schleicher now argues that circumstances have changed. His outreach to the labor unions, he claims, has neutralized the risk of civil war, and his economic plan will soon reduce tensions. As Defense Minister, he also asserts that he has addressed the Reichswehr’s deficiencies—it is now better prepared, with greatly expanded stocks of tear gas and streetfighting gear.
+
+- @schleicher_3
+
+@schleicher_3
+title: The moment of truth.
+on-arrival: schleicher_strength -= 1; schleicher_goal = "Concede defeat";
+
+Schleicher requests for a decree dissolving the Reichstag, pointing out the chamber in all likelihood approve a no-confidence motion at the end in the next reconvocation. Also predicting that a new election wouldn't alter the Reichstag in his favor much, he also asks for a decree postponing the planned election. 
+
+Hindenburg remains unresponsive. His personal estrangement from Schleicher is already far advanced, and there have been little personal contact between the two men for a majority of Schleicher's term. Schleicher advocating for the same course of action that he himself opposed when it was advocated by Papen. 
+
+In the end, Hindenburg is only willing to provide a dissolution decree, but then he refuses to provide it to Schleicher as of right now. But to the public, Schleicher's hold on the chancellorship remains firm.
+
+@schleicher_4
+view-if: schleicher_cabinet_smart
+on-arrival: schleicher_explode = 0; constructive_vonc = 1; constructive_schleicher = 1
+
+With Schleicher himself unsure of Hindenburg's support, and the <span style="color: #c00000;">**SPD**</span> likely to support the third option—and potentially convince other <span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> parties to do the same—he now sees a new avenue out of the political deadlock.
+
+The chancellor has therefore cancelled his planned test of loyalty with Hindenburg, along with his intended resignation in the event of rejection or a no-confidence vote from the Reichstag. All that remains is Hindenburg's acquiescence.

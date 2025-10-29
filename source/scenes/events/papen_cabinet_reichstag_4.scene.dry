@@ -1,0 +1,84 @@
+title: Papen Faces a Vote of No Confidence!
+subtitle: His first test of strength before the Reichstag.
+view-if: chancellor = "Papen" and papen_time and next_reichstag_time == rubicon_time and next_reichstag_time > 0 and papen_back
+on-arrival: reichstag_rubicon = 1
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/reichstag.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Vote of No Confidence
+
+Papen once again faces the Reichstag, unfortunate to have taken power just a day before its scheduled reconvocation. It remains unclear whether he has secured a decree authorizing the Reichstag’s dissolution, as he may still be banking on the <span style="color: #7A3C00;">**NSDAP**</span>’s toleration. One thing, however, is certain: Papen has grown disillusioned with the prospect of a [+ nsdap_chancellor +] chancellorship, and now that he holds power again, he has no intention of giving it up on their terms.
+
+However, Papen, and President Hindenburg himself, believe that a forced adjournment of the Reichstag may be necessary, with it only reconvening if a parliamentary majority could agree on a constructive course. This is only a bit less provocative than outright postponing elections, and a threat of civil war is omnipresent.
+
+# TODO
+
+- @reichstag
+
+@reichstag
+title: The Reichstag goes into session.
+on-arrival: {!
+const contentElement = document.getElementById('content');
+contentElement.style.backgroundColor = '#0A0A08';
+
+const toolsWrapper = document.getElementById('tools_wrapper');
+if (toolsWrapper) {
+  toolsWrapper.style.display = 'none';
+}
+
+const header = document.querySelector('header');
+header.style.color = '#ffffff';
+!}
+
+The Reichstag is forcibly adjourned! Police officers and Reichswehr soldiers prevent parliamentarians from entering the building, and fierce riots emerge across the country as news of this unconstitutional act reaches all corners of the nation. The <span style="color: #7A3C00;">**NSDAP**</span>, now convinced that this is all an elaborate plot by Papen to get back into power, firmly breaks with him and any chance of them entering government.
+
+However, this time, the Reichswehr is much better equipped, internal conflict plagues the <span style="color: #7A3C00;">**SA**</span>, and Hugenberg, now friendly with Papen once more pressures the <span style="color: #3E88B3;">**Stahlhelm**</span> to fight against leftists instead of the government. 
+
+Now, it's on us. Shall we mobilize the Reichsbanner?
+
+- @reichstag_2
+- @reichstag_3
+
+@reichstag_2
+title: We know Papen's intentions, we must not allow him to consolidate! We must take to the barricades to stop Papen from ending democracy.
+
+Do we realize that this means civil war, against the full force of the state?
+
+- @papen_civil_war: Yes.
+- @reichstag_3: We are not ready for war. We must bide our time.
+
+@reichstag_3
+title: Bide our time.
+on-arrival: workers_spd -= 5; new_middle_spd -= 5; unemployed_spd -= 5; pro_republic -= 15; rb_strength -= 500; rb_militancy *= 0.7; sa_strength += 50; rfb_strength += 200; rfb_militancy += 0.1; left_dissent += 60; center_dissent += 50; reformist_dissent += 40; labor_dissent += 40; neorevisionist_dissent += 40
+
+The <span style="color: #c00000;">**SPD**</span> is shocked at our decision! How can we allow such a blatant violation of the constitution go like that? Many radicalized Reichsbanner and party officials defeat to the <span style="color: #700000;">**Communists**</span> and the <span style="color: #700000;">**RFB**</span>, vowing to fight against Papen regardless of our instructions.
+
+- @reichstag_4
+- @papen_civil_war_2
+
+@papen_civil_war_2
+title: The government cannot adequately suppress unrest, civil war is inevitable.
+subtitle: We will fight, whether we choose to or not.
+go-to: papen_civil_war
+
+@reichstag_4
+title: Martial law is declared. The Reichswehr quells pockets of unrest.
+on-arrival: marburg_time = 0; marburg_trigger = 1; rb_strength -= 500; rb_militancy *= 0.7; sa_strength *= 0.5; rfb_strength *= 0.5; workers_kpd -= 5; unemployed_kpd -= 5; workers_nsdap -= 5; new_middle_nsdap -= 5; old_middle_nsdap -= 5; rural_nsdap -= 5; catholics_nsdap -= 5; unemployed_nsdap -= 5; unemployed += 2; economic_growth -= 1.5; pro_republic = 0
+view-if: reichswehr_strength*reichswehr_militancy*(1-reichswehr_loyalty) >= (sa_strength*sa_militancy + rfb_strength*rfb_militancy + unemployed_nsdap_normalized + unemployed_kpd_normalized + workers_kpd_normalized + unemployed_kpd_normalized)
+
+The disorganized <span style="color: #7A3C00;">**SA**</span> and <span style="color: #700000;">**RFB**</span> have failed to spark a mass uprising, and a civil war is averted. A widespread crackdown on paramilitaries have begun, with the Reichsbanner not even being spared. 
+
+- @root: Papen lives?

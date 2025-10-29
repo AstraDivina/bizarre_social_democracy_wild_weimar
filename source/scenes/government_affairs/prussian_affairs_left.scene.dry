@@ -1,0 +1,69 @@
+title: The Prussian Bulwark
+new-page: true
+is-card: true
+view-if: prussia_leader = "Rosenfeld" and in_popular_front_prussia = 1 or in_left_front_prussia = 1 and prussian_affairs_timer <= 0
+on-arrival: prussian_affairs_timer += 6; month_actions += 1
+tags: govt_affairs
+card-image: img/braun.jpg
+#subtitle: The state government of Prussia is a bulwark of democracy...
+
+= Prussian Affairs
+
+Prussia, by far the largest and most important state in Germany, is governed by our party, in a coalition with the [? if in_popular_front_prussia: [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?], [? if ddp_in_popular_front_prussia and not lvp_formed: [? if ddp_name == "DDP": <span style="color: #D3C24D;">**Democratic**</span>?][? if ddp_name == "DStP": <span style="color: #D3C24D;">**State**</span>?]?] and <span style="color: #700000;">**Communist**</span> parties.?][? if in_left_front_prussia: <span style="color: #700000;">**Communists**</span>.?] It is the most left-wing state government in Germany, led by Kurt Rosenfeld.
+
+We can enact policies in Prussia. [? if president == "Hindenburg": However, President Hindenburg and the political right are closely monitoring our every move and can invoke Reichsexekution at any time. Tread lightly. ?]
+
+- @police_loyalty: Bolster the loyalty of the police.
+- @police_strength: Recruit additional police.
+- @bureaucracy: Purge the bureaucracy of <span style="color: #808080;">reactionary</span> elements.
+- @ban_sa: Ban the <span style="color: #7A3C00;">**SA**</span>, the <span style="color: #7A3C00;">Nazi</span> paramilitary group.
+- @ban_sh: Ban the <span style="color: #3E88B3;">**Stahlhelm**</span>, the Nationalist paramilitary.
+- @unban_rfb: Reverse the <span style="color: #8B0000;">**RFB**</span> ban.
+- @free_kpd: Protect <span style="color: #8B0000;">**KPD**</span> demonstrations from the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>.
+- @root: No new policies are needed.
+- @easy_discard
+- @cancel_advisor_action
+
+@police_loyalty
+view-if: prussian_police_loyalty < 1
+on-arrival: prussian_police_loyalty += 0.15; rfb_strength += 25; reichsexekution += 1
+
+The police have historically been overrun with <span style="color: #808080;">reactionaries</span>, and we are trying to change this, little by little. We have improved the training and recruitment process to select for a broader demographic than the traditional <span style="color: #3E88B3;">conservatives</span>, and to put a tighter leash on their political activity. In addition, we set up committees to investigate the ranks of the police and remove those with <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> sympathies. The <span style="color: #700000;">**KPD**</span> have also began to infiltrate some of their own into the police force...
+
+Current police loyalty: [+ prussian_police_loyalty : loyalty +].
+
+@police_strength
+on-arrival: prussian_police_strength += 30; rfb_strength += 50
+
+We have increased the size of the Prussian police.
+
+@bureaucracy
+on-arrival: prussian_police_loyalty += 0.08; nationalism -= 5; pacifism += 1; democratization += 2; pro_republic += 3*(1-dissent); new_middle_spd += 2*(1-dissent) if democratization >= 3; new_middle_spd += 2*(1-dissent) if democratization >= 4; coup_progress += 0.5; dvp_left += 2; ddp_left += 1; lvp_left += 1.5; reichsexekution += 1; bureaucracy_goal_prussia -= 1; new_middle_kpd += 2
+
+The bureaucracy is deeply <span style="color: #808080;">reactionary</span>, and many abuse their power to favor the <span style="color: #3E88B3;">political right</span>. By removing the <span style="color: #3E88B3;">pro-monarchy</span> and <span style="color: #7A3C00;">pro-dictatorship</span> elements, we can democratize it. The <span style="color: #700000;">**KPD**</span> have also began to infiltrate some of their own into the state bureaucracy...
+
+@ban_sa
+view-if: sa_banned == 0
+on-arrival: sa_strength *= 0.9; sa_strength *= 0.75 if prussian_police_loyalty >= 0.75; sa_banned_pro = 1 if prussian_police_loyalty >= 0.75; sa_banned_pro = 0 if prussian_police_loyalty < 0.75; sa_banned = 1; dvp_relation -= 3; prussian_police_loyalty -= 0.05; sa_militancy -= 0.05; sa_ban_timer = 6; interior_goal_prussia -= 1; coup_progress -= 2 if coup_progress >= 6
+
+As it turns out, the <span style="color: #7A3C00;">Nazi</span> <span style="color: #7A3C00;">**SA**</span> has many allies in the police and bureaucracy. Our relationship with the police weakens, and the <span style="color: #7A3C00;">**SA**</span> can still organize illegally, right under the police's noses. [? if sa_banned_pro : Nevertheless, the <span style="color: #7A3C00;">**SA**</span> is substantially weakened by our ban. ?] 
+
+[? if coup_progress >= 6: There are reports of an imminent coup by the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>. We have disrupted some of these plans, but the threat is still present. ?]
+
+@ban_sh
+on-arrival: sh_strength *= 0.85; sh_strength *= 0.7 if prussian_police_loyalty >= 0.75; sh_banned = 1; dvp_relation -= 5; lvp_relation -= 2; prussian_police_loyalty -= 0.1; coalition_dissent += 1 if spd_in_government = 1 and in_grand_coalition = 1 and president = "Hindenburg"; sh_ban_timer = 6; interior_goal_prussia -= 1; sh_coup_progress = coup_progress; coup_progress -= 1 if coup_progress >= 6; hindenburg_angry += 5
+view-if: sh_banned == 0
+
+[? if president == "Hindenburg": Banning the <span style="color: #3E88B3;">**Stahlhelm**</span> weakens our relationship with President Hindenburg, as well as the political <span style="color: #3E88B3;">right</span> and the police. ?][? if president != "Hindenburg": Banning the <span style="color: #3E88B3;">**Stahlhelm**</span> weakens our relationship with the political <span style="color: #3E88B3;">right</span> and the police. ?] [? if spd_in_government = 1 and in_grand_coalition = 1 and president = "Hindenburg" : It also weakens our coalition due to the influence of Hindenburg on the <span style="color: #C0A054;">right</span> wing of our coalition. ?] In addition, the <span style="color: #3E88B3;">**Stahlhelm**</span> still operates out of public sight. 
+
+@unban_rfb
+view-if: rfb_banned = 1
+on-arrival: rfb_banned = 0; rfb_strength += 100; prussian_police_loyalty -= 0.1; rfb_goal_prussia -= 1; hindenburg_angry += 8
+
+The <span style="color: #700000;">Communist</span> <span style="color: #700000;">**RFB**</span> is no longer banned.
+
+@free_kpd
+view-if: rfb_banned = 0
+on-arrival: rfb_banned = 0; rfb_strength += 50; rfb_militancy += 0.03; prussian_police_loyalty -= 0.05; workers_kpd += 4; unemployed_kpd += 4; free_kpd_goal_prussia -= 1; reichsexekution += 1; dvp_relation -= 5; ddp_relation -= 4; lvp_relation -= 5; z_relation -= 4; dvp_right += 2; ddp_right += 1; ddp_cohesion -= 0.5; lvp_right += 1.5; left_dissent -= 5; reformist_dissent += 5
+
+Restrictions are lifted and police are deployed to protect <span style="color: #700000;">Communist</span> demonstrations and organizations from the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>.

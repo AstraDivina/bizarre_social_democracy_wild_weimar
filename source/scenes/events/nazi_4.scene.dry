@@ -1,0 +1,56 @@
+title: [+ nsdap_chancellor +] and Papen Meet
+subtitle: A conspiracy against the chancellor is hatched.
+view-if: chancellor = "Schleicher" and schleicher_time == 4
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/hitler_papen.jpg";  
+
+    cardEl.appendChild(image);
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= [+ nsdap_chancellor +] and Papen Meet
+
+(While the public remained unaware of the details of the plot, they are included here for informational purposes)
+
+Papen, eager to return to power and thirsting for revenge against his former ally and ouster Schleicher, has been working behind the scenes to arrange a meeting with [+ nsdap_chancellor +]. With the help of intermediaries—and ultimately a banker sympathetic to the <span style="color: #7A3C00;">Nazis</span>—he finally secured an audience with the man himself.
+
+The two met at the banker’s home, where they spent much of the time airing old grievances. Nevertheless, Papen made a concerted effort to court the <span style="color: #7A3C00;">Nazi</span> leader. He insisted that it was Schleicher, not he, who had blocked [+ nsdap_chancellor +]’s path to the chancellorship. He also revealed that President Hindenburg had yet to issue Schleicher a decree to dissolve the Reichstag—evidence, he claimed, of the president’s deep reservations about him. Papen emphasized that the true nature of the Hindenburg-Schleicher relationship was far more strained than the public believed, and he asserted that he himself still wielded considerable influence over the old man. His hatred for Schleicher was unmistakable throughout.
+
+By the end of the meeting, the two had reached a mutual understanding: they would work together to oust Schleicher and replace his government with a presidential cabinet based on a coalition between the <span style="color: #7A3C00;">Nazis</span> and the <span style="color: #808080;">reactionary right</span>, with the goal of crushing the leftist parties once and for all.
+
+However, the question of who should lead this new government remained unresolved. Papen argued that Hindenburg’s well-known opposition to appointing [+ nsdap_chancellor +] should make him the more viable candidate, offering to give the <span style="color: #7A3C00;">Nazis</span> control over the Interior and Defense Ministries as compensation. [+ nsdap_chancellor +] flatly rejected this, still insisting that his mass movement had earned the right to the chancellorship.
+
+The meeting concluded with a promise to continue discussions, though no future date was set.
+
+- @nazi
+
+@nazi
+title: An end to [+ nsdap_chancellor +]'s political isolation...
+subtitle: President Hindenburg will never appoint [+ nsdap_chancellor +]! No need to worry.
+
+Indeed, no need to worry. But [+ nsdap_chancellor +]’s chances of seizing power legally have jumped from zero to near-zero. He has finally breached the protective ring of advisors that shielded President Hindenburg from him—and now holds the offer of an alliance with a former chancellor who still enjoys the old man's affection.
+
+It remains unlikely that a man like Papen would surrender his own ambitions for the chancellorship—and the same can be said for [+ nsdap_chancellor +]—but Papen's thirst for revenge knows no bounds.
+
+The reason we know of this secretive meeting? When Papen stepped out of a taxi at the meeting location, he was unpleasantly surprised to find a photographer aiming a camera at him. Through a long chain of whispers—beginning with Strasser and ending with Brüning’s personal dentist hiring the photographer—the front pages of newspapers across Germany now blare: “*[+ nsdap_chancellor +] and Papen Against Schleicher*.”
+
+@nazi_2
+title: What does Schleicher think of this?
+on-arrival: workers_nsdap -= 2; workers_spd += 2
+
+Papen quickly dismisses the "fabricated" charges that the meeting was directed against Schleicher, claiming he merely wanted to discuss how he could bring the <span style="color: #7A3C00;">Nazis</span> into the cabinet—to Schleicher’s benefit. The leftist parties, including even our own newspaper, frame it as a capitalist conspiracy, given that the meeting took place in the home of a <span style="color: #808080;">reactionary</span> banker.
+
+Only a minority understands the meeting for what it truly was: two men, both hostile to the current chancellor, conspiring against him. Even Schleicher, the political mastermind, failed to take Papen seriously enough to believe he would plot behind his back. He assumed Papen was merely trying to restore himself to favor and sought to broker a reconciliation between his cabinet and [+ nsdap_chancellor +].
+
+> *"He imagined that he was going to pull off a master stroke and serve up [+ nsdap_chancellor +] to us on a platter. As if [+ nsdap_chancellor +] had not shown many times that he cannot be trusted! Now Papen is embarrassed. He fears our reproaches. I won’t scold him. I’ll just say to him: ‘my Fränzchen, you’ve committed another blunder!"*
+
+ - Kurt von Schleicher, to the French ambassador

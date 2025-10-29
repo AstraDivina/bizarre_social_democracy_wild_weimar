@@ -1,0 +1,34 @@
+title: Hitler takes power.
+subtitle: The beginning of the end.
+view-if: (chancellor == nsdap_chancellor or president == "Hitler" or president == "Göring" or president == "Frick" or chancellor_party == "NSDAP") and (not rubicon_mini or president == "Hitler" or president == "Göring" or president == "Frick")
+on-arrival: spd_in_government = 0
+tags: event
+new-page: true
+
+[? if hitler_deported and president != "Hitler" and chancellor != "Hitler": The first act that Chancellor [+ chancellor +] takes upon assuming office is bringing Adolf Hitler back to Germany, and giving him citizenship and an official cabinet position. ?]
+
+Hitler has promised a campaign of revenge against the <span style="color: #c00000;">socialists</span>, and the <span style="color: #7A3C00;">Nazis</span> have already spilled much blood on the streets. In his published manifesto, he promises a campaign of <span style="color: #7e0000;">**unspeakable**</span> <span style="color: #3f0000;">**horror**</span> against our <span style="color: #005EB8;">Jews</span>, and endless wars of violent expansion that will ruin all of Europe.
+
+What are we to do now?
+
+- @fight: We will fight on the streets to prevent Hitler from taking power.
+- @give_up: We will vote against the <span style="color: #7A3C00;">Nazis</span> in the Reichstag.
+
+
+@fight
+
+Do we realize that this means civil war, against the full force of the state?
+
+- @civil_war: Yes.
+- @give_up: We are not ready for war. Instead, we will vote against the <span style="color: #7A3C00;">Nazis</span> in the Reichstag.
+
+@give_up
+on-arrival: in_right_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_minority_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_center_right_coalition_prussia = 0; in_far_right_coalition_prussia = 1; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; right_prussia = 0; prussia_leader = "Papen" if president != "Hitler"; prussia_leader = "Goring" if president = "Hitler"
+
+Speeches are made. Votes are held. Bullets fly in the streets. Some <span style="color: #c00000;">socialists</span> are killed or jailed. Others flee the country. What can votes even do at this juncture?
+
+The Reichstag is burned, ostensibly by a foreign <span style="color: #700000;">communist</span>. In the wake, the <span style="color: #7A3C00;">Nazis</span> pass decrees giving them unlimited power. They, combined with the [? if dnvp_ideology == "Radical": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?], will win a majority at the next elections.
+
+Germany is lost.
+
+- @game_over: Game over.

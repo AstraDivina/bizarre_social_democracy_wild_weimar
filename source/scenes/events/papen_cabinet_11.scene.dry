@@ -1,0 +1,93 @@
+title: Papen Plans to Declare Martial Law!
+subtitle: The chancellor meets with his cabinet...
+view-if: chancellor = "Papen" and papen_post_2 and next_reichstag_time == rubicon_time and next_reichstag_time > 0
+new-page: true
+tags: event
+max-visits: 1
+priority: 3
+on-arrival: schleicher_papen_r -= 1
+face-image: img/weimar_constitution.jpg
+
+= Martial Law
+
+Papen continues to assert his independence, disregarding Schleicher’s advice, and is still planning to declare martial law, dissolve the Reichstag, and cancel elections indefinitely when the Reichstag reconvenes this week, as he announced to the cabinet. His aim is to implement a new constitution via plebiscite—or, perhaps, simply through a presidential decree, with Hindenburg’s continued support.
+
+Amid rising labor protests and growing hostility from all corners of German society, Schleicher can no longer support his former ally. Papen’s reckless pursuit of political suicide, backed only by President Hindenburg, has pushed Schleicher to distance himself from Papen’s unpopular policies in preparation for his own chancellorship. He has engaged with trade unions and a variety of political figures, including Gregor Strasser, to build the necessary support.
+
+One thing is clear: Papen must go for German democracy to survive.
+
+- @papen
+
+@papen
+title: The cabinet meets.
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/papen_cabinet_2.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+on-arrival: hindenburg_papen_r -= 1
+
+In a cabinet meeting convened to discuss plans for imposing martial law, Schleicher turned the tables against the chancellor by revealing the results of Reichswehr war games simulating conflict with the <span style="color: #7A3C00;">**SA**</span>, <span style="color: #700000;">**RFB**</span>, and the Reichsbanner. The exercises concluded that the army would be unable to cope with a civil war against all three groups.
+
+With his last hope for salvaging power extinguished and all but one minister turning against him, Papen is left with no viable path forward—resign now, or be crushed by the Reichstag later in the week.
+
+- @papen_2
+
+@papen_2
+title: Papen resigns his position!
+subtitle: Who will succeed him?
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/schleicher_et_papen.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+An embittered Papen—convinced that Schleicher orchestrated his downfall and vowing never to forgive the betrayal—has officially submitted his resignation to Hindenburg, who, with reluctance, has accepted it. 
+
+As this marks yet another cabinet's fall under Schleicher's influence, Hindenburg's suspicions of his motives begin to grow, particularly with Schleicher’s constant invoking of national security as justification for his actions.
+
+- @papen_3
+
+@papen_3
+title: General Kurt von Schleicher is appointed chancellor!
+on-arrival: {!
+Q.chancellor = "Schleicher";
+if (Q.prussia_leader == "Papen") Q.prussia_leader = "Schleicher"
+Q.schleicher_time = 0
+
+Q.pro_republic += 5;
+Q.reichswehr_militancy += 0.5;
+
+Q.papen_goal = "Cry over spilt milk";
+Q.schleicher_goal = "Scavenge for parliamentary backing";
+Q.oskar_goal = "Be buddies with Schleicher";
+Q.meissner_goal = "Become acquainted with the new chancellor";
+
+Q.schleicher_papen_r = 0; 
+Q.hindenburg_schleicher_r -= 1; 
+Q.schleicher_strength -= 1;
+
+!}
+face-image: img/portraits/SchleicherKurt.jpg
+
+Schleicher is now Papen’s successor, having orchestrated his downfall through manipulated war games conducted by his close friends, and has been appointed chancellor with full support from President Hindenburg.
+
+However, Schleicher is deeply reluctant to accept the position. He prefers to exert influence through his extensive behind-the-scenes network, knowing full well that he lacks the public profile and charisma necessary to be an effective chancellor. Despite his reservations, Schleicher feels bound by duty to obey a direct order from the commander-in-chief.
+
+His appointment is a breath of fresh air compared to Papen, and his more moderate and social leanings are more acceptable to the <span style="color: #c00000;">**SPD**</span> and the party system as a whole.
+
+However, many still view Schleicher as little better than his predecessor. After all, he was responsible for the [? if otl_prussian_coup_seen:&nbsp;Prussian coup and the?] disastrous policies of the Papen government. At the end of the day, most folk view him as just another <span style="color: #808080;">reactionary</span>.

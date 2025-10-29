@@ -1,0 +1,80 @@
+title: <span style="color: #000000;">Center Party</span> Conference
+subtitle: Ludwig Kaas has resigned as the <span style="color: #000000;">Center Party</span>'s chairman...
+view-if: year == 1931 and month == 6 and (pro_republic >= 60 and (in_weimar_coalition or in_grand_coalition)) and z_leader == "Kaas"
+on-arrival: {!
+Q.kaas_explode_seen = 1;
+
+Q.catholics_z -= 3;
+
+if (Q.z_relation >= 70) Q.joos_unlock = 1;
+if (Q.chancellor == "Brüning") Q.bruning_unlock = 1;
+if (Q.prussia_leader == "Stegerwald" || Q.catholics_z_normalized < 40 || Q.z_votes - Q.bvp_votes < 10) Q.stegerwald_unlock = 1;
+if (!Q.stegerwald_unlock && !Q.bruning_unlock && !Q.joos_unlock) Q.guerard_unlock = 1;
+
+if (Q.stegerwald_unlock) {
+    Q.bruning_unlock = 0;
+    Q.joos_unlock = 0;
+} else if (Q.bruning_unlock) {
+    Q.joos_unlock = 0;
+}
+
+!}
+max-visits: 1
+tags: event
+new-page: true
+face-image: img/portraits/Ludwig_Kaas.jpg
+
+= <span style="color: #000000;">Center Party</span> Conference
+
+Ludwig Kaas has never truly embraced his role as party chairman, viewing it as a burden. He was elected as a compromise candidate, without actively campaigning for the position. Privately, he has made no secret of his desire to be relieved of the party chairmanship. With the stabilization of the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Republic, Kaas believes he can retire without facing any significant consequences.
+
+Despite pleads from his party members and colleagues, Kaas has officially resigned as head of the <span style="color: #000000;">Center Party</span>. This decision will have little impact, as he spent most of his time in Rome anyway, delegating the management of the party to his allies Joos and Brüning. No other <span style="color: #000000;">Center</span> member has missed as many Reichstag sessions as Kaas. Now, the party must find a successor, with potential candidates being his deputy leader Joos, Brüning, Stegerwald, or perhaps another compromise candidate.
+
+- @joos: The <span style="color: #000000;">Center Party</span> elects Joseph Joos as the party chair.
+- @bruning: The <span style="color: #000000;">Center Party</span> elects Heinrich Brüning as the party chair.
+- @guerard: The <span style="color: #000000;">Center Party</span> elects Theodor von Guérard as the party chair.
+- @stegerwald: The <span style="color: #000000;">Center Party</span> elects Adam Stegerwald as the party chair.
+
+@joos
+subtitle: Joos is part of the Catholic worker groups, and the current deputy leader of the party responsible for organizational work.
+unavailable-subtitle: [? if z_relation < 70: Our relations are not good enough. ?][? if bruning_unlock: Brüning is able to overshadow Joos due to his status as Chancellor. ?][? if stegerwald_unlock: Stegerwald is able to secure the votes of the party's workers. ?]
+choose-if: joos_unlock
+on-arrival: z_leader = "Joos"; catholics_z -= 5; catholics_dvp += 3; catholics_lvp += 3; catholics_dnvp += 3 if dnvp_ideology == "Moderate"; catholics_spd += 5; workers_z += 5; z_relation += 10; zentrum_disintegration += 1; dvp_left += 1; ddp_left += 1; ddp_cohesion += 1; lvp_left += 1; fake_joos = 1
+face-image: img/portraits/Joseph_Joos.jpg
+
+With our friendly relations, we have been able to influence the [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] delegates to promote Joseph Joos to become the new [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] chairman. He has long been a friend of the <span style="color: #c00000;">**SPD**</span>, and will be more inclined to collaborate with us compared to Kaas. He also increases the appeal of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] to the working class, though it comes at the cost of deepening the social and economic divisions once held together by religion.
+
+Unfortunately, the hands-off approach to internal party affairs under Kaas is expected to be maintained under his successor, limiting Joos's influence over the parliamentary delegation.
+
+@bruning
+subtitle: Brüning is the leader of the <span style="color: #000000;">Center</span>'s parliamentary group, and the party's economic expert.
+unavailable-subtitle: Brüning needs more power.
+choose-if: bruning_unlock
+on-arrival: z_leader = "Brüning"; z_relation -= 3; dvp_right += 1; ddp_right += 1; lvp_right += 1
+face-image: img/portraits/BrüningHeinrich.jpg
+
+Heinrich Brüning, the current chancellor, an ally of Kaas and protege of Stegerwald has got another job under his belt now. Although his responsibilities as chancellor will leave very little room for him to manage the internal affairs of his party, with it once again being left to his colleagues. 
+
+Nothing ever happens.
+
+@guerard
+subtitle: Guérard is part of the <span style="color: #000000;">Center</span>'s civil servant wing, and is in the dead center of the party politically.
+unavailable-subtitle: Guérard is only available as a compromise candidate, as he lacks a strong base behind himself.
+choose-if: guerard_unlock
+on-arrival: z_leader = "Guérard"; z_relation += 3; new_middle_z += 6; old_middle_z += 2
+face-image: img/portraits/guerard.jpg
+
+Von Guérard, a rather plain government bureaucrat in charge of the Transport Ministry and former parliamentary group leader for the <span style="color: #000000;">Center</span>, has shifted to the left over the years. He is elected as a compromise candidate due to his inoffensiveness to any wing of the party. 
+
+His political position aligns with that of former chancellor and party leader Wilhelm Marx, and he has voiced support for the continuation of the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Coalition.
+
+@stegerwald
+subtitle: Stegerwald supports 'leaving the tower', expanding the party to include Protestants.
+choose-if: stegerwald_unlock
+unavailable-subtitle: Stegerwald lacks the necessary influence to overcome his detractors, and the <span style="color: #000000;">Center</span> believes that their electoral situation is fine as is.
+on-arrival: z_leader = "Stegerwald"; stegerwald_transformation_timer = 12; z_ideology = "Right"; stegerwald_path = 1; z_relation -= 8; zentrum_disintegration += 2; new_middle_z -= 5; old_middle_z -= 3; rural_z -= 1; catholics_z -= 5; workers_z += 5; unemployed_z += 3; catholics_spd += 8; catholics_other += 4; catholics_dnvp += 2 if dnvp_ideology == "Moderate"; catholics_dvp += 4; catholics_ddp += 2; catholics_lvp += 4; dvp_right += 1; ddp_left += 1; ddp_cohesion += 1; liberal_cooperation += 1; bourgeois_cooperation += 1; catholics -= 5; new_middle_dnvp -= 2 if dnvp_ideology == "Radical"; old_middle_dnvp -= 3 if dnvp_ideology == "Radical"; rural_dnvp -= 3 if dnvp_ideology == "Radical"; new_middle_z += 2 if dnvp_ideology == "Radical"; old_middle_z += 3 if dnvp_ideology == "Radical"; rural_z += 3 if dnvp_ideology == "Radical"; prussia_leader = "Brüning" if prussia_leader == "Stegerwald"
+face-image: img/portraits/stegerwald.jpg
+
+Adam Stegerwald has been elected as the chairman of the <span style="color: #000000;">Center Party</span>. He seems to represent a rightward turn from Marx, despite his trade union background, and will preside over a <span style="color: #000000;">Center Party</span> less inclined to compromise with the left. He views the <span style="color: #000000;">Center Party</span> as a prototype for a <span style="color: #000000;">Christian</span>, <span style="color: #586593;">democratic</span>, <span style="color: #000000;">German</span>, and <span style="color: #c00000;">social</span> party, and aims to transform it according to the principles laid out in his proposed "Essen program" eight years prior. 
+
+The <span style="color: #000000;">Center Party</span>'s middle class wing are in uproar over the vote, despite Stegerwald conceding his leadership of the Reichstag delegation and the Minister-Presidency to his protege Heinrich Brüning. [? if dnvp_ideology == "Radical": His election also attracts some Protestant <span style="color: #3E88B3;">**DNVP**</span> dissidents and industrialists, who may result in a shift of the party towards the right. ?]

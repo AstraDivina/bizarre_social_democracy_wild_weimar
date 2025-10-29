@@ -1,0 +1,30 @@
+title: Return card to hand.
+view-if: difficulty <= 0 and last_advisor_action = 0 and last_cabinet_action = 0
+go-to: root
+on-arrival: {!
+if (Q.month_actions > 0) {
+    Q.month_actions -= 1;
+}
+// return card to hand
+var card = this.state.lastPlayedCard;
+card.image = card.cardImage;
+if (Q.difficulty >= 0) {
+    this.state.currentHands['main'].push(card);
+} else {
+    this.state.currentHands['main.main_easy'].push(card);
+}
+// reset the timer...
+if (Q[card.id + "_timer"]) {
+    Q[card.id + "_timer"] = 0;
+}
+if (card.id == "prussian_affairs_dvp" || card.id == "prussian_affairs_left" || card.id == "prussian_affairs_majority") {
+    Q.prussian_affairs_timer = 0;
+}
+if (card.id == "dealing_with_toleration_right" || card.id == "dealing_with_toleration_cvp") {
+    Q.dealing_with_toleration_timer = 0;
+}
+// reduce visit count
+if (this.state.visits[card.id]) {
+    this.state.visits[card.id] -= 1;
+}
+!}

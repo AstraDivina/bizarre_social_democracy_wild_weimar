@@ -1,0 +1,6 @@
+
+/node_modules
+out/game.json
+out/html/core.js
+package-lock.json
+out/html/jquery-1.11.1.min.js

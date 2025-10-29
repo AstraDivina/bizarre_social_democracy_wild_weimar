@@ -1,0 +1,15 @@
+title: 1933
+subtitle: A new year 
+on-arrival: {!
+if (Q.works_program && Q.works_program >= 2) {
+    Q.unemployed -= 1;
+    Q.inflation += 1
+}
+!}
+tags: event
+view-if: year = 1933 and month = 1 and not rubicon
+priority: 2
+max-visits: 1
+
+A new year begins. [? if works_program = 0 : There is finally some good news in Germany. The economic depression has begun the early stages of global recovery. ?][? if works_program >= 1 and unemployed >= 20 : We have begun to launch a public works program, but unemployment is still stubbornly high. The people are beginning to finally have optimism, however, with the global recovery beginning. ?][? if works_program >= 1 and unemployed < 20 : We have begun to launch a public works program, and unemployment is finally starting to fall. The people are beginning to finally have optimism. The depression has begun the early stages of recovery across the world as well. ?]
+

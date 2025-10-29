@@ -1,0 +1,30 @@
+title: The 'Potempa Five' Are Pardoned!
+subtitle: Murder excused in the name of politics.
+view-if: chancellor = "Papen" and papen_time == 13 and potempa_five_convicted and prussia_leader == "Papen"
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/potempa5.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= The 'Potempa Five' Are Pardoned!
+
+In a bid to win <span style="color: #7A3C00;">Nazi</span> support for his government, Papen and his Justice Minister have bowed to pressure and commuted the murderers' sentences, using his power as Prussia's <i>Reichskommissar</i>. The hope is that the <span style="color: #7A3C00;">**NSDAP**</span> will back Papen in the upcoming confidence vote—but this capitulation has only strengthened the <span style="color: #7A3C00;">Nazis</span>, laying bare the government's unwillingness—or inability—to confront them.
+
+- @papen
+
+@papen
+title: Shameful.
+on-arrival: pro_republic -= 3; new_middle_nsdap -= 2; old_middle_nsdap -= 2; rural_nsdap -= 2; sa_militancy += 0.02; sa_strength += 50
+
+Yet another disgraceful capitulation to the <span style="color: #7A3C00;">Nazis</span>. Still, their shameless defense of convicted murderers may alienate voters and cost them dearly at the next election.

@@ -1,0 +1,58 @@
+title: Fiscal Stimulus?
+subtitle: The ADGB suggests changing our economic stance, away from a passive approach.
+view-if: ((black_thursday_seen and wtb_points >= 100) or banking_crisis_seen) and not economic_plan
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: crisis_urgency += 1; wtb_support += 1; wtb_concept = 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/greatdepression.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Fiscal Stimulus
+
+The worsening economic situation[? if banking_crisis_seen:, made worse by the Banking Crisis?], the rising strength of the <span style="color: #7A3C00;">Nazis</span>, and the declining strength of <span style="color: #c00000;">Social Democracy</span> have pushed many in our Labor faction away from the policy stance that nothing can be done to alleviate the depression. Chief economist of the ADGB, Wladimir Woytinsky has outlined a national action plan to stimulate the economy through public works, with the backing of union chairman Fritz Tarnow and the <span style="color: #c00000;">**SPD**</span>'s agricultural spokesman, Fritz Baade.
+
+We can either support their attempts to craft a formal plan, committing to an active economic policy, or retain our current course, which holds that nothing can be done to alleviate the depression.
+
+- @center_plan: The economic crisis is simply the nature of capitalism; nothing can be done except wait it out.
+- @wtb_plan: Action is needed; we cannot stand idly by while the workers suffer.
+- @reformist_plan: We agree that an active economic policy is needed, but one without deficit spending.
+- @left_plan: The WTB plan is simply a bandage over capitalism; we should use this crisis as an opportunity to end it through mass nationalizations.
+
+@reformist_plan
+view-if: reformist_strength >= left_strength and reformist_strength >= labor_strength and reformist_strength >= center_strength
+on-arrival: left_dissent += 5; left_strength -= 5; reformist_strength += 10; reformist_dissent -= 5; center_dissent -= 5; labor_dissent -= 2; moderate_plan_support += 1
+
+Job creation and stimulus are necessary, but deficit spending, especially with hyperinflation still fresh in memory, is simply unrealistic and reckless. The reformists argue that this plan is most likely to receive support from the bourgeois parties and is the most practical in the immediate term. Opponents in the Left and Labor factions criticize the plan for being inadequate in its ambition.
+
+@left_plan
+view-if: left_strength >= reformist_strength and left_strength >= center_strength and left_strength >= labor_strength
+on-arrival: left_strength += 10; reformist_dissent += 5; labor_dissent += 5; nationalization_support += 2
+
+We should use this economic crisis to transform Germany toward actual <span style="color: #9b0000;">socialism</span>, in accordance with our long-standing <span style="color: #c00000;">socialist</span> platform. Reformists and the Woytinsky group argue that the plan is unrealistic and that we need to focus on more immediate improvements to workers' lives.
+
+@center_plan
+on-arrival: center_strength += 10; center_dissent -= 10; labor_dissent += 10
+
+Woytinsky is promising the workers false hope; nothing can be done to alleviate the depression. We also express concern about the fear of another round of hyperinflation that may result from deficit spending.
+
+@wtb_plan
+view-if: labor_strength >= left_strength and labor_strength >= center_strength
+choose-if: labor_strength >= left_strength and labor_strength >= center_strength
+on-arrival: center_dissent += 20; left_dissent += 10; labor_strength += 15; labor_dissent -= 20; wtb_support += 3; wtb_points += 25
+
+We cannot, as the party for the workers, stand idly by as they suffer. *Something* must be done, and it must happen soon. With our encouragement, Woytinsky will present an official plan in the next few months.
+
+> *"Now, however, we stand at the sickbed of capitalism not only as diagnosticians, but also—well, what can I say?—as doctors who want to heal? Or as happy heirs who can't wait for the end and would prefer to give it a helping hand with poison? This dual role, doctor and heir, is a damned difficult task."*
+
+ - Fritz Tarnow, 1931.

@@ -1,0 +1,37 @@
+title: Judiciary Reform
+new-page: true
+is-card: true
+view-if: spd_in_government = 1 and justice_minister_party = "SPD" and judiciary_timer = 0
+on-arrival: month_actions += 1; judiciary_timer += 6
+card-image: img/portraits/RadbruchGustav.jpg
+tags: govt_affairs, cabinet
+
+= Judiciary Reform
+
+The Judiciary is one of the most <span style="color: #808080;">reactionary</span> components of the government, along with the military. Many jurists have held office since the days of the Emperor. They give violent <span style="color: #7A3C00;">fascists</span> like Adolf Hitler laughably light sentences, while ruthlessly persecuting leftists and pacifists for lesser crimes.
+
+[? if judicial_reform <= 0 : There is great demand in our membership for reforming the judiciary, although this may bring us into a collision course with our coalition allies. ?]
+[? if judicial_reform == 1 : We have started on the path to judicial reform. While some of the most antediluvian and biased justices have been replaced, many still remain. More should be done. ?]
+[? if judicial_reform >= 2 : We have successfully reformed the judiciary, to some extent. At the very least, the courts will not actively obstruct our attempts to prosecute crimes committed by the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>. ?]
+
+- @reform: Carry out substantial judicial reforms.
+- @minor_reforms: Carry out minor judicial reforms.
+- @as_is: Leave the judiciary as it is.
+- @easy_discard
+- @cancel_advisor_action
+
+@reform
+subtitle: -1 budget
+unavailable-subtitle: Not enough budget.
+choose-if: budget >= 1
+on-arrival: budget -= 1; democratization += 2; coalition_dissent += 1 if (in_grand_coalition or (in_weimar_coalition and lvp_formed)); workers_spd += 5*(1-dissent) if democratization >= 3; judicial_reform += 2; pro_republic += 4*(1-dissent); coup_progress += 1; coalition_dissent += 1 if historical_mode; dvp_left += 2; ddp_left += 1; lvp_left += 1.5; hindenburg_angry += 5
+
+We investigate jurists who have shown themselves to have biased or corrupt behavior, and try to remove them, replacing them with more democratically-oriented jurists. This obviously raises quite a great deal of ire in conservative circles, including within our coalition. 
+
+@minor_reforms
+on-arrival: democratization += 1; workers_spd += 3*(1-dissent) if democratization >= 3; judicial_reform += 1; pro_republic += 2*(1-dissent); judiciary_timer += 6; dvp_left += 1; ddp_left += 0.5; lvp_left += 0.5
+
+We try to remove the most obviously biased and corrupt jurists, while leaving most of the system intact. It is slow work reforming the judiciary.
+
+@as_is
+go-to: root

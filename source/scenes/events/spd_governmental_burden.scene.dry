@@ -1,0 +1,31 @@
+title: Burden of Government
+view-if: spd_government_burden_trigger == 1 and not (peoples_party or (new_middle_spd_normalized >= 30 or (new_middle_spd_normalized + old_middle_spd_normalized >= 40) or rural_spd_normalized >= 20 or catholics_spd_normalized >= 40 or spd_votes >= 40))
+new-page: true
+tags: event
+on-arrival: spd_government_burden_trigger = 0; spd_government_burden_seen = 1; spd_government_burden_timer = 6; workers_spd -= 5 if labor_minister_party != "SPD"; labor_dissent += 15 if labor_minister_party != "SPD"
+
+= Burden of Government
+
+The weight of governance now falls upon our shoulders. It is our responsibility to maintain the delicate balance of appeasing our coalition partners while advancing our party's agenda. Our voter base mainly consists of the working-class and the unemployed, they expect us to enact the following policies during our tenure, or we will suffer consequences. [? if labor_minister_party != "SPD": So far, ceding control of the Labor Ministry to the bourgeois parties has left a poor impression with the workers. ?]
+
+[? if spd_in_government : - Expand social welfare programs. ?]
+
+[? if spd_in_government : - Promote worker ownership of industries. ?]
+
+[? if spd_in_government : - Lower taxes or shift the tax burden to the wealthy. ?]
+
+[? if spd_in_government : - Support workers in labor disputes. ?]
+
+[? if spd_in_government : - Fund unemployment insurance through employers. ?]
+
+[? if spd_in_government: - Advance women's rights. ?]
+
+[? if spd_in_government: - Reform or expand education for workers. ?]
+
+[? if spd_in_government and black_thursday_seen : - Institute an economic plan. ?]
+
+[? if spd_in_government : - Secure low food prices for workers. ?]
+
+[? if spd_in_government : - Reduce funding for the Reichswehr. ?]
+
+They will expect to see at least two goals fulfilled every six months, or we will lose some of their support. Committing to austerity or conservative policies will automatically fail the goals.

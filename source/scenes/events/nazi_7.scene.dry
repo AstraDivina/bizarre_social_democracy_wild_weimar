@@ -1,0 +1,16 @@
+title: The End of Gregor Strasser
+subtitle: The once influential man retires from politics.
+view-if: chancellor = "Schleicher" and schleicher_time == 6 and (lippe_good or not lippe_election_seen)
+new-page: true
+tags: event
+priority: 2
+max-visits: 1
+face-image: img/strasser.jpg
+
+= The End of Gregor Strasser
+
+With any hope of a political comeback shattered, Gregor Strasser has finally retired from public life. It’s likely that he abandoned any thought of challenging [+ nsdap_leader +] long ago, if he ever entertained such an idea. The former pharmacist from a small Bavarian town simply lacks the ego and desire for power necessary to confront the <span style="color: #7A3C00;">Nazi</span> leader.
+
+In a brief meeting with Göring, Strasser agreed to withdraw from all political activity for two years and return to his previous profession as a pharmacist.
+
+Meanwhile, Schleicher remains confident in a dangerous delusion—that [+ nsdap_leader +] will act like a conventional party leader and offer concessions to maintain unity, and to join the cabinet to avoid new elections. He has done no such thing.

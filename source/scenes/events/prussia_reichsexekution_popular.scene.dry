@@ -1,0 +1,62 @@
+title: Coup in Prussia
+subtitle: The President attempts to overthrow the Prussian government.
+view-if: president = "Hindenburg" and in_popular_front_prussia and reichsexekution >= 3 and not presidential_powers and prussian_coup_seen = 0 and prussian_reichsexekution = 0
+on-arrival: prussian_reichsexekution = 1; strife += 2; hindenburg_angry += 15
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/Reichswehr.jpg
+
+= Coup in Prussia
+
+A crisis! President [+ president +] has invoked the <i>Reichsexekution</i> to dismiss the Prussian government, citing its "inability to maintain order" amidst escalating clashes between the <span style="color: #7A3C00;">**SA**</span>, Reichsbanner, and the increasingly militant <span style="color: #700000;">**RFB**</span>. However, the true motivation is clear: the left-wing coalition governing Prussia poses a direct threat to the conservative and nationalist establishment in Germany.
+
+The legality of this action remains highly questionable. The left-wing coalition has vowed to resist, while the streets are descending into chaos with mass protests and rising political violence.
+
+- @defend
+- @surrender
+
+
+@defend
+title: Fight against the overthrow attempt!
+subtitle: Labor will call a general strike. The Reichsbanner and the loyal elements of the Prussian police will resist the coup. The <span style="color: #700000;">**KPD**</span> remains unwavering in its support.
+
+The Reichswehr and <span style="color: #3E88B3;">**Stahlhelm**</span> are already surrounding Berlin, and the <span style="color: #7A3C00;">**SA**</span> is supporting them. This could be civil war. We do realize that, correct? 
+
+- @defend_2: We will fight, even if it leads to a civil war.
+- @surrender
+
+@defend_2
+on-arrival: resist_coup = 1; defense_strength = rb_strength*rb_militancy*(1-dissent/2); defense_strength += prussian_police_strength*prussian_police_militancy*prussian_police_loyalty if spd_prussia; enemy_strength = sa_strength*sa_militancy + sh_strength*sh_militancy; enemy_strength += reichswehr_strength*reichswehr_militancy*(1-reichswehr_loyalty); defense_strength += workers_spd_normalized*(2 - dissent)*(2 - unemployed/100); defense_strength += rfb_strength*rfb_militancy*(kpd_relation/100)
+go-to: defend_2_civil_war if defense_strength < enemy_strength; defend_2_victory if defense_strength >= enemy_strength
+
+@defend_2_victory
+on-arrival: sa_strength *= 0.8; sh_strength *= 0.8; pro_republic += 6; workers_spd += 4; unemployed_spd += 4; workers_kpd += 2; unemployed_kpd += 2; workers_nsdap -= 6; unemployed_nsdap -= 6; coup_victory = 1; ddp_cohesion += 2; ddp_left += 2; ddp_relation += 3; lvp_relation += 3; lvp_left += 1; z_relation += 3; kpd_relation += 10; rfb_strength += 200; rfb_militancy += 0.1
+achievement: bollwerk_der_demokratie
+go-to: defend_2_victory_2
+
+Our combined forces confront the government troops and their <span style="color: #808080;">reactionary</span> auxiliaries, and somehow, our enemies retreat without a fight! They were overwhelmed by our display of strength, and have chosen to slink away. President [+ president +] withdraws the dismissal of the Prussian government, at least for now.
+
+The show of force has reinvigorated support for the <span style="color: #c00000;">**SPD**</span> and <span style="color: #700000;">**KPD**</span>, and has weakened the <span style="color: #7A3C00;">fascists</span>.
+
+@defend_2_victory_2
+achievement: drei_pfeile
+
+
+@defend_2_civil_war
+
+Our forces confront the government troops and their supporters on the streets of Berlin, and armed fighting erupts. The <span style="color: #808080;">reactionaries</span> do not budge from their positions. We are caught at a disadvantage.
+
+- @civil_war: It is a civil war.
+
+
+
+
+@surrender
+title: Give up on the Prussian government.
+subtitle: The <span style="color: #700000;">**RFB**</span> will fight alone.
+on-arrival: in_right_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_center_right_coalition_prussia = 0; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; prussia_leader = "Goerdeler"; workers_spd -= 5; workers_kpd -= 5; unemployed_kpd -= 5; unemployed_spd -= 5; left_dissent += 10; labor_dissent += 10; rb_militancy = rb_militancy/2; rb_strength -= 1000; rfb_banned = 1; rfb_strength -= 200; rfb_militancy -= 0.25; kpd_relation -= 30; communist_coalition -= 3; next_election_time_prussia = time + 48; next_election_year_prussia = year + 4
+
+The <span style="color: #700000;">communists</span> who resist are brutally suppressed, and without the support of the Reichsbanner, we are forced to surrender the Prussian government to the <span style="color: #808080;">reactionaries</span>. A pall of hopelessness and despair descends over <span style="color: #c00000;">Social Democracy</span>. We have failed. The <span style="color: #700000;">**KPD**</span> will never trust us again. Many in the Reichsbanner simply quit, demoralized by their leaders' lack of a call to action.
+
+Hindenburg appoints the <span style="color: #3E88B3;">nationalist</span> Carl Friedrich Goerdeler, who renounces his party affiliation, to govern over Prussia as a <i>Reichskommissar</i>, charged with dismantling the democratic systems we worked hard to build.

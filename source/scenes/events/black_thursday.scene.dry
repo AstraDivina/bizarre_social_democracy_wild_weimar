@@ -1,0 +1,37 @@
+title: Black Thursday
+subtitle: The great stock market crash...
+new-page: true
+on-arrival: black_thursday_seen = 1; workers_kpd += 5; workers_nsdap += 3; workers_spd -= 3 if spd_in_government; new_middle_spd -= 3 if spd_in_government; workers_spd += 3 if not spd_in_government; new_middle_nsdap += 4; old_middle_nsdap += 5; rural_nsdap += 5; unemployed_kpd += 5; unemployed_nsdap += 3; unemployed += 2; budget -= 1; dues -= 1 if dues > 2; inflation -= 1; economic_growth -= 1;
+tags: event
+view-if: year = 1929 and month >= 10
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/bankrun.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+priority: 1
+
+= Black Thursday
+
+The stock market in America has had its biggest crash in history. It is too early to tell what the international effects will be, but it cannot be good. Our economy is already feeling the effects - unemployment will rise even more, and wages will fall. As always, it is the capitalists' crisis, and the workers' burden.
+
+
+- @cap: It is the nature of capitalism...
+- @do_something: We must do something to stop the suffering...
+
+@cap
+
+Perhaps this is simply one of the periodic crises of capitalism. Perhaps this moment will simply pass.
+
+@do_something
+on-arrival: crisis_urgency += 1
+
+What can we do to staunch the workers' suffering? It is becoming a hotly debated question.

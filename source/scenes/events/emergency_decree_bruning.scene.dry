@@ -1,0 +1,204 @@
+title: Second Emergency Decree for Economy and Finance
+subtitle: Chancellor [+ chancellor +] enacts his most controversial emergency decree yet.
+new-page: true
+view-if: total_bruning_time == 15 and bruning_toleration_time and reparations >= 0 and not hoover_moratorium_seen and not emergency_act_alt_seen and not lautenbach_adopted and not bruning_sigma_time and not bruning_skibidi_time
+on-arrival: emergency_decree_seen = 1; ddp_right += 3; dvp_right += 5; lvp_right += 3; ddp_cohesion -= 3; pro_republic -= 5; new_middle_nsdap += new_middle_ddp*0.2; old_middle_nsdap += old_middle_ddp*0.2; new_middle_nsdap += new_middle_dvp*0.2; old_middle_nsdap += old_middle_dvp*0.2; new_middle_ddp *= 0.6; old_middle_ddp *= 0.6; new_middle_dvp *= 0.6; old_middle_dvp *= 0.6; new_middle_nsdap += new_middle_lvp*0.2; old_middle_nsdap += old_middle_lvp*0.2; new_middle_lvp *= 0.8; old_middle_lvp *= 0.8; hindenburg_angry_bruning += 10; liberal_cooperation -= 3; bourgeois_cooperation -= 3; dnvp_angry += 1 if spd_toleration_right
+tags: event
+face-image: img/article48.jpg
+max-visits: 1
+
+= Second Emergency Decree for Economy and Finance
+
+Intended to eliminate the growing deficit in the national budget, the emergency decree enacts sweeping cuts to government spending while introducing a special “crisis tax” and raising various other taxes. To justify the hardships imposed on German society, Brüning coupled its promulgation with a public appeal, urging Germany’s international creditors to acknowledge the sacrifices demanded of the German people by providing relief from the nation’s “intolerable” reparations burden.
+
+The decree is deeply unpopular, provoking widespread outrage across German society and fueling the intense agitation from the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> against the bourgeois parties that still haven't split from Brüning's government, particularly the [? if not lvp_formed: [? if dvp_exist: <span style="color: #C0A054;">**DVP**</span> and ?]<span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if lvp_formed: <span style="color: #FFCC00;">**LVP**</span>?], as they're the [? if not lvp_formed and dvp_exist:parties?][? if lvp_formed or not dvp_exist:party?] representing the social groups most impacted by these changes. Brüning's failure to consult [? if not lvp_formed:either party?][? if lvp_formed:them?] beforehand has left the [? if not lvp_formed:liberal parties?][? if lvp_formed: liberals?] powerless to amend some of the most severe provisions, such as cuts to civil servants' salaries and an increase in the national sales tax. [? if not lvp_formed and not bourgeois_parliament and not liberal_parliament and dvp_exist: The already fragile alliance between the <span style="color: #C0A054;">**DVP**</span> and Brüning appears to be on the verge of collapse—an outcome that could seal the fate of his government. ?]
+
+- @nothing_to_do: There is nothing we can do.
+- @vote_no
+- @vote_yes
+
+@nothing_to_do
+view-if: spd_toleration == 0
+on-arrival: {!
+Q.unemployed += 3;
+Q.budget += 1;
+Q.inflation -= 3;
+Q.economic_growth -= 0.5;
+Q.emergency_decree_mitigated = Q.liberal_parliament || (Q.bourgeois_parliament && !Q.lvp_formed) || Q.lvp_formed;
+Q.emergency_decree_mitigated_more = Q.emergency_decree_mitigated && ((Q.lvp_leader == "Luther" && Q.lvp_formed) || (Q.bourgeois_parliament && Q.bourgeois_parliament_ddp) || (Q.liberal_parliament && Q.liberal_cooperation >= 8));
+
+if (Q.emergency_decree_mitigated) {
+    Q.unemployed -= 1;
+    Q.budget -= 1;
+    Q.inflation += 1;
+    Q.economic_growth += 0.3;
+    Q.new_middle_ddp += 3;
+    Q.old_middle_ddp += 2;
+    Q.new_middle_dvp += 4;
+    Q.old_middle_dvp += 4;
+    Q.rural_dvp += 2;
+    Q.new_middle_lvp += 6;
+    Q.old_middle_lvp += 6;
+    Q.rural_lvp += 2;
+    Q.new_middle_nsdap -= 6;
+    Q.old_middle_nsdap -= 6;
+    Q.dvp_left += 5;
+    Q.ddp_left += 3;
+    Q.ddp_cohesion += 3;
+    Q.lvp_left += 4;
+}
+if (Q.emergency_decree_mitigated_more) {
+    Q.unemployed -= 0.2;
+    Q.inflation += 0.2;
+    Q.economic_growth += 0.1;
+    Q.new_middle_ddp += 2;
+    Q.old_middle_ddp += 1;
+    Q.new_middle_dvp += 2;
+    Q.old_middle_dvp += 2;
+    Q.rural_dvp += 1;
+    Q.new_middle_lvp += 3;
+    Q.old_middle_lvp += 3;
+    Q.rural_lvp += 1.5;
+    Q.new_middle_nsdap -= 3;
+    Q.old_middle_nsdap -= 3;
+    Q.dvp_left += 3;
+    Q.ddp_left += 1;
+    Q.lvp_left += 2;
+}
+!}
+
+The emergency policy passes under emergency rules, as the Reichstag is currently dissolved. The <span style="color: #7A3C00;">Nazis</span> use this as a recruiting tool, and so do we. [? if bourgeois_parliament and not lvp_formed and not liberal_parliament: Fortunately, the bourgeois parliamentary group, with their leverage over Brüning, has managed to persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if bourgeois_parliament_ddp: Furthermore, the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s presence in the parliamentary group has led Vice-Chancellor and Finance Minister Dietrich of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> to personally mitigate the severity of Brüning's austerity measures.?]?][? if liberal_parliament: Fortunately, the liberal parliamentary group has allowed the liberal parties to combine their leverage over Brüning, and persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if liberal_parliament and liberal_cooperation >= 8: Furthermore, the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s Vice-Chancellor and Finance Minister Dietrich is able to personally mitigate the severity of Brüning's austerity measures.?]?][? if lvp_formed: Fortunately, the <span style="color: #FFCC00;">**LVP**</span> with their leverage over Brüning, has managed to persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if lvp_leader == "Luther": Furthermore, the <span style="color: #FFCC00;">**LVP**</span>'s leader Hans Luther is able to use his connections with Brüning and the industrial community to influence his economic policy away from unrestrained austerity.?]?]
+
+[? if not hoover_moratorium_seen: The one silver lining in this crisis is that with [+ chancellor +] announcing Germany’s inability to continue paying reparations, <span style="color: #B31942;">United</span> <span style="color: #0A3161;">States</span> President Herbert Hoover has begun to lobby <span style="color: #002654;">France</span> to agree to a one-year suspension of payments. ?]
+
+@vote_no
+title: Vote against this measure, ending the toleration agreement.
+subtitle: The decree has already been signed by [+ president +], we are powerless to prevent it.
+view-if: spd_toleration
+on-arrival: {!
+Q.time_to_election = 3;
+Q.spd_in_government = 0;
+Q.in_grand_coalition = 0;
+Q.spd_toleration = 0
+Q.unemployed += 3;
+Q.budget += 1;
+Q.inflation -= 3;
+Q.economic_growth -= 0.5;
+Q.emergency_decree_mitigated = Q.liberal_parliament || (Q.bourgeois_parliament && !Q.lvp_formed) || Q.lvp_formed;
+Q.emergency_decree_mitigated_more = Q.emergency_decree_mitigated && ((Q.lvp_leader == "Luther" && Q.lvp_formed) || (Q.bourgeois_parliament && Q.bourgeois_parliament_ddp) || (Q.liberal_parliament && Q.liberal_cooperation >= 8));
+
+if (Q.emergency_decree_mitigated) {
+    Q.unemployed -= 1;
+    Q.budget -= 1;
+    Q.inflation += 1;
+    Q.economic_growth += 0.3;
+    Q.new_middle_ddp += 3;
+    Q.old_middle_ddp += 2;
+    Q.new_middle_dvp += 4;
+    Q.old_middle_dvp += 4;
+    Q.rural_dvp += 2;
+    Q.new_middle_lvp += 6;
+    Q.old_middle_lvp += 6;
+    Q.rural_lvp += 2;
+    Q.new_middle_nsdap -= 6;
+    Q.old_middle_nsdap -= 6;
+    Q.dvp_left += 5;
+    Q.ddp_left += 3;
+    Q.ddp_cohesion += 3;
+    Q.lvp_left += 4;
+}
+if (Q.emergency_decree_mitigated_more) {
+    Q.unemployed -= 0.4;
+    Q.inflation += 0.4;
+    Q.economic_growth += 0.4;
+    Q.new_middle_ddp += 2;
+    Q.old_middle_ddp += 1;
+    Q.new_middle_dvp += 2;
+    Q.old_middle_dvp += 2;
+    Q.rural_dvp += 1;
+    Q.new_middle_lvp += 3;
+    Q.old_middle_lvp += 3;
+    Q.rural_lvp += 1.5;
+    Q.new_middle_nsdap -= 3;
+    Q.old_middle_nsdap -= 3;
+    Q.dvp_left += 3;
+    Q.ddp_left += 1;
+    Q.lvp_left += 2;
+}
+!}
+call: set_next_election_time
+
+We have broken with the [+ chancellor +] government, and have voted against them in a vote of no confidence. The decree has still been enacted, but at the very least, we are spared from bearing the full brunt of its effects ending our association with the [+ chancellor +]. [? if bourgeois_parliament and not lvp_formed and not liberal_parliament: Fortunately, the bourgeois parliamentary group, with their leverage over Brüning, has managed to persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if bourgeois_parliament_ddp: Furthermore, the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s presence in the parliamentary group has led Vice-Chancellor and Finance Minister Dietrich of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> to personally mitigate the severity of Brüning's austerity measures.?]?][? if liberal_parliament: Fortunately, the liberal parliamentary group has allowed the liberal parties to combine their leverage over Brüning, and persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if liberal_parliament and liberal_cooperation >= 8: Furthermore, the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s Vice-Chancellor and Finance Minister Dietrich is able to personally mitigate the severity of Brüning's austerity measures.?]?][? if lvp_formed: Fortunately, the <span style="color: #FFCC00;">**LVP**</span> with their leverage over Brüning, has managed to persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if lvp_leader == "Luther": Furthermore, the <span style="color: #FFCC00;">**LVP**</span>'s leader Hans Luther is able to use his connections with Brüning and the industrial community to influence his economic policy away from unrestrained austerity.?]?]
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+[? if not hoover_moratorium_seen: The one silver lining in this crisis is that with [+ chancellor +] announcing Germany’s inability to continue paying reparations, <span style="color: #B31942;">United</span> <span style="color: #0A3161;">States</span> President Herbert Hoover has begun to lobby <span style="color: #002654;">France</span> to agree to a one-year suspension of payments. ?]
+
+@vote_yes
+title: Vote in favor of this measure to continue the toleration agreement.
+subtitle: [? if (bourgeois_parliament and not lvp_formed) or liberal_parliament or lvp_formed: The liberal parties will attempt to mitigate the disastrous effects. ?]
+view-if: spd_toleration
+on-arrival: {!
+Q.kpd_relation -= 5;
+Q.left_dissent += 15;
+Q.labor_dissent += 5;
+Q.new_middle_spd -= 4;
+Q.new_middle_nsdap += 3;
+Q.new_middle_kpd += 1;
+Q.workers_spd -= 3; 
+Q.workers_kpd += 2;
+Q.workers_nsdap += 1;
+Q.unemployed_spd -= 2;
+Q.unemployed_kpd += 2;
+Q.unemployed += 3;
+Q.budget += 1;
+Q.inflation -= 3;
+Q.economic_growth -= 0.5;
+Q.emergency_decree_mitigated = Q.liberal_parliament || (Q.bourgeois_parliament && !Q.lvp_formed) || Q.lvp_formed;
+Q.emergency_decree_mitigated_more = Q.emergency_decree_mitigated && ((Q.lvp_leader == "Luther" && Q.lvp_formed) || (Q.bourgeois_parliament && Q.bourgeois_parliament_ddp) || (Q.liberal_parliament && Q.liberal_cooperation >= 8));
+
+if (Q.emergency_decree_mitigated) {
+    Q.unemployed -= 1;
+    Q.budget -= 1;
+    Q.inflation += 1;
+    Q.economic_growth += 0.3;
+    Q.new_middle_ddp += 3;
+    Q.old_middle_ddp += 2;
+    Q.new_middle_dvp += 4;
+    Q.old_middle_dvp += 4;
+    Q.rural_dvp += 2;
+    Q.new_middle_lvp += 6;
+    Q.old_middle_lvp += 6;
+    Q.rural_lvp += 2;
+    Q.new_middle_nsdap -= 6;
+    Q.old_middle_nsdap -= 6;
+    Q.dvp_left += 5;
+    Q.ddp_left += 3;
+    Q.ddp_cohesion += 3;
+    Q.lvp_left += 4;
+}
+if (Q.emergency_decree_mitigated_more) {
+    Q.unemployed -= 0.4;
+    Q.inflation += 0.4;
+    Q.economic_growth += 0.4;
+    Q.new_middle_ddp += 2;
+    Q.old_middle_ddp += 1;
+    Q.new_middle_dvp += 2;
+    Q.old_middle_dvp += 2;
+    Q.rural_dvp += 1;
+    Q.new_middle_lvp += 3;
+    Q.old_middle_lvp += 3;
+    Q.rural_lvp += 1.5;
+    Q.new_middle_nsdap -= 3;
+    Q.old_middle_nsdap -= 3;
+    Q.dvp_left += 3;
+    Q.ddp_left += 1;
+    Q.lvp_left += 2;
+}
+!}
+
+We are compelled to vote in favor of the [+ chancellor +] government to prevent the extremist parties on the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> and <span style="color: #700000;">left</span> from translating their growing popular support into parliamentary gains.
+
+[? if bourgeois_parliament and not lvp_formed and not liberal_parliament: Fortunately, the bourgeois parliamentary group, with their leverage over Brüning, has managed to persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if bourgeois_parliament_ddp: Furthermore, the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s presence in the parliamentary group has led Vice-Chancellor and Finance Minister Dietrich of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> to personally mitigate the severity of Brüning's austerity measures.?]?][? if liberal_parliament: Fortunately, the liberal parliamentary group has allowed the liberal parties to combine their leverage over Brüning, and persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if liberal_parliament and liberal_cooperation >= 8: Furthermore, the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s Vice-Chancellor and Finance Minister Dietrich is able to personally mitigate the severity of Brüning's austerity measures.?]?][? if lvp_formed: Fortunately, the <span style="color: #FFCC00;">**LVP**</span> with their leverage over Brüning, has managed to persuade him to present President [+ president +] with a follow-up decree, reversing the most repugnant cuts that would threaten their electoral standing. [? if lvp_leader == "Luther": Furthermore, the <span style="color: #FFCC00;">**LVP**</span>'s leader Hans Luther is able to use his connections with Brüning and the industrial community to influence his economic policy away from unrestrained austerity.?]?][? if not lvp_formed and not bourgeois_parliament and not liberal_parliament: However, [+ chancellor +]'s continued dependence on our votes is driving a widening rift between him and the bourgeois parties that initially backed him. This may push [+ chancellor +] to reshuffle his cabinet in a more right-leaning direction—or even seek an alternative majority with the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>, bypassing us entirely. ?]
+
+[? if not hoover_moratorium_seen: The one silver lining in this crisis is that with [+ chancellor +] announcing Germany’s inability to continue paying reparations, <span style="color: #B31942;">United</span> <span style="color: #0A3161;">States</span> President Herbert Hoover has begun to lobby <span style="color: #002654;">France</span> to agree to a one-year suspension of payments. ?]

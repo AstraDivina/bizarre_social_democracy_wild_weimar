@@ -1,0 +1,30 @@
+title: Decree Against Political Terror
+subtitle: Papen attempts to combat the political violence he has enabled.
+view-if: chancellor = "Papen" and papen_time == 10
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/jail.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Decree Against Political Terror
+
+In an attempt to combat the common-place violence on the streets, that had particularly escalated days before the federal elections, a new decree has been issued to drastically streamline the judicial process in death penalty cases, which now includes politically motivated killings, and limiting the right of appeal. New special local courts are also created to fast track the prosecution of the most heinous of crimes. 
+
+- @papen
+
+@papen
+title: The decree is signed by President Hindenburg.
+on-arrival: sa_strength -= 50; sa_militancy -= 0.02; judicial_reform -= 2; workers_kpd += 2; unemployed_kpd += 2; rfb_strength += 25; rfb_militancy += 0.04; papen_goal = "Maintain public order"
+
+A few hours after the decree’s enactment, five uniformed <span style="color: #7A3C00;">Nazi</span> <span style="color: #7A3C00;">**SA**</span> men broke into the apartment of a <span style="color: #700000;">**Communist**</span> miner and trade unionist, brutally beating him to death in front of his mother. The assailants were quickly arrested and are set to stand trial next week. They’ve since become known as the "Potempa Five," named after the village where the attack took place.

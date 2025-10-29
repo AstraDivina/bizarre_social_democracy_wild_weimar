@@ -1,0 +1,54 @@
+title: Panzerkreuzer B
+subtitle: A political question
+tags: event
+on-arrival: panzerkreuzer_b_seen = 1
+new-page: true
+face-image: img/panzerkreuzer.jpg
+view-if: panzerkreuzer_b_seen = 0 and year = 1931 and month >= 2 and (spd_in_government = 1 or spd_toleration = 1) and panzerkreuser_right_seen = 1
+
+= Panzerkreuzer B
+
+The Navy is demanding the construction of another new battlecruiser. The previous battlecruiser had been funded, and has already been launched. Another ship would further progress Germany's rearmament. The first battlecruiser was funded by the right-wing parties during our time in opposition, however we can now attempt to stop the Reichswehr's rearmament plan now.
+
+Much of our party is deeply opposed to rearmament, while the center and right parties are united in support. What will we do?
+
+- @vote_yes: Vote yes, for constructing the battlecruiser.
+- @vote_no: Vote no, against constructing the battlecruiser.
+- @abstain: Abstain from the vote.
+- @ministry: Use the Reichswehr Ministry to prevent the construction.
+
+@vote_yes
+on-arrival: left_dissent += 10; labor_dissent += 10; center_dissent += 5; reformist_dissent += 5; neorevisionist_dissent += 5; panzerkreuzer_b_funded = 1; kpd_coalition_dissent += 1; kpd_relation -= 6; workers_spd -= 6; dvp_left += 2; lvp_left += 1; hindenburg_angry -= 5
+
+Our grassroots party members are highly critical of our decision. Many party branches have increased their agitation against our parliamentary fraction, especially after we opposed the construction of the first ship in favor of food for children.
+
+The vote in favor of the battlecruiser easily passes, with opposition only from the <span style="color: #700000;">**KPD**</span>. The ship will be built.
+
+@vote_no
+on-arrival: dvp_relation -= 8; lvp_relation -= 5; z_relation -= 5; pacifism += 1; nationalism -= 5*(1-dissent); coalition_dissent += 1; workers_spd += 4*(1-dissent) if nationalism < 49; dvp_right += 1; hindenburg_angry += 5
+go-to: built if (spd_r + kpd_r + sapd_r < 50); not_built if (spd_r + kpd_r + sapd_r >= 50)
+
+Our vote against the battlecruiser is unpopular among the right-wing parties[? if in_grand_coalition or in_weimar_coalition: , including our coalition partners ?][? if spd_toleration: , including the minority government that we are currently supporting ?].
+
+@abstain
+on-arrival: dvp_relation -= 5; lvp_relation -= 3; z_relation -= 3; left_dissent += 8; labor_dissent += 8; panzerkreuzer_b_funded = 1; kpd_relation -= 3; workers_spd -= 2
+
+The center-right parties are critical of our decision to abstain, and the pressure from our left flank is not entirely assuaged. Despite our abstention, the vote in the Reichstag passes, with all parties in favor except members of the dissident <span style="color: #c00000;">**SPD**</span> and <span style="color: #700000;">**KPD**</span>. The ship will be built.
+
+Our lack of opposition has sparked criticism against our parliamentary fraction, since we've already opposed the construction of the first ship in favor of food for children.
+
+@built
+on-arrival: panzerkreuzer_b_funded = 1
+
+Chancellor [+ chancellor +] brings the matter to a full Reichstag vote, which passes with all parties in favor except the <span style="color: #c00000;">**SPD**</span> and <span style="color: #700000;">**KPD**</span>. The ship will be built.
+
+@not_built
+on-arrival: panzerkreuzer_b_funded = 0; budget += 1 if panzerkreuzer_funded = 0; hindenburg_angry += 5; coup_progress += 1
+
+Our vote against the battlecruiser succeeds, with the support of the <span style="color: #700000;">**KPD**</span>. The ship will not be built!
+
+@ministry
+on-arrival: panzerkreuzer_b_funded = 0; budget += 1 if panzerkreuzer_funded = 0; hindenburg_angry += 5; coup_progress += 1
+view-if: reichswehr_minister_party == "SPD"
+
+With our control of the Reichswehr Ministry, we have pressured the Navy to abandon its rearmament plans. The ship will not be built. 

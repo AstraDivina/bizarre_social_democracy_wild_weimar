@@ -1,0 +1,61 @@
+title: Young Plan Campaigning
+new-page: true
+subtitle: How should we campaign in favor of the Plan?
+tags: event
+view-if: year = 1929 and month >= 10 and weimar_ref_signatures <= 0
+max-visits: 1
+
+= Young Plan Referendum
+
+While the Young Plan seems to be a positive development for the country, the Right are gathering signatures to initiate a referendum this December. While the referendum itself is likely to fail, their propaganda is striking a chord with many, especially amid the ongoing depression. 
+
+It comes down to us to campaign against the rhetoric of those that seek to destroy our republic. [? if spd_in_government: We are able to use government resources for this campaign, lowering the cost for our party. ?]
+
+- @pro_plan: Campaign in favor of the Young Plan and against the referendum.
+- @no_plan: Do not campaign on the Young Plan, one way or another.
+
+@pro_plan
+subtitle: [? if spd_in_government: -1 resources ?][? if not spd_in_government: -2 resources ?]
+choose-if: (resources >= 1 and spd_in_government = 1) or (resources >= 2 and spd_in_government = 0)
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1 if spd_in_government; resources -= 2 if not spd_in_government;
+
+How should we campaign in favor of the Plan?
+
+- @internationalism: As part of a broader campaign in favor of internationalism and pacifism.
+- @rational: The Young Plan is simply the most rational choice for Germany.
+
+@internationalism
+on-arrival: pro_republic -= 3 if pacifism < 3; workers_spd += 2 if radio >= 2; nationalism -= 5*(1-dissent) if pacifism >= 2 else nationalism += 3; pacifism += 1; workers_spd += 5*(1-dissent) if pacifism >= 3 and nationalism <= 50; workers_spd += 1; workers_nsdap += 4 if pacifism < 3; rural_nsdap += 5; catholics_spd -= 3 if pacifism < 3; rural_dvp -= 4
+go-to: recalculate
+
+We rail hard against nationalism and in favor of pacifism and belonging to the international community of nations. [? if radio >= 2: Our radio network has helped us spread our message.&nbsp;?][? if pacifism >= 3 and nationalism <= 50 : We have rallied the workers to the cause of internationalism. ?]Although the bourgeois are not too pleased for us having monopolized the campaign for the Young Plan.
+
+
+@rational
+subtitle: The bourgeois will be more inclined to work with us on this.
+on-arrival: pro_republic -= 3; pro_republic += 2 if (z_relation >= 50 and (dvp_relation >= 40 and ddp_relation >= 40 and dvp_ideology != "Right" and not lvp_formed) or (lvp_relation >= 40 and lvp_ideology != "Right" and lvp_formed)); nationalism += 5; nationalism -= 2 if (z_relation >= 50 and (dvp_relation >= 40 and ddp_relation >= 40 and dvp_ideology != "Right" and not lvp_formed) or (lvp_relation >= 40 and lvp_ideology != "Right" and lvp_formed)); old_middle_spd += 2 if radio >= 2; new_middle_spd += 2 if radio >= 2; old_middle_spd += 2; new_middle_spd += 2; workers_nsdap += 4; rural_nsdap += 5; rural_nsdap -= 3 if (z_relation >= 50 and (dvp_relation >= 40 and ddp_relation >= 40 and dvp_ideology != "Right" and not lvp_formed) or (lvp_relation >= 40 and lvp_ideology != "Right" and lvp_formed)); catholics_spd -= 3; workers_spd -= 3; workers_spd += 1 if radio >= 2; rural_dvp -= 4; rural_dvp += 2 if (z_relation >= 50 and (dvp_relation >= 40 and ddp_relation >= 40 and dvp_ideology != "Right" and not lvp_formed) or (lvp_relation >= 40 and lvp_ideology != "Right" and lvp_formed)); z_relation += 5; dvp_relation += 5; ddp_relation += 5; ddp_left += 1; ddp_cohesion += 1; dvp_left += 2
+go-to: recalculate
+
+We argue that the Young Plan is simply the most rational choice for Germany. Although it doesn't advance any broader political objectives, most people can get behind economic stability and recovery. [? if (z_relation >= 50 and (dvp_relation >= 40 and ddp_relation >= 40 and dvp_ideology != "Right" and not lvp_formed) or (lvp_relation >= 40 and lvp_ideology != "Right" and lvp_formed)): The bourgeois parties have rallied with us to campaign against the referendum and for the Young Plan.&nbsp;?][? if radio >= 2: Our radio network has helped us spread our message.&nbsp;?]
+
+@no_plan
+on-arrival: nationalism += 5; workers_spd -= 3; old_middle_spd -= 3; new_middle_spd -= 3; pacifism -= 1; workers_nsdap += 5; rural_nsdap += 5; catholics_spd -= 5; rural_dvp -= 5; pro_republic -= 6
+go-to: recalculate
+
+The referendum is easily going to fail with or without our presence in the campaign. However, nationalist sentiment is inflamed, and the right-wing parties are using our silence around the Plan as a tacit admission of its faults. Our silence has only emboldened the Right, especially the <span style="color: #7A3C00;">**NSDAP**</span>.
+
+
+@recalculate
+on-arrival: {!
+if (Q.year == 1929 && Q.month == 10 && Q.dnf_formed == 0) {
+    Q.young_plan_signatures = (Q.dnvp_votes + Q.nsdap_votes + Q.other_votes) * ((100 - Q.pro_republic) / 100);
+    Q.young_plan_signatures = Math.round(Q.young_plan_signatures * 10) / 10;
+} else if (Q.year == 1929 && Q.month == 10 && Q.dnf_formed == 1 && Q.pro_republic_8 < 70) {
+    Q.young_plan_signatures = ((Q.dnvp_votes / 2) + Q.nsdap_votes + Q.dnf_votes + Q.other_votes) * ((100 - Q.pro_republic) / 100);
+    Q.young_plan_signatures = Math.round(Q.young_plan_signatures * 10) / 10;
+} else if (Q.year == 1929 && Q.month == 10 && Q.dnf_formed == 1 && Q.pro_republic_8 >= 70) {
+    Q.young_plan_signatures = (Q.dnf_votes + Q.nsdap_votes + Q.other_votes) * ((100 - Q.pro_republic) / 100);
+    Q.young_plan_signatures = Math.round(Q.young_plan_signatures * 10) / 10;
+}
+!}

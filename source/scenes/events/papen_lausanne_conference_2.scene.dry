@@ -1,0 +1,55 @@
+title: Lausanne Conference Concludes
+subtitle: Germany's reparations payments are virtually abolished!
+view-if: chancellor == "Papen" and papen_time == 5 and not reparations_resolved
+new-page: true
+max-visits: 1
+tags: event
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/lausanne.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Lausanne Conference Concludes
+
+After weeks of difficult negotiations with the <span style="color: #0A3161;">Western</span> <span style="color: #C8102E;">Allies</span>, the German delegation at the Lausanne Conference has finally secured a result—though not the one it had hoped for. When talks hit a snag, Papen made a dramatic offer: a military alliance with <span style="color: #002654;">France</span>, sealed by an exchange of general staff officers. This only outraged the <span style="color: #C8102E;">British</span> and deepened <span style="color: #002654;">French</span> mistrust.
+
+<span style="color: #C8102E;">British</span> Prime Minister Ramsay MacDonald tried to salvage the negotiations by proposing the repeal of disarmament clauses. But <span style="color: #002654;">French</span> Prime Minister Édouard Herriot rejected this outright—refusing any political discussions and treating Germany’s offer as an admission it could still pay. Backed into a corner, Papen’s delegation was left with no option but to offer a final payment of three billion marks—in exchange for nothing.
+
+- @lausanne
+
+@lausanne
+title: At least we walked away with something.
+on-arrival: {!
+Q.reparations = -2;
+Q.budget += 1;
+Q.pro_republic += 5;
+Q.nationalism -= 3;
+Q.lausanne_seen = 1;
+Q.reparations_resolved = 1;
+Q.dvp_left += 2;
+Q.lvp_left += 2;
+Q.ddp_left += 1;
+Q.ddp_cohesion += 1;
+
+Q.papen_strength += 1;
+Q.schleicher_papen_r -= 1;
+
+Q.workers_nsdap -= 2;
+Q.new_middle_nsdap -= 2;
+Q.old_middle_nsdap -= 2;
+Q.rural_nsdap -= 2;
+!}
+
+Germany’s reparations burden has been slashed by 90%, with no payments due for another three years. This eases the strain on the national budget and gives the government new room to maneuver on monetary and fiscal policy.
+
+Unfortunately for Papen, this does little to ease the near-universal hatred of his government. The <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> has denounced the treaty as a failure, outraged by his inability to secure any political or military concessions. Meanwhile, the <span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> parties and press have handed the credit to Brüning, who laid the groundwork for the conference in the first place. This development would've certainly been more impactful if Brüning had remained in office.
+
+Papen’s tarnished reputation among the <span style="color: #0A3161;">Western</span> <span style="color: #C8102E;">Allies</span> has severely undermined Germany’s standing at the Geneva Disarmament Conference. With many now convinced that militarism has triumphed in Berlin, Schleicher’s efforts to negotiate military parity are likely to face steep resistance.

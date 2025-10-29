@@ -1,0 +1,66 @@
+title: Right coalition collapses
+subtitle: The right-wing coalition has collapsed...
+new-page: true
+tags: event
+view-if: dnvp_ideology == "Radical" and year == 1928 and month >= 11 and in_right_coalition == 1
+on-arrival: was_in_right_coalition = 1
+max-visits: 1
+
+= Hugenberg's exit from the coalition
+
+One of Hugenberg's first acts as leader of the <span style="color: #3E88B3;">**DNVP**</span> is to terminate the coalition with the bourgeois parties as expected. There is no other possible paths to a majority that excludes us, leaving us to determine whether Brüning continues governing or not.
+
+We can either vote to bring down the government and hold new elections, or "tolerate" a government led by the remaining bourgeois parties. Alternatively, we could enter a reorganized Brüning cabinet.
+
+- @join_bruning
+- @vonc_yes
+- @vonc_no  
+- @no_matter
+
+@join_bruning
+title: We will join the Brüning coalition.
+subtitle: The chancellorship will remain with Brüning.
+view-if: grand_coalition >= 50 or neo_weimar_coalition >= 50
+on-arrival: spd_in_government = 1; spd_toleration = 0; spd_toleration_right = 0; in_grand_coalition = 1; in_right_coalition = 0; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; foreign_minister_party = "LVP" if lvp_formed; interior_minister_party = ddp_name; justice_minister_party = ddp_name; justice_minister_party  = "LVP" if lvp_formed; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "DVP"; economic_minister_party = "LVP" if lvp_formed; finance_minister_party = "Z"; agriculture_minister_party = "Z"; leverage = 25 if leverage >= 25; new_middle_dnvp -= 2; old_middle_dnvp -= 2; rural_dnvp -= 2; left_dissent += 8; ddp_left += 1; lvp_left += 0.5; prussia_negotiations_trigger = 1 if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+[? if in_center_right_coalition_prussia or in_right_coalition_prussia: The Prussian coalition isn't able to survive either, pressure from Hugenberg and his supporters forces the <span style="color: #3E88B3;">**DNVP**</span> to exit from the <span style="color: #000000;">bourgeois</span>-<span style="color: #3E88B3;">right</span> coalition there as well. ?]
+
+Heinrich Brüning welcomes us into his new cabinet. Now, we have our pick of ministries.
+
+- @election_1928.ministries: Now, we must select our ministries.
+
+@vonc_yes
+title: Support the vote of no confidence, voting against the government.
+subtitle: The government will collapse, and there will be new elections.
+view-if: neo_weimar_coalition >= 50
+on-arrival: time_to_election = 3; spd_in_government = 0; in_right_coalition = 0; in_grand_coalition = 0; spd_toleration = 0; spd_toleration_right = 0; pro_republic -= 2; dvp_relation -= 4; z_relation -= 4; ddp_relation -= 4; lvp_relation -= 4; ddp_cohesion -= 0.5; ddp_right += 0.5
+call: set_next_election_time
+go-to: new_prussia_election if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+The right-wing coalition has fallen. New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@vonc_no
+title: Support the rump [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?]-led government, voting in favor of the government.
+subtitle: We would essentially provide "toleration" to a bourgeois government.
+view-if: neo_weimar_coalition >= 50
+on-arrival: spd_toleration = 1; in_right_coalition = 0; in_center_right_coalition = 0; left_dissent += 8
+go-to: new_prussia_election if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+By supporting the government, we have essentially entered into a "toleration" arrangement with the [+ chancellor +] government. We do not have a voice in the government, but we are responsible for its continued stability. The left of our party opposes this plan, and would rather that we hold new elections.
+
+@no_matter
+title: It does not matter what we do.
+subtitle: The anti-government parties have over 50% of the vote, no matter our choices.
+view-if: neo_weimar_coalition < 50
+call: set_next_election_time
+on-arrival: time_to_election = 3; spd_in_government = 0; in_right_coalition = 0; in_grand_coalition = 0; spd_toleration = 0; spd_toleration_right = 0; pro_republic -= 5
+go-to: new_prussia_election if (in_center_right_coalition_prussia or in_right_coalition_prussia)
+
+The right-wing coalition has fallen. New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@new_prussia_election
+on-arrival: prussia_coalition_trigger = 1
+
+The Prussian coalition isn't able to survive either, pressure from the national conservatives within the <span style="color: #3E88B3;">**DNVP**</span> forces them to exit from the <span style="color: #000000;">bourgeois</span>-<span style="color: #3E88B3;">right</span> coalition there as well.
+
+- @prussian_coalition_formation: Negotiate a new Prussian coalition.

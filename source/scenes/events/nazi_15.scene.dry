@@ -1,0 +1,51 @@
+title: Hindenburg's Resistance Crumbles...
+subtitle: The pressure begins to mount on the President.
+view-if: chancellor = "Schleicher" and schleicher_time == 7 and schleicher_explode
+new-page: true
+tags: event
+priority: -4
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/hindie.jpg";  
+
+    cardEl.appendChild(image);
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Negotiations, Pt. 2
+
+With his closest friends, his son, and his chief of staff all advocating for a [+ nsdap_chancellor +] chancellorship, Hindenburg’s once-unshakable resolve to refuse [+ nsdap_chancellor +] is beginning to crumble.
+
+- @nazi_2
+
+@nazi_2
+title: Hindenburg receives a visit from an old friend.
+on-arrival: hindenburg_hitler_r += 1
+
+Elard von Oldenburg-Januschau, the elderly *Junker* neighbor of the President in East Prussia—and the man who once rallied the German Right to buy Hindenburg's estate as a gift in 1927—arrives with advice. He assures the President that only a [+ nsdap_chancellor +] cabinet can bring relief to the depressed agriculture of the east, and that conservative forces would be enough to prevent a one-party dictatorship.
+
+- @nazi_3
+
+@nazi_3
+title: Hindenburg receives a reassuring message from Göring.
+on-arrival: hindenburg_hitler_r += 1
+
+Göring, a decorated war hero and fellow officer, sends a message pledging respect for Hindenburg’s authority as President. He insists his party has no intention of violating the constitution or politicizing the military—words that make an impression on the old field marshal.
+
+- @nazi_4
+
+@nazi_4
+title: His resolve begins to fail.
+on-arrival: hindenburg_hitler_r += 1
+
+In a meeting with Papen, the former Chancellor presents [+ nsdap_chancellor +] in a moderate light, claiming he only seeks a minimal number of cabinet positions and is willing to submit the remaining appointments for the President's approval. Papen also reports that many ministers from his and Schleicher’s cabinets are prepared to continue under [+ nsdap_chancellor +]. Despite his dislike of Hugenberg, Hindenburg agrees to grant him control of both the national[? if prussia_leader == "Schleicher":&nbsp;and Prussian?] ministries of agriculture and economics.
+
+Hindenburg is also offered the choice of appointing the Foreign and Defense Ministers. He is pleased to learn that the aristocratic Foreign Minister from Papen and Schleicher’s cabinet is willing to remain under [+ nsdap_chancellor +]. As for the Defense Ministry, it is agreed Schleicher must go. Hindenburg proposes General Werner von Blomberg—currently serving with the German delegation in Geneva and a known rival of Schleicher within the ministry.
+
+Papen ends the meeting by promising to serve as Vice-Chancellor. The day ends, and the next begins.

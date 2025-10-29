@@ -1,0 +1,37 @@
+title: Dissent Within the <span style="color: #7A3C00;">**SA**</span>
+subtitle: A lone incident, or the beginning of the end?
+view-if: chancellor = "Schleicher" and schleicher_time == 5 and nazi_funds <= 3
+new-page: true
+tags: event
+priority: 3
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/sa_rally.jpg";  
+
+    cardEl.appendChild(image);
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Dissent Within the <span style="color: #7A3C00;">**SA**</span>
+
+With the <span style="color: #7A3C00;">**NSDAP**</span>'s funds running low and the <span style="color: #7A3C00;">**SA**</span>'s frustration over the party's lack of action, tensions between the party and its paramilitary are rising. Financial support for the <span style="color: #7A3C00;">**SA**</span> is decreasing, and as morale dips, discipline weakens. Violent terrorist acts are on the rise, alarming party officials who fear it’s driving away voters. A high-ranking <span style="color: #7A3C00;">**SA**</span> commander has even publicly condemned [+ nsdap_leader +]'s legal approach and called for more 'direct' methods.
+
+Since then, a major conflict has erupted between the <span style="color: #7A3C00;">**SA**</span> and the <span style="color: #7A3C00;">**NSDAP**</span>'s gauleiter in northern Bavaria. Wilhelm Stegmann, an <span style="color: #7A3C00;">**SA**</span> commander with Strasserist sympathies, clashed with the autocratic gauleiter over a broken promise to reimburse the <span style="color: #7A3C00;">**SA**</span>. Despite the national <span style="color: #7A3C00;">**SA**</span> siding with the gauleiter, Stegmann defied the order to resign by retaining the loyalty of his stormtroopers.
+
+- @nazi_2
+
+@nazi_2
+title: The dispute escalates...
+on-arrival: sa_strength -= 25; sa_militancy -= 0.03; unemployed_nsdap -= 4; workers_nsdap -= 2
+
+One of Stegmann's aides infiltrated the <span style="color: #7A3C00;">**SA**</span> headquarters, locking up a stormtrooper loyal to the gauleiter and seizing official files. This then sparked a bloody brawl between Stegmann’s followers and the gauleiter’s supporters within the party headquarters.
+
+In response, [+ nsdap_leader +] stripped Stegmann of all authority and, invoking the *Führerprinzip*, forced him to sign a statement of submission to the party leader. However, this resolution is expected to be temporary.
+
+- @root: It's our chance to reclaim control of the streets.

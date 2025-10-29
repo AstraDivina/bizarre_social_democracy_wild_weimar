@@ -1,0 +1,64 @@
+title: The Lautenbach Plan
+subtitle: A potential step away from deflationary policy?
+view-if: bruning_toleration_time >= 6 and (unemployed + (inflation*-1) + (economic_growth*-1) + (cvp_economy_keynes*10) >= 50) and ((year >= 1931 and month >= 9) or year >= 1932) and not works_program and not bruning_skibidi_time and not bruning_sigma_time
+max-visits: 1
+tags: event
+new-page: true
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/poorpeople.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+on-arrival: {!
+Q.lautenbach_seen = 1;
+if (Q.budget >= 2 && Q.inflation < -8 && Q.unemployed >= 30 && Q.reparations <= -2) Q.lautenbach_adopted = 1;
+if (!Q.lautenbach_adopted) Q.lautenbach_failed = 1;
+!}
+
+= The Lautenbach Plan
+
+Brüning's deflationary and austerity policy, aimed at boosting Germany's competitiveness on the global stage after the crisis[? if reparations > -2: through a pause in reparations, which is Brüning's main objective?], has shown to have disastrous consequences for nearly everyone, exacerbating the current situation. Brüning and his cabinet believe that resolving the economic crisis internally is impossible; instead, they hope to achieve 'ignition'—accelerating recovery once the crisis has passed[? if reparations > -2:, through deliberately allowing the economic suffering to worsen to convince foreign powers that Germany couldn't afford to pay reparations. ?]. This bitter medicine has guided all of Brüning's economic policies, with the expectation that after the crisis, Germany will emerge stronger with lower labor costs[? if reparations > -2: and a reduction in reparations?][? if reparations == -2: and the fiscal autonomy provided by the pause in reparations?].
+
+Wilhelm Lautenbach, a German economist, has proposed a job creation program focused on expanding credit availability, improving liquidity, and investing in infrastructure. He presented this plan during in a secret meeting with economic ministers in Brüning’s cabinet, independent experts, Reichsbank President Hans Luther, and our economic expert, Rudolf Hilferding, who personally supports Brüning's deflationary approach. This is how we are able to listen on their secret discussions. However, the widespread fear of inflation in Germany has strongly influenced many participants against this policy, serving as the primary obstacle to the actual enactment of this plan. 
+
+Those in opposition to the deflationary policy and are open to public works include the [? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if lvp_formed: <span style="color: #FFCC00;">**LVP**</span>?]'s Vice Chancellor and Finance Minister Hermann Dietrich, and the [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?]'s Labor Minister Adam Stegerwald. 
+
+> *"The central bank cannot create money."*
+
+ - Rudolf Hilferding, <span style="color: #c00000;">**SPD**</span>'s lead economist, defending the Reichsbank, 1931.
+
+- @lautenbach_adopted: Surprisingly, the Brüning cabinet abandons fiscal conservatism!
+- @lautenbach_fail: As expected, Brüning and his government retains economic orthodoxy.
+
+@lautenbach_adopted
+choose-if: lautenbach_adopted
+unavailable-subtitle: [? if budget < 2: The government lacks sufficient funds to implement the plan. ?] [? if inflation >= -8: Economic experts believe that deflation is still in its initial, beneficial phase, helping to eliminate inefficient companies. ?] [? if unemployed < 30: A job creation program is not deemed necessary, as the worst of the depression has not yet arrived. ?] [? if reparations > -2: An expansive monetary policy would complicate Brüning's efforts to renegotiate reparations. ?]
+on-arrival: labor_dissent -= 20; wtb_points += 200; lautenbach_plan_time = time + 12; hindenburg_angry_bruning -= 75; dvp_left += 5; ddp_left += 3; lvp_left += 3; ddp_cohesion += 3; z_relation += 5 if wtb_adopted; ddp_relation += 5 if wtb_adopted; lvp_relation += 5 if wtb_adopted; inflation += 3; budget -= 2; economic_growth += 2; works_program += 1; unemployed_nsdap -= 5; unemployed_z += 3; unemployed_ddp += 2
+achievement: ankurbelung
+
+The pause in reparation payments, a budgetary surplus, and a struggling economy have created the conditions necessary to persuade both the Brüning cabinet and many economic experts that a stimulus plan is essential. The economy has hit rock bottom, deflation is in its damaging second phase, and the Lautenbach Plan is considered crucial for a rapid 'ignition' of the German economy, especially as reparations have already been paused. However, due to the German public's fear of inflation, announcing any dramatic expansion of the money supply has proven impossible. As a result, the Reichsbank is forced to scale back the plan to avoid any potential scandal that could threaten the Brüning government.
+
+Labor Minister Adam Stegerwald and Finance Minister Hermann Dietrich have devised a plan to allocate a billion dollars for public works, along with efforts to reduce 'sticky' wages to restore investor confidence. The plan also includes the purchasing of foreign debts to increase liquidity, expanding credit, and reducing interest rates. The deficit generated by these measures is also somewhat offset by the need to pay less unemployment benefits. With these measures, money is beginning to flow once again into the German economy.
+
+> Chancellor [+ chancellor +]'s response is, public works?
+
+@lautenbach_fail
+choose-if: lautenbach_failed
+on-arrival: reichsbank_policy_time = time + 12
+
+Expectedly, the Lautenbach Plan has failed due to strong opposition from those who adhere to fiscal orthodoxy, which holds that deflation, despite its pain, is healthy because it weeds out inefficient producers. This contrasts with the Keynesian belief that a destructive second phase occurs, where economic recovery becomes possible but fails because of a collapse in investor confidence.
+
+Reichsbank President Hans Luther, who personally sympathizes with increasing the money supply and expanding credit, has shelved the idea. The conference only reached two unanimous conclusions: the German people's fear of inflation made it impossible to announce any dramatic program to expand the money supply, meaning the government would have to act secretly if it ever decided to implement Lautenbach's plan, and the government must continue its campaign to lower wages bound by long-term collective labor contracts and prices set by cartel agreements.
+
+However, Luther has made concessions to the Keynesians, quietly expanding the money supply and increasing credit availability, even abandoning the rule that 40% of money in circulation must be covered by gold and foreign exchange. Furthermore, generous financing of exports to the <span style="color: #750e0e;">Soviet Union</span> has helped counteract the effects of the withdrawal of foreign credits on both the money supply and the job market.
+
+> *"Stimulation can only help if we are already at the bottom....I do not believe that we are that far yet."*
+
+ - Ernst Trendelenburg, Reich Minister of Economics, 1931.

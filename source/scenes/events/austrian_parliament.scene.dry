@@ -1,0 +1,66 @@
+title: Suspension of the Austrian parliament
+new-page: true
+subtitle: Our southern neighbor is sliding into dictatorship.
+view-if: year = 1933 and month = 3 and ((spd_in_government and foreign_minister_party = "SPD") or (austria_relation >= 1))
+max-visits: 1
+on-arrival: austrian_parliament_seen = 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/Dollfuss.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+tags: event
+
+# Must control foreign ministry or have made contact with Austrian socialists.
+
+= Suspension of the Austrian Parliament
+
+Due to a controversial proposal regarding a railroad strike in the Austrian National Council, all three presidents of the National Council resigned, leaving it without any presiding officers. This is a constitutional crisis. Austrian chancellor Engelbert Dollfuß has taken advantage of this crisis by suspending the parliament and ruling by emergency decree, forming an "<span style="color: #7A3C00;">Austrofascist</span>" government. Dollfuß consolidates his power by persecuting his political opponents, especially our fellow <span style="color: #A50034;">Social Democrats</span> in the <span style="color: #A50034;">**SDAPÖ**</span> (<span style="color: #A50034;">Social Democratic Worker's Party of Austria</span>).
+
+Is there anything we could do?
+
+# - use EU to sanction Austria (will prevent civil war and restore democracy)
+# - apply diplomatic pressure to Austria (without EU)
+# - fund the Schutzbund
+# after this, supporting Austrians will raise sdapo_strength; if sdapo_strength >= 2, they'll enter a long civil war; if sdapo_strength >= 5, they'll win.
+
+- @eu_sanctions: Call upon the <span style="color: #001489;">European</span> <span style="color: #FFDD00;">Union</span> to sanction Austria, unless the National Council is restored.
+- @diplomatic_pressure: Apply diplomatic pressure to Austria to restore the National Council.
+- @fund_schutzbund: Support the <span style="color: #A50034;">**SDAPÖ**</span>'s underground organizing.
+- @nothing: Nothing can be done.
+
+@eu_sanctions
+view-if: eu = 1
+on-arrival: sdapo_strength += 3; sdapo_strength += 1 if customs_union; eu_austria = 1
+
+The <span style="color: #001489;">European</span> <span style="color: #FFDD00;">Union</span> is a largely untested body, and from the beginning contained members that are at best quasi-democratic. Most of its members are more concerned by power politics than democratic values. However, as its founder, Germany holds a special influence in the <span style="color: #001489;">E</span><span style="color: #FFDD00;">U</span>, and we manage to persuade the other members to join in the pressure against <span style="color: #7A3C00;">Austrofascism</span>.
+
+The Dollfuß regime does not give in, but it is weakened and isolated.
+
+@diplomatic_pressure
+view-if: foreign_minister_party = "SPD"
+on-arrival: sdapo_strength += 1; sdapo_strength += 2 if customs_union
+
+We still have much economic influence in Austria, and the threat of sanctions.
+
+The Dollfuß regime does not give in, but it is somewhat weakened.
+
+@fund_schutzbund
+on-arrival: resources -= 1; sdapo_strength += 1; sdapo_strength += 1 if customs_union
+subtitle: -1 resource
+choose-if: resources >= 1
+
+It is somewhat of a breach of diplomatic protocol for the <span style="color: #c00000;">**SPD**</span> to so directly interfere in another country's affairs, supporting the <span style="color: #A50034;">Austrian social democrats</span>.
+
+The Dollfuß regime does not give in, but its opponents have an added advantage. That may not be enough when dealing with the total force of the <span style="color: #7A3C00;">fascist</span> state.
+
+@nothing
+
+Unfortunately, there is nothing we can do for our Austrian comrades.

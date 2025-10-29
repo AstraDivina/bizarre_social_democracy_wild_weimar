@@ -1,0 +1,30 @@
+title: Braun Meets With Schleicher
+subtitle: An unauthorized meeting, but perhaps a welcome one?
+view-if: chancellor = "Schleicher" and schleicher_time == 4 and prussia_leader == "Schleicher"
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/portraits/schleicher_pro.jpg
+
+= Braun Meets With Schleicher
+
+Otto Braun, former Minister-President of Prussia and leader of our reformist wing, has—without informing the <span style="color: #c00000;">**SPD**</span> leadership—met privately with Chancellor von Schleicher. Braun proposed cooperation, on the condition that Schleicher relinquish federal control over Prussia and restore him to office with full authority, including the power to dissolve the Landtag. Braun suggested that, together, they could rule by decree and wage a determined campaign against the <span style="color: #7A3C00;">Nazis</span>.
+
+Schleicher, however, was unenthusiastic. Having led the Prussian coup himself, he is reluctant to undo the federal consolidation of power. More importantly, unlike Braun, he is not committed to weakening the <span style="color: #7A3C00;">**NSDAP**</span>; he still views them as a potential source of support for his cabinet—admiring the <span style="color: #7A3C00;">**SA**</span>’s militarism and the <span style="color: #7A3C00;">**NSDAP**</span>’s fanatical discipline as traits to be co-opted into the state.
+
+- @yay
+- @nay
+
+@yay
+title: Perhaps he can still be convinced?
+unavailable-subtitle: Schleicher is committed to his taming strategy.
+choose-if: super_secret_mode == 1
+on-arrival: schleicher_would_never_do_this_he_is_literally_hitler = 1
+
+# TODO
+
+@nay
+title: As we thought.
+on-arrival: schleicher_spd_support += 1; schleicher_spd_support += 1 if reformist_strength >= center_strength
+
+Nothing ultimately comes of the meeting. However, Braun becomes the first major political figure outside the unions to openly signal willingness to strike a deal with the chancellor.

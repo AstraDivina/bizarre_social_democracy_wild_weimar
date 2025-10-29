@@ -1,0 +1,63 @@
+title: Prussian Landtag referendum
+subtitle: A petition for the dissolution of the Landtag is launched.
+new-page: true
+tags: event
+view-if: year = 1931 and month >= 3 and next_election_time_prussia - time >= 6 and spd_prussia
+on-arrival: landtag_ref_dvp = 1 if dvp_ideology == "Right" and dvp_leader == "Dingeldey" and not in_grand_coalition_prussia and not lvp_formed; liberal_cooperation -= 3 if landtag_ref_dvp; strife += 1; pro_republic += dvp_votes if not landtag_ref_dvp; PLR_launched = 1
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/stahlhelm2.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Prussian Landtag referendum
+
+The <span style="color: #3E88B3;">**Stahlhelm**</span> has officially presented its plan for a referendum to dissolve the Reichstag to Prussian Interior Minister Carl Severing, aiming to strengthen the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> presence in the Landtag, arguing that it no longer reflects the national mood. [? if not hitler_deported: Adolf Hitler’s?][? if hitler_deported: The?] <span style="color: #7A3C00;">**NSDAP**</span> remains non-committal, [? if dnvp_ideology == "Radical": despite Hugenberg’s pleas, ?]dismissing the effort as a waste of resources for a government that will collapse within a year anyway.
+
+For the petition to proceed to a plebiscite, it must gather signatures from over 20% of eligible voters—a significantly higher bar than the Young Plan referendum. Given the <span style="color: #7A3C00;">**NSDAP**</span>[? if not in_popular_front_prussia and not in_left_front_prussia:&nbsp;and <span style="color: #700000;">**KPD**</span>?]’s hesitation, success is far from guaranteed. [? if dnvp_ideology == "Moderate": Furthermore, the <span style="color: #3E88B3;">**DNVP**</span>, acting independently of the <span style="color: #3E88B3;">**Stahlhelm**</span>, is not fully committed to the plan, arguing that a dissolution would primarily benefit the <span style="color: #7A3C00;">**NSDAP**</span> at their own expense. ?]
+
+- @PLR_launched
+
+@PLR_launched
+title: The collection of signatures will begin next month.
+on-arrival: political_decree_landtag = 1 if political_decree == 1
+
+As we are in control of the democratic bulwark for now, we can attempt to use our position to our advantage.
+
+- @campaign: Campaign against the referendum, and for democracy.
+- @urge_paramilitary
+- @hope: We have done enough.
+
+@campaign
+subtitle: -2 resources
+view-if: not campaigned_democracy
+choose-if: resources >= 2
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 2; pro_republic += 6; new_middle_nsdap -= pro_republic / 25; old_middle_nsdap -= pro_republic / 25; workers_nsdap -= pro_republic / 25; campaigned_democracy = 1
+go-to: PLR_launched
+
+We have campaigned against the referendum, but our success ultimately depends on the people's faith in democracy.
+
+@urge_paramilitary
+view-if: not political_decree_landtag and spd_toleration
+choose-if: spd_prussia and strife >= 3 and z_relation >= 35
+unavailable-subtitle: [? if not spd_prussia: We don't control the Prussian government. ?] [? if strife < 3: Paramilitary violence isn't severe enough to justify an emergency decree. ?] [? if z_relation < 35: We lack sufficient relations with Brüning. ?]
+title: Urge Brüning to grant us stronger actions against political extremists, and to restrict certain rights.
+on-arrival: political_decree += 1; prussian_police_loyalty += 0.04; prussian_police_strength += 5; kpd_relation -= 6; rfb_militancy *= 0.9; rfb_strength *= 0.85; sa_militancy *= 0.96; sa_strength *= 0.96; sh_militancy *= 0.98; sh_strength *= 0.98; workers_kpd -= 1; workers_nsdap -= 1; unemployed_kpd -= 3; unemployed_nsdap -= 3; new_middle_nsdap -= 2; hindenburg_angry_bruning += 5; political_decree_landtag = 1
+go-to: PLR_launched
+
+Carl Severing and other Prussian officials have successfully urged Brüning to issue an emergency decree expanding police authority to suppress political extremism. The decree imposes restrictions on political meetings, organizations, newspapers, and posters, all of which now require police approval beforehand.
+
+As a result, several <span style="color: #7A3C00;">Nazi</span> and <span style="color: #700000;">Communist</span> newspapers have been banned, triggering violent clashes between their supporters and the police. [? if president == "Hindenburg": President Hindenburg has reluctantly signed the decree, but is losing patience with Brüning for yielding to our demands. ?]
+
+@hope
+
+Hopefully a victory here could demoralize the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>.

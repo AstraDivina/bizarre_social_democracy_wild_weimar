@@ -1,0 +1,14 @@
+title: The Papen Cabinet Resigns!
+subtitle: Symbolic if anything, he remains as a caretaker.
+view-if: chancellor = "Papen" and papen_time == 23 and papen_post_2
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/weimar_constitution.jpg
+on-arrival: pro_republic += 3; schleicher_papen_r -= 1
+
+= Papen's Resignation
+
+With no progress made on securing <span style="color: #7A3C00;">Nazi</span> toleration of the cabinet, and Papen still unable to survive a Reichstag vote when the chamber reconvenes, Schleicher has advised the chancellor to resign in order to calm the national mood. This would allow the President to seek a broader base of support without Papen at the helm.
+
+However, Papen’s cabinet continues to function in a caretaker role, and little has changed fundamentally. As Papen has stated to his cabinet, none of this matters, as Hindenburg remains "firmly resolved to take all measures that might become necessary" to support him.

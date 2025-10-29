@@ -1,0 +1,37 @@
+title: Hjalmar Schacht against Hilferding
+new-page: true
+view-if: year = 1929 and month >= 11 and spd_in_government = 1 and finance_minister = "Hilferding" and finance_minister_party = "SPD"
+tags: event
+max-visits: 1
+face-image: img/portraits/SchachtHjalmar.jpg
+
+= Schacht against Hilferding
+
+Reichsbank president Hjalmar Schacht has criticized Finance Minister Hilferding of the <span style="color: #c00000;">**SPD**</span> for his budget, which he claims is unbalanced and contains too much social welfare and not enough tax cuts for top earners and businesses. More importantly, he is refusing to release loans necessary for the functioning of the government unless Hilferding either massively changes his budget or resigns.
+
+Of course, this criticism is unfounded, but the bourgeois establishment does not care.
+
+- @expose_him: Expose his <span style="color: #7A3C00;">reactionary</span> dealings!
+- @work_with: Work with him to shape the budget.
+- @hilferding_resign: Hilferding must resign.
+
+@expose_him
+on-arrival: schacht_exposed = 1
+view-if: investigate_far_right >= 1
+
+We expose to the public Schacht's dealings with the <span style="color: #7A3C00;">Nazis</span>. For better or worse, he is cowed, and refrains from taking further actions against us.
+
+
+@work_with
+
+After a second budget proposal, Schacht still considers Hilferding's budget to be unacceptable, despite more regressive taxes and expenditure cuts.
+
+- @hilferding_resign: Hilferding must resign.
+
+
+@hilferding_resign
+on-arrival: finance_minister_party = "DVP" if in_grand_coalition; finance_minister_party = "LVP" if (in_grand_coalition or in_weimar_coalition) and lvp_formed; finance_minister_party = "I" if (in_weimar_coalition and not lvp_formed) or in_popular_front or in_left_front; finance_minister = "Moldenhauer"; finance_minister = "Köhler" if (in_weimar_coalition and not lvp_formed) or in_popular_front; economic_minister_granted = 1 if economic_minister_party != "SPD"; economic_minister_party = "SPD" if economic_minister_party != "SPD"; economic_minister = "Schmidt" if economic_minister_party = "SPD"
+
+With no other choice, Hilferding has resigned as Finance Minister, to be replaced by a [? if (in_grand_coalition or (in_weimar_coalition and lvp_formed)): center-right ?][? if not in_grand_coalition: technocratic ?] candidate.
+
+[? if economic_minister_granted = 1: Our coalition partners have granted us the Economic Ministry to compensate. ?]

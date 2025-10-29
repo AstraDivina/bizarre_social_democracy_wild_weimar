@@ -1,0 +1,100 @@
+title: Prussian Landtag Referendum
+subtitle: The results have come in.
+new-page: true
+tags: event
+view-if: year = 1931 and month >= 8 and landtag_ref_signatures_passed
+on-arrival: {!
+if (Q.landtag_ref_dvp && Q.landtag_ref_kpd) {
+    Q.landtag_ref_votes = (Q.dnvp_votes + Q.nsdap_votes + Q.other_votes + Q.dnf_votes + Q.dvp_votes + Q.kpd_votes + 5) * ((100 - Q.pro_republic) / 100);
+    Q.landtag_ref_votes = Math.round(Q.landtag_ref_votes * 10) / 10;
+} else if (!Q.landtag_ref_dvp && Q.landtag_ref_kpd) {
+    Q.landtag_ref_votes = (Q.dnvp_votes + Q.nsdap_votes + Q.other_votes + Q.dnf_votes + Q.kpd_votes + 5) * ((100 - Q.pro_republic) / 100);
+    Q.landtag_ref_votes = Math.round(Q.landtag_ref_votes * 10) / 10;
+} else if (Q.landtag_ref_dvp && !Q.landtag_ref_kpd) {
+    Q.landtag_ref_votes = (Q.dnvp_votes + Q.nsdap_votes + Q.other_votes + Q.dnf_votes + Q.dvp_votes + 5) * ((100 - Q.pro_republic) / 100);
+    Q.landtag_ref_votes = Math.round(Q.landtag_ref_votes * 10) / 10;
+} else if (!Q.landtag_ref_dvp && !Q.landtag_ref_kpd) {
+    Q.landtag_ref_votes = (Q.dnvp_votes + Q.nsdap_votes + Q.other_votes + Q.dnf_votes + 5) * ((100 - Q.pro_republic) / 100);
+    Q.landtag_ref_votes = Math.round(Q.landtag_ref_votes * 10) / 10;
+}
+Q.landtag_ref_votes_collected = 1;
+!}
+max-visits: 1
+
+= Prussian Landtag referendum
+
+After months of intense and polarizing propaganda from both sides, the day of the plebiscite has arrived. For it to pass, over 50% of the eligible Prussian population must vote in favor—not just a majority of those who cast their ballots. Like the Young Plan referendum, this high threshold makes success nearly impossible. However, even a strong showing by the anti-democratic forces could give them significant momentum.
+
+[? if landtag_ref_kpd: The <span style="color: #700000;">red</span>-<span style="color: #7A3C00;">brown</span> coalition—once unthinkable—is now a reality. <span style="color: #700000;">**Communist**</span>, <span style="color: #7A3C00;">**Nazi**</span> and <span style="color: #3E88B3;">**Stahlhelm**</span> officials are sitting at the same tables at the polling stations, under the <span style="color: #7A3C00;">swastika</span> and the <span style="color: #700000;">Soviet star</span>. ?]
+
+- @PLR_results
+
+@PLR_results
+title: The votes are counted.
+go-to: PLR_passed_votes if landtag_ref_votes >= 50; PLR_failed_votes if landtag_ref_votes < 50
+
+@PLR_passed_votes
+on-arrival: pro_republic -= 10; workers_spd -= 8; workers_kpd += 3; workers_nsdap += 5; unemployed_spd -= 5; unemployed_nsdap += 5; new_middle_spd -= 5; new_middle_nsdap += 5; old_middle_spd -= 5; old_middle_nsdap += 5; rural_spd -= 5; rural_nsdap += 5; rural_dnvp += 3; old_middle_dnvp += 3; rural_dnf += 3; old_middle_dnf += 3; catholics_spd -= 5; catholics_nsdap += 5; sa_strength += 200; rfb_strength += 100; prussian_police_loyalty -= 0.3
+call: set_next_election_time_prussia
+
+It's over for German democracy. [+ landtag_ref_votes +]% of the eligible Prussian population has voted for it, dissolving the Landtag and calling new elections, where the extremists are expected to make colossal gains at our expense. [? if landtag_ref_kpd: All my homies hate the <span style="color: #700000;">**KPD**</span>. ?]
+
+New Prussian elections have been set for [+ next_election_month_prussia : month +] [+ next_election_year_prussia +].
+
+@PLR_failed_votes
+on-arrival: {!
+if (Q.landtag_ref_votes < 25) {
+    Q.pro_republic += 5;
+    Q.workers_spd += 5;
+    Q.workers_nsdap -= 3;
+    if (Q.landtag_ref_kpd) Q.workers_kpd -= 2;
+    Q.new_middle_spd += 3;
+    Q.new_middle_nsdap -= 3;
+    Q.old_middle_spd += 3;
+    Q.old_middle_nsdap -= 3;
+    Q.catholics_spd += 3;
+    Q.catholics_nsdap -= 3;
+    Q.catholics_dnvp -= 1;
+    Q.unemployed_spd += 5;
+    Q.unemployed_nsdap -= 3;
+    if (Q.landtag_ref_kpd) Q.unemployed_kpd -= 2;
+} 
+
+if (Q.landtag_ref_votes >= 35 && Q.landtag_ref_votes < 42) {
+    Q.pro_republic -= 3;
+    Q.workers_spd -= 2;
+    Q.workers_nsdap += 2;
+    if (Q.landtag_ref_kpd) Q.workers_kpd += 2;
+    Q.new_middle_spd -= 2;
+    Q.new_middle_nsdap += 2;
+    Q.old_middle_spd -= 2;
+    Q.old_middle_nsdap += 2;
+    Q.unemployed_spd -= 2;
+    Q.unemployed_nsdap += 2;
+    if (Q.landtag_ref_kpd) Q.unemployed_kpd += 3;
+}
+
+if (Q.landtag_ref_votes >= 42) {
+    Q.pro_republic -= 5;
+    Q.workers_spd -= 4;
+    Q.workers_nsdap += 4;
+    if (Q.landtag_ref_kpd) Q.workers_kpd += 4;
+    Q.new_middle_spd -= 5;
+    Q.new_middle_nsdap += 5;
+    Q.old_middle_spd -= 4;
+    Q.old_middle_nsdap += 4;
+    Q.unemployed_spd -= 6;
+    Q.unemployed_nsdap += 5;
+    if (Q.landtag_ref_kpd) Q.unemployed_kpd += 5;
+}
+
+!}
+
+[? if landtag_ref_votes < 25: The referendum has failed, with only [+ landtag_ref_votes +]% of the Prussian population voting in favor. Support for the referendum was lower than expected, barely exceeding the number of signatures collected months ago. This suggests that public sentiment has remained largely unchanged since then. The <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> is demoralized and has suffered significant financial losses. Meanwhile, the democratic press is jubilant at the result, declaring a victory for German democracy. ?]
+
+[? if landtag_ref_votes >= 25 and landtag_ref_votes < 35: The referendum has failed, with only [+ landtag_ref_votes +]% of the Prussian population voting in favor. The results were as expected[? if landtag_ref_kpd:, as the formation of the <span style="color: #700000;">red</span>-<span style="color: #7A3C00;">brown</span> bloc may have alienated committed ideologues?][? if not landtag_ref_kpd:, given the neutrality of the <span style="color: #700000;">KPD</span>?]. The democratic press celebrates this as a victory for democracy, but the whole ordeal has polarized the political landscape in favor of the extremists. ?]
+
+[? if landtag_ref_votes >= 35 and landtag_ref_votes < 42: The referendum has failed, with [+ landtag_ref_votes +]% of the Prussian population voting in favor. Support was higher than expected, significantly surpassing the number of initial signatures. This outcome signals a growing wave of anti-<span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> sentiment across Germany. Despite this, the democratic press celebrates the defeat, though the results reinforce concerns that the Landtag no longer reflects the nation’s evolving political landscape. Moreover, the entire ordeal has deepened political divisions and given extremist parties an opportunity to spread their propaganda. ?]
+
+[? if landtag_ref_votes >= 42 and landtag_ref_votes < 50: The referendum has failed, with [+ landtag_ref_votes +]% of the Prussian population voting in favor. The unexpectedly high support has reinvigorated the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>, attracting new donors and voters, despite the referendum’s failure.?]
+

@@ -1,0 +1,1077 @@
+title: Discontent in the <span style="color: #BFC8CC;">**DNEF**</span>
+subtitle: A test for the house of cards.
+view-if: (chancellor == "Bredow" and bredow_time >= 2) or (chancellor == "Goerdeler" and goerdeler_time >= 2) and dnef_formed
+on-arrival: {!
+Q.dnef_collapse_points = 0;
+Q.weimar_gang_points = 0;
+Q.reactionary_gang_points = 0;
+
+if (Q.workers_schleicher < 10) {
+    Q.dnef_collapse_points += 1;
+}
+if (Q.workers_schleicher < 8) {
+    Q.dnef_collapse_points += 1;
+}
+if (Q.workers_schleicher < 6) {
+    Q.dnef_collapse_points += 2;
+    Q.weimar_gang_points += 2;
+}
+if (Q.workers_schleicher < 4) {
+    Q.dnef_collapse_points += 3;
+    Q.weimar_gang_points += 3;
+}
+if (Q.workers_schleicher < 2) {
+    Q.dnef_collapse_points += 4;
+    Q.weimar_gang_points += 4;
+}
+if (Q.workers_schleicher <= 0) {
+    Q.dnef_collapse_points += 5;
+    Q.weimar_gang_points += 5;
+}
+
+
+if (Q.industrialists_schleicher < 6) {
+    Q.dnef_collapse_points += 1;
+}
+if (Q.industrialists_schleicher < 4) {
+    Q.dnef_collapse_points += 2;
+    Q.reactionary_gang_points += 2;
+}
+if (Q.industrialists_schleicher < 2) {
+    Q.dnef_collapse_points += 3;
+    Q.reactionary_gang_points += 3;
+}
+if (Q.industrialists_schleicher <= 0) {
+    Q.dnef_collapse_points += 4;
+    Q.reactionary_gang_points += 4;
+}
+
+
+if (Q.nationalists_schleicher < 6) {
+    Q.dnef_collapse_points += 1;
+}
+if (Q.nationalists_schleicher < 4) {
+    Q.dnef_collapse_points += 2;
+    Q.reactionary_gang_points += 2;
+}
+if (Q.nationalists_schleicher < 2) {
+    Q.dnef_collapse_points += 3;
+    Q.reactionary_gang_points += 3;
+}
+if (Q.nationalists_schleicher <= 0) {
+    Q.dnef_collapse_points += 4;
+    Q.reactionary_gang_points += 4;
+}
+
+
+if (Q.republicans_schleicher < 10) {
+    Q.dnef_collapse_points += 1;
+}
+if (Q.republicans_schleicher < 8) {
+    Q.dnef_collapse_points += 1;
+}
+if (Q.republicans_schleicher < 6) {
+    Q.dnef_collapse_points += 1;
+    Q.weimar_gang_points += 1;
+}
+if (Q.republicans_schleicher < 4) {
+    Q.dnef_collapse_points += 1;
+    Q.weimar_gang_points += 1;
+}
+if (Q.republicans_schleicher < 2) {
+    Q.dnef_collapse_points += 2;
+    Q.weimar_gang_points += 2;
+}
+if (Q.republicans_schleicher <= 0) {
+    Q.dnef_collapse_points += 4;
+    Q.weimar_gang_points += 4;
+}
+!}
+max-visits: 1
+new-page: true
+tags: event
+
+= Discontent in the <span style="color: #BFC8CC;">**DNEF**</span>
+
+With Schleicher’s resignation, his wildly diverse <span style="color: #BFC8CC;">**DNEF**</span>—held together only by his personal authority—is beginning to splinter. Factions now vie to imprint their own version of "Schleicherism" onto the party’s platform, hoping to give the movement an identity beyond that of worshipping a soon-to-be-dead former Chancellor.
+
+On the right, there are the <span style="color: #3E88B3;">nationalists</span> like Goerdeler, his Reichswehr allies, <span style="color: #808080;">monarchists</span>, <span style="color: #6D5298;">Christian Socials</span>, and an array of other smaller satellites.
+
+On the left, a more radical interpretation of Schleicher’s syncretism is gaining ground around the <span style="color: #fe9e00;">Social Patriot</span> faction—a gathering of bizarre personalities whose ideology is best described, for lack of a better word, as schizophrenic. However, they still hold some respect for parliamentary democracy—more than many of their colleagues on the party’s right.
+
+- @dnef_collapse
+- @dnef_discontent
+- @dnef_live
+
+@dnef_collapse
+title: The house of cards comes crashing down!
+unavailable-subtitle: The situation is far more unstable than Schleicher would ever publicly admit.
+choose-if: dnef_collapse_points >= 30
+on-arrival: {!
+Q.dnef_collapse = 1;
+Q.dnef_formed = 0;
+
+Q.parties = Q.parties.filter(party => party !== 'dnef');
+
+if (!Q.kvp_formed && Q.dnvp_ideology == "Radical") {
+    Q.kvp_formed = 1;
+    Q.parties.push('kvp');
+    Q.parties_graph.push('kvp');
+
+    Q.workers_kvp = 5;
+    Q.workers_dnvp -= 3
+    Q.workers_other -= 2
+
+    Q.new_middle_kvp = 10;
+    Q.new_middle_dnvp -= 4;
+    Q.new_middle_other -= 6;
+
+    Q.old_middle_kvp = 12;
+    Q.old_middle_dnvp -= 4;
+    Q.old_middle_other -= 8;
+
+    Q.rural_kvp = 15;
+    Q.rural_dnvp -= 5;
+    Q.rural_other -= 10;
+
+    Q.unemployed_kvp = 0;
+
+    Q.catholics_kvp = 4;
+    Q.catholics_dnvp -= 2;
+    Q.catholics_other -= 2;
+
+    Q.kvp_r = Math.round((Q.dnvp_r / 2 + 1) * 10) / 10;
+    Q.dnvp_r = Math.round((Q.dnvp_r - Q.kvp_r) * 10) / 10;
+    Q.kvp_r_prussia = Math.round((Q.dnvp_r_prussia / 2 + 2) * 10) / 10;
+    Q.dnvp_r_prussia = Math.round((Q.dnvp_r_prussia - Q.kvp_r_prussia) * 10) / 10;
+    Q.kvp_relation = 10;
+
+    Q.old_workers_kvp_display = 0;
+    Q.old_new_middle_kvp_display = 0;
+    Q.old_old_middle_kvp_display = 0;
+    Q.old_rural_kvp_display = 0;
+    Q.old_unemployed_kvp_display = 0;
+    Q.old_catholics_kvp_display = 0;
+
+    for (var record of Q.election_records) {
+        record['kvp'] = 0;
+    }
+    for (var record of Q.party_support_records) {
+        record['kvp'] = 0;
+    }
+}
+
+Q.workers_spd += 6;
+Q.workers_nsdap += 4;
+Q.workers_z += 2;
+Q.unemployed_spd += 6;
+Q.unemployed_nsdap += 4;
+
+Q.new_middle_ddp += 2;
+Q.new_middle_dvp += 2;
+Q.new_middle_lvp += 4;
+
+Q.workers_other += 2;
+Q.new_middle_other += 2;
+Q.old_middle_other += 2;
+Q.rural_other += 2;
+Q.catholics_other += 2;
+
+if (Q.dnvp_ideology == "Moderate") {
+    Q.workers_dnvp += 4;
+    Q.new_middle_dnvp += 6;
+    Q.old_middle_dnvp += 6;
+    Q.rural_dnvp += 4;
+    Q.unemployed_dnvp += 2;
+    Q.catholics_dnvp += 4;
+    Q.aspd_other = 1;
+    Q.workers_other += 10;
+    Q.unemployed_other += 6;
+} else if (Q.dnvp_ideology == "Radical") {
+    Q.workers_kvp += 4;
+    Q.new_middle_kvp += 8;
+    Q.old_middle_kvp += 8;
+    Q.rural_kvp += 4;
+    Q.unemployed_kvp += 2;
+    Q.catholics_kvp += 4;
+    Q.aspd_kvp = 1;
+    Q.workers_kvp += 10;
+    Q.unemployed_kvp += 6;
+}
+
+Q.catholics_z += 4;
+
+Q.pro_republic += 15;
+
+if (Q.dstp_dnef) {
+    Q.ddp_r = Q.ddp_r_last;
+    Q.ddp_relation = Q.pro_republic;
+    if (Q.ddp_ideology == "Left" || Q.ddp_ideology == "Moderate") Q.ddp_relation += 20;
+    if (Q.ddp_relation < 30) Q.ddp_relation = 30;
+    Q.dstp_dnef = 0;
+}
+if (Q.lvp_dnef) {
+    Q.lvp_r = Q.lvp_r_last;
+    Q.lvp_relation = Q.pro_republic - 10;
+    if (Q.lvp_ideology == "Left" || Q.lvp_ideology == "Moderate") Q.lvp_relation += 10;
+    if (Q.lvp_relation < 30) Q.lvp_relation = 30;
+    Q.lvp_dnef = 0;
+}
+if (Q.kvp_dnef) {
+    Q.kvp_r = Q.kvp_r_last;
+    Q.kvp_relation = 10;
+    Q.kvp_dnef = 0;
+}
+if (Q.dvp_dnef) {
+    Q.dvp_r = Q.dvp_r_last;
+    Q.dvp_relation = 20;
+    Q.dvp_dnef = 0;
+}
+if (Q.z_dnef) {
+    Q.z_r = Q.z_r_last;
+    Q.bvp_r = Q.bvp_r_last;
+    Q.pro_republic = 30;
+    Q.z_dnef = 0;
+}
+if (Q.other_dnef) {
+    Q.other_r = Q.other_r_last;
+    Q.other_dnef = 0;
+}
+if (Q.dnvp_dnef) {
+    Q.dnvp_r = Q.dnvp_r_last;
+    Q.dnvp_dnef = 0;
+}
+if (Q.nvf_dnef) {
+    Q.nvf_r = Q.nvf_r_last;
+    Q.nvf_dnef = 0;
+}
+
+if (Q.dnef_r) {
+    if (Q.dnvp_ideology == "Radical") {
+        Q.kvp_r += Q.dnef_r;
+    } else if (Q.dnvp_ideology == "Moderate") {
+        Q.dnvp_r += Q.dnef_r*0.6;
+        Q.other_r += Q.dnef_r*0.4;
+    }
+}
+Math.round(Q.kvp_r * 10) / 10;
+Math.round(Q.dnvp_r * 10) / 10;
+Math.round(Q.aspd_r * 10) / 10;
+Math.round(Q.other_r * 10) / 10;
+
+Q.dnef_r = 0;
+
+Q.previous_aspd_last_election_votes = 0;
+Q.old_aspd_r = 0;
+
+
+for (var c of Q.classes) {
+    var class_votes = 0;
+    for (var party of Q.parties) {
+        if (Q[c+'_'+party] < 0) {
+            Q[c+'_'+party] = 0;
+        }
+        class_votes += Q[c+'_'+party];
+    }
+    for (var party of Q.parties) {
+        Q[c + '_' + party + '_normalized'] = 100*Q[c+'_'+party]/class_votes;
+        Q[c + '_' + party + '_display'] = Math.round(100*Q[c+'_'+party]/class_votes);
+    }
+}
+// calculate support for each of the parties
+var total_support = 0; 
+for (var party of Q.parties) {
+    var party_support = 0;
+    for (var c of Q.classes) {
+        if (Q.old_demographics) { 
+            party_support += Q[c]*Q[c+'_'+party];
+        } else  { 
+            party_support += Q[c]*Q[c+'_'+party+'_normalized'];
+        } 
+    }
+    Q[party + '_support'] = party_support;
+    total_support += party_support; 
+    if (party == "nsdap" && Q.nsdap_split) {
+        Q.nsdap_hitler_support = Q.rural_nsdap_normalized*Q.rural;
+        Q.nsdap_hitler_support += Q.old_middle_nsdap_normalized*Q.old_middle;
+        Q.nsdap_hitler_support += Q.catholics_nsdap_normalized*Q.catholics;
+
+        if (Q.dsu_exist && !Q.nvf_exist) {
+            Q.dsu_support = Q.workers_nsdap*Q.workers*((120 - Q.sa_force) / 100);
+            Q.dsu_support += Q.unemployed_nsdap*Q.unemployed*((80 - Q.sa_force) / 100);
+            Q.dsu_support += Q.new_middle_nsdap*Q.new_middle;
+        } else if (!Q.dsu_exist && Q.nvf_exist) {
+            Q.nvf_support = Q.unemployed_nsdap*Q.unemployed*((120 - Q.sa_force) / 100);
+            Q.nvf_support += Q.workers_nsdap*Q.workers*((Q.sa_force - 80) / 100);
+            Q.nvf_support += Q.new_middle_nsdap*Q.new_middle;
+        } else if (Q.dsu_exist && Q.nvf_exist) {
+            Q.dsu_support = Q.workers_nsdap*Q.workers*((120 - Q.sa_force) / 100);
+            Q.dsu_support += Q.unemployed_nsdap*Q.unemployed*((80 - Q.sa_force) / 100);
+            Q.dsu_support += Q.new_middle_nsdap*Q.new_middle;
+
+            Q.nvf_support = Q.unemployed_nsdap*Q.unemployed*((120 - Q.sa_force) / 100);
+            Q.nvf_support += Q.workers_nsdap*Q.workers*((Q.sa_force - 80) / 100);
+        } else {
+            Q.nsdap_hitler_support += Q.workers_nsdap*Q.workers;
+            Q.nsdap_hitler_support += Q.unemployed_nsdap*Q.unemployed;
+            Q.nsdap_hitler_support += Q.new_middle_nsdap*Q.new_middle;
+        }
+    }
+}
+// 2. normalize support (fraction)
+for (var party of Q.parties) {
+    Q[party+'_normalized'] = Q[party + '_support']/total_support;
+    if (party == "nsdap" && Q.nsdap_split) {
+        Q.nsdap_hitler_normalized = Q.nsdap_hitler_support / total_support;
+        Q.dsu_normalized = Q.dsu_support / total_support;
+        Q.nvf_normalized = Q.nvf_support / total_support;
+        Q.nsdap_hitler_votes = Math.round(Q.nsdap_hitler_normalized*1000) / 10;
+        Q.dsu_votes = Math.round(Q.dsu_normalized*1000) / 10;
+        Q.nvf_votes = Math.round(Q.nvf_normalized*1000) / 10;
+    }
+    Q[party+'_votes'] = Math.round(Q[party+'_normalized']*1000)/ 10;
+}
+
+if (Q.z_leader == "Bracht") {
+    Q.old_z_leader = Q.z_leader;
+    Q.z_leader = "Stegerwald";
+    Q.workers_z += 6;
+    Q.unemployed_z += 4; 
+    Q.new_middle_z += 4;
+    Q.old_middle_z -= 2; 
+    Q.rural_z -= 2; 
+    Q.catholics_z -= 8;
+    Q.catholics_spd += 2;
+    if (Q.dnvp_ideology == "Moderate") Q.catholics_dnvp += 2;
+    if (Q.dnvp_ideology == "Radical") Q.catholics_kvp += 2;
+    Q.catholics -= 5;
+    Q.z_relation += 30;
+}
+
+if (Q.lvp_formed) {
+    Q.weimar_coalition = parseFloat((Q.spd_r + Q.lvp_r + Q.z_r - Q.bvp_r).toFixed(1));
+} else {
+    Q.weimar_coalition = parseFloat((Q.spd_r + Q.ddp_r + Q.z_r - Q.bvp_r).toFixed(1));
+}
+
+if (Q.lvp_formed) {
+    Q.social_liberal_coalition = parseFloat((Q.spd_r + Q.lvp_r).toFixed(1));
+} else {
+    Q.social_liberal_coalition = parseFloat((Q.spd_r + Q.ddp_r).toFixed(1));
+}
+
+Q.social_catholic_coalition = parseFloat((Q.spd_r + Q.z_r - Q.bvp_r).toFixed(1));
+
+if (Q.lvp_formed) {
+    Q.grand_coalition = parseFloat((Q.spd_r + Q.lvp_r + Q.z_r).toFixed(1));
+} else {
+    Q.grand_coalition = parseFloat((Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r).toFixed(1));
+}
+
+if (Q.kvp_formed && Q.lvp_formed) {
+    Q.bourgeois_coalition = parseFloat((Q.z_r + Q.lvp_r + Q.other_r + Q.kvp_r).toFixed(1));
+} else if (Q.kvp_formed && !Q.lvp_formed) {
+    Q.bourgeois_coalition = parseFloat((Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r + Q.kvp_r).toFixed(1));
+} else if (Q.lvp_formed && !Q.kvp_formed) {
+    Q.bourgeois_coalition = parseFloat((Q.z_r + Q.lvp_r + Q.other_r).toFixed(1));
+} else {
+    Q.bourgeois_coalition = parseFloat((Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r).toFixed(1));
+}
+
+if (Q.kvp_formed && Q.lvp_formed) {
+    Q.center_right_coalition = parseFloat((Q.z_r + Q.lvp_r + Q.other_r + Q.dnvp_r + Q.kvp_r).toFixed(1));
+} else if (Q.kvp_formed && !Q.lvp_formed) {
+    Q.center_right_coalition = parseFloat((Q.z_r + Q.ddp_r + Q.dvp_r + Q.other_r + Q.dnvp_r + Q.kvp_r).toFixed(1));
+} else if (!Q.kvp_formed && Q.lvp_formed) {
+    Q.center_right_coalition = parseFloat((Q.z_r + Q.lvp_r + Q.other_r + Q.dnvp_r).toFixed(1));
+} else {
+    Q.center_right_coalition = parseFloat((Q.z_r + Q.ddp_r + Q.dvp_r + Q.other_r + Q.dnvp_r).toFixed(1));
+}
+
+if (Q.lvp_formed) {
+    Q.right_coalition = parseFloat((Q.z_r + Q.lvp_r + Q.other_r + Q.dnvp_r).toFixed(1));
+} else {
+    Q.right_coalition = parseFloat((Q.z_r + Q.dvp_r + Q.other_r + Q.dnvp_r).toFixed(1));
+}
+
+if (Q.dnvp_ideology === "Moderate") {
+    Q.far_right_coalition = parseFloat((Q.dnf_r + Q.nsdap_r).toFixed(1));
+} else {
+    Q.far_right_coalition = parseFloat((Q.dnvp_r + Q.nsdap_r).toFixed(1));
+}
+
+Q.left_coalition = parseFloat((Q.spd_r + Q.kpd_r + Q.sapd_r).toFixed(1));
+
+if (Q.lvp_formed) {
+    Q.popular_front_coalition = parseFloat((Q.spd_r + Q.kpd_r + Q.z_r - Q.bvp_r + Q.sapd_r).toFixed(1));
+} else if (Q.liberal_parliament == 0 && Q.bourgeois_parliament_ddp == 0) {
+    Q.popular_front_coalition = parseFloat((Q.spd_r + Q.kpd_r + Q.z_r + Q.ddp_r - Q.bvp_r + Q.sapd_r).toFixed(1));
+} else if (Q.liberal_parliament == 1 || Q.bourgeois_parliament_ddp == 1) {
+    Q.popular_front_coalition = parseFloat((Q.spd_r + Q.kpd_r + Q.z_r - Q.bvp_r + Q.sapd_r).toFixed(1));
+}
+
+if (Q.dnvp_ideology === "Moderate") {
+    Q.anti_democratic_coalition = parseFloat((Q.kpd_r + Q.nsdap_r + Q.dnf_r).toFixed(1));
+} else {
+    Q.anti_democratic_coalition = parseFloat((Q.kpd_r + Q.nsdap_r + Q.dnvp_r).toFixed(1));
+}
+
+if (Q.lvp_formed) {
+    Q.neo_weimar_coalition = parseFloat((Q.spd_r + Q.lvp_r + Q.z_r + Q.other_r).toFixed(1));
+} else {
+    Q.neo_weimar_coalition = parseFloat((Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r).toFixed(1));
+}
+
+if (Q.kvp_formed && Q.lvp_formed) {
+    Q.cordon_sanitaire = parseFloat((Q.spd_r + Q.lvp_r + Q.z_r + Q.other_r + Q.kvp_r).toFixed(1));
+} else if (Q.kvp_formed && !Q.lvp_formed) {
+    Q.cordon_sanitaire = parseFloat((Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r + Q.dnvp_r + Q.kvp_r).toFixed(1));
+} else if (Q.lvp_formed && !Q.kvp_formed) {
+    Q.cordon_sanitaire = parseFloat((Q.spd_r + Q.z_r + Q.lvp_r + Q.other_r + Q.dnvp_r).toFixed(1));
+} else {
+    Q.cordon_sanitaire = parseFloat((Q.spd_r + Q.z_r + Q.ddp_r + Q.dvp_r + Q.other_r + Q.dnvp_r).toFixed(1));
+}
+
+Q.hitler_right_coalition = parseFloat((Q.z_r + Q.nsdap_r).toFixed(1));
+
+Q.goerdeler_right_coalition = parseFloat((Q.z_r + Q.dvp_r + Q.lvp_r + Q.other_r + Q.kvp_r + Q.dnvp_r + Q.dnf_r).toFixed(1));
+
+if (Q.lvp_formed) {
+    Q.progressive_coalition = parseFloat((Q.spd_r + Q.kpd_r + (Q.lvp_r / 3) + Q.sapd_r).toFixed(1));
+} else {
+    Q.progressive_coalition = parseFloat((Q.spd_r + Q.kpd_r + Q.ddp_r + Q.sapd_r).toFixed(1));
+}
+
+if (Q.dnef_formed) {
+    Q.schleicher_right_coalition = parseFloat((Q.dnef_r + Q.lvp_r + Q.dvp_r + Q.ddp_r + Q.z_r + Q.other_r + Q.kvp_r + Q.dnvp_r + Q.dnf_r + Q.dsu_r).toFixed(1));
+    Q.schleicher_left_coalition = parseFloat((Q.dnef_r + Q.spd_r + Q.lvp_r + Q.dvp_r + Q.ddp_r + Q.z_r).toFixed(1));
+}
+if (Q.lvp_formed) {
+    Q.weimar_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.lvp_r_prussia + Q.z_r_prussia ).toFixed(1));
+} else {
+    Q.weimar_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.ddp_r_prussia + Q.z_r_prussia).toFixed(1));
+}
+
+if (Q.lvp_formed) {
+    Q.social_liberal_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.lvp_r_prussia).toFixed(1));
+} else {
+    Q.social_liberal_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.ddp_r_prussia).toFixed(1));
+}
+
+Q.social_catholic_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.z_r_prussia).toFixed(1));
+
+if (Q.lvp_formed) {
+    Q.grand_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.lvp_r_prussia + Q.z_r_prussia).toFixed(1));
+} else {
+    Q.grand_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.ddp_r_prussia + Q.z_r_prussia + Q.dvp_r_prussia).toFixed(1));
+}
+
+if (Q.kvp_formed && Q.lvp_formed) {
+    Q.bourgeois_coalition_prussia = parseFloat((Q.z_r_prussia + Q.lvp_r_prussia + Q.other_r_prussia + Q.kvp_r_prussia).toFixed(1));
+} else if (Q.kvp_formed && !Q.lvp_formed) {
+    Q.bourgeois_coalition_prussia = parseFloat((Q.ddp_r_prussia + Q.z_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia + Q.kvp_r_prussia).toFixed(1));
+} else if (Q.lvp_formed && !Q.kvp_formed) {
+    Q.bourgeois_coalition_prussia = parseFloat((Q.z_r_prussia + Q.lvp_r_prussia + Q.other_r_prussia).toFixed(1));
+} else {
+    Q.bourgeois_coalition_prussia = parseFloat((Q.ddp_r_prussia + Q.z_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia).toFixed(1));
+}
+
+if (Q.kvp_formed && Q.lvp_formed) {
+    Q.center_right_coalition_prussia = parseFloat((Q.z_r_prussia + Q.lvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia + Q.kvp_r_prussia).toFixed(1));
+} else if (Q.kvp_formed && !Q.lvp_formed) {
+    Q.center_right_coalition_prussia = parseFloat((Q.z_r_prussia + Q.ddp_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia + Q.kvp_r_prussia).toFixed(1));
+} else if (!Q.kvp_formed && Q.lvp_formed) {
+    Q.center_right_coalition_prussia = parseFloat((Q.z_r_prussia + Q.lvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia).toFixed(1));
+} else {
+    Q.center_right_coalition_prussia = parseFloat((Q.z_r_prussia + Q.ddp_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia).toFixed(1));
+}
+
+if (Q.lvp_formed) {
+    Q.right_coalition_prussia = parseFloat((Q.z_r_prussia + Q.lvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia).toFixed(1));
+} else {
+    Q.right_coalition_prussia = parseFloat((Q.z_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia).toFixed(1));
+}
+
+if (Q.dnvp_ideology === "Moderate") {
+    Q.far_right_coalition_prussia = parseFloat((Q.dnf_r_prussia + Q.nsdap_r_prussia).toFixed(1));
+} else {
+    Q.far_right_coalition_prussia = parseFloat((Q.dnvp_r_prussia + Q.nsdap_r_prussia).toFixed(1));
+}
+
+if (Q.hugenberg_dvp) Q.far_right_coalition_prussia = parseFloat((Q.far_right_coalition_prussia + Q.dvp_r_prussia).toFixed(1));
+
+Q.left_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.kpd_r_prussia + Q.sapd_r_prussia).toFixed(1));
+
+if (Q.lvp_formed) {
+    Q.popular_front_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.kpd_r_prussia + Q.z_r_prussia + Q.sapd_r_prussia).toFixed(1));
+} else if (Q.liberal_parliament == 0) {
+    Q.popular_front_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.kpd_r_prussia + Q.z_r_prussia + Q.ddp_r_prussia + Q.sapd_r_prussia).toFixed(1));
+} else if (Q.liberal_parliament == 1) {
+    Q.popular_front_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.kpd_r_prussia + Q.z_r_prussia + Q.sapd_r_prussia).toFixed(1));
+}
+
+if (Q.dnvp_ideology === "Moderate") {
+    Q.anti_democratic_coalition_prussia = parseFloat((Q.kpd_r_prussia + Q.nsdap_r_prussia + Q.dnf_r_prussia).toFixed(1));
+} else {
+    Q.anti_democratic_coalition_prussia = parseFloat((Q.kpd_r_prussia + Q.nsdap_r_prussia + Q.dnvp_r_prussia).toFixed(1));
+}
+
+if (Q.lvp_formed) {
+    Q.neo_weimar_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.lvp_r_prussia + Q.z_r_prussia + Q.other_r_prussia).toFixed(1));
+} else {
+    Q.neo_weimar_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.ddp_r_prussia + Q.z_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia).toFixed(1));
+}
+
+if (Q.kvp_formed && Q.lvp_formed) {
+    Q.cordon_sanitaire_prussia = parseFloat((Q.spd_r_prussia + Q.lvp_r_prussia + Q.z_r_prussia + Q.other_r_prussia + Q.kvp_r_prussia).toFixed(1));
+} else if (Q.kvp_formed && !Q.lvp_formed) {
+    Q.cordon_sanitaire_prussia = parseFloat((Q.spd_r_prussia + Q.ddp_r_prussia + Q.z_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia + Q.kvp_r_prussia).toFixed(1));
+} else if (Q.lvp_formed && !Q.kvp_formed) {
+    Q.cordon_sanitaire_prussia = parseFloat((Q.spd_r_prussia + Q.z_r_prussia + Q.lvp_r_prussia + Q.other_r_prussia + Q.dnvp_r_prussia).toFixed(1));
+} else {
+    Q.cordon_sanitaire_prussia = parseFloat((Q.spd_r_prussia + Q.z_r_prussia + Q.ddp_r_prussia + Q.dvp_r_prussia + Q.other_r_prussia + Q.dnvp_r).toFixed(1));
+}
+
+// Q.hitler_right_coalition_prussia = parseFloat((Q.z_r_prussia + Q.dnvp_r_prussia + Q.nsdap_r_prussia).toFixed(1));
+
+if (Q.lvp_formed) {
+    Q.progressive_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.kpd_r_prussia + (Q.lvp_r_prussia / 2) + Q.sapd_r_prussia).toFixed(1));
+} else {
+    Q.progressive_coalition_prussia = parseFloat((Q.spd_r_prussia + Q.kpd_r_prussia + Q.ddp_r_prussia + Q.sapd_r_prussia).toFixed(1));
+}
+
+if (Q.dnef_formed) {
+    Q.schleicher_right_coalition_prussia = parseFloat((Q.dnef_r_prussia + Q.lvp_r_prussia + Q.dvp_r_prussia + Q.ddp_r_prussia + Q.z_r_prussia + Q.other_r_prussia + Q.kvp_r_prussia + Q.dnvp_r_prussia + Q.dnf_r_prussia + Q.dsu_r_prussia).toFixed(1));
+    Q.schleicher_left_coalition_prussia = parseFloat((Q.dnef_r_prussia + Q.spd_r_prussia + Q.lvp_r_prussia + Q.ddp_r_prussia + Q.z_r_prussia).toFixed(1));
+}
+
+if (Q.kpd_relation >= 30 && Q.sapd_formed == 1) {
+    Q.weimar_coalition_prussia += Q.sapd_r_prussia;
+}
+
+Q.old_chancellor = Q.chancellor;
+
+if (Q.chancellor === "Bredow") {
+    Q.bredow_was_chacellor = 1;
+} else {
+    Q.goerdeler_was_chacellor = 1;
+}
+!}
+
+The German people had only briefly united behind their so-called savior, General Kurt von Schleicher. Now, with a return to political normalcy looming, there is no place for an incoherent vehicle like the <span style="color: #BFC8CC;">**DNEF**</span> to rally the nation behind lofty abstractions like "non-partisanship" and the <i>Volksgemeinschaft</i>.
+
+With Schleicher nearing the end—both politically and personally—he is in no position to stop the unraveling of his own creation. Perhaps this will be remembered as his greatest blunder: that everything he built ends in anticlimax. Yet the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> system has already been gutted over the past few years.
+
+The Blocparteis will return to their independent status, and it is primarily the [? if dnvp_ideology == "Moderate": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnvp_ideology == "Radical": <span style="color: #0087DC;">**KVP**</span>?] that will absorb the right wing. Meanwhile, the left wing has formed a new national party—the <span style="color: #fe9e00;">Old Social Democratic Party</span> (<span style="color: #fe9e00;">**ASPD**</span>)—anchored in class collaboration, nationalism, and laborism. They champion something they call “Volksocialism,” whatever that’s supposed to mean.
+
+- @dnef_collapse_2
+
+@dnef_collapse_2
+title: Now what? 
+subtitle: The new parties do not seem very happy with the current chancellor.
+on-display: {!  
+    // Crear el div contenedor
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    // Elegir la imagen según la variable existente
+    var imageSrc;
+    if (Q.bredow_was_chacellor) {
+        imageSrc = "img/portraits/bredow.jpg";
+    } else {
+        imageSrc = "img/portraits/goerdeler.jpg";
+    }
+
+    // Crear la imagen
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = imageSrc;
+    image.style.width = "120px";  
+    image.style.height = "auto";  
+
+    // Insertar la imagen en el div
+    cardEl.appendChild(image);
+
+    // Insertar el div en la página
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+Following the collapse of the <span style="color: #BFC8CC;">**DNEF**</span>, a vote of no confidence is immediately filed against [+ chancellor +], which is successful.
+
+- @dnef_collapse_3
+
+@dnef_collapse_3
+title: Kuno von Westarp -[? if dnvp_ideology == "Radical":&nbsp;Former?] <span style="color: #3E88B3;">**DNVP**</span>
+subtitle: Hindenburg's preferred choice once again, and [? if dnvp_leader != "Westarp":former?] <span style="color: #3E88B3;">**DNVP**</span> party leader.
+face-image: img/portraits/Treviranus.jpg
+on-arrival: {!
+Q.chancellor = "Treviranus";
+Q.schleicher_approval -= 4;
+// Trevy Time
+Q.chancellor = "Treviranus";
+
+if (Q.kvp_formed) {
+    Q.treviranus_party = "KVP";
+} else {
+    Q.treviranus_party = "DNVP";
+}
+
+Q.chancellor_party = Q.treviranus_party;
+
+// Reichstag convene
+Q.next_reichstag_time = Q.rubicon_time + 4;
+Q.next_reichstag_week = Q.week + 4;
+Q.next_reichstag_month = Q.month;
+Q.next_reichstag_year = Q.year;
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_month > 12) {
+  Q.next_reichstag_month -= 12;
+  Q.next_reichstag_year += 1;
+}
+!}
+
+Without a clear governing majority, [+ old_chancellor +] loses the little confidence that [+ president +] had given him, which was no longer much after the collapse of the <span style="color: #BFC8CC;">**DNEF**</span> a few weeks ago.
+
+Westarp, despite being once again begged by an older and increasingly sick Hindenburg, has declined the offer. Instead, he recommends the appointment of rising star and <span style="color: #0087DC;">Volkskonservativ</span> leader Gottfried Treviranus. With deep ties to German industry, the Right, and a pseudo-<span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> veneer, Treviranus is a candidate aimed at stabilizing Germany’s worsening crisis.
+
+Much like Papen’s dismissal in favor of Schleicher, the political class breathes yet another sigh of relief. Even within the <span style="color: #c00000;">**SPD**</span>, many find it easier to confront the devil they know rather than face Schleicher’s dynamic and unpredictable rule.
+
+Treviranus will seek to construct a working majority via parliament. The Reichstag will convene on [+ next_reichstag_month : month +] [+ next_reichstag_year +], Week [+ next_reichstag_week +].
+
+@dnef_discontent
+title: The <span style="color: #BFC8CC;">**DNEF**</span> undergoes a split. 
+choose-if: dnef_collapse_points >= 20 and dnef_collapse_points < 30
+unavailable-subtitle: [? if dnef_collapse_points >= 15: The situation is far more unstable than Schleicher would ever publicly admit. ?][? if dnef_collapse_points < 10: Even in his current state, Schleicher still holds influence over the party. ?]
+on-arrival: {!
+if (Q.reactionary_gang_points >= Q.weimar_gang_points) Q.right_dnef = 1;
+if (Q.weimar_gang_points > Q.reactionary_gang_points) Q.left_dnef = 1;
+
+if (Q.dnef_r) {
+    if (Q.right_dnef) {
+        Q.right_dnef_r = Q.dnef_r * 0.4;
+    } else if (Q.left_dnef) {
+        Q.left_dnef_r = Q.dnef_r * 0.4;
+    }
+}
+Math.round(Q.right_dnef_r * 10) / 10;
+Math.round(Q.left_dnef_r * 10) / 10;
+
+Q.previous_right_dnef_last_election_votes = 0;
+Q.old_right_dnef_r = 0;
+
+Q.previous_left_dnef_last_election_votes = 0;
+Q.old_left_dnef_r = 0;
+!}
+go-to: reichstag_view
+
+The two factions within the <span style="color: #BFC8CC;">**DNEF**</span> have effectively undergone a split, their differences proving too vast to reconcile. With no resolution in sight, the minority faction has broken away, taking a segment of the party with them.
+
+[? if right_dnef: This unlucky minority is the <span style="color: #BFC8CC;">**DNEF**</span>’s right wing, which sought to transform the party into a vehicle for the restoration of the German monarchy. The ideological gulf was too great for the ailing Schleicher to bridge, leading to the formation of the <span style="color: #BFC8CC;">DNEF-Fatherland League</span> (<span style="color: #BFC8CC;">**DNEF-VLB**</span>)—perhaps an echo of the German Fatherland Party of old. ?]
+
+[? if left_dnef: This unlucky minority is the <span style="color: #BFC8CC;">**DNEF**</span>’s left wing, which hoped to redirect the party toward addressing social inequality and defending the welfare of the German worker. Disputes over monarchism and the role of labor in the new corporatist order proved irreconcilable for Schleicher, resulting in their secession and the founding of the <span style="color: #B86558;">DNEF-Social Bloc</span> (<span style="color: #B86558;">**DNEF-SB**</span>). ?]
+
+However, what is fascinating is that both factions now claim to be the “true” <span style="color: #BFC8CC;">**DNEF**</span>. Chancellor [+ chancellor +] has so far avoided taking sides, hoping to prevent further splintering of an already fragile alliance. Perhaps this is Schleicher’s influence at work—a political truce between two perfectly normal, merely “disagreeing” factions.
+
+@reichstag_view
+on-arrival: {!
+Q.z_minus_bvp_votes = parseFloat((Q.z_votes - Q.bvp_votes).toFixed(1));
+Q.z_minus_bvp_r = parseFloat((Q.z_r - Q.bvp_r).toFixed(1));
+if (Q.bvp_r == Q.z_r) Q.z_minus_bvp_r = 0;
+!}
+on-display: {!
+const data = [];
+
+if (Q.kpd_r) {
+    data.push({
+        "id": "kpd",
+        "legend": "KPD",
+        "name": "KPD",
+        "seats": Math.round(Q.kpd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.sapd_r && Q.sapd_formed) {
+    data.push({
+        "id": "sapd",
+        "legend": "SAPD",
+        "name": "SAPD",
+        "seats": Math.round(Q.sapd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.spd_r && !Q.rdp_r) {
+    data.push({
+        "id": "spd",
+        "legend": "SPD",
+        "name": "SPD",
+        "seats": Math.round(Q.spd_r * Q.reichstag_size),
+    });
+} else if (Q.spd_r && Q.rdp_r) {
+    data.push({
+        "id": "spd",
+        "legend": "SPD",
+        "name": "SPD",
+        "seats": Math.round((Q.spd_r - Q.rdp_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.rdp_r) {
+    data.push({
+        "id": "rdp",
+        "legend": "RDP",
+        "name": "RDP",
+        "seats": Math.round(Q.rdp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dnvp_r && Q.dnvp_wholesome) {
+    data.push({
+        "id": "dnvp_wholesome",
+        "legend": "DNVP",
+        "name": "DNVP",
+        "seats": Math.round(Q.dnvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.ddp_r && !Q.lvp_formed) {
+    data.push({
+        "id": "ddp",
+        "legend": Q.ddp_name,
+        "name": Q.ddp_name,
+        "seats": Math.round(Q.ddp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.lvp_r && Q.lvp_formed) {
+    data.push({
+        "id": "lvp",
+        "legend": "LVP",
+        "name": "LVP",
+        "seats": Math.round(Q.lvp_r * Q.reichstag_size),
+    });
+}
+
+
+if (Q.z_minus_bvp_r) {
+    data.push({
+        "id": "z",
+        "legend": "Center",
+        "name": "Center",
+        "seats": Math.round(Q.z_minus_bvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.bvp_r) {
+    data.push({
+        "id": "bvp",
+        "legend": "BVP",
+        "name": "BVP",
+        "seats": Math.round(Q.bvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dvp_r && !Q.lvp_formed && Q.dvp_exist) {
+    data.push({
+        "id": "dvp",
+        "legend": "DVP",
+        "name": "DVP",
+        "seats": Math.round(Q.dvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.left_dnef_r && Q.left_dnef) {
+    data.push({
+        "id": "left_dnef",
+        "legend": "Left_DNEF",
+        "name": "Left_DNEF",
+        "seats": Math.round(Q.left_dnef_r * Q.reichstag_size),
+    });
+}
+
+if (Q.true_dnef_r && Q.dnef_formed && !Q.right_dnef && !Q.left_dnef) {
+    data.push({
+        "id": "dnef",
+        "legend": "DNEF",
+        "name": "DNEF",
+        "seats": Math.round(Q.true_dnef_r * Q.reichstag_size),
+    });
+}
+
+if (Q.true_dnef_r && Q.dnef_formed && Q.right_dnef && !Q.left_dnef) {
+    data.push({
+        "id": "dnef",
+        "legend": "DNEF",
+        "name": "DNEF",
+        "seats": Math.round((Q.true_dnef_r - Q.right_dnef_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.true_dnef_r && Q.dnef_formed && !Q.right_dnef && Q.left_dnef) {
+    data.push({
+        "id": "dnef",
+        "legend": "DNEF",
+        "name": "DNEF",
+        "seats": Math.round((Q.true_dnef_r - Q.left_dnef_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.right_dnef_r && Q.right_dnef) {
+    data.push({
+        "id": "right_dnef",
+        "legend": "Right_DNEF",
+        "name": "Right_DNEF",
+        "seats": Math.round(Q.right_dnef_r * Q.reichstag_size),
+    });
+}
+
+if (Q.wp_r) {
+    data.push({
+        "id": "wp",
+        "legend": "WP",
+        "name": "WP",
+        "seats": Math.round(Q.wp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.cnblp_r) {
+    data.push({
+        "id": "farm3",
+        "legend": "CNBLP",
+        "name": "CNBLP",
+        "seats": Math.round(Q.cnblp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.csvd_r && Q.csvd_formed) {
+    data.push({
+        "id": "csvd",
+        "legend": "CSVD",
+        "name": "CSVD",
+        "seats": Math.round(Q.csvd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.other_r) {
+    data.push({
+        "id": "other",
+        "legend": "Other",
+        "name": "Other",
+        "seats": Math.round(Q.true_other_r * Q.reichstag_size),
+    });
+}
+
+if (Q.true_aspd_r && (Q.aspd_other || Q.aspd_kvp)) {
+    data.push({
+        "id": "aspd",
+        "legend": "ASPD",
+        "name": "ASPD",
+        "seats": Math.round(Q.true_aspd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.kvp_formed && Q.kvp_r && !Q.aspd_kvp && !Q.dnvp_dvp_formed) {
+    data.push({
+        "id": "kvp",
+        "legend": "KVP",
+        "name": "KVP",
+        "seats": Math.round(Q.kvp_r * Q.reichstag_size),
+    });
+} else if (Q.kvp_formed && Q.kvp_r && Q.aspd_kvp && !Q.dnvp_dvp_formed) {
+    data.push({
+        "id": "kvp",
+        "legend": "KVP",
+        "name": "KVP",
+        "seats": Math.round((Q.kvp_r - Q.true_aspd_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.dnvp_dvp_formed) {
+    data.push({
+        "id": "fkp",
+        "legend": "FKP",
+        "name": "FKP",
+        "seats": Math.round(Q.kvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dnvp_r && !Q.dnvp_wholesome) {
+    data.push({
+        "id": "dnvp",
+        "legend": "DNVP",
+        "name": "DNVP",
+        "seats": Math.round(Q.dnvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dnf_formed && Q.dnf_r) {
+    data.push({
+        "id": "dnf",
+        "legend": "DNF",
+        "name": "DNF",
+        "seats": Math.round(Q.dnf_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dsu_exist && Q.dsu_r) {
+    data.push({
+        "id": "dsu",
+        "legend": "DSU",
+        "name": "DSU",
+        "seats": Math.round(Q.dsu_r * Q.reichstag_size),
+    });
+}
+
+if (Q.nsdap_split && Q.nsdap_hitler_r) {
+    data.push({
+        "id": "nsdap",
+        "legend": "NSDAP",
+        "name": "NSDAP",
+        "seats": Math.round(Q.nsdap_hitler_r * Q.reichstag_size),
+    });
+}
+
+if (!Q.nsdap_split && Q.nsdap_r) {
+    data.push({
+        "id": "nsdap",
+        "legend": "NSDAP",
+        "name": "NSDAP",
+        "seats": Math.round(Q.nsdap_r * Q.reichstag_size),
+    });
+}
+
+if (Q.nvf_exist && Q.nvf_r) {
+    data.push({
+        "id": "nvf",
+        "legend": "NVF",
+        "name": "NVF",
+        "seats": Math.round(Q.nvf_r * Q.reichstag_size),
+    });
+}
+if (d3 && window) {
+    // get screen width
+    var width = 500;
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50;
+        height = width;
+        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+    }
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#reichstag").datum(data).call(parliament);
+
+    var lines = d3.linegraph(false, false,
+            Q.parties_graph,
+            {'spd': '#E3000F', 'kpd': '#700000', 'ddp': '#D3C24D', 'z': '#000', 'dvp': '#D5AC27', 'dnvp': '#3E88B3', 'nsdap': '#7A3C00', 'other': '#a0a0a0', 'sapd': '#9B0000', 'dnf': '#003755', 'kvp': '#0087DC', 'lvp': '#FFCC00', 'dnef': '#BFC8CC', 'fkp': '#00C0FF'},
+            {'spd': 'SPD', 'kpd': 'KPD', 'ddp': Q.ddp_name, 'z': Q.z_party_name + ' + BVP', 'dvp': 'DVP', 'dnvp': 'DNVP', 'nsdap': 'NSDAP', 'other': 'Others', 'sapd': 'SAPD', 'dnf': 'DNF', 'kvp': 'KVP', 'lvp': 'LVP', 'dnef': 'DNEF', 'fkp': 'FKP'});
+    lines.width(width).height(400);
+    //var svg = lines(Q.election_records);
+    if (Q.election_records.length > 0) {
+        d3.select("#election_history").datum(Q.election_records).call(lines);
+    }
+    //document.getElementById('election_history').innerHTML = svg.outerHTML;
+
+    // party support records should not have so many ticks
+    if (Q.game_over || (!Q.historical_mode && !Q.rubicon)) {
+        var lines_2 = d3.linegraph(true, true,
+            Q.parties_graph,
+            {'spd': '#E3000F', 'kpd': '#700000', 'ddp': '#D3C24D', 'z': '#000', 'dvp': '#D5AC27', 'dnvp': '#3E88B3', 'nsdap': '#7A3C00', 'other': '#a0a0a0', 'sapd': '#9B0000', 'dnf': '#003755', 'kvp': '#0087DC', 'lvp': '#FFCC00', 'dnef': '#BFC8CC', 'fkp': '#00C0FF'},
+            {'spd': 'SPD', 'kpd': 'KPD', 'ddp': Q.ddp_name, 'z': Q.z_party_name + ' + BVP', 'dvp': 'DVP', 'dnvp': 'DNVP', 'nsdap': 'NSDAP', 'other': 'Others', 'sapd': 'SAPD', 'dnf': 'DNF', 'kvp': 'KVP', 'lvp': 'LVP', 'dnef': 'DNEF', 'fkp': 'FKP'});
+        lines_2.width(width).height(400);
+        d3.select("#party_support_history").datum(Q.party_support_records).call(lines_2);
+    }
+
+    // economic stats
+    var minInflation = d3.min(Q.economic_records, d => d.inflation);
+    var maxUnemployment = d3.max(Q.economic_records, d => d.unemployment);
+    var lines_3 = d3.linegraph(true, true, ['inflation', 'unemployment'],
+            {'inflation': '#0000FF', 'unemployment': '#FF0000'},
+            {'inflation': 'Inflation', 'unemployment': 'Unemployment'},
+            maxUnemployment + 5, minInflation - 5, 21);
+    lines_3.width(width).height(300);
+    d3.select("#economic_history").datum(Q.economic_records).call(lines_3);
+}
+!}
+
+= Reichstag composition
+
+{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!}
+[? if not dnef_formed: {!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div></td><td>!} **SPD:** {!</td><td>!} **[+ spd_r +]%** {!</td></tr>!} ?]
+[? if dnef_formed: {!<tr><td><div class="box" style='background-color:#BFC8CC; outline: 2px; outline-style: solid;'> </div></td><td>!} **DNEF:** {!</td><td>!} **[+ dnef_r +]%** {!</td></tr>!} ?]
+
+[? if not lvp_formed and dstp_dnef: {!<tr><td><div class="box2" style='background-color:#A79A3F'> </div></td><td>!} [+ ddp_name +]: {!</td><td>!} [+ ddp_r +]% {!</td></tr>!} ?]
+
+[? if lvp_formed and lvp_dnef: {!<tr><td><div class="box2" style='background-color:#CC9900'> </div></td><td>!} LVP: {!</td><td>!} [+ lvp_r +]% {!</td></tr>!} ?]
+
+[? if z_dnef: {!<tr><td><div class="box2" style='background-color:#1A0000'> </div></td><td>!} [+ z_party_name +]: {!</td><td>!} [+ z_minus_bvp_r +]% {!</td></tr>!} ?]
+
+[? if z_dnef: {!<tr><td><div class="box2" style='background-color:#7aa7af'> </div></td><td>!} BVP: {!</td><td>!} [+ bvp_r +]% {!</td></tr>!} ?]
+
+[? if not lvp_formed and dvp_exist and dvp_dnef: {!<tr><td><div class="box2" style='background-color:#AA861F'> </div></td><td>!} DVP: {!</td><td>!} [+ dvp_r +]% {!</td></tr>!} ?]
+
+[? if other_dnef: {!<tr><td><div class="box2" style='background-color:#707070'> </div></td><td>!} Others: {!</td><td>!} [+ other_r +]% {!</td></tr>!} ?]
+
+[? if kvp_formed and not cvp_kvp_formed and kvp_dnef: {!<tr><td><div class="box2" style='background-color:#0072C0'> </div></td><td>!} KVP: {!</td><td>!} [+ kvp_r +]% {!</td></tr>!} ?]
+
+[? if not cvp_formed and dnvp_dnef: {!<tr><td><div class="box2" style='background-color:#316B8F'> </div></td><td>!} DNVP: {!</td><td>!} [+ dnvp_r +]% {!</td></tr>!} ?]
+
+[? if nvf_exist and nvf_dnef: {!<tr><td><div class="box2" style='background-color:#0F2116'> </div></td><td>!} NVF: {!</td><td>!} [+ nvf_r +]% {!</td></tr>!} ?]
+
+[? if dnef_formed: <tr><td colspan="3" style="text-align: center;"><hr id="read-marker"></td></tr> ?]
+
+[? if dnef_formed: {!<tr><td><div class="box" style='background-color:#E3000F;'> </div></td><td>!} SPD: {!</td><td>!} [+ spd_r +]% {!</td></tr>!} ?]
+
+[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#9B0000'> </div></td><td>!} SAPD: {!</td><td>!} [+ sapd_r +]% {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:#700000'> </div></td><td>!} KPD: {!</td><td>!} [+ kpd_r +]% {!</td></tr>!}
+
+[? if not lvp_formed and not dstp_dnef: {!<tr><td><div class="box" style='background-color:#D3C24D'> </div></td><td>!} [+ ddp_name +]: {!</td><td>!} [+ ddp_r +]% {!</td></tr>!} ?]
+
+[? if lvp_formed and not lvp_dnef: {!<tr><td><div class="box" style='background-color:#FFCC00'> </div></td><td>!} LVP: {!</td><td>!} [+ lvp_r +]% {!</td></tr>!} ?]
+
+[? if not z_dnef: {!<tr><td><div class="box" style='background-color:#000'> </div></td><td>!} [+ z_party_name +]: {!</td><td>!} [+ z_minus_bvp_r +]% {!</td></tr>!} ?]
+
+[? if not z_dnef: {!<tr><td><div class="box" style='background-color:#A2D8E0'> </div></td><td>!} BVP: {!</td><td>!} [+ bvp_r +]% {!</td></tr>!} ?]
+
+[? if not lvp_formed and dvp_exist and not dvp_dnef: {!<tr><td><div class="box" style='background-color:#D5AC27'> </div></td><td>!} DVP: {!</td><td>!} [+ dvp_r +]% {!</td></tr>!} ?]
+
+[? if not other_dnef: {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div></td><td>!} Other parties: {!</td><td>!} [+ other_r +]% {!</td></tr>!} ?]
+
+[? if dnvp_dvp_formed: {!<tr><td><div class="box" style='background-color:#00C0FF'> </div></td><td>!} FKP: {!</td><td>!} [+ kvp_r +]% {!</td></tr>!} ?]
+
+[? if kvp_formed and not cvp_kvp_formed and not kvp_dnef and not dnvp_dvp_formed: {!<tr><td><div class="box" style='background-color:#0087DC'> </div></td><td>!} KVP: {!</td><td>!} [+ kvp_r +]% {!</td></tr>!} ?]
+
+[? if not cvp_formed and not dnvp_dnef and not dnvp_defunct: {!<tr><td><div class="box" style='background-color:#3E88B3'> </div></td><td>!} DNVP: {!</td><td>!} [+ dnvp_r +]% {!</td></tr>!} ?]
+
+[? if dnf_formed: {!<tr><td><div class="box" style='background-color:#003755'> </div></td><td>!} DNF: {!</td><td>!} [+ dnf_r +]% {!</td></tr>!} ?]
+
+[? if dsu_exist: {!<tr><td><div class="box" style='background-color:#6A1E1E'> </div></td><td>!} DSU: {!</td><td>!} [+ dsu_r +]% {!</td></tr>!} ?]
+
+[? if not nsdap_split: {!<tr><td><div class="box" style='background-color:#7A3C00'> </div></td><td>!} NSDAP: {!</td><td>!} [+ nsdap_r +]% {!</td></tr>!} ?]
+[? if nsdap_split: {!<tr><td><div class="box" style='background-color:#7A3C00'> </div></td><td>!} NSDAP: {!</td><td>!} [+ nsdap_hitler_r +]% {!</td></tr>!} ?]
+
+[? if nvf_exist and not nvf_dnef: {!<tr><td><div class="box" style='background-color:#142e20'> </div></td><td>!} NVF: {!</td><td>!} [+ nvf_r +]% {!</td></tr>!} ?]
+{!</table>!}
+
+@dnef_live
+title: The <span style="color: #BFC8CC;">**DNEF**</span> weathers the storm.
+unavailable-subtitle: The situation is far more unstable than Schleicher would ever publicly admit.
+choose-if: dnef_collapse_points < 20
+
+The two factions within the <span style="color: #BFC8CC;">**DNEF**</span> have been reconciled—by none other than Schleicher himself. Despite being weakened by illness, he has managed to pull strings behind the scenes, halting the party’s internal confrontation. For now, the ideology of "Schleicherism" has re-united the movement, and it appears that [+ chancellor +] will inherit much of the authority Schleicher once wielded.

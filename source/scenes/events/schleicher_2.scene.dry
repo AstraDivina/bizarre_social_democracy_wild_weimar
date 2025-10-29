@@ -1,0 +1,52 @@
+title: Schleicher and the Reichsbanner
+subtitle: The general attempts to secure Reichsbanner participation in a new organization.
+view-if: chancellor = "Papen" and papen_time == 17 and red_general_unlock
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/reichsbanner_march.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Schleicher and the Reichsbanner
+
+Defense Minister von Schleicher has founded the *Reichskuratorium für Jugendertüchtigung* (Reich Institute to Promote Youth Fitness), a program designed to have Reichswehr officers teach “military sports” to young workers. Schleicher aims to secure the participation of the Reichsbanner in this initiative, hoping it will serve as a counterweight to the <span style="color: #7A3C00;">**SA**</span> and advance his broader strategy of integrating paramilitary groups into the state. Preparing youth for future military service has long been part of his rearmament agenda. The program will be led by General Stülpnagel, an advisor of his.
+
+Schleicher has begun talks with <span style="color: #c00000;">socialist</span> youth organizations, who have in turn informed the <span style="color: #c00000;">**SPD**</span> leadership. While the Reichsbanner and the ADGB support participation, the <span style="color: #c00000;">**SPD**</span> leadership is wary. They fear that joining the initiative is a thinly veiled attempt toward rearmament and would tie them too closely to the unpopular [+ chancellor +] government, and instead seek to maintain total opposition.
+
+Reichsbanner Chairman Karl Höltermann has put forward the most compelling argument in favor: without military training—especially for its officers—the Reichsbanner cannot hope to defend itself effectively against the <span style="color: #7A3C00;">**SA**</span>.
+
+- @yay
+- @wait
+- @nay
+
+@yay
+title: Approve the participation of the Reichsbanner and our youth organizations in the *Reichskuratorium*.
+unavailable-subtitle: The party is too distrustful of Schleicher to allow this.
+choose-if: schleicher_spd_support >= 4 or neorevisionist_strength >= center_strength
+on-arrival: schleicher_spd_support += 3; schleicher_spd_r += 1; rb_militancy += 0.06; rb_strength += 200; workers_spd -= 4; unemployed_spd -= 4; nationalism += 10
+
+The Reichsbanner is now officially participating in the Reich Institute to Promote Youth Fitness. Their board of trustees, with our input, has swiftly established infantry and naval training schools across the country. Reichsbanner youth are the primary recipients of specialized instruction from former and decommissioned Reichswehr officers, and we have secured considerable influence within the institute’s leadership.
+
+This program has strengthened the Reichsbanner and improved our relations with von Schleicher. However, our collaboration with an initiative authorized by the deeply unpopular [+ chancellor +] government has cost us support—many have defected to the <span style="color: #700000;">**Communists**</span>.
+
+@wait
+title: Persuade the Reichsbanner to remain non-committal for now, at before until the next election.
+on-arrival: schleicher_spd_support += 1; schleicher_reichsbanner_wait = 1; rb_strength += 50; rb_militancy += 0.02
+
+We have secured a commitment from the Reichsbanner leadership not to make any official decision regarding participation in the *Reichskuratorium* before the upcoming elections—a compromise between the party factions. However, some local members may still choose to enroll in the training programs on their own initiative.
+
+@nay
+title: Force the Reichsbanner to reject this offer, and persuade them to cut off communications with the general.
+on-arrival: schleicher_spd_r -= 1; schleicher_spd_support -= 2; labor_dissent += 10; neorevisionist_dissent += 10
+
+Our explicit rejection of Reichsbanner participation in the program has caused discontent within both the ADGB and the Reichsbanner, who have nonetheless reluctantly yielded to the party leadership’s decision. As a <span style="color: #c00000;">socialist</span> party, we cannot lend our support to what is, in essence, a thinly veiled rearmament scheme.

@@ -1,0 +1,296 @@
+title: Second <span style="color: #FFCC00;">**LVP**</span> Congress
+subtitle: The <span style="color: #FFCC00;">**LVP**</span> decides their fate...
+view-if: year == 1930 and month == 4 and lvp_timer_trigger and lvp_formed
+on-arrival: {!
+Q.heuss_points = 0;
+Q.dietrich_points = 0;
+Q.luther_points = 5;
+Q.curtius_points = 0;
+Q.dingeldey_points = 0;
+Q.opposition_points = 0;
+
+if (Q.in_grand_coalition || Q.in_weimar_coalition) {
+    Q.lvp_relation += 3;
+    Q.lvp_left += 1;
+} else if (Q.in_popular_front || Q.in_left_front) {
+    Q.lvp_right += 3;
+    Q.lvp_relation -= 5;
+}
+
+if (Q.agriculture_minister_party == "LVP" || Q.economic_minister_party == "LVP") {
+    Q.dietrich_points += 1;
+}
+
+if (Q.foreign_minister_party == "LVP") {
+    Q.curtius_points += 1;
+}
+
+if (Q.spd_votes >= 30) {
+    Q.dingeldey_points += 1;
+}
+
+if (Q.chancellor == "Brüning") {
+    Q.dietrich_points += 1;
+}
+
+if (Q.chancellor == "Brüning" && Q.spd_toleration) {
+    Q.dietrich_points += 1;
+    Q.curtius_points -= 1;
+    Q.luther_points -= 1;
+    Q.dingeldey_points += 1;
+    Q.lvp_right += 3;
+}
+
+if (Q.lvp_relation >= 50) {
+    Q.lvp_left += 3;
+    Q.heuss_points += 1;
+} else if (Q.lvp_relation < 50) {
+    Q.lvp_right += 3;
+    Q.dingeldey_points += 1;
+}
+
+if (Q.nationalism >= 50) {
+    Q.dingeldey_points += 1;
+    Q.lvp_right += 1;
+}
+
+if (Q.pro_republic >= 70) {
+    Q.heuss_points += 1;
+    Q.lvp_left += 2;
+} else if (Q.pro_republic < 70) {
+    Q.dingeldey_points += 1;
+    Q.lvp_right += 2;
+}
+
+if (Q.lvp_votes >= 11.5) {
+    if (Q.lvp_ideology == "Right") {
+        Q.lvp_left += 3;
+    } else if (Q.lvp_ideology == "Left") {
+        Q.lvp_right += 3;
+    }
+    Q.luther_points += 5;
+}
+
+if (Q.prussia_leader == "Luther") {
+    Q.luther_points += 3;
+}
+
+if (Q.lvp_right > (Q.lvp_left*1.5) || (Q.lvp_right > (Q.lvp_left + 5))) {
+    Q.lvp_ideology = "Right"
+} else if (Q.lvp_left > (Q.lvp_right*1.5) || (Q.lvp_left > (Q.lvp_right + 5))) {
+    Q.lvp_ideology = "Left"
+} else {
+    Q.lvp_ideology = "Moderate"
+}
+
+if (Q.lvp_ideology == "Right") {
+   Q.dingeldey_points += 3;
+   Q.curtius_points += 1;
+}
+if (Q.lvp_ideology == "Moderate") {
+    Q.luther_points += 2;
+    Q.dietrich_points += 1;
+    Q.curtius_points += 1;
+}
+if (Q.lvp_ideology == "Left") {
+    Q.heuss_points += 3;
+    Q.dietrich_points += 1;
+}
+
+Q.opposition_points = Q.heuss_points + Q.dietrich_points + Q.curtius_points + Q.dingeldey_points
+
+if (Q.curtius_resign_lvp || (Q.curtius_banking_crisis && Q.banking_crisis_seen)) {
+    Q.dietrich_points += Math.round(Q.curtius_points * 2 / 3);
+    Q.dingeldey_points += Math.round(Q.curtius_points / 3);
+    Q.curtius_points = 0;
+}
+
+if (Q.heuss_points > Q.dietrich_points && Q.heuss_points > Q.curtius_points && Q.heuss_points > Q.dingeldey_points) {
+    Q.heuss_lead = 1;
+} else {
+    Q.heuss_lead = 0;
+}
+
+if (Q.dietrich_points > Q.heuss_points && Q.dietrich_points > Q.curtius_points && Q.dietrich_points > Q.dingeldey_points) {
+    Q.dietrich_lead = 1;
+} else {
+    Q.dietrich_lead = 0;
+}
+
+if (Q.curtius_points > Q.heuss_points && Q.curtius_points > Q.dietrich_points && Q.curtius_points > Q.dingeldey_points) {
+    Q.curtius_lead = 1;
+} else {
+    Q.curtius_lead = 0;
+}
+
+if (Q.dingeldey_points > Q.heuss_points && Q.dingeldey_points > Q.dietrich_points && Q.dingeldey_points > Q.curtius_points) {
+    Q.dingeldey_lead = 1;
+} else {
+    Q.dingeldey_lead = 0;
+}
+
+if (!Q.dietrich_lead && !Q.heuss_lead && !Q.dingeldey_lead && !Q.curtius_lead) {
+    Q.lvp_deadlock = 1;
+} else {
+    Q.lvp_deadlock = 0;
+}
+
+!}
+max-visits: 1
+tags: event
+face-image: img/weimar_coalition_3.jpg
+new-page: true
+
+= Second <span style="color: #FFCC00;">**LVP**</span> Party Congress
+
+The merger of two notoriously factionalized parties has unsurprisingly introduced great dysfunction into the internal politics of the <span style="color: #FFCC00;">**LVP**</span>. Not even a unifying figure like Hans Luther has been able to quell the endless bickering among the party's factions. The economic depression has only deepened these divisions, with disagreements arising even on broadly supported issues like parliamentary government, making unified action nearly impossible.
+
+While Hans Luther is expected to secure re-election, scattered candidates across the party could emerge if the majority of the party loses confidence in Luther's leadership.
+
+- @luther: The party votes...
+- @luther_fail: The party votes...
+
+@luther
+view-if: luther_points >= opposition_points
+on-arrival: lvp_relation += 4; lvp_left += 2
+face-image: img/portraits/luther.jpg
+
+Hans Luther is expectedly re-elected as the leader of the <span style="color: #FFCC00;">**LVP**</span>. He will navigate the party through the economic depression and will hopefully try to maintain bourgeois backing for the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> system.
+
+@luther_fail
+view-if: opposition_points > luther_points
+on-arrival: {!
+Q.luther_endorsed_candidate = "None"
+
+if (Q.lvp_ideology == "Right") {
+    Q.luther_endorsed_candidate = "Eduard Dingeldey"
+} else if (Q.lvp_ideology == "Moderate") {
+    Q.luther_endorsed_candidate = "Julius Curtius"
+} else if (Q.lvp_ideology == "Left") {
+    Q.luther_endorsed_candidate = "Hermann Dietrich"
+}
+
+if (Q.lvp_relation >= 65) {
+    Q.luther_endorsed_candidate = "Theodor Heuss"
+}
+
+if (((Q.curtius_resign_lvp) || (Q.curtius_banking_crisis && Q.banking_crisis_seen)) && Q.luther_endorsed_candidate == "Julius Curtius") {
+    Q.luther_endorsed_candidate = "Hermann Dietrich";
+}
+
+if (Q.luther_endorsed_candidate == "Eduard Dingeldey") {
+    Q.dingeldey_points += 2;
+} else if (Q.luther_endorsed_candidate == "Julius Curtius") {
+    Q.curtius_points += 2;
+} else if (Q.luther_endorsed_candidate == "Hermann Dietrich") {
+    Q.dietrich_points += 2;
+} else if (Q.luther_endorsed_candidate == "Theodor Heuss") {
+    Q.heuss_points += 2;
+}
+
+if (Q.heuss_points > Q.dietrich_points && Q.heuss_points > Q.curtius_points && Q.heuss_points > Q.dingeldey_points) {
+    Q.heuss_lead = 1;
+} else {
+    Q.heuss_lead = 0;
+}
+
+if (Q.dietrich_points > Q.heuss_points && Q.dietrich_points > Q.curtius_points && Q.dietrich_points > Q.dingeldey_points) {
+    Q.dietrich_lead = 1;
+} else {
+    Q.dietrich_lead = 0;
+}
+
+if (Q.curtius_points > Q.heuss_points && Q.curtius_points > Q.dietrich_points && Q.curtius_points > Q.dingeldey_points) {
+    Q.curtius_lead = 1;
+} else {
+    Q.curtius_lead = 0;
+}
+
+if (Q.dingeldey_points > Q.heuss_points && Q.dingeldey_points > Q.dietrich_points && Q.dingeldey_points > Q.curtius_points) {
+    Q.dingeldey_lead = 1;
+} else {
+    Q.dingeldey_lead = 0;
+}
+
+if (!Q.dietrich_lead && !Q.heuss_lead && !Q.dingeldey_lead && !Q.curtius_lead) {
+    Q.lvp_deadlock = 1;
+} else {
+    Q.lvp_deadlock = 0;
+}
+
+!}
+
+Surprisingly, Luther has failed to command the majority of the <span style="color: #FFCC00;">**LVP**</span> behind his candidacy. Following this result, Luther has resigned from his chairmanship and now endorses [+ luther_endorsed_candidate +] for the leadership race. Luther has now taken up a position as the President of the Reichsbank, still holding significant sway over party affairs.
+
+- @heuss
+- @dietrich
+- @curtius
+- @dingeldey
+- @deadlock
+
+@heuss
+title: Theodor Heuss is elected!
+subtitle: Heuss is a <span style="color: #c00000;">Social</span> <span style="color: #000000;">Rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span>, and a member of the former <span style="color: #D3C24D;">**[+ ddp_name +]**</span>.
+unavailable-subtitle: The wider <span style="color: #FFCC00;">LVP</span> perceive him as too left-wing, despite his previous affiliation with the <span style="color: #D3C24D;">[+ ddp_name +]</span>'s business wing.
+choose-if: heuss_lead
+on-arrival: lvp_relation += 10; lvp_left += 7; lvp_leader = "Heuss"; pro_republic += (lvp_votes / 2); workers_lvp += 2; workers_spd -= 2; new_middle_lvp += 2; old_middle_lvp -= 4; old_middle_other += 4 if (dnvp_ideology == "Radical"); old_middle_dnvp += 4 if dnvp_ideology == "Moderate"; old_middle_kvp += 4; rural_lvp -= 4; rural_other += 4 if (dnvp_ideology == "Radical" and not kvp_formed); rural_dnvp += 4 if dnvp_ideology == "Moderate"; rural_kvp += 4; catholics_lvp += 2; catholics_spd -= 2; coalition_dissent -= 1; heuss_explode_time = time + 8; heuss_election_time = time
+face-image: img/portraits/heuss.jpg
+
+Theodor Heuss, a rising star and former member of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>, has been elected chairman of the <span style="color: #FFCC00;">Liberal People's Party</span>. Backed primarily by the 'Social Republican Circle,' composed of former <span style="color: #D3C24D;">**[+ ddp_name +]**</span> members and liberal intellectuals and newspapers, Heuss has also garnered support from the broader party due to his decently conservative stances on economic and national issues.
+
+Heuss's victory empowers the '<span style="color: #c00000;">Social</span> <span style="color: #000000;">Rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span>' wing, strengthening our cooperation. Despite his personal leanings toward the right, Heuss remains one of the most committed and genuine supporters for <span style="color: #FFCC00;">liberal</span> <span style="color: #586593;">democracy</span> within the <span style="color: #FFCC00;">**LVP**</span>.
+
+@dietrich
+title: Hermann Dietrich is elected!
+subtitle: Dietrich was the former leader of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>'s business wing, and is somewhat skeptical of cooperation with us.
+unavailable-subtitle: [? if not heuss_lead: The wider <span style="color: #FFCC00;">LVP</span> perceive him as too left-wing, despite his previous affiliation with the <span style="color: #D3C24D;">[+ ddp_name +]</span>'s business wing. ?][? if heuss_lead: His lack of energy and the burden of his governmental roles have led the party to favor Heuss instead. ?]
+choose-if: dietrich_lead
+on-arrival: lvp_relation += 3; lvp_left += 1; lvp_leader = "Dietrich"; pro_republic += 3; old_middle_lvp += 2; rural_lvp += 2; new_middle_lvp -= 2; dietrich_lvp_explode_time = time + 8; dietrich_election_time = time
+face-image: img/portraits/dietrich.jpg
+
+Hermann Dietrich, formerly affiliated with the business wing of the <span style="color: #D3C24D;">**[+ ddp_name +]**</span>, has been elected chairman of the <span style="color: #FFCC00;">**LVP**</span>. Dietrich is mainly supported by smaller businesses and ruralites, and [? if chancellor == "Brüning" and not spd_in_government: is known for formulating Brüning's emergency decrees during his tenure as Finance Minister.?][? if not (chancellor == "Brüning" and not spd_in_government): is known for his fiscal conservatism.?]
+
+Despite this, Dietrich is not as extreme as the industrialists on the right of the party and remains open to cooperation with us if there is no other majority. However, his leadership has been quite uninspiring, to say the least. [? if agriculture_minister_party == "LVP" or economic_minister_party == "LVP": The responsibilities of his ministry prevent him from being involved in the day-to-day running of his party, which is now delegated to a group of his associates in the business wing. ?]
+
+@curtius
+title: Julius Curtius is elected!
+subtitle: Curtius was a member of the former <span style="color: #C0A054;">**DVP**</span>, and is a committed Stresemannite and member of their left wing. He has since succeeded Stresemann on foreign policy matters.
+unavailable-subtitle: [? if dingeldey_lead: The <span style="color: #FFCC00;">LVP</span> perceive him as too left-wing, and point out his lackluster record as a successor to Stresemann. ?][? if dietrich_lead or heuss_lead: The left wing of the <span style="color: #FFCC00;">LVP</span> wants to elect a former <span style="color: #D3C24D;">[+ ddp_name +]</span> member, to replace Luther. ?][? if lvp_deadlock: The left wing of the <span style="color: #FFCC00;">LVP</span> wants to elect a former <span style="color: #D3C24D;">[+ ddp_name +]</span> member, while the right wing of the party prefers a more right-wing former <span style="color: #C0A054;">DVP</span> member. ?]
+choose-if: curtius_lead
+view-if: not curtius_resign_lvp and not (curtius_banking_crisis and banking_crisis_seen)
+on-arrival: lvp_relation += 3; lvp_left += 1; lvp_leader = "Curtius"; pro_republic += 3; old_middle_lvp += 2; new_middle_lvp += 2
+face-image: img/portraits/curtius.jpg
+
+Julius Curtius, Stresemann's successor in foreign affairs and a former member of the <span style="color: #C0A054;">**DVP**</span>, has won the vote to succeed Luther for the chairmanship. Curtius is supported by the 'Pragmatic Center', and was put forth as a compromise candidate. 
+
+As a former member of the <span style="color: #C0A054;">**DVP**</span>'s left wing, he is in favor of closer cooperation with us. However, his leadership has been quite uninspiring, to say the least. [? if foreign_minister_party == "LVP": The responsibilities of the foreign ministry prevent him from being involved in the day-to-day running of his party, which is now delegated to a group of his associates in the 'Pragmatic Center'. ?]
+
+@dingeldey
+title: Eduard Dingeldey is elected.
+subtitle: Dingeldey was a member of the former <span style="color: #C0A054;">**DVP**</span>, and commonly associated with the industrial-right of the party.
+unavailable-subtitle: The right-industrial faction of the <span style="color: #FFCC00;">LVP</span> lack the power necessary to install their candidate.
+choose-if: dingeldey_lead
+on-arrival: lvp_relation -= 5; lvp_right += 3; lvp_leader = "Dingeldey"; new_middle_lvp -= 4; workers_lvp -= 2; old_middle_lvp += 2; coalition_dissent += 1; dingeldey_explode_time = time + 8; dingeldey_election_time = time
+face-image: img/portraits/dingeldey.jpg
+
+Eduard Dingeldey, previously part of the movement for bourgeois unity, has now been elected chairman of the <span style="color: #FFCC00;">**LVP**</span>. Dingeldey is backed by the industrial forces on the right of the party, alongside former <span style="color: #C0A054;">**DVP**</span> members. He appears to be focused on fostering closer cooperation with the array of parties between the <span style="color: #FFCC00;">**LVP**</span> and the <span style="color: #3E88B3;">**DNVP**</span>.
+
+However, Dingeldey has thus far proven to be an ineffectual leader, often capitulating to the right wing of the <span style="color: #FFCC00;">**LVP**</span>. Recently, we’ve observed a deterioration in relations with his party, alongside a noticeable rightward shift in the <span style="color: #FFCC00;">**LVP**</span>'s internal politics.
+
+@deadlock
+title: The vote has been deadlocked!
+subtitle: No candidate is able to gather a sufficient amount of votes.
+view-if: lvp_deadlock
+
+The vote has been deadlocked, with no candidate ahead by enough to constitute a majority. You, the player, now has free will to choose a compromise candidate. Spend it wisely.
+
+- @dietrich_compromise: Hermann Dietrich.
+- @curtius_compromise: Julius Curtius.
+
+@dietrich_compromise
+go-to: dietrich
+
+@curtius_compromise
+view-if: not curtius_resign_lvp and not (curtius_banking_crisis and banking_crisis_seen)
+go-to: curtius
+

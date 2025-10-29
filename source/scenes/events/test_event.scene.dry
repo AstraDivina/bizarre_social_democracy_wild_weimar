@@ -1,0 +1,23 @@
+title: for mod dev
+subtitle: please trigger
+new-page: true
+view-if: secret_trigger == 1
+tags: event
+
+= test
+
+tests
+
+- @ok: ok
+- @no: no
+
+@ok
+on-arrival: secret_trigger = 0
+go-to: lvp_formed
+
+ok
+
+@no
+on-arrival: secret_trigger = 0
+
+ok

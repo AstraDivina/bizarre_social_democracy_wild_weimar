@@ -1,0 +1,129 @@
+title: The Reichstag Agenda Committee Discusses a Reconvocation
+subtitle: The chancellor is surprisingly eager to reopen the chamber.
+view-if: chancellor = "Schleicher" and schleicher_time == 4
+new-page: true
+tags: event
+max-visits: 1
+priority: 2
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/reichstag.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Reichstag Reconvocation Decision
+
+Behind closed doors, the Reichstag’s agenda committee convenes to decide when to reconvene the chamber after the holiday break—and with our position on it, our spokesmen have a say. Representing the cabinet, Schleicher’s aide strikes a confident tone, declaring the government ready to face the chamber at any time—and even opposing any adjournment until no-confidence motions are dealt with.
+
+In response, the <span style="color: #700000;">**Communists**</span> table a motion to resume sessions early next week. [? if reichstag_president == "Göring": But the <span style="color: #7A3C00;">Nazi</span> spokesmen show no interest, suggesting the decision be left to the Reichstag’s president, Göring—who, in the end, fails to gain backing from any other party. ?][? if reichstag_president != "Göring": But the <span style="color: #7A3C00;">Nazi</span> spokesmen show no interest, and would rather back the <span style="color: #000000;">Center Party</span>'s compromise motion. ?]
+
+The question is, how should our representatives vote?
+
+- @reichstag_1
+- @reichstag_2
+- @reichstag_3
+
+@reichstag_1
+title: Vote for the <span style="color: #700000;">**Communist**</span> motion to reconvene the chamber.
+on-arrival: {!
+Q.reichstag_schleicher = 1;
+Q.reichstag_break = 0;
+
+Q.next_reichstag_time = Q.rubicon_time + 3;
+Q.next_reichstag_week = Q.week + 3;
+Q.next_reichstag_month = Q.month;
+Q.next_reichstag_year = Q.year;
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_month > 12) {
+  Q.next_reichstag_month -= 12;
+  Q.next_reichstag_year += 1;
+}
+!}
+
+We must bring down the Schleicher cabinet as soon as possible. But the <span style="color: #c00000;">**SPD**</span> and the <span style="color: #700000;">**Communists**</span> lack the votes on the committee to push the proposal through, as the <span style="color: #7A3C00;">Nazis</span> vote it down.
+
+Instead, the <span style="color: #000000;">Center Party</span> offers a compromise: the Reichstag will reconvene early in Week [+ next_reichstag_week +], [+ next_reichstag_month : month +] [+ next_reichstag_year +], with the condition that the committee will reexamine the matter one week prior.
+
+This is accepted by all parties.
+
+@reichstag_2
+title: Vote for the <span style="color: #7A3C00;">Nazi</span> motion to grant responsibility to Göring.
+view-if: reichstag_president == "Göring"
+unavailable-subtitle: Why the hell would we do this?
+choose-if: nsdap_relation >= 100
+on-arrival: {!
+Q.reichstag_schleicher = 1;
+Q.reichstag_break = 0;
+
+Q.next_reichstag_time = Q.rubicon_time + 3;
+Q.next_reichstag_week = Q.week + 3;
+Q.next_reichstag_month = Q.month;
+Q.next_reichstag_year = Q.year;
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_month > 12) {
+  Q.next_reichstag_month -= 12;
+  Q.next_reichstag_year += 1;
+}
+!}
+
+For some reason, we have pushed for the <span style="color: #7A3C00;">Nazi</span> proposal of letting Göring be in charge. However, our spokesmen simply laughed in our face at our "joke", and voted for the <span style="color: #700000;">**Communist**</span> motion.
+
+Eventually, the <span style="color: #000000;">Center Party</span> steps in with a compromise: the Reichstag will reconvene early in Week [+ next_reichstag_week +], [+ next_reichstag_month : month +] [+ next_reichstag_year +], on the condition that the committee revisits the matter one week beforehand.
+
+All parties accept this arrangement.
+
+@reichstag_3
+title: Push for a compromise proposal (reconvene in three weeks, subject to review).
+on-arrival: {!
+Q.reichstag_schleicher = 1;
+Q.reichstag_break = 0;
+
+Q.next_reichstag_time = Q.rubicon_time + 3;
+Q.next_reichstag_week = Q.week + 3;
+Q.next_reichstag_month = Q.month;
+Q.next_reichstag_year = Q.year;
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_week > 4) {
+  Q.next_reichstag_week -= 4;
+  Q.next_reichstag_month += 1;
+}
+
+if (Q.next_reichstag_month > 12) {
+  Q.next_reichstag_month -= 12;
+  Q.next_reichstag_year += 1;
+}
+!}
+
+Together with the <span style="color: #000000;">Center Party</span>, our compromise proposal is accepted by all parties. The Reichstag will reconvene early in Week [+ next_reichstag_week +], [+ next_reichstag_month : month +] [+ next_reichstag_year +], on the condition that the committee revisits the matter one week beforehand.

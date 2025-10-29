@@ -1,0 +1,35 @@
+title: Papen's Scheme Reaches a Dead End
+subtitle: Perhaps Schleicher is secure?
+view-if: chancellor = "Schleicher" and schleicher_time == 7 and not schleicher_explode
+new-page: true
+tags: event
+priority: 4
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/hindenburg_gang_rise_up.jpg";  
+
+    cardEl.appendChild(image);
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Papen's Scheme Reaches a Dead End
+
+Despite Oskar and Meissner’s willingness to entertain Papen’s schemes to end the political deadlock, Schleicher’s strengthened position has made it harder to instill a sense of urgency in Hindenburg—at least enough to convince him to do the impossible. Papen, meanwhile, refuses to abandon his demand for the chancellorship, arguing that the <span style="color: #7A3C00;">Nazis</span> are quickly collapsing and that he, not they, should be the senior partner.
+
+A furious [+ nsdap_leader +] has rejected Papen’s call for a meeting between his movement and the Camarilla, and negotiations have since collapsed. Although Papen’s desire for revenge against Schleicher remains undimmed, he increasingly sees [+ nsdap_chancellor +]’s appointment as impossible—and himself as the only viable alternative. A belief that [+ nsdap_leader +] refuses to believe in.
+
+- @nazi_2
+
+@nazi_2
+title: The chancellor is safe, for now.
+on-arrival: papen_goal = "Push for his own reappointment"; meissner_goal = "Reconcile Schleicher and Hindenburg"; oskar_goal = "Push for Papen's reappointment"
+
+Papen's constant nagging remains a thorn in Schleicher's side, especially given that the former chancellor lives just meters from the President's residence—and with Oskar von Hindenburg continuing to influence his father.
+
+Meissner, however, has come to a realization: Schleicher is here to stay. He is not driven by ideology—having served under Ebert beforehand; he was simply trying to do what he believed was best for the nation—an aim that now means supporting Schleicher and his policies.

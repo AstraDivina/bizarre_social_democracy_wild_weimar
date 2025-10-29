@@ -1,0 +1,19 @@
+title: Prussian Concordat
+subtitle: The Prussian government has reached an agreement with the Vatican.
+view-if: year = 1929 and month = 7 and prussia_leader != "Braun" and spd_prussia and prussian_concordat = 0
+max-visits: 1
+tags: event
+new-page: true
+
+= Prussian Concordat
+
+Despite our Otto Braun losing his position as the Minister-President of Prussia, he still possesses great influence within state politics and together with <span style="color: #000000;">Center Party</span> members, have negotiated a concordat with the Vatican. 
+
+- @sign_concordat: The Prussian government shall sign the concordat.
+
+@sign_concordat
+on-arrival: prussian_concordat = 1; z_relation += 4; catholics_spd += 3*(1-dissent); catholics_dnvp -= 2 if dnvp_ideology == "Radical"; ddp_relation -= 2; ddp_cohesion -= 0.5; lvp_relation -= 2
+
+We have signed a Concordat between the Free State of Prussia and the Roman Catholic Church, guaranteeing religious freedom for Catholics in Prussia. This sets the stage for the negotiation of a national Concordat covering all of Germany.
+
+[? if dnvp_ideology == "Radical": The Catholic members of the <span style="color: #3E88B3;">**DNVP**</span> in Prussia are in open conflict with their leadership over the vote, with many leaving the party. ?]

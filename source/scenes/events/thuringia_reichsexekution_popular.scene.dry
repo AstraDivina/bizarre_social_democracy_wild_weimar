@@ -1,0 +1,25 @@
+title: Reichsexekution of Thuringia
+subtitle: History repeats itself.
+view-if: president = "Hindenburg" and red_thuringia and (rb_force + rfb_force < 75) and not presidential_powers and (prussian_coup_seen or prussian_reichsexekution or hindenburg_angry >= 100 or hindenburg_angry_bruning >= 50 or strife >= 5 or rb_militancy >= 0.1 or bruning_time or saxony_joever) and year >= 1930
+on-arrival: thuringia_joever = 1; strife += 1; hindenburg_angry += 25; hindenburg_angry_bruning -= 25
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/Reichswehr.jpg
+
+= Reichsexekution of Thuringia
+
+President [+ president +] has invoked the <i>Reichsexekution</i> to dismiss the Thuringian government, citing its "inability to maintain order" amidst escalating clashes between the <span style="color: #7A3C00;">**SA**</span>, Reichsbanner, and the increasingly militant <span style="color: #700000;">**RFB**</span>.
+
+However, the true motivation is clear: the left-wing coalition governing Thuringia poses a direct threat to the conservative and nationalist establishment in Germany.
+
+- @surrender
+
+@surrender
+title: Resign our positions, to prevent bloodshed.
+subtitle: Hindenburg will appoint a new <i>Reichskommissar</i>.
+on-arrival: red_thuringia = 0; workers_spd -= 3; workers_kpd -= 3; unemployed_kpd -= 3; unemployed_spd -= 3; left_dissent += 10; labor_dissent += 5; rb_militancy = rb_militancy*0.8; rb_strength -= 200; rfb_banned = 1; rfb_strength -= 100; rfb_militancy -= 0.1; kpd_relation -= 25; communist_coalition -= 1
+
+The <span style="color: #700000;">communists</span> protesting in the streets are brutally suppressed, with the Reichswehr patrolling the streets, restricting political gatherings, and turning a blind eye to the <span style="color: #7A3C00;">Nazi</span> <span style="color: #7A3C00;">**SA**</span> as they harass local party officials.
+
+Hindenburg appoints <span style="color: #7FCEB1;">**CNBLP**</span> member Erwin Baum as <i>Reichskommissar</i> to govern Saxony, tasked with dismantling our reforms and violently suppressing the <span style="color: #700000;">**RFB**</span>.

@@ -1,0 +1,67 @@
+title: Banking Crisis
+subtitle: The collapse of the German banking system...
+new-page: true
+on-arrival: banking_crisis_seen = 1; workers_kpd += 2; workers_nsdap += 3; new_middle_nsdap += 5; old_middle_nsdap += 5; rural_nsdap += 3; unemployed += 3; crisis_urgency += 1; workers_spd -= 4 if spd_in_government; new_middle_spd -= 5 if spd_in_government; old_middle_spd -= 5 if spd_in_government; rural_spd -= 4 if spd_in_government; economic_growth -= 1.4; hindenburg_angry_bruning += 20; hindenburg_angry += 40; dnvp_angry += 1 if spd_toleration_right; banking_crisis_fallout_time = time + 6
+tags: event
+view-if: customs_union = 1 and banking_crisis_timer = 0
+max-visits: 1
+priority: 1
+face-image: img/danat_bank.jpg
+
+= Banking Crisis
+
+The Darmstädter und Nationalbank, or Danat Bank, has collapsed! Along with it goes much of the German banking system. The cause seemed to be due to the government's pursuit of a customs union with Austria, which led to de facto international sanctions. This has set off a global ripple effect, deepening the depression and driving foreign banks into bankruptcy.
+
+This is a bourgeois dispute, but the costs will be borne by the proletariat. The people are facing ever-increasing hunger and poverty, and perhaps we are partly to blame.
+
+- @nothing_to_do: There is nothing we can do.
+- @stabilization: Take action to stabilize the economy!
+- @austerity: Chancellor [+ chancellor +]'s response is, as always, more austerity.
+- @end_toleration: We are tired of austerity. End the toleration arrangement!
+
+@nothing_to_do
+view-if: spd_in_government = 1
+on-arrival: welfare -= 1; workers_spd -= 3; unemployed_spd -= 3; pro_republic -= 3
+
+There is, essentially, nothing we can do.
+
+@stabilization
+view-if: spd_in_government = 1
+subtitle: -1 budget
+choose-if: budget >= 1
+on-arrival: workers_spd += 3*(1-dissent); new_middle_spd += 3*(1-dissent); old_middle_spd += 2*(1-dissent); rural_spd += 2*(1-dissent); unemployed -= 2; inflation += 1 if inflation < 0; budget -= 1; workers_nsdap -= 3; economic_growth += 1;
+
+In the face of the banking crisis, we have taken emergency action to stabilize the economy by injecting money into the banking system. It might not be enough, but it temporarily staunches the bleeding.
+
+@austerity
+view-if: spd_in_government = 0
+on-arrival: welfare -= 1 if budget <= 0; workers_spd -= 3; workers_spd += 2 if budget > 0; workers_nsdap -= 2 if budget > 0; unemployed_spd -= 3; unemployed_spd += 2 if budget > 0; pro_republic -= 3; pro_republic += 2 if budget > 0; economic_growth -= 1; economic_growth += 0.4 if budget > 0; unemployed -= 1 if budget > 0; inflation += 0.8 if inflation < 0 and budget > 0; budget -= 1 if budget > 0
+
+[? if budget <= 0: Chancellor [+ chancellor +] responds to the banking crisis with more cuts to welfare.?][? if budget > 0: Surprisingly, Chancellor [+ chancellor +] has refrained from cutting social spending, owing to the budget surplus, and has taken measures to stabilize the economy and banking system. ?]
+
+@end_toleration
+view-if: spd_toleration = 1
+on-arrival: time_to_election = 3; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0; spd_toleration_right = 0; pro_republic -= 3; reformist_dissent += 4; left_dissent -= 4; dvp_relation -= 4; z_relation -= 4; ddp_relation -= 4; lvp_relation -= 4; ddp_right += 1; dvp_right += 2
+call: set_next_election_time
+go-to: new_prussia_election if in_social_catholic_coalition_prussia or in_weimar_coalition_prussia or in_grand_coalition_prussia or in_popular_front_prussia and ((center_right_coalition_prussia < 50 and dnvp_ideology == "Moderate") or dnvp_ideology == "Radical"); center_right_coalition_prussia if in_social_catholic_coalition_prussia or in_weimar_coalition_prussia or in_grand_coalition_prussia or in_popular_front_prussia and (((center_right_coalition_prussia >= 50 or right_coalition_prussia >= 50) and dnvp_ideology == "Moderate") or bourgeois_coalition_prussia >= 50)
+
+We are tired of [+ chancellor +]'s policy of austerity. After [+ chancellor +]'s attempt to use emergency powers to pass another welfare cut, we have worked with the other parties to reverse this policy. In response, the Reichstag has been dissolved, and new elections called.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@new_prussia_election
+on-arrival: z_relation -= 4; ddp_relation -= 4; lvp_relation -= 4; kpd_relation += 5; dvp_right += 3; ddp_right += 2; lvp_right += 2; pro_republic -= 3; new_middle_spd -= 2; rural_spd -= 2; old_middle_spd -= 2; catholics_spd -= 2; new_middle_nsdap += 2; old_middle_nsdap += 2; rural_nsdap += 2; catholics_nsdap += 2; in_right_coalition_prussia = 0; in_social_catholic_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_minority_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_center_right_coalition_prussia = 0; in_far_right_coalition_prussia = 0; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; right_prussia = 0; ddp_in_popular_front_prussia = 0; kpd_goals_seen_prussia = 0; spd_toleration_prussia = 0; prussia_coalition_trigger = 0
+call: set_next_election_time_prussia
+
+The [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] has called a retaliatory vote in Prussia, forcing the dissolution of the Landtag for new elections.
+
+New Prussian elections have been set for [+ next_election_month_prussia : month +] [+ next_election_year_prussia +].
+
+A double dissolution has shaken the people's faith in democracy, with the <span style="color: #7A3C00;">Nazis</span> exploiting the instability to claim that democracy is unworkable, and that Germany needs a strong leader.
+
+@center_right_coalition_prussia
+on-arrival: in_center_right_coalition_prussia = 1; in_right_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_minority_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_far_right_coalition_prussia = 0; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; right_prussia = 0; ddp_in_popular_front_prussia = 0; kpd_goals_seen_prussia = 0; spd_toleration_prussia = 0; prussia_coalition_trigger = 0; prussia_leader = "Stegerwald"; prussia_leader = "Brüning" if z_leader == "Stegerwald"; new_middle_spd -= 3; z_relation -= 4; ddp_relation -= 4; lvp_relation -= 4; dvp_right += 3; ddp_right += 2; pro_republic -= 3; prussian_police_loyalty -= 0.06; prussian_police_strength -= 8; 
+
+The [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] has called a retaliatory no confidence vote in Prussia, replacing our government with a center-right coalition composed of all parties to our right, except for the <span style="color: #003755;">**DNF**</span> and <span style="color: #7A3C00;">**NSDAP**</span>. While this is a setback, it is not the worst possible outcome, as new elections could have led to significant gains for extremist parties.
+
+[? if z_leader != "Stegerwald": Adam Stegerwald?][? if z_leader == "Stegerwald": Heinrich Brüning?] of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] is selected to be the Minister-President of Prussia.

@@ -1,0 +1,35 @@
+title: Brüning's Dilemma
+subtitle: An international reparations congress at Lausanne is scheduled this month.
+view-if: (year == 1932 and month >= 1 and month < 4) and (reparations == -2 or hoover_moratorium_seen or banking_crisis_seen) and bruning_time and not reparations_resolved
+max-visits: 1
+tags: event
+new-page: true
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/bruningetgang.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Brüning's Dilemma
+
+[? if hoover_memorandum_seen: Following the disastrous fallout from the Banking Crisis, Brüning has successfully managed to secure key concessions from the <span style="color: #0A3161;">Western</span> <span style="color: #C8102E;">Allies</span> regarding debts and Germany's economic maneuverability. However, Germany's economic crisis continues to worsen, and the Beneduce Report has stated that Germany cannot afford reparations payments in the foreseeable future. The <span style="color: #C8102E;">British</span> government has invited the <span style="color: #0A3161;">Western</span> <span style="color: #C8102E;">Allies</span> to participate in an international reparations congress in Lausanne, as per the recommendations of the bankers. ?][? if reparations == -2 and not hoover_memorandum_seen: With the moratorium on reparations in place, there is considerable uncertainty regarding what will happen to Germany's reparations burden once it expires. Brüning argues that this uncertainty has stifled investor confidence and hindered Germany's recovery from the economic crisis. The dire state of German finances has also contributed to this, with the Beneduce Report painting a bleak picture of Germany's ability to repay reparations in the foreseeable future. The <span style="color: #C8102E;">British</span> government has invited the <span style="color: #0A3161;">Western</span> <span style="color: #C8102E;">Allies</span> to participate in an international reparations congress in Lausanne, as per the recommendations of the bankers. ?]
+
+This is where the dilemma arises: <span style="color: #002654;">France</span>'s government cannot discuss any permanent revision of the Young Plan until after their elections in May. Brüning faces a choice: he can either push for a prolongation of the moratorium on reparations for another three years, or he can wait until June for a potential complete abolition of reparations.
+
+- @lausanne: Brüning has decided to postpone reparation talks until June.
+
+@lausanne
+subtitle: A lot can happen between now and then.
+
+Brüning’s decision to postpone the Lausanne conference until June faces sharp criticism from top economic advisors, who argue that the outright abolition of reparations would remain impossible even then. Instead, they urge him to pursue détente and secure access to new <span style="color: #002654;">French</span> loans—an idea Hindenburg has adamantly opposed, vowing to resign rather than sign such an agreement.
+
+Brüning, however, has reason to believe waiting is the right move. <span style="color: #002654;">France</span> is facing a severe fiscal shortfall and remains reluctant to cut off a crucial revenue stream.
+
+That is, if Brüning can hold on until June.

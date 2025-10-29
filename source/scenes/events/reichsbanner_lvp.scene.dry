@@ -1,0 +1,47 @@
+title: The <span style="color: #FFCC00;">**LVP**</span> and the Reichsbanner
+subtitle: Due to its militarization, the <span style="color: #FFCC00;">liberals</span> are leaving the Reichsbanner.
+view-if: rb_militancy >= 0.04 and not rb_exit and not rb_stay and lvp_formed and lvp_ideology != "Left"
+new-page: true
+tags: event
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/reichsbanner_flag.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+max-visits: 1
+
+= The <span style="color: #FFCC00;">**LVP**</span> and the Reichsbanner
+
+The Reichsbanner has increasingly militarized, acquiring arms, conducting paramilitary training, and attracting a stream of <span style="color: #9B0000;">radicalized</span> <span style="color: #c00000;">**SPD**</span> members. The <span style="color: #FFCC00;">**LVP**</span> in particular is offended by this, as many of its members originate from the semi-monarchist <span style="color: #C0A054;">**DVP**</span> and even have <span style="color: #3E88B3;">**Stahlhelm**</span> memberships. The organization's militarization has provided them with a pretext to sever formal ties with this <span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> organization.
+
+- @let_go: Let the <span style="color: #FFCC00;">liberals</span> go.
+- @lower_militancy: We must lower the Reichsbanner's militancy.
+- @keep_them: Can we convince them that a militant Reichsbanner is necessary for defending the Republic?
+
+@let_go
+on-arrival: rb_strength *= 0.95; z_relation -= 3; lvp_relation -= 5; lvp_right += 3; pro_republic -= 3; lvp_leave_reichsbanner = 1
+
+We have judged that the Reichsbanner's militancy is more important than maintaining a coalition with the <span style="color: #FFCC00;">**LVP**</span>. The Reichsbanner members affiliated with the <span style="color: #FFCC00;">liberals</span> leave, and this may inspire the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] to follow suit.
+
+# TODO: this should make it harder to form Weimar coalitions
+
+
+@lower_militancy
+on-arrival: rb_militancy *= 0.5
+
+Bowing to the <span style="color: #FFCC00;">**LVP**</span>'s demands, we reduce the Reichsbanner's military training, thus inducing them to stay.
+
+
+@keep_them
+unavailable-subtitle: They are unable to be convinced at this time.
+choose-if: strife >= 3 and lvp_relation >= 55 and lvp_ideology != "Right"
+on-arrival: lvp_left += 3; lvp_relation += 3; old_middle_dnvp += 3; old_middle_lvp -= 3; pro_republic += 3
+
+Seeing the strife that has filled Germany's streets, the <span style="color: #FFCC00;">**LVP**</span> seem to be convinced that it is necessary for the Reichsbanner to be militarized, and will not leave the organization. Unfortunately, many die-hard <span style="color: #3E88B3;">**Stahlhelm**</span> members within the party are constantly pressing for a reversal of this policy.

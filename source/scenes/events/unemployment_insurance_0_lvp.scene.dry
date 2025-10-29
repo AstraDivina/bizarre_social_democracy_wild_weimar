@@ -1,0 +1,59 @@
+title: Unemployment Insurance Crisis
+subtitle: The <span style="color: #FFCC00;">**LVP**</span> presents an ultimatum.
+new-page: true
+view-if: spd_in_government = 1 and (year = 1929 and month >= 10) and (in_grand_coalition or in_weimar_coalition) and lvp_formed and not ui0_seen
+on-arrival: budget -= 1 if budget >= 1; lvp_relation -= 3; ui1_seen = 1
+tags: event
+priority: 2
+max-visits: 1
+face-image: img/Kollwitz_Arbeitslosigkeit.jpg
+
+= Unemployment Insurance Crisis
+
+With the Young Plan not providing the necessary fiscal relief as many have hoped, the <span style="color: #FFCC00;">**LVP**</span> sets its eyes on cutting the unemployment insurance program to balance the books. The program is on the verge of financial collapse with the increasing numbers of unemployed, we need to decide what to do to prevent this.
+
+[? if lvp_right - lvp_left > 6: The <span style="color: #FFCC00;">**LVP**</span> have been moving significantly rightwards since their formation and their industrial backers want nothing less than a collapse of our government.?][? if not lvp_right - lvp_left > 8: Our cabinet has proposed a compromise featuring small cuts to the program along with a slight increase to contributions, but it is not clear if the <span style="color: #FFCC00;">**LVP**</span> themselves would agree to it. ?]
+
+- @destroy: Fine. We will end this coalition.
+- @accept: Unfortunately, we must accept the <span style="color: #FFCC00;">**LVP**</span>'s demands for the sake of stability.
+- @compromise: Surely there is some compromise to be had?
+
+@destroy
+on-arrival: spd_in_government = 0; grand_coalition_collapsed = 1 if in_grand_coalition; in_grand_coalition = 0; in_weimar_coalition = 0; chancellor = "Brüning"; chancellor_party = "Z"; next_election_time = time + 3 if next_election_time > time+3; next_election_month = month + 3 if next_election_time >= time+3; next_election_year = year if next_election_time >= time+3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; spd_toleration = 0; spd_toleration_right = 0; left_strength += 8; pro_republic -= 5; new_middle_spd -= 3; rural_spd -= 3; old_middle_spd -= 3; catholics_spd -= 3; reformist_dissent += 5; lvp_right += 3; grand_coalition_collapsed = 1; economic_growth -= 0.3
+
+Fine. If the bourgeoisie wish to blow up the government, let them do so. <span style="color: #c00000;">Socialists</span> will not be complicit in the destruction of the working class.
+
+[? if chancellor_party = "SPD" : Heinrich Brüning of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] has been appointed Chancellor. ?] Brüning now leads an all-bourgeois cabinet. Using the emergency powers of Article 48, Brüning and President Hindenburg have passed cuts over the objections of the Reichstag. The <span style="color: #3E88B3;">**DNVP**</span> won't enter a government that is ratifying the Young Plan therefore no majority can be found.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@accept
+unavailable-subtitle: [? if reformist_strength + center_strength + labor_strength / 2 < left_strength + labor_strength / 2: The party won't allow this. ?]
+choose-if: reformist_strength + center_strength + labor_strength / 2 >= left_strength + labor_strength / 2
+on-arrival: workers_spd -= 0.1*workers_spd; unemployed_spd -= 0.2*unemployed_spd; workers_kpd += 3; workers_nsdap += 3; unemployed_kpd += 5; unemployed_nsdap += 5; left_dissent += 15; center_dissent += 10; labor_dissent += 15; welfare -= 1; budget += 1; pro_republic -= 3; kpd_relation -= 5; inflation -= 1; unemployment_insurance_threshold = unemployed; lvp_left += 2; coalition_dissent -= 1; goal_spd_cancel += 1; economic_growth -= 0.3
+
+Unfortunately, we must accept this if we are to maintain this coalition. The <span style="color: #7A3C00;">Nazis</span> and <span style="color: #700000;">**Communists**</span> are waiting in the wings for us to fail, ready to pounce upon the instability that would result from a breakup of the governing coalition.
+
+The workers are furious at our betrayal, as are a good portion of our membership throughout the factions. Our loss is the <span style="color: #700000;">**KPD**</span>'s gain, and even the <span style="color: #7A3C00;">**NSDAP**</span>, those lapdogs of the bourgeoisie, have joined in criticizing us for our austerity.
+
+@compromise
+unavailable-subtitle: [? if lvp_relation < 25: We do not have good enough relations with the right-wing parties.?] [? if lvp_right - lvp_left > 8: The <span style="color: #FFCC00;">**LVP**</span> industrialists have great control over their party. ?]
+choose-if: lvp_relation >= 25 and (lvp_right - lvp_left < 8)
+
+[? if not stresemann_dead: Stresemann?][? if stresemann_dead: The Stresemannites?] and other friendly figures of the former <span style="color: #C0A054;">**DVP**</span> has managed to rally [? if lvp_ideology == "Right" or lvp_ideology == "Moderate": an extremely slim majority of the party?][? if lvp_ideology == "Left": a majority of the party?] to vote in favor of a compromise that contains cuts to the program without increasing contributions. While this is not an ideal solution, what other choice do we have?
+
+- @accept_compromise_worse: Accept the compromise.
+- @accept_compromise_good: Is it possible to increase contribution rates?
+- @destroy: Reject the compromise and end this coalition.
+
+@accept_compromise_worse
+on-arrival: workers_spd -= 2; unemployed_spd -= 2; unemployed_kpd += 2; unemployed_nsdap += 2; workers_nsdap += 2; left_dissent += 8; labor_dissent += 5; center_dissent += 3; welfare -= 1; kpd_relation -= 4; unemployment_insurance_threshold = unemployed; lvp_left += 1; goal_spd_cancel += 1; economic_growth -= 0.2
+
+We have accepted the compromise offered by the bourgeoisie. Many of the workers and unemployed see this as a betrayal, as we cut welfare without increasing employer contributions. We present it as the successful aversion of a much worse alternative.
+
+@accept_compromise_good
+choose-if: lvp_ideology == "Left" and lvp_relation >= 45
+unavailable-subtitle: [? if lvp_ideology != "Left": The <span style="color: #FFCC00;">**LVP**</span> industrialists have great control over their party. ?] [? if lvp_relation < 45: We do not have good enough relations with the right-wing parties. ?]
+on-arrival: reformist_strength += 10; reformist_dissent -= 5; coalition_dissent -= 1; old_middle_lvp -= 3; old_middle_nsdap += 3; unemployment_insurance_threshold = unemployed; dvp_left += 3; ddp_left += 1; lvp_left += 3; ddp_cohesion += 1; unemployment_goal_spd += 1; economic_growth -= 0.1
+
+We have pushed for an increase in both employer and employee contributions rather than to cut benefits for the program itself. The <span style="color: #FFCC00;">**LVP**</span> accepts with the influence of [? if not stresemann_dead: Stresemann?][? if stresemann_dead: the Stresemannites?] and pressures from members of the former <span style="color: #D3C24D;">**[+ ddp_name +]**</span>.

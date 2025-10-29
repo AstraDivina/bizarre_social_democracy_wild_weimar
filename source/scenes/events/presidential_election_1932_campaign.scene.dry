@@ -1,0 +1,894 @@
+title: Presidential Election campaigning
+subtitle: It's campaign season.
+new-page: true
+on-arrival: {!
+Q.presidential_election_campaigning_seen = 1;
+Q.hindenburg_funds = 0;
+Q.hindenburg_support = 0;
+if (Q.nsdap_candidate_1932 == "Hitler") {
+    Q.workers_nsdap += 3;
+    Q.new_middle_nsdap += 4;
+    Q.old_middle_nsdap += 4;
+    Q.catholics_nsdap += 2;
+    Q.rural_nsdap += 4;
+    Q.unemployed_nsdap += 4;
+    Q.new_middle_dnvp -= 2;
+    Q.old_middle_dnvp -= 2; 
+    Q.unemployed_kpd -= 2;
+} else if (Q.nsdap_candidate_1932 == "Göring") {
+    Q.old_middle_nsdap += 4;
+    Q.old_middle_dnvp -= 4;
+    Q.rural_nsdap += 2;
+    Q.rural_dnvp -= 2;
+    Q.workers_kpd += 3;
+    Q.workers_nsdap -= 3;
+}
+!}
+tags: event
+view-if: year = 1932 and month >= 2 and not hindenburg_term_extended and not spd_abstain_1932 and hindenburg_run
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/campaign.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+priority: -1
+max-visits: 1
+go-to: candidate_selection
+
+
+= Presidential Election campaigning
+
+[? if nsdap_candidate_1932: The <span style="color: #7A3C00;">**NSDAP**</span>, standing alone in the electoral fight to elect [+ nsdap_candidate_1932_disp +], has little chance of winning—at least according to our advisors. However, this does not mean the election is inconsequential. The extensive <span style="color: #7A3C00;">Nazi</span> propaganda campaign, orchestrated by the infamous Joseph Goebbels, combined with the upcoming local elections just a month after the first round, could significantly shift public opinion. This, in turn, may pressure President Hindenburg and his entourage to adopt a more antagonistic stance toward the current government and push for a reorganization of the national government to include the <span style="color: #7A3C00;">national</span> <span style="color: #3E88B3;">opposition</span>. [? if nsdap_candidate_1932 == "Hitler": Furthermore, Adolf Hitler possesses a remarkable charismatic ability, and his strategy of flying across Germany to deliver speeches to hundreds of thousands of otherwise indifferent voters each day rivals even that of Hindenburg. ?][? if nsdap_candidate_1932 == "Göring": With Hitler ineligible, Hermann Göring has taken up the mantle as the <span style="color: #7A3C00;">**NSDAP**</span>'s candidate. As aw staunch figure of the party’s right wing and an opponent of Strasser’s more radical policies, Göring will find it easier to attract industrial support, securing crucial funding for their extensive propaganda network. ?] ?]
+
+[? if spd_support_reactionary: With our support for President Hindenburg, we are excluded from the United Hindenburg Committees, the main organization promoting his candidacy. Our support is unwelcome by Hindenburg himself, while Westarp and Gereke, the key leaders of the United Hindenburg Committees, will attempt to distance themselves from us as much as possible to secure moderate right-wing and industrial backing. As a result, our role in the campaign will be to rally the German Left, who remain reluctant to vote for a reactionary like him. ?][? if braun_campaign: We are running Otto Braun, one of our most renowned and respected statesmen. His reformist stance has given us a chance to attract some crossover support from the bourgeois parties. However, many outside our party would sooner die than support a <span style="color: #c00000;">socialist</span>. Our only viable path to expanding our vote share lies in winning back disaffected <span style="color: #700000;">**Communists**</span> and mobilizing worker enthusiasm. ?][? if spd_support_thalmann: Our controversial decision to support [+ communist_candidate_1932_disp +] as a leftist unity candidate has deeply polarized German politics, setting the stage for a final showdown between <span style="color: #9B0000;">Marxist</span> and Capitalism. A civil war is not even out of the question, regardless of which candidate emerges victorious. With the German Left united behind [+ communist_candidate_1932 +], our electoral base has little room to grow—we can only hope that the workers turn out in full force at the polls. ?][? if rosenfeld_campaign: We are running Kurt Rosenfeld, a lesser-known figure from our left wing. His leftist stances have given us a chance to attract the support of the <span style="color: #700000;">**Communists**</span>, but have completely closed the door to support from the bourgeois parties. Our only viable path to expanding our vote share lies in winning back disaffected workers, mobilizing their enthusiasm, and persuading our more reformist middle-class and rural elements to stick with the plan. ?][? if eckener_campaign: We are running Hugo Eckener, a famed non-partisan Zeppelin captain and personally conservative figure. His rightist stances have left the <span style="color: #c00000;">**SPD**</span> vulnerable to defections to the <span style="color: #700000;">**Communists**</span>, but have completely opened the door to unified support from the bourgeois parties. We can either shore up support for Eckener within the <span style="color: #c00000;">**SPD**</span> itself, or focus on maximizing crossover support and strengthening our cooperation with bourgeois allies. ?]
+
+@candidate_selection
+
+- @view_candidates: View the running candidates.
+
+@view_candidates
+
+[? if spd_campaign: [? if spd_candidate_1932 != "Eckener": <span style="color: #c00000;">**[+ spd_candidate_1932_disp +]**</span>?][? if spd_candidate_1932 == "Eckener": <span style="color: #000000;">**Ec**</span><span style="color: #DD0000;">**ken**</span><span style="color: #FFCC00;">**er**</span> ?] - supported by: ?]
+
+[? if spd_campaign: - <span style="color: #c00000;">**SPD**</span> ?]
+
+[? if kpd_support_spd == 1 and sapd_formed and spd_campaign: - <span style="color: #9B0000;">**SAPD**</span> ?]
+
+[? if kpd_support_spd == 1 and spd_campaign: - <span style="color: #700000;">**KPD**</span> ?]
+
+[? if z_support_spd == 1 and spd_campaign: - [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] ?]
+
+[? if bvp_support_spd and spd_campaign: - <span style="color: #A2D8E0;">**BVP**</span> ?]
+
+[? if ddp_support_spd == 1 and spd_campaign: - <span style="color: #D3C24D;">**[+ ddp_name +]**</span> ?]
+
+[? if lvp_support_spd == 1 and spd_campaign: - <span style="color: #FFCC00;">**LVP**</span> ?]
+
+[? if dvp_support_spd == 1 and spd_campaign: - <span style="color: #C0A054;">**DVP**</span> ?]
+
+[? if reactionary_candidate_1932: [? if hindenburg_run: <span style="color: #808080;">**[+ reactionary_candidate_1932_disp +]**</span>?][? if (reactionary_candidate_1932 == "Luther" or reactionary_candidate_1932 == "Gessler" or reactionary_candidate_1932 == "Jarres") and lvp_formed: <span style="color: #FFCC00;">**[+ reactionary_candidate_1932_disp +]**</span>?][? if (reactionary_candidate_1932 == "Luther" or reactionary_candidate_1932 == "Jarres") and not lvp_formed: <span style="color: #C0A054;">**[+ reactionary_candidate_1932_disp +]**</span>?][? if reactionary_candidate_1932 == "Gessler" and not lvp_formed: <span style="color: #D3C24D;">**[+ reactionary_candidate_1932_disp +]**</span>?][? if ((reactionary_candidate_1932 == "Lettow-Vorbeck" and not cvp_formed) or reactionary_candidate_1932 == "Westarp") and not kvp_formed: <span style="color: #3E88B3;">**[+ reactionary_candidate_1932_disp +]**</span>?][? if ((reactionary_candidate_1932 == "Lettow-Vorbeck" and not cvp_formed) or reactionary_candidate_1932 == "Westarp") and kvp_formed: <span style="color: #0087DC;">**[+ reactionary_candidate_1932_disp +]**</span>?][? if reactionary_candidate_1932 == "Adenauer" or reactionary_candidate_1932 == "Brüning" or reactionary_candidate_1932 == "Stegerwald" or (reactionary_candidate_1932 == "Lettow-Vorbeck" and cvp_formed): <span style="color: #000000;">**[+ reactionary_candidate_1932_disp +]**</span>?]  - supported by: ?]
+
+[? if (spd_support_reactionary_1 or (spd_support_reactionary and hindenburg_run)) and reactionary_candidate_1932: - <span style="color: #c00000;">**SPD**</span> ?]
+
+[? if z_support_spd != 1 and (z_choice == reactionary_candidate_1932 or hindenburg_run) and reactionary_candidate_1932: - [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] ?]
+
+[? if (z_choice == reactionary_candidate_1932 or hindenburg_run) and not bvp_support_spd and reactionary_candidate_1932: - <span style="color: #A2D8E0;">**BVP**</span> ?]
+
+[? if (lvp_choice == reactionary_candidate_1932 or hindenburg_run) and lvp_support_spd != 1 and lvp_formed and reactionary_candidate_1932: - <span style="color: #FFCC00;">**LVP**</span> ?]
+
+[? if (ddp_choice == reactionary_candidate_1932 or hindenburg_run) and ddp_support_spd != 1 and not lvp_formed and reactionary_candidate_1932: - <span style="color: #D3C24D;">**[+ ddp_name +]**</span> ?]
+
+[? if (dvp_choice == reactionary_candidate_1932 or hindenburg_run) and dvp_support_spd != 1 and not lvp_formed and reactionary_candidate_1932: - <span style="color: #C0A054;">**DVP**</span> ?]
+
+[? if (kvp_choice == reactionary_candidate_1932 or hindenburg_run) and kvp_formed and reactionary_candidate_1932: - <span style="color: #0087DC;">**KVP**</span> ?]
+
+[? if (dnvp_choice == reactionary_candidate_1932 or hindenburg_run) and dnvp_ideology == "Moderate" and not cvp_formed: - <span style="color: #3E88B3;">**DNVP**</span> ?]
+
+[? if (other_choice == reactionary_candidate_1932 or hindenburg_run) and reactionary_candidate_1932: - **Others** ?]
+
+[? if secondary_reactionary_candidate_1932: [? if hindenburg_run: <span style="color: #808080;">**[+ secondary_reactionary_candidate_1932_disp +]**</span>?][? if (secondary_reactionary_candidate_1932 == "Luther" or secondary_reactionary_candidate_1932 == "Gessler" or secondary_reactionary_candidate_1932 == "Jarres") and lvp_formed: <span style="color: #FFCC00;">**[+ secondary_reactionary_candidate_1932_disp +]**</span>?][? if (secondary_reactionary_candidate_1932 == "Luther" or secondary_reactionary_candidate_1932 == "Jarres") and not lvp_formed: <span style="color: #C0A054;">**[+ secondary_reactionary_candidate_1932_disp +]**</span>?][? if secondary_reactionary_candidate_1932 == "Gessler" and not lvp_formed: <span style="color: #D3C24D;">**[+ secondary_reactionary_candidate_1932_disp +]**</span>?][? if (secondary_reactionary_candidate_1932 == "Lettow-Vorbeck" or secondary_reactionary_candidate_1932 == "Westarp") and not kvp_formed: <span style="color: #3E88B3;">**[+ secondary_reactionary_candidate_1932_disp +]**</span>?][? if ((secondary_reactionary_candidate_1932 == "Lettow-Vorbeck" and not cvp_formed) or secondary_reactionary_candidate_1932 == "Westarp") and kvp_formed: <span style="color: #0087DC;">**[+ secondary_reactionary_candidate_1932_disp +]**</span>?][? if secondary_reactionary_candidate_1932 == "Adenauer" or secondary_reactionary_candidate_1932 == "Brüning" or secondary_reactionary_candidate_1932 == "Stegerwald": <span style="color: #000000;">**[+ secondary_reactionary_candidate_1932_disp +]**</span>?]  - supported by: ?]
+
+[? if spd_support_reactionary_2 and reactionary_candidate_1932: - <span style="color: #c00000;">**SPD**</span> ?]
+
+[? if z_support_spd != 1 and (z_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and secondary_reactionary_candidate_1932: - [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] ?]
+
+[? if (z_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and not bvp_support_spd and secondary_reactionary_candidate_1932: - <span style="color: #A2D8E0;">**BVP**</span> ?]
+
+[? if (lvp_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and lvp_support_spd != 1 and lvp_formed and secondary_reactionary_candidate_1932: - <span style="color: #FFCC00;">**LVP**</span> ?]
+
+[? if (ddp_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and ddp_support_spd != 1 and not lvp_formed and secondary_reactionary_candidate_1932: - <span style="color: #D3C24D;">**[+ ddp_name +]**</span> ?]
+
+[? if (dvp_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and dvp_support_spd != 1 and not lvp_formed and secondary_reactionary_candidate_1932: - <span style="color: #C0A054;">**DVP**</span> ?]
+
+[? if (kvp_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and kvp_formed and secondary_reactionary_candidate_1932: - <span style="color: #0087DC;">**KVP**</span> ?]
+
+[? if (dnvp_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and dnvp_ideology == "Moderate" and not cvp_formed and secondary_reactionary_candidate_1932: - <span style="color: #3E88B3;">**DNVP**</span> ?]
+
+[? if (other_choice == secondary_reactionary_candidate_1932 or hindenburg_run) and secondary_reactionary_candidate_1932: - **Others** ?]
+
+[? if nsdap_candidate_1932: <span style="color: #7A3C00;">**[+ nsdap_candidate_1932_disp +]**</span> - supported by: ?]
+
+[? if nsdap_candidate_1932: - <span style="color: #7A3C00;">**NSDAP**</span> ?]
+
+[? if kpd_support_spd == 0 and communist_candidate_1932: <span style="color: #700000;">**[+ communist_candidate_1932_disp +]**</span> - supported by: ?]
+
+[? if kpd_support_spd == 0 and communist_candidate_1932: - <span style="color: #700000;">**KPD**</span> ?]
+
+[? if kpd_support_spd == 0 and communist_candidate_1932 and sapd_formed: - <span style="color: #9B0000;">**SAPD**</span> ?]
+
+[? if spd_support_thalmann == 1: - <span style="color: #c00000;">**SPD**</span> ?]
+
+[? if dnvp_candidate_1932: [? if dnvp_ideology == "Radical": <span style="color: #3E88B3;">**[+ dnvp_candidate_1932_disp +]**</span>?][? if dnvp_ideology == "Moderate": <span style="color: #003755;">**[+ dnvp_candidate_1932_disp +]**</span>?] - supported by: ?]
+
+[? if dnvp_candidate_1932 and dnvp_ideology == "Radical": - <span style="color: #3E88B3;">**DNVP**</span> ?]
+
+[? if dnvp_candidate_1932 and dnvp_ideology == "Moderate": - <span style="color: #003755;">**DNF**</span> ?]
+
+- @campaigning_braun: Time to hit the campaign trail! 
+- @campaigning_rosenfeld: Time to hit the campaign trail! 
+- @campaigning_hindenburg: Time to hit the campaign trail! 
+- @campaigning_thalmann: Time to hit the campaign trail! 
+
+@campaigning_braun
+view-if: braun_campaign
+
+We have a plethora of campaign options at our disposal.
+
+- @iron_front
+- @media
+- @center_glaze
+- @communist_glaze
+- @campaigning
+- @campaigning_hindenburg_op: It's Hindenburg's turn to campaign.
+
+@iron_front
+title: Rally the full strength of the <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> to support Braun.
+view-if: iron_front_formed
+on-arrival: radicalization = 3 if radicalization > 3; workers_spd += radicalization + 3; new_middle_spd += radicalization + 2; unemployed_spd += radicalization + 2; pro_republic += 3; nationalism -= 3; neorevisionist_dissent -= 10; neorevisionist_strength += 10; left_dissent -= 10; rb_strength += 100; workers_nsdap -= 3 if strife >= 5 and far_right_paramilitary; new_middle_nsdap -= 3 if strife >= 5 and far_right_paramilitary; unemployed_nsdap -= 3 if strife >= 5 and far_right_paramilitary
+max-visits: 1
+face-image: img/iron_front_poster.png
+go-to: campaigning_braun
+
+The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> immediately gets to work, rallying around its slogan of opposing <span style="color: #7A3C00;">Fascism</span>, <span style="color:rgb(90, 0, 0);">Stalinism</span>, and <span style="color: #808080;">Monarchism</span>, which is especially relevant in this election.
+
+@media
+title: Use our radio stations to broadcast in favor of Braun.
+subtitle: -1 resource
+choose-if: radio >= 2 and resources >= 1
+unavailable-subtitle: [? if radio < 2: We haven't sufficiently built up our radio infrastructure yet. ?] [? if resources < 1: Not enough resources. ?]
+on-arrival: resources -= 1; new_middle_spd += (radio + commercialized_media); old_middle_spd += (radio + commercialized_media); workers_spd += (campaign_media + radio - 2); unemployed_spd += (campaign_media + radio); new_middle_nsdap -= (radio + commercialized_media); old_middle_nsdap -= (radio + commercialized_media); workers_nsdap -= (campaign_media + radio - 2); unemployed_nsdap -= (campaign_media + radio); socialism += 3; nationalism -= 1; nationalism -= 2 if pacifism > 1; pro_republic += (radio + commercialized_media)
+face-image: img/poster_0.jpg
+max-visits: 1
+go-to: campaigning_braun
+
+We are able to broadcast radio addresses urging turnout for Braun, spreading our message to the middle classes in hopes of overcoming their antipathy toward <span style="color: #c00000;">socialism</span>.
+
+@center_glaze
+title: We persuade the [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] to take a more active role in our campaign efforts.
+subtitle: The [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] isn't pulling their weight. -1 resource
+choose-if: z_support_spd == 1 and ((z_relation >= 60 and z_ideology == "Right") or (z_relation >= 45 and z_ideology == "Left")) and resources >= 1
+unavailable-subtitle: [? if z_support_spd != 1: The [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] doesn't support Braun. ?][? if (z_relation < 60 and z_ideology == "Right") or (z_relation < 45 and z_ideology == "Left"): Our relations aren't good enough. ?] [? if resources < 1: Not enough resources. ?]
+on-arrival: resources -= 1; pro_republic += 3; z_glaze_spd = 1; catholics_nsdap -= 3; catholics_spd += 3; catholics_z += 2; rural_spd += 1; z_relation += 5; ddp_left += 2; dvp_left += 3; ddp_cohesion += 1; lvp_left += 2
+face-image: img/center_poster.jpg
+max-visits: 1
+go-to: campaigning_braun
+
+The [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] has not been the most enthusiastic supporter of Braun. However, by leveraging our connections with their left wing and trade unions, we push them toward a more active role in the campaign. This should help Braun secure more votes from their base.
+
+@communist_glaze
+title: We persuade the <span style="color: #700000;">**Communists**</span> to take a more active role in our campaign efforts.
+subtitle: This will alienate bourgeois voters! -2 resources
+choose-if: kpd_support_spd == 1 and (kpd_relation >= 70 or (kpd_relation >= 55 and kpd_leader == "Conciliators")) and resources >= 2
+unavailable-subtitle: [? if kpd_support_spd != 1: The <span style="color: #700000;">KPD</span> doesn't support Braun. ?][? if (kpd_relation < 70 or (kpd_relation < 55 and kpd_leader == "Conciliators")): Our relations aren't good enough. ?] [? if resources < 2: Not enough resources. (need 2) ?]
+on-arrival: resources -= 2; kpd_glaze_spd = 1; workers_spd += 3; workers_kpd += 5; workers_nsdap -= 3; unemployed_kpd += 3; unemployed_nsdap -= 3; z_relation -= 10; ddp_relation -= 10; dvp_relation -= 10; lvp_relation -= 10; dvp_right += 5; ddp_right += 3; ddp_cohesion -= 2; lvp_right += 5; z_support_spd = 0 if (z_relation < 60 and z_ideology == "Right") or (z_relation < 50 and z_ideology == "Left"); new_middle_spd -= 3; old_middle_spd -= 3; catholics_spd -= 3
+face-image: img/kpd_poster.jpg
+max-visits: 1
+go-to: campaigning_braun
+
+Despite our earlier insistence on keeping the <span style="color: #700000;">**Communists**</span>' support low-key, we have now decided that their full backing in the upcoming election is worth the risk of alienating bourgeois <span style="color: #000000;">repu</span><span style="color: #DD0000;">bli</span><span style="color: #FFCC00;">cans</span>. As a result, we are now openly participating in joint rallies in support of Braun.
+
+[? if (z_relation < 60 and z_ideology == "Right") or (z_relation < 50 and z_ideology == "Left"): The [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] has withdrawn their endorsement of Braun. ?]
+
+@campaigning
+title: Accelerate campaign efforts in general.
+subtitle: This will cost us 1 resource.
+view-if: not campaigning_seen
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; campaigning_seen = 1; campaigning_count = 0
+max-visits: 1
+go-to: campaign_menu
+
+
+@campaign_menu
+
+
+Since it's election season, we are able to accelerate campaigning efforts. Buy one campaign, get another one completely free of charge!
+
+- @workers: Add 1 "Worker" to the cart.
+- @middle_class: Add 1 "Middle Class" to the cart.
+- @rural: Add 1 "Rural" to the cart.
+- @unemployed: Add "Unemployed" to the cart.
+- @catholics: Add "Catholic" to the cart.
+- @checkout
+
+@workers
+view-if: campaigning_count < 2
+on-arrival: workers_spd += 3*(1 - dissent); campaigning_count += 1
+go-to: campaign_menu
+
+
+@middle_class
+view-if: campaigning_count < 2
+on-arrival: new_middle_spd += 3*(1 - dissent); old_middle_spd += 3*(1 - dissent); new_middle_spd += 2*(1 - dissent) if peoples_party; old_middle_spd += 2*(1 - dissent) if peoples_party; campaigning_count += 1
+go-to: campaign_menu
+
+
+@rural
+view-if: campaigning_count < 2
+on-arrival: rural_spd += 3*(1 - dissent); rural_spd += 3*(1 - dissent) if peoples_party; campaigning_count += 1
+go-to: campaign_menu
+
+
+@unemployed
+view-if: campaigning_count < 2
+on-arrival: unemployed_spd += 3*(1 - dissent); campaigning_count += 1
+go-to: campaign_menu
+
+
+@catholics
+view-if: campaigning_count < 2 and peoples_party
+on-arrival: catholics_spd += 3*(1 - dissent); campaigning_count += 1
+go-to: campaign_menu
+
+
+@checkout
+title: Checkout your order.
+go-to: campaigning_braun if braun_campaign; campaigning_rosenfeld if rosenfeld_campaign; campaigning_thalmann if spd_support_thalmann; campaigning_hindenburg_2 if spd_support_reactionary
+
+
+@hope
+
+Where has hope got us the past few years?
+
+@campaigning_rosenfeld
+view-if: rosenfeld_campaign
+
+We have a plethora of campaign options at our disposal.
+
+- @iron_front_rosenfeld
+- @media_rosenfeld
+- @party_discipline_rosenfeld
+- @communist_glaze_rosenfeld
+- @campaigning
+- @campaigning_hindenburg_op: It's Hindenburg's turn to campaign.
+
+@iron_front_rosenfeld
+title: Rally the full strength of the <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> to support Rosenfeld.
+view-if: iron_front_formed
+on-arrival: radicalization = 3 if radicalization > 3; workers_spd += radicalization + 3; new_middle_spd += radicalization + 2; unemployed_spd += radicalization + 2; pro_republic += 3; nationalism -= 3; neorevisionist_dissent -= 10; neorevisionist_strength += 10; left_dissent -= 10; rb_strength += 100; workers_nsdap -= 3 if strife >= 5 and far_right_paramilitary; new_middle_nsdap -= 3 if strife >= 5 and far_right_paramilitary; unemployed_nsdap -= 3 if strife >= 5 and far_right_paramilitary
+max-visits: 1
+face-image: img/iron_front_poster.png
+go-to: campaigning_rosenfeld
+
+The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> immediately gets to work, rallying around its slogan of opposing <span style="color: #7A3C00;">Fascism</span> and <span style="color: #808080;">Monarchism</span>, which is especially relevant in this election. This will help us shore up support among more reluctant workers.
+
+@media_rosenfeld
+title: Use our radio stations to broadcast in favor of Rosenfeld.
+subtitle: -1 resource
+choose-if: radio >= 2 and resources >= 1
+unavailable-subtitle: [? if radio < 2: We haven't sufficiently built up our radio infrastructure yet. ?] [? if resources < 1: Not enough resources. ?]
+on-arrival: resources -= 1; media_rosenfeld_seen = 1; new_middle_spd += (radio + commercialized_media); old_middle_spd += (radio + commercialized_media); workers_spd += (campaign_media + radio - 2); unemployed_spd += (campaign_media + radio); new_middle_kpd += 3; socialism += 3; nationalism -= 3
+face-image: img/poster_0.jpg
+max-visits: 1
+go-to: campaigning_rosenfeld
+
+We are able to broadcast radio addresses urging turnout for Rosenfeld, spreading our message to the middle classes in hopes of overcoming their antipathy toward <span style="color: #c00000;">socialism</span> and Rosenfeld especially.
+
+@party_discipline_rosenfeld
+title: Impose party discipline.
+subtitle: Some reformist local organizations haven't been putting in the work.
+choose-if: dissent < 0.15
+unavailable-subtitle: [? if dissent >= 0.15: Internal dissent is too high. ?]
+on-arrival: party_rosenfeld_seen = 1
+face-image: img/poster_2.jpg
+max-visits: 1
+go-to: campaigning_rosenfeld
+
+We need a united front to win this election—internal factional politics must be set aside.
+
+@communist_glaze_rosenfeld
+title: We persuade the <span style="color: #700000;">**Communists**</span> to take a more active role in our campaign efforts.
+subtitle: This will alienate the bourgeois parties! -1 resource
+choose-if: kpd_support_spd == 1 and (kpd_relation >= 60 or (kpd_relation >= 40 and kpd_leader == "Conciliators")) and resources >= 1
+unavailable-subtitle: [? if kpd_support_spd != 1: The <span style="color: #700000;">KPD</span> doesn't support Rosenfeld. ?][? if (kpd_relation < 60 or (kpd_relation < 40 and kpd_leader == "Conciliators")): Our relations aren't good enough. ?] [? if resources < 1: Not enough resources. ?]
+on-arrival: resources -= 1; kpd_glaze_spd = 1; workers_spd += 3; workers_kpd += 5; workers_nsdap -= 3; unemployed_kpd += 3; unemployed_nsdap -= 3; z_relation -= 5; ddp_relation -= 5; dvp_relation -= 5; lvp_relation -= 5; dvp_right += 3; ddp_right += 1; ddp_cohesion -= 1; lvp_right += 3; new_middle_spd -= 3; old_middle_spd -= 3; catholics_spd -= 3
+face-image: img/kpd_poster.jpg
+max-visits: 1
+go-to: campaigning_rosenfeld
+
+As a result, we are now openly participating in joint rallies supporting Rosenfeld. This display of <span style="color: #9B0000;">Marxist</span> unity understandably alarms the bourgeois parties—and may, counterproductively, drive more voters to rally behind their candidate.
+
+@campaigning_hindenburg
+on-arrival: {!
+if (Q.industrial_total_backing) {
+    Q.hindenburg_funds += Q.industrial_ddp_backing;
+    Q.hindenburg_funds += Q.industrial_lvp_backing;
+    Q.hindenburg_funds += Q.industrial_dvp_backing;
+    Q.hindenburg_funds += Q.industrial_dnvp_backing;
+    Q.hindenburg_funds += ((100 - Q.nsdap_votes) / 25);
+    if (Q.spd_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
+}
+Q.hindenburg_funds_old = Q.hindenburg_funds;
+!}
+view-if: spd_support_reactionary
+go-to: embezzlement_options
+
+The finances of the Hindenburg campaign are in disarray. Influential industrialists and business leaders are withholding significant donations due to his perceived betrayal of the Right. A lingering debt of five million Reichsmarks from his 1925 campaign remains unpaid, while additional funds are needed to cover organizational costs. [? if hindenburg_funds < 5: Efforts to raise money from the parties backing Hindenburg’s reelection are further complicated by their own financial struggles. Many have already depleted their resources and are carefully preserving what little remains for the upcoming state elections at the end of April. ?][? if hindenburg_funds >= 5: Fundraising efforts are further hindered by the parties backing Hindenburg’s reelection, as they prefer to reserve their funds for the upcoming state elections in late April, believing his victory is already assured. ?]
+
+@embezzlement_options
+
+- @embezzle
+- @embezzle_2
+- @embezzle_3
+- @embezzle_4
+- @campaigning_hindenburg_2: The funding situation is solved.
+
+@embezzle
+title: Gunther Gereke has miraculously presented millions of Reichsmarks from an unknown source.
+view-if: bruning_time or chancellor == "Goerdeler"
+max-visits: 1
+on-arrival: hindenburg_funds += 3; new_middle_kvp += 2; old_middle_kvp += 2; rural_kvp += 4; new_middle_dnvp += 2 if dnvp_ideology == "Moderate"; old_middle_dnvp += 2 if dnvp_ideology == "Moderate"; rural_dnvp += 4 if dnvp_ideology == "Moderate"; rural_other += 4 if not kvp_formed; rural_nsdap -= 4 if rural_nsdap_normalized >= 35; pro_republic += 3; embezzle_1 = 1
+go-to: embezzlement_options
+
+Gunther Gereke, [? if dnvp_ideology == "Moderate": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnvp_ideology == "Radical": <span style="color: #7FCEB1;">**CNBLP**</span>?] member responsible for raising funds for the Hindenburg campaign, has managed to secure and disburse seven million marks to the campaign—though some of these funds have been diverted to his own party. The volume of private and corporate donations alone would have been insufficient to cover the campaign's expenses, making it evident that state financing played a role.
+
+@embezzle_2
+title: Meet with the Brüning cabinet, and lobby for state financing toward the Prussian government, with the goal of securing Hindenburg's reelection.
+subtitle: [? if lvp_formed: <span style="color: #FFCC00;">**LVP**</span>?][? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?] member and Vice-Chancellor Hermann Dietrich has shown a friendliness toward us. +3 resources 
+unavailable-subtitle: The <span style="color: #c00000;">SPD</span> doesn't control Prussia.
+view-if: bruning_time
+choose-if: spd_prussia
+on-arrival: hindenburg_funds += 1; resources += 3; ddp_relation += 5; z_relation += 3; lvp_relation += 3; ddp_left += 1; pro_republic += 3; new_middle_ddp += 2; old_middle_ddp += 2; new_middle_dvp += 2 if dvp_ideology != "Right"; old_middle_dvp += 2 if dvp_ideology != "Right"; new_middle_lvp += 2; old_middle_lvp += 2; new_middle_nsdap -= 2 if new_middle_nsdap_normalized >= 40; old_middle_nsdap -= 2 if old_middle_nsdap_normalized >= 40; prussian_police_loyalty += 0.05; prussian_police_strength += 20; rb_militancy += 0.05; sa_strength -= 50; embezzle_2 = 1
+max-visits: 1
+go-to: embezzlement_options
+
+In a meeting with Chancellor Brüning, Defense Minister Groener, General Schleicher, Finance Minister and Vice-Chancellor Hermann Dietrich, and our own Carl Severing, discussions focused on the upcoming presidential election and the organization of an effective propaganda campaign for Hindenburg. Severing outlined the threat that <span style="color: #7A3C00;">Nazism</span>—particularly the <span style="color: #7A3C00;">**SA**</span>—posed to state authority and emphasized the election's critical role in keeping the <span style="color: #7A3C00;">Nazis</span> in check.
+
+All present agreed that a decisive victory for Hindenburg and a campaign free from violent disturbances would greatly accelerate Germany’s economic recovery and domestic political stabilization. Achieving this, however, would require the use of state funds. Dietrich himself passionately advocated for this, having secretly transferred 1.8 million marks to Severing and the Prussian government with the understanding that the funds would be distributed among various pro-Hindenburg organizations in the State of Prussia. This approach allowed Dietrich and the government to support pro-Hindenburg groups outside the right-wing United Hindenburg Committees.
+
+@embezzle_3
+title: We will use the state to finance Hindenburg's reelection.
+view-if: spd_in_government and not bruning_time
+max-visits: 1
+on-arrival: hindenburg_funds += 3; new_middle_kvp += 2; old_middle_kvp += 2; rural_kvp += 4; new_middle_dnvp += 2 if dnvp_ideology == "Moderate"; old_middle_dnvp += 2 if dnvp_ideology == "Moderate"; rural_dnvp += 4 if dnvp_ideology == "Moderate"; rural_other += 4 if not kvp_formed; rural_nsdap -= 4 if rural_nsdap_normalized >= 35; pro_republic += 3; embezzle_1 = 1
+go-to: embezzlement_options
+
+We have contacted Gunther Gereke, [? if dnvp_ideology == "Moderate": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnvp_ideology == "Radical": <span style="color: #7FCEB1;">**CNBLP**</span>?] member responsible for raising funds for the Hindenburg campaign, and provided him with a sizable donation to secure and disburse five million marks to the campaign—though some of these funds have been diverted to his own party. This development has pleased both Schleicher and Hindenburg himself, who never expected us to prioritize state funds for a political campaign over feeding children. Not that the public will ever find out.
+
+@embezzle_4
+title: Our government in Prussia will distribute funds to pro-Hindenburg organizations.
+subtitle: This would involve financing the bourgeois parties.
+view-if: spd_prussia and not bruning_time
+max-visits: 1
+on-arrival: hindenburg_funds += 1; ddp_relation += 5; z_relation += 5; lvp_relation += 5; ddp_left += 1; pro_republic += 3; new_middle_ddp += 3; old_middle_ddp += 3; new_middle_dvp += 3 if dvp_ideology != "Right"; old_middle_dvp += 3 if dvp_ideology != "Right"; new_middle_lvp += 3; old_middle_lvp += 3; new_middle_nsdap -= 3 if new_middle_nsdap_normalized >= 40; old_middle_nsdap -= 3 if new_middle_nsdap_normalized >= 40; rural_other += 3; rb_militancy += 0.06; sa_strength -= 50; embezzle_2 = 1
+go-to: embezzlement_options
+
+We have met with politicians from the [? if lvp_formed: <span style="color: #FFCC00;">LVP</span>?][? if not lvp_formed: <span style="color: #D3C24D;">[+ ddp_name +]</span>?], the [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] Party, the Reichsbanner, and even some <span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> peasant unions. We have agreed to allocate Prussian state funds to their groups, strengthening the Hindenburg campaign among those excluded from the official committee while also improving our relationship with these factions.
+
+@campaigning_hindenburg_2
+on-arrival: {!
+if (Q.hindenburg_funds >= 5 && !Q.industrial_hindenburg) {
+    Q.new_middle_kvp += Q.hindenburg_funds / 2;
+    Q.old_middle_kvp += Q.hindenburg_funds / 2;
+    Q.rural_kvp += Q.hindenburg_funds / 2;
+    if (Q.dnvp_ideology == "Moderate") {
+        Q.new_middle_dnvp += Q.hindenburg_funds / 2;
+        Q.old_middle_dnvp += Q.hindenburg_funds / 2;
+        Q.rural_dnvp += Q.hindenburg_funds / 3;
+    }
+    Q.new_middle_other += Q.hindenburg_funds / 3;
+    Q.old_middle_other += Q.hindenburg_funds / 3;
+    Q.rural_other += Q.hindenburg_funds / 3;
+    Q.new_middle_dvp += Q.hindenburg_funds / 3;
+    Q.old_middle_dvp += Q.hindenburg_funds / 3;
+    Q.rural_dvp += Q.hindenburg_funds / 4;
+    Q.new_middle_lvp += Q.hindenburg_funds / 2;
+    Q.old_middle_lvp += Q.hindenburg_funds / 2;
+    Q.rural_lvp += Q.hindenburg_funds / 4;
+}
+Q.industrial_hindenburg = 1;
+!}
+view-if: hindenburg_funds >= hindenburg_funds_old + 3
+
+We have a plethora of campaign options at our disposal.
+
+- @iron_front_hindenburg
+- @media_hindenburg
+- @for_democracy
+- @against_communists
+- @campaigning
+- @bourgeois_campaign: Let's hope the bourgeois parties will pick up the slack.
+
+@iron_front_hindenburg
+title: Rally the full strength of the <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> to support Hindenburg.
+view-if: iron_front_formed
+on-arrival: radicalization = 3 if radicalization > 3; workers_spd += radicalization + 2; new_middle_spd += radicalization + 1; unemployed_spd += radicalization + 1; pro_republic += 3; nationalism -= 3; neorevisionist_dissent -= 10; neorevisionist_strength += 10; rb_strength += 100; workers_nsdap -= 2 if strife >= 5 and far_right_paramilitary; new_middle_nsdap -= 2 if strife >= 5 and far_right_paramilitary; unemployed_nsdap -= 2 if strife >= 5 and far_right_paramilitary
+max-visits: 1
+face-image: img/iron_front_poster.png
+go-to: campaigning_hindenburg_2
+
+The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> immediately gets to work, rallying around its slogan of opposing <span style="color: #7A3C00;">Fascism</span> and <span style="color:rgb(90, 0, 0);">Stalinism</span>. Although many leftists in the alliance are reluctant to support the <span style="color: #808080;">reactionary</span> Hindenburg.
+
+@media_hindenburg
+title: Use our radio stations to broadcast in favor of Hindenburg.
+subtitle: -1 resource
+choose-if: radio >= 2 and resources >= 1
+unavailable-subtitle: [? if radio < 2: We haven't sufficiently built up our radio infrastructure yet. ?] [? if resources < 1: Not enough resources. ?]
+on-arrival: resources -= 1; new_middle_spd += (radio + commercialized_media); old_middle_spd += (radio + commercialized_media); workers_spd += (campaign_media + radio - 2); unemployed_spd += (campaign_media + radio); socialism += 3; nationalism -= 1; nationalism -= 2 if pacifism > 1; pro_republic += (radio + commercialized_media)
+face-image: img/poster_0.jpg
+max-visits: 1
+go-to: campaigning_hindenburg_2
+
+We are able to broadcast radio addresses urging turnout for Hindenburg, spreading our message to the middle classes in hopes of overcoming their radicalization caused by the economic crisis.
+
+@for_democracy
+title: Rally in favor of democracy, and the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Republic.
+subtitle: We might alienate some of Hindenburg's more <span style="color: #808080;">reactionary</span> supporters. -1 resource
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; hindenburg_democracy_bonus = 1; pro_republic += 5; center_dissent -= 5; labor_dissent -= 5; neorevisionist_dissent -= 5; reformist_dissent -= 5; left_dissent -= 5; workers_spd += 3*(1-dissent) if democratization >= 3; unemployed_spd += 3*(1-dissent) if democratization >= 3; pro_republic += 2*(1 - dissent) if democratization >= 3; new_middle_spd += 3*(1-dissent) if democratization >= 3; hindenburg_angry += 10; hindenburg_angry_bruning += 10; z_relation += 3; ddp_relation += 3; lvp_relation += 3
+face-image: img/weimar_coalition.jpg
+max-visits: 1
+go-to: campaigning_hindenburg_2
+
+We argue to our base that, despite Hindenburg's well-known <span style="color: #808080;">reactionary</span> beliefs, he has refrained from outright dismantling our democracy, and supporting him as the lesser evil is necessary. However, our strong campaign in favor of President Hindenburg has discredited him in the eyes of his <span style="color: #808080;">reactionary</span> supporters who initially voted for him in 1925. This has increased Hindenburg's desire to distance himself from our support by shifting further to the right.
+
+@against_communists
+title: Focus our campaign against the <span style="color: #700000;">**Communist**</span> [+ communist_candidate_1932 +].
+subtitle: He has gained a significant amount of support by positioning himself as the "only left candidate." -1 resource
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; left_dissent -= 10; workers_spd += 3; workers_kpd -= 3; kpd_relation -= 10; hindenburg_angry -= 10; hindenburg_angry_bruning -= 10
+face-image: img/social_fascist.jpg
+max-visits: 1
+go-to: campaigning_hindenburg_2
+
+We have lost an alarming number of voters to the <span style="color: #700000;">**Communists**</span> due to our support for the <span style="color: #808080;">reactionary</span> President Hindenburg. To ensure Hindenburg secures an outright majority in the first round, we must prevent further defections.
+
+@bourgeois_campaign
+on-arrival: {!
+Q.hindenburg_unity = 10;
+if (Q.hindenburg_angry_bruning >= 75) Q.hindenburg_unity -= 1;
+if (Q.dvp_defect) Q.hindenburg_unity -= 1;
+if (Q.cnblp_defect) Q.hindenburg_unity -= 1;
+if (Q.second_bruning_cabinet_seen) Q.hindenburg_unity -= 1;
+if (Q.spd_support_reactionary) Q.hindenburg_unity -= 3;
+if (Q.nsdap_votes >= 20) Q.hindenburg_unity -= 1;
+if (Q.nsdap_votes >= 30) Q.hindenburg_unity -= 1;
+if (Q.nsdap_votes >= 35) Q.hindenburg_unity -= 1;
+if (Q.spd_campaign || Q.spd_support_thalmann || Q.kpd_support_spd) Q.hindenburg_unity += 3;
+!}
+go-to: bourgeois_campaign_menu
+
+The United Hindenburg Committees have set to work improving the perception of moderate right-wing German voters toward President Hindenburg, whose reputation as the Hero of Tannenberg has been tarnished by his support for the hated <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> system. Despite this, the <span class="tooltip-text" title="Following Hindenburg's overseeing of Germany's crushing victory at Tannenberg in the Great War, Hindenburg has become the center of a massive personality cult, lauded as the living ideal of German masculinity and patriotism. He is the embodiment of the best virtues of Prussian tradition.">Hindenburg Mythos</span> remains intact[? if nsdap_candidate_1932 == "Hitler":, and may be the only thing that rivals Hitler's charisma?].
+
+It's their turn to campaign.
+
+Hindenburg camp unity level: [+ hindenburg_unity : hindenburg_unity +]
+
+@bourgeois_campaign_menu
+on-arrival: {!
+if (Q.z_support_spd != 1) Q.religion_available = 1;
+!}
+
+- @eckener
+- @industrial
+- @religion
+- @westarp
+- @organizational_endorsements
+
+@eckener
+title: Famed Zeppelin Captain Hugo Eckener is recruited for the campaign.
+subtitle: Being a stanch support of the President, he will utilize the *Graf Zeppelin* for the campaign.
+on-arrival: eckener_used = 1
+max-visits: 1
+go-to: eckener_2 if hindenburg_unity >= 8; eckener_3 if hindenburg_unity < 8
+
+@eckener_2
+on-arrival: hindenburg_support += 2
+go-to: bourgeois_campaign_menu
+
+In an attempt to rival the <span class="tooltip-text" title="good mod">dynamism</span> of the <span style="color: #7A3C00;">Nazi</span> campaign, which has utilized aircraft to quickly transport high-profile <span style="color: #7A3C00;">Nazi</span> leaders to deliver up to four speeches per day, Hugo Eckener has been convinced to take flight across Germany to drum up popular support for Hindenburg. 
+
+@eckener_3
+on-arrival: unemployed_nsdap += 6; unemployed_kpd -= 3; unemployed_spd -= 3
+go-to: bourgeois_campaign_menu
+
+In an attempt to rival the dynamism of the <span style="color: #7A3C00;">Nazi</span> campaign, the Hindenburg campaign initially tried to convince Graf Zeppelin pilot Hugo Eckener to fly across Germany in support of Hindenburg. However, with Eckener already scheduled for a flight to South America, the campaign had to pivot to an alternative approach. They opted to rent airplanes to drop twenty million leaflets over the German population. However, this isn't enough to counteract the <span style="color: #7A3C00;">Nazi</span> style of campaigning.
+
+@industrial
+title: Carl Duisberg of IG Farben will attempt to gain support of key industrialists.
+subtitle: Hindenburg has lost the favor of many of his former backers, maybe they can be convinced again?
+on-arrival: industry_used = 1
+max-visits: 1
+go-to: industrial_2 if hindenburg_unity >= 5; industrial_3 if hindenburg_unity < 5
+
+Carl Duisberg, the chairman of the United Hindenburg Committees have largely been unsuccessful in convincing big business leaders to sign the petition for Hindenburg's reelection, but perhaps the gravity of this race would help convince them?
+
+@industrial_2
+on-arrival: hindenburg_support += 2
+go-to: bourgeois_campaign_menu
+
+Duisberg, being the former chairman of the National Federation of German Industry (RDI) and one of the more moderate members, has been successful in soliciting donations from many business leaders who had reservations about backing Hindenburg again. The radical revolutionary and socialistic policies of <span style="color: #7A3C00;">**NSDAP**</span> have greatly discouraged them from donating to [+ nsdap_candidate_1932 +]. It now looks like the Hindenburg campaign finally has the resources to properly establish a campaign infrastructure that can rival Goebbels' efforts and the <span style="color: #7A3C00;">Nazis</span>.
+
+@industrial_3
+on-arrival: old_middle_nsdap += 4; old_middle_kvp -= 2; old_middle_dnvp -= 2 if industrial_dnvp_backing >= 2 and dnvp_ideology == "Moderate"; old_middle_other -= 4; rural_nsdap += 2
+go-to: bourgeois_campaign_menu
+
+Despite the antipathy the industrialists have toward [? if not hitler_deported: Hitler and the ?]<span style="color: #7A3C00;">**NSDAP**</span> due to their crypto-<span style="color: #c00000;">socialist</span> policies, a large part of them are firmly opposed to Hindenburg, and will withhold their donations. The Hindenburg campaign is beginning to heavily fall behind the <span style="color: #7A3C00;">**NSDAP**</span> in more rural areas, primarily due to the lack of resources.
+
+@religion
+title: The Catholic Church and Lutheran Church have long held political neutrality, perhaps that will change?
+view-if: z_support_spd != 1
+on-arrival: religion_used = 1; catholics_z += 4 if catholics_z_normalized < 50; catholics_nsdap -= 4 if catholics_z_normalized < 50 and catholics_nsdap_normalized >= 8;
+max-visits: 1
+go-to: religion_2 if hindenburg_unity >= 3; religion_3 if hindenburg_unity < 3
+
+Prominent leaders of the Lutheran Church have endorsed President Hindenburg, arguing that despite their historical political neutrality, his reelection is a pressing necessity. Meanwhile, the Catholic Church is even more united in support of Hindenburg than it was for Wilhelm Marx in 1925. Catholic leaders, historically skeptical of <span style="color: #7A3C00;">Nazism</span>, have actively discouraged their members from joining <span style="color: #7A3C00;">Nazi</span> paramilitary organizations. This, combined with the strong support of Catholic-affiliated trade unions, will prove enormously significant in rallying a skeptical Catholic population behind a candidate whom most instinctively associate with Lutheran orthodoxy and Prussian authoritarianism.
+
+@religion_2
+on-arrival: hindenburg_support += 1
+go-to: bourgeois_campaign_menu
+
+Despite strong opposition from state and local Protestant church organizations—many of whose members sympathize with [+ nsdap_candidate_1932 +] and the <span style="color: #7A3C00;">**NSDAP**</span>—they have taken a public stand and will be campaigning in favor of Hindenburg, even amid growing calls for them to withdraw their endorsements.
+
+@religion_3
+on-arrival: new_middle_nsdap += 2; old_middle_nsdap += 2; rural_nsdap += 2; new_middle_kvp -= 2; old_middle_kvp -= 2; rural_kvp -= 2; new_middle_dnvp -= 2 if dnvp_ideology == "Moderate"; old_middle_dnvp -= 2 if dnvp_ideology == "Moderate"; rural_dnvp -= 2 if dnvp_ideology == "Moderate"; new_middle_other -= 2 if not kvp_formed; old_middle_other -= 2 if not kvp_formed; rural_other -= 2 if not kvp_formed
+go-to: bourgeois_campaign_menu
+
+Unfortunately for the Hindenburg campaign, the pro-<span style="color: #7A3C00;">Nazi</span> sentiment within state and local churches has prevented church leaders from taking a public stand for Hindenburg. Many devout Protestants will now be voting for [+ nsdap_candidate_1932 +] as a result, as the church now claims that intervening in a presidential election would be against its nature.
+
+@westarp
+title: Westarp, one of Hindenburg's close friends, will attempt to rally conservative forces for Hindenburg.
+on-arrival: westarp_used = 1; hindenburg_support += 1
+max-visits: 1
+go-to: bourgeois_campaign_menu
+
+Of course, the main goal of the United Hindenburg Committees is to dispel the notion that Hindenburg is supported by the <span style="color: #000000;">Black</span>-<span style="color: #c00000;">Red</span> parties. To this end, Westarp has sent a letter to 750 conservative elites who supported Hindenburg's election in 1925, with 500 reaffirming their support of Hindenburg today. [? if dnvp_ideology == "Moderate": He has also played a key role in rallying the <span style="color: #3E88B3;">**DNVP**</span> around his candidacy. ?]
+
+@organizational_endorsements
+title: What about the endorsements of the non-partisan organizations?
+subtitle: Influential groups such as the RLB, DHV, and the Pan-Germans, have been growing a rift between themselves and Hindenburg.
+view-if: eckener_used and industry_used and (religion_used or not religion_available) and westarp_used
+on-arrival: {!
+if (Q.hindenburg_support) {
+    Q.new_middle_kvp += Q.hindenburg_support;
+    Q.old_middle_kvp += Q.hindenburg_support; 
+    Q.rural_kvp += Q.hindenburg_support;
+    if (Q.dnvp_ideology == "Moderate") {
+        Q.new_middle_dnvp += Q.hindenburg_support;
+        Q.old_middle_dnvp += Q.hindenburg_support;
+        Q.rural_dnvp += Q.hindenburg_support;
+    }
+    Q.new_middle_ddp += Q.hindenburg_support / 3; 
+    Q.old_middle_ddp += Q.hindenburg_support / 3;
+    Q.new_middle_other += Q.hindenburg_support / 1.5;
+    Q.old_middle_other += Q.hindenburg_support / 1.5;
+    Q.new_middle_dvp += Q.hindenburg_support / 3;
+    Q.old_middle_dvp += Q.hindenburg_support / 3;
+    Q.rural_other += Q.hindenburg_support / 1.5;
+    Q.pro_republic += Q.hindenburg_support; 
+    if (!Q.kvp_formed) Q.rural_other += Q.hindenburg_support;
+    Q.new_middle_nsdap -= (Q.hindenburg_support*Q.nsdap_votes) / 50;
+    Q.old_nsdap -= (Q.hindenburg_support*Q.nsdap_votes) / 50;
+    Q.rural_nsdap -= (Q.hindenburg_support*Q.nsdap_votes) / 50;
+}
+if (Q.rlb_nazi) {
+    Q.rlb_hindenburg = 0;
+    Q.rural_nsdap += Q.rural_other*0.1;
+    Q.rural_other *= 0.9;
+    Q.rural_dnvp *= 0.9;
+} else if (!Q.rlb_nazi) {
+    Q.rlb_hindenburg = 1;
+    Q.rural_other += 4;
+    if (Q.dnvp_ideology == "Moderate") {
+        Q.rural_dnvp += 2;
+    } else {
+        Q.rural_kvp += 2;
+    }
+}
+!}
+
+National Rural League (RLB) - [? if rlb_hindenburg: <span style="color: #808080;">**[+ reactionary_candidate_1932 +]**</span> ?][? if not rlb_hindenburg: <span style="color: #7A3C00;">**[+ nsdap_candidate_1932 +]**</span>[? if dnvp_candidate_1932:&nbsp;or [? if dnvp_candidate_1932 != "Hugenberg" or dnvp_ideology == "Radical": <span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?][? if dnvp_candidate_1932 == "Hugenberg" and dnvp_ideology == "Moderate": <span style="color: #003755;">**[+ dnvp_candidate_1932 +]**</span>?]?] ?]
+
+Stahlhelm - [? if dnvp_candidate_1932 and dnvp_candidate_1932 != "Hugenberg":<span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?][? if not dnvp_candidate_1932 or dnvp_candidate_1932 == "Hugenberg": <span style="color: #808080;">**[+ reactionary_candidate_1932 +]**</span> ?]
+
+German National Association of Commercial Employees (DHV) - <span style="color: #808080;">**[+ reactionary_candidate_1932 +]**</span>
+
+Pan-German League (ADV) - <span style="color: #7A3C00;">**[+ nsdap_candidate_1932 +]**</span>[? if dnvp_candidate_1932:&nbsp;or [? if dnvp_candidate_1932 != "Hugenberg" or dnvp_ideology == "Radical": <span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?][? if dnvp_candidate_1932 == "Hugenberg" and dnvp_ideology == "Moderate": <span style="color: #003755;">**[+ dnvp_candidate_1932 +]**</span>?]?]
+
+United Patriotic Leagues (VVVD) - <span style="color: #7A3C00;">**[+ nsdap_candidate_1932 +]**</span>[? if dnvp_candidate_1932:&nbsp;or [? if dnvp_candidate_1932 != "Hugenberg" or dnvp_ideology == "Radical": <span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?][? if dnvp_candidate_1932 == "Hugenberg" and dnvp_ideology == "Moderate": <span style="color: #003755;">**[+ dnvp_candidate_1932 +]**</span>?]?]
+
+Kyffhäuser League - <span style="color: #808080;">**[+ reactionary_candidate_1932 +]**</span>
+
+[? if not rlb_nazi: Out of all the various right-wing interest organizations, the endorsement of Germany's largest economic interest group, the RLB, with its million members and numerous influential state organizations, is undoubtedly the most significant. The <span style="color: #7A3C00;">Nazi</span> strategy toward these organizations is not to attack them directly but to influence their rank-and-file members. This pressure forces leadership to either support the <span style="color: #7A3C00;">Nazis</span> or risk discrediting themselves in the eyes of their members.<br><br> However, this approach has failed with the RLB. Under Schiele's leadership, the organization remains skeptical of the <span style="color: #7A3C00;">national</span> <span style="color: #3E88B3;">opposition</span> and has successfully blocked a <span style="color: #7A3C00;">Nazi</span> appointee from joining the presidium. Despite this, strong <span style="color: #7A3C00;">Nazi</span> sympathies among the rank-and-file have led to defections to the <span style="color: #7A3C00;">Nazi</span>'s alternative organization. ?]
+
+[? if rlb_nazi: Out of all the various right-wing interest organizations, the endorsement of Germany's largest economic interest group, the RLB, with its million members and numerous influential state organizations, is undoubtedly the most significant. The <span style="color: #7A3C00;">Nazi</span> strategy toward these organizations is not to attack them directly but to influence their rank-and-file members. This pressure forces leadership to either support the <span style="color: #7A3C00;">Nazis</span> or risk discrediting themselves in the eyes of their members. <br><br> This approach has proven successful within the RLB, as its new leader, Kalckreuth, is notably friendly toward the <span style="color: #7A3C00;">national</span> <span style="color: #3E88B3;">opposition</span>. He has even appointed a <span style="color: #7A3C00;">Nazi</span> agricultural official to the presidium. However, this shift has sparked significant backlash from the <span style="color: #7FCEB1;">**CNBLP**</span>-aligned factions within the organization and from state affiliates in Bavaria, Thuringia, and Wurttemberg. These groups have rejected the RLB's endorsement and instead urged their members to vote for [+ reactionary_candidate_1932 +][? if dnvp_candidate_1932:&nbsp;or [+ dnvp_candidate_1932 +]?].?]
+
+- @hope: Let's hope Germany will make the correct choice.
+
+@campaigning_thalmann
+view-if: spd_support_thalmann
+
+We have a plethora of campaign options at our disposal.
+
+- @paramilitary
+- @media_communist
+- @united_left
+- @campaigning
+- @campaigning_hindenburg_op: It's Hindenburg's turn to campaign.
+
+@paramilitary
+title: Ally with the <span style="color: #700000;">Communist</span> <span style="color: #700000;">**RFB**</span> on the streets, to fight against the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span>.
+subtitle: This will permanently alienate the bourgeois parties!
+on-arrival: kpd_truce = 1; kpd_relation += 5; rfb_strength += 100; rb_strength += 100; rfb_militancy += 0.1; rb_militancy += 0.04; neorevisionist_dissent += 10; reformist_dissent += 10; hindenburg_angry += 150; z_relation -= 20; ddp_relation -= 20; dvp_relation -= 20; lvp_relation -= 20; ddp_cohesion -= 5; ddp_right += 6; dvp_right += 10; lvp_right += 10
+face-image: img/reichsbanner_2.jpg
+max-visits: 1
+go-to: campaigning_thalmann
+
+Closer ties between the Reichsbanner and the <span style="color: #700000;">**RFB**</span> are established, protecting local party officials from political violence.
+
+@media_communist
+title: Use our radio stations to broadcast in favor of [+ communist_candidate_1932 +].
+subtitle: This may help in overcoming their antagonism against <span style="color: #700000;">Communists</span>. -1 resource
+choose-if: radio >= 2 and resources >= 1
+unavailable-subtitle: [? if radio < 2: We haven't sufficiently built up our radio infrastructure yet. ?] [? if resources < 1: Not enough resources. ?]
+on-arrival: resources -= 1; media_communist_seen = 1; new_middle_spd += (radio + commercialized_media); old_middle_spd += (radio + commercialized_media); workers_spd += (campaign_media + radio - 2); unemployed_spd += (campaign_media + radio); new_middle_kpd += 3; socialism += 3; nationalism -= 3
+face-image: img/poster_0.jpg
+max-visits: 1
+go-to: campaigning_thalmann
+
+Let's face it, the middle class is never going to support someone like [+ communist_candidate_1932 +], no matter how hard we try. However, we do manage to convince some of our own in the <span style="color: #c00000;">socialist</span> white-collar unions to come around.
+
+@united_left
+title: We persuade the <span style="color: #700000;">**Communists**</span> to let us take a more active role in their campaign efforts.
+subtitle: They have been putting themselves at the forefront. -1 resources
+choose-if: (kpd_relation >= 70 or (kpd_relation >= 55 and kpd_leader == "Conciliators")) and resources >= 2
+unavailable-subtitle: [? if (kpd_relation < 70 or (kpd_relation < 55 and kpd_leader == "Conciliators")): Our relations aren't good enough. ?] [? if resources < 2: Not enough resources. (need 2) ?]
+on-arrival: resources -= 1; spd_glaze_thalmann = 1; workers_spd += 3; workers_kpd += 3; workers_nsdap -= 3; unemployed_spd += 3; unemployed_kpd += 3; unemployed_nsdap -= 3; z_relation -= 5; ddp_relation -= 5; dvp_relation -= 5; lvp_relation -= 5; dvp_right += 4; ddp_right += 2; ddp_cohesion -= 2; lvp_right += 4; new_middle_kpd = 1
+face-image: img/kpd_poster.jpg
+max-visits: 1
+go-to: campaigning_thalmann
+
+For some reason, the <span style="color: #700000;">**Communists**</span> aren't particularly grateful for our endorsement of [+ communist_candidate_1932 +]; perhaps it's due to orders from Moscow. Anyhow, we have managed to convince their leadership to allow us to participate together in joint rallies and other efforts.
+
+@campaigning_hindenburg_op
+on-arrival: {!
+if (Q.industrial_total_backing) {
+    Q.hindenburg_funds += Q.industrial_ddp_backing;
+    Q.hindenburg_funds += Q.industrial_lvp_backing;
+    Q.hindenburg_funds += Q.industrial_dvp_backing;
+    Q.hindenburg_funds += Q.industrial_dnvp_backing;
+    Q.hindenburg_funds += ((100 - Q.nsdap_votes) / 25);
+    if (Q.spd_in_government) Q.hindenburg_funds += ((100 - Q.kpd_votes) / 10);
+}
+Q.hindenburg_funds_old = Q.hindenburg_funds;
+!}
+view-if: not spd_support_reactionary
+go-to: embezzlement_options_op
+
+The finances of the Hindenburg campaign are in disarray. Influential industrialists and business leaders are withholding significant donations due to his perceived betrayal of the Right. A lingering debt of five million Reichsmarks from his 1925 campaign remains unpaid, while additional funds are needed to cover organizational costs. [? if hindenburg_funds < 5: Efforts to raise money from the parties backing Hindenburg’s reelection are further complicated by their own financial struggles. Many have already depleted their resources and are carefully preserving what little remains for the upcoming state elections at the end of April. ?][? if hindenburg_funds >= 5: Fundraising efforts are further hindered by the parties backing Hindenburg’s reelection, as they prefer to reserve their funds for the upcoming state elections in late April, believing his victory is already assured. ?]
+
+@embezzlement_options_op
+
+- @embezzle_op
+- @embezzle_op_2
+- @bourgeois_campaign_op: The funding situation is solved.
+
+@embezzle_op
+title: Gunther Gereke has miraculously presented millions of Reichsmarks from an unknown source.
+view-if: bruning_time
+max-visits: 1
+on-arrival: hindenburg_funds += 3; new_middle_kvp += 2; old_middle_kvp += 2; rural_kvp += 4; new_middle_dnvp += 2 if dnvp_ideology == "Moderate"; old_middle_dnvp += 2 if dnvp_ideology == "Moderate"; rural_dnvp += 4 if dnvp_ideology == "Moderate"; rural_other += 4 if not kvp_formed; rural_nsdap -= 4 if rural_nsdap_normalized >= 35; pro_republic += 3; embezzle_1_op = 1
+go-to: embezzlement_options_op
+
+Gunther Gereke, [? if dnvp_ideology == "Moderate": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnvp_ideology == "Radical": <span style="color: #7FCEB1;">**CNBLP**</span>?] member responsible for raising funds for the Hindenburg campaign, has managed to secure and disburse seven million marks to the campaign—though some of these funds have been diverted to his own party. The volume of private and corporate donations alone would have been insufficient to cover the campaign's expenses, making it evident that state financing, particularly from the Reichswehr, played a role.
+
+@embezzle_op_2
+title: Gunther Gereke has miraculously presented millions of Reichsmarks from an unknown source.
+view-if: not bruning_time
+max-visits: 1
+on-arrival: hindenburg_funds += 1
+go-to: embezzlement_options_op
+
+Gunther Gereke, [? if dnvp_ideology == "Moderate": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnvp_ideology == "Radical": <span style="color: #7FCEB1;">**CNBLP**</span>?] member responsible for raising funds for the Hindenburg campaign, has managed to secure and disburse two million marks to the campaign—though some of these funds have been diverted to his own party. The volume of private and corporate donations alone would have been insufficient to cover the campaign's expenses, so we suspect the million or so marks that suddenly materialized was provided by Schleicher from the Reichswehr’s secret funds.
+
+@bourgeois_campaign_op
+on-arrival: {!
+if (Q.hindenburg_funds >= 5 && !Q.industrial_hindenburg) {
+    Q.new_middle_kvp += Q.hindenburg_funds / 2;
+    Q.old_middle_kvp += Q.hindenburg_funds / 2;
+    Q.rural_kvp += Q.hindenburg_funds / 2;
+    if (Q.dnvp_ideology == "Moderate") {
+        Q.new_middle_dnvp += Q.hindenburg_funds / 2;
+        Q.old_middle_dnvp += Q.hindenburg_funds / 2;
+        Q.rural_dnvp += Q.hindenburg_funds / 3;
+    }
+    Q.new_middle_other += Q.hindenburg_funds / 3;
+    Q.old_middle_other += Q.hindenburg_funds / 3;
+    Q.rural_other += Q.hindenburg_funds / 3;
+    Q.new_middle_dvp += Q.hindenburg_funds / 3;
+    Q.old_middle_dvp += Q.hindenburg_funds / 3;
+    Q.rural_dvp += Q.hindenburg_funds / 4;
+    Q.new_middle_lvp += Q.hindenburg_funds / 2;
+    Q.old_middle_lvp += Q.hindenburg_funds / 2;
+    Q.rural_lvp += Q.hindenburg_funds / 4;
+}
+Q.industrial_hindenburg = 1;
+
+Q.hindenburg_unity = 10;
+if (Q.hindenburg_angry_bruning >= 75) Q.hindenburg_unity -= 1;
+if (Q.dvp_defect) Q.hindenburg_unity -= 1;
+if (Q.cnblp_defect) Q.hindenburg_unity -= 1;
+if (Q.second_bruning_cabinet_seen) Q.hindenburg_unity -= 1;
+if (Q.nsdap_votes >= 25) Q.hindenburg_unity -= 1;
+if (Q.spd_support_reactionary) Q.hindenburg_unity -= 3;
+if (Q.spd_campaign || Q.spd_support_thalmann || Q.kpd_support_spd) Q.hindenburg_unity += 3;
+!}
+view-if: hindenburg_funds > hindenburg_funds_old
+go-to: bourgeois_campaign_menu_op
+
+The United Hindenburg Committees have set to work improving the perception of moderate right-wing German voters toward President Hindenburg, whose reputation as the Hero of Tannenberg has been tarnished by his support for the hated <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> system. Despite this, the <span class="tooltip-text" title="Following Hindenburg's overseeing of Germany's crushing victory at Tannenberg in the Great War, Hindenburg has become the center of a massive personality cult, lauded as the living ideal of German masculinity and patriotism. He is the embodiment of the best virtues of Prussian tradition.">Hindenburg Mythos</span> remains intact[? if nsdap_candidate_1932 == "Hitler":, and may be the only thing that rivals Hitler's charisma?].
+
+It's their turn to campaign.
+
+Hindenburg camp unity level: [+ hindenburg_unity : hindenburg_unity +]
+
+@bourgeois_campaign_menu_op
+on-arrival: {!
+if (Q.z_support_spd != 1) Q.religion_available = 1;
+!}
+
+- @eckener_op
+- @industrial_op
+- @religion_op
+- @westarp_op
+- @organizational_endorsements_op
+
+@eckener_op
+title: Famed Zeppelin Captain Hugo Eckener is recruited for the campaign.
+subtitle: Being a stanch support of the President, he will utilize the *Graf Zeppelin* for the campaign.
+on-arrival: eckener_used = 1
+max-visits: 1
+go-to: eckener_2_op if hindenburg_unity >= 8; eckener_3_op if hindenburg_unity < 8
+
+@eckener_2_op
+on-arrival: hindenburg_support += 2
+go-to: bourgeois_campaign_menu_op
+
+In an attempt to rival the <span class="tooltip-text" title="good mod">dynamism</span> of the <span style="color: #7A3C00;">Nazi</span> campaign, which has utilized aircraft to quickly transport high-profile <span style="color: #7A3C00;">Nazi</span> leaders to deliver up to four speeches per day, Hugo Eckener has been convinced to take flight across Germany to drum up popular support for Hindenburg. 
+
+@eckener_3_op
+on-arrival: unemployed_nsdap += 6; unemployed_kpd -= 3; unemployed_spd -= 3
+go-to: bourgeois_campaign_menu_op
+
+In an attempt to rival the dynamism of the <span style="color: #7A3C00;">Nazi</span> campaign, the Hindenburg campaign initially tried to convince Graf Zeppelin pilot Hugo Eckener to fly across Germany in support of Hindenburg. However, with Eckener already scheduled for a flight to South America, the campaign had to pivot to an alternative approach. They opted to rent airplanes to drop twenty million leaflets over the German population. However, this isn't enough to counteract the <span style="color: #7A3C00;">Nazi</span> style of campaigning.
+
+@industrial_op
+title: Carl Duisberg of IG Farben will attempt to gain support of key industrialists.
+subtitle: Hindenburg has lost the favor of many of his former backers, maybe they can be convinced again?
+on-arrival: industry_used = 1
+max-visits: 1
+go-to: industrial_2_op if hindenburg_unity >= 5; industrial_3_op if hindenburg_unity < 5
+
+Carl Duisberg, the chairman of the United Hindenburg Committees have largely been unsuccessful in convincing big business leaders to sign the petition for Hindenburg's reelection, but perhaps the gravity of this race would help convince them?
+
+@industrial_2_op
+on-arrival: hindenburg_support += 2
+go-to: bourgeois_campaign_menu_op
+
+Duisberg, being the former chairman of the National Federation of German Industry (RDI) and one of the more moderate members, has been successful in soliciting donations from many business leaders who had reservations about backing Hindenburg again. The radical revolutionary and socialistic policies of <span style="color: #7A3C00;">**NSDAP**</span> have greatly discouraged them from donating to [+ nsdap_candidate_1932 +]. It now looks like the Hindenburg campaign finally has the resources to properly establish a campaign infrastructure that can rival Goebbels' efforts and the <span style="color: #7A3C00;">Nazis</span>.
+
+@industrial_3_op
+on-arrival: old_middle_nsdap += 4; old_middle_kvp -= 2; old_middle_dnvp -= 2 if industrial_dnvp_backing >= 2 and dnvp_ideology == "Moderate"; old_middle_other -= 4; rural_nsdap += 2
+go-to: bourgeois_campaign_menu_op
+
+Despite the antipathy the industrialists have toward [? if not hitler_deported: Hitler and the ?]<span style="color: #7A3C00;">**NSDAP**</span> due to their crypto-<span style="color: #c00000;">socialist</span> policies, a large part of them are firmly opposed to Hindenburg, and will withhold their donations. The Hindenburg campaign is beginning to heavily fall behind the <span style="color: #7A3C00;">**NSDAP**</span> in more rural areas, primarily due to the lack of resources.
+
+@religion_op
+title: The Catholic Church and Lutheran Church have long held political neutrality, perhaps that will change?
+view-if: z_support_spd != 1
+on-arrival: religion_used = 1; catholics_z += 4 if catholics_z_normalized < 50; catholics_nsdap -= 4 if catholics_z_normalized < 50 and catholics_nsdap_normalized >= 8
+max-visits: 1
+go-to: religion_2_op if hindenburg_unity >= 3; religion_3_op if hindenburg_unity < 3
+
+Prominent leaders of the Lutheran Church have endorsed President Hindenburg, arguing that despite their historical political neutrality, his reelection is a pressing necessity. Meanwhile, the Catholic Church is even more united in support of Hindenburg than it was for Wilhelm Marx in 1925. Catholic leaders, historically skeptical of <span style="color: #7A3C00;">Nazism</span>, have actively discouraged their members from joining <span style="color: #7A3C00;">Nazi</span> paramilitary organizations. This, combined with the strong support of Catholic-affiliated trade unions, will prove enormously significant in rallying a skeptical Catholic population behind a candidate whom most instinctively associate with Lutheran orthodoxy and Prussian authoritarianism.
+
+@religion_2_op
+on-arrival: hindenburg_support += 1
+go-to: bourgeois_campaign_menu_op
+
+Despite strong opposition from state and local Protestant church organizations—many of whose members sympathize with [+ nsdap_candidate_1932 +] and the <span style="color: #7A3C00;">**NSDAP**</span>—they have taken a public stand and will be campaigning in favor of Hindenburg, even amid growing calls for them to withdraw their endorsements.
+
+@religion_3_op
+on-arrival: new_middle_nsdap += 2; old_middle_nsdap += 2; rural_nsdap += 2; new_middle_kvp -= 2; old_middle_kvp -= 2; rural_kvp -= 2; new_middle_dnvp -= 2 if dnvp_ideology == "Moderate"; old_middle_dnvp -= 2 if dnvp_ideology == "Moderate"; rural_dnvp -= 2 if dnvp_ideology == "Moderate"; new_middle_other -= 2 if not kvp_formed; old_middle_other -= 2 if not kvp_formed; rural_other -= 2 if not kvp_formed
+go-to: bourgeois_campaign_menu_op
+
+Unfortunately for the Hindenburg campaign, the pro-<span style="color: #7A3C00;">Nazi</span> sentiment within state and local churches has prevented church leaders from taking a public stand for Hindenburg. Many devout Protestants will now be voting for [+ nsdap_candidate_1932 +] as a result, as the church now claims that intervening in a presidential election would be against its nature.
+
+@westarp_op
+title: Westarp, one of Hindenburg's close friends, will attempt to rally conservative forces for Hindenburg.
+on-arrival: westarp_used = 1; hindenburg_support += 1
+max-visits: 1
+go-to: bourgeois_campaign_menu_op
+
+Of course, the main goal of the United Hindenburg Committees is to dispel the notion that Hindenburg is supported by the <span style="color: #000000;">Black</span>-<span style="color: #c00000;">Red</span> parties. To this end, Westarp has sent a letter to 750 conservative elites who supported Hindenburg's election in 1925, with 500 reaffirming their support of Hindenburg today. [? if dnvp_ideology == "Moderate": He has also played a key role in rallying the <span style="color: #3E88B3;">**DNVP**</span> around his candidacy. ?]
+
+@organizational_endorsements_op
+title: What about the endorsements of the non-partisan organizations?
+subtitle: Influential groups such as the RLB, DHV, and the Pan-Germans, have been growing a rift between themselves and Hindenburg.
+view-if: eckener_used and industry_used and (religion_used or not religion_available) and westarp_used
+on-arrival: {!
+if (Q.hindenburg_support) {
+    Q.new_middle_kvp += Q.hindenburg_support;
+    Q.old_middle_kvp += Q.hindenburg_support; 
+    Q.rural_kvp += Q.hindenburg_support;
+    if (Q.dnvp_ideology == "Moderate") {
+        Q.new_middle_dnvp += Q.hindenburg_support;
+        Q.old_middle_dnvp += Q.hindenburg_support;
+        Q.rural_dnvp += Q.hindenburg_support;
+    }
+    Q.new_middle_ddp += Q.hindenburg_support / 3; 
+    Q.old_middle_ddp += Q.hindenburg_support / 3;
+    Q.new_middle_other += Q.hindenburg_support / 1.5;
+    Q.old_middle_other += Q.hindenburg_support / 1.5;
+    Q.new_middle_dvp += Q.hindenburg_support / 3;
+    Q.old_middle_dvp += Q.hindenburg_support / 3;
+    Q.rural_other += Q.hindenburg_support / 1.5;
+    Q.pro_republic += Q.hindenburg_support; 
+    if (!Q.kvp_formed && Q.dnvp_ideology == "Radical") Q.rural_other += Q.hindenburg_support;
+    Q.new_middle_nsdap -= (Q.hindenburg_support*Q.nsdap_votes) / 50;
+    Q.old_nsdap -= (Q.hindenburg_support*Q.nsdap_votes) / 50;
+    Q.rural_nsdap -= (Q.hindenburg_support*Q.nsdap_votes) / 50;
+}
+if (Q.rlb_nazi) {
+    Q.rlb_hindenburg = 0;
+    Q.rural_nsdap += Q.rural_other*0.1;
+    Q.rural_other *= 0.9;
+    Q.rural_dnvp *= 0.9;
+} else if (!Q.rlb_nazi) {
+    Q.rlb_hindenburg = 1;
+    Q.rural_other += 4;
+    if (Q.dnvp_ideology == "Moderate") {
+        Q.rural_dnvp += 2;
+    } else {
+        Q.rural_kvp += 2;
+    }
+}
+!}
+
+National Rural League (RLB) - [? if rlb_hindenburg: <span style="color: #808080;">**[+ reactionary_candidate_1932_disp +]**</span> ?][? if not rlb_hindenburg: <span style="color: #7A3C00;">**[+ nsdap_candidate_1932 +]**</span>[? if dnvp_candidate_1932:&nbsp;or <span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?] ?]
+
+Stahlhelm - [? if dnvp_candidate_1932 == "Duesterberg":<span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?][? if dnvp_candidate_1932 != "Duesterberg": <span style="color: #808080;">**[+ reactionary_candidate_1932_disp +]**</span> ?]
+
+German National Association of Commercial Employees (DHV) - <span style="color: #808080;">**[+ reactionary_candidate_1932_disp +]**</span>
+
+Pan-German League (ADV) - <span style="color: #7A3C00;">**[+ nsdap_candidate_1932 +]**</span>[? if dnvp_candidate_1932:&nbsp;or <span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?]
+
+United Patriotic Leagues (VVVD) - <span style="color: #7A3C00;">**[+ nsdap_candidate_1932 +]**</span>[? if dnvp_candidate_1932:&nbsp;or <span style="color: #3E88B3;">**[+ dnvp_candidate_1932 +]**</span>?]
+
+Kyffhäuser League - <span style="color: #808080;">**[+ reactionary_candidate_1932_disp +]**</span>
+
+[? if not rlb_nazi: Out of all the various right-wing interest organizations, the endorsement of Germany's largest economic interest group, the RLB, with its million members and numerous influential state organizations, is undoubtedly the most significant. The <span style="color: #7A3C00;">Nazi</span> strategy toward these organizations is not to attack them directly but to influence their rank-and-file members. This pressure forces leadership to either support the <span style="color: #7A3C00;">Nazis</span> or risk discrediting themselves in the eyes of their members.<br><br> However, this approach has failed with the RLB. Under Schiele's leadership, the organization remains skeptical of the <span style="color: #7A3C00;">national</span> <span style="color: #3E88B3;">opposition</span> and has successfully blocked a <span style="color: #7A3C00;">Nazi</span> appointee from joining the presidium. Despite this, strong <span style="color: #7A3C00;">Nazi</span> sympathies among the rank-and-file have led to defections to the <span style="color: #7A3C00;">Nazi</span>'s alternative organization. ?]
+
+[? if rlb_nazi: Out of all the various right-wing interest organizations, the endorsement of Germany's largest economic interest group, the RLB, with its million members and numerous influential state organizations, is undoubtedly the most significant. The <span style="color: #7A3C00;">Nazi</span> strategy toward these organizations is not to attack them directly but to influence their rank-and-file members. This pressure forces leadership to either support the <span style="color: #7A3C00;">Nazis</span> or risk discrediting themselves in the eyes of their members. <br><br> This approach has proven successful within the RLB, as its new leader, Kalckreuth, is notably friendly toward the <span style="color: #7A3C00;">national</span> <span style="color: #3E88B3;">opposition</span>. He has even appointed a <span style="color: #7A3C00;">Nazi</span> agricultural official to the presidium. However, this shift has sparked significant backlash from the <span style="color: #7FCEB1;">**CNBLP**</span>-aligned factions within the organization and from state affiliates in Bavaria, Thuringia, and Wurttemberg. These groups have rejected the RLB's endorsement and instead urged their members to vote for [+ reactionary_candidate_1932 +][? if dnvp_candidate_1932: or [+ dnvp_candidate_1932 +]?].?]
+
+- @hope: Let's hope Germany will make the correct choice.

@@ -1,0 +1,64 @@
+title: Schleicher Concedes
+subtitle: The chancellor has all but given up attempts to stay in power.
+view-if: chancellor = "Schleicher" and schleicher_time == 7 and schleicher_explode and not constructive_schleicher
+new-page: true
+tags: event
+priority: -1
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/schleicher_work.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Schleicher Concedes
+
+Schleicher, having willfully avoided any serious effort to preserve his chancellorship—for reasons known only to himself—has now resigned himself to the inevitable loss of a position he never truly desired.
+
+In what is likely his final cabinet meeting, he informs his ministers that he will request a decree to dissolve the Reichstag, as a no-confidence vote is now inevitable. He fully expects his request to be denied and is prepared to submit both his and the cabinet's resignation.
+
+In his final days, he turns his focus to opposing a Papen restoration, even going so far as to express a preference for a [+ nsdap_chancellor +] government—believing, perhaps naively, that he might retain his post as Defense Minister under such an arrangement.
+
+- @schleicher_2: Schleicher meets with President Hindenburg, perhaps for the last time.
+
+@schleicher_2
+
+Schleicher lays out four scenarios before the President:
+
+1. A [+ nsdap_chancellor +] cabinet supported by the Reichstag—unlikely.
+
+2. A presidential cabinet led by [+ nsdap_chancellor +]—even more implausible.
+
+3. His own cabinet continuing under presidential emergency powers—his recommendation.
+
+4. A disastrous cabinet led by Papen and Hugenberg—likely to provoke civil war.
+
+He does not request a postponement of elections this time—only a commitment from Hindenburg to dissolve the chamber upon reconvening.
+
+He is denied. Hindenburg acknowledges Schleicher’s efforts to win over the <span style="color: #7A3C00;">Nazis</span>, but with that effort having failed, the President declares it time to explore “another possibility.”
+
+- @schleicher_3
+
+@schleicher_3
+title: Schleicher resigns.
+
+Schleicher returns to his waiting ministers and relays the outcome. An announcement of his resignation—prepared weeks in advance—is released to the press.
+
+At this stage, the options have narrowed to two: a return of Papen, or the ascension of [+ nsdap_chancellor +]. Both promise disaster for Germany—and the latter, disaster for all of humanity.
+
+- @schleicher_4
+
+@schleicher_4
+title: The cabinet's last order of business.
+on-arrival: unemployed -= 2; economic_growth += 1; inflation += 2; schleicher_approval += 1
+
+After weeks of delay, Gereke finally presents his public works program to the cabinet. Though too late to save Schleicher’s tenure, it is approved by the chancellor and signed by Hindenburg without objection. The plan allocates half a billion marks to infrastructure projects across the Reich.
+
+In the coming months, as millions of unemployed Germans return to work, it is not Schleicher, but his successor, who will reap the political rewards.

@@ -1,0 +1,51 @@
+title: Reichswehr Militia Deployed!
+subtitle: Schleicher moves to end streetfighting.
+view-if: chancellor == "Schleicher" and (schleicher_time == 11 and prussia_leader == "Schleicher") or (schleicher_post_time >= 4 and prussia_leader != "Braun" and prussia_leader != "Rosenfeld")
+on-arrival: {!
+Q.reichsbanner_disarm_cost = Math.round(Q.rb_militancy * 15);
+Q.reichswehr_strength += 25;
+Q.sa_strength *= 0.8;
+Q.sa_militancy -= 0.3;
+Q.rb_strength -= 100;
+Q.rb_militancy -= 0.02;
+Q.rfb_strength -= 50;
+Q.rfb_militancy -= 0.1;
+Q.prussian_police_strength += 100;
+Q.prussian_police_militancy += 0.5;
+Q.reichswehr_street = 1;
+Q.sa_banned = 1;
+Q.sa_nationwide_ban = 1;
+
+Q.schleicher_approval += 1;
+!}
+new-page: true
+priority: -1
+max-visits: 1
+tags: event
+face-image: img/Reichswehr.jpg
+
+= Reichswehr Militia Deployed!
+
+The <span style="color: #7A3C00;">**SA**</span>'s dramatic escalation of seemingly pointless violence has gripped the streets, with many innocent civilians caught in the crossfire. Their increasingly open clashes with leftist groups, driven by frustration and insubordination, have spiraled out of control.
+
+Although Schleicher admires the patriotic militarism of the <span style="color: #7A3C00;">**SA**</span>, he now dismisses it as little more than Röhm's tool for a <span style="color: #c00000;">socialistic</span> "national revolution"—a gang of thugs turning their violence against ordinary citizens. Röhm's open agitation for such a revolution has left Schleicher no choice but to ban the organization outright.
+
+But Schleicher's objective is already achieved: former "desirable" <span style="color: #7A3C00;">**SA**</span> fighters have been integrated into a newly built militia attached to the Reichswehr, composed of ex-fighters and the unemployed. This force has been deployed to maintain order in the streets, working alongside the local police. However, they remain lenient toward their former comrades and display significant bias against the Reichsbanner and <span style="color: #700000;">**RFB**</span>.
+
+Nonetheless, this has succeeded in shifting public opinion toward the "law and order" chancellor, and further against the parliamentary system that failed to protect them.
+
+- @schleicher_2
+- @schleicher_3
+
+@schleicher_2
+title: Maintain the funding of the Reichsbanner.
+
+It's good to maintain our own self-defense organization, just in case.
+
+@schleicher_3
+title: Defund the Reichsbanner; the threat is no longer present.
+subtitle: +[+ reichsbanner_disarm_cost +] resources
+view-if: reichsbanner_disarm_cost > 0
+on-arrival: rb_militancy *= 0.5; rb_strength -= 400; resources += reichsbanner_disarm_cost; unemployed_spd -= 4; unemployed_kpd += 2; rfb_strength += 100
+
+With the Reichswehr keeping order in the streets, we have no further need for the Reichsbanner's self-defense role. Better to spend our scarce funds on electoral propaganda rather than weapons.

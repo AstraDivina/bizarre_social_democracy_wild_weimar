@@ -1,0 +1,105 @@
+title: Coup in Prussia
+subtitle: The Chancellor attempts to overthrow the Prussian government.
+view-if: chancellor == "Papen" and altona_seen and spd_prussia and not presidential_powers and not prussian_reichsexekution
+on-arrival: prussian_coup_seen = 1; otl_prussian_coup_seen = 1; strife += 2; schleicher_spd_r -= 1; schleicher_spd_support -= 1
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/Reichswehr.jpg
+
+= Coup in Prussia
+
+A crisis! Chancellor [+ chancellor +] has ordered the dismissal of the Prussian government through a procedure known as the <i>Reichsexekution</i>. He claims the state government can no longer maintain order amid escalating street battles between the <span style="color: #7A3C00;">**SA**</span>, Reichsbanner, and other paramilitary groups—despite his own administration having legalized them.
+
+[? if not altona_good: The recent clashes in Altona have handed him the pretext to depose the Prussian government?][? if altona_good: The surge in politically motivated violence has given Papen the pretext to depose the Prussian government?]. [? if prussia_leader == "Braun": With Otto Braun still abroad on convalescent leave following the heartbreaking events of the past few months?][? if prussia_leader != "Braun": With Minister-President [+ prussia_leader +] unwilling to risk a civil war to defend his administration?], Papen is moving to seize control. If this coup is successful, Papen will transfer control of Prussia to a <span style="color: #808080;">reactionary</span> <i>Reichskommissar</i>, a calculated move to win over the <span style="color: #7A3C00;">**NSDAP**</span> by granting the <span style="color: #7A3C00;">**SA**</span> free rein in the state. We suspect Defense Minister Schleicher to be the mastermind behind this scheme—another step in advancing his <span class="tooltip-text" title="Coined by conservative elites like Schleicher and Papen, this strategy aims to control the dynamic Nazi movement and integrate it into the state by introducing the party to government. In their eyes, this would moderate the Nazis, transforming them into a constructive component of the state.">taming strategy</span>.
+
+The legality of this action is dubious. Severing has responded that he'll only yield to force. Many of our members are prepared to resist.
+
+- @defend
+- @surrender
+
+@defend
+title: Fight against the overthrow attempt!
+subtitle: Labor will call a general strike. The Reichsbanner and the loyal elements of the Prussian police will resist the coup.
+unavailable-subtitle: We do not have the forces to resist.
+choose-if: democracy_force >= 35
+
+[? if prussia_leader == "Stegerwald" or prussia_leader == "Brüning": A potential roadblock to armed resistance is the unwillingness of Minister President [+ prussia_leader +] to do so, [? if not rb_stay:as a result, they've overruled Severing's call to resist the coup and has made the whole situation a mess. ?][? if rb_stay:however, the <span style="color: #000000;">Center</span>'s decision to remain in a militarized Reichsbanner has rallied the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Coalition parties to the defense of the republic they helped create. ?] ?]
+
+The Reichswehr are already on the streets of Berlin, with a national force of a hundred thousand men on standby, ready to crush any resistance. The <span style="color: #3E88B3;">**Stahlhelm**</span> and the recently legalized <span style="color: #7A3C00;">**SA**</span> are poised to back them. The Reichsbanner simply cannot match the small, but well-trained and heavily armed Reichswehr. If we resist, we face the very real prospect of civil war. We understand the gravity of this, don’t we?
+
+- @defend_2: We will fight, even if it leads to a civil war.
+- @defend_3: We will fight, even if it leads to a civil war.
+- @surrender
+
+@defend_2
+view-if: (nsdap_votes >= 25 or rb_militancy < 0.2) and ((reichswehr_strength*reichswehr_militancy*(1-reichswehr_loyalty)) >= rb_strength*rb_militancy) and (spd_votes < 26 or rb_militancy < 0.2) and rb_militancy < 0.3
+on-arrival: {!
+
+Q.sa_force_prussia = Q.sa_strength*Q.sa_militancy;
+Q.sh_force_prussia = Q.sh_strength*Q.sh_militancy;
+Q.rb_force_prussia = Q.rb_strength*Q.rb_militancy;
+Q.rfb_force_prussia = Q.rfb_strength*Q.rfb_militancy;
+Q.prussia_force_prussia = Q.prussian_police_strength*Q.prussian_police_militancy*Q.prussian_police_loyalty;
+Q.army_force_prussia = Q.reichswehr_strength*Q.reichswehr_militancy*(1-Q.reichswehr_loyalty);
+var total_force_prussia = (Q.sa_force_prussia+Q.sh_force_prussia+Q.rb_force_prussia+Q.rfb_force_prussia+Q.prussia_force_prussia+Q.army_force_prussia);
+
+Q.sa_force_prussia = Math.round((Q.sa_force_prussia/total_force_prussia)*100);
+Q.sh_force_prussia = Math.round((Q.sh_force_prussia/total_force_prussia)*100);
+Q.rb_force_prussia = Math.round((Q.rb_force_prussia/total_force_prussia)*100);
+Q.rfb_force_prussia = Math.round((Q.rfb_force_prussia/total_force_prussia)*100);
+Q.prussia_force_prussia = Math.round((Q.prussia_force_prussia/total_force_prussia)*100);
+
+Q.happy_forces = Q.rb_force*(1-Q.dissent) + Q.prussia_force;
+if (Q.prussia_leader == "Brüning" || Q.prussia_leader == "Stegerwald" && !Q.rb_stay) Q.happy_forces -= (Q.prussia_force / 2);
+if (Q.kpd_truce) Q.happy_forces += Q.rfb_force;
+Q.happy_forces += (Q.workers_spd_normalized*(1 - Q.dissent)*(1 - Q.unemployed/100))/5;
+Q.angry_forces = Q.sh_force + Q.sa_force + (Q.army_force_prussia/2);
+
+Q.resist_coup = 1
+!}
+go-to: calculations
+
+
+@calculations
+go-to: defend_2_civil_war if happy_forces < angry_forces; defend_2_victory if happy_forces >= angry_forces
+
+
+@defend_2_victory
+on-arrival: prussia_coup_win = 1; sa_strength *= 0.75; sh_strength *= 0.75; pro_republic += 12; workers_kpd -= 4; unemployed_kpd -= 4; workers_spd += 8; unemployed_spd += 8; workers_nsdap -= 6; unemployed_nsdap -= 6; new_middle_nsdap -= 4; new_middle_spd += 4; old_middle_nsdap -= 3; old_middle_ddp += 2; old_middle_dvp += 1; old_middle_lvp += 3; rural_nsdap -= 3; rural_ddp += 2; rural_dvp += 1; rural_lvp += 3; catholics_nsdap -= 3; catholics_spd += 3; coup_victory = 1; ddp_cohesion += 3; ddp_left += 3; ddp_relation += 5; lvp_left += 2; lvp_relation += 5; z_relation += 5; ddp_relation += 5 if rb_stay; z_relation += 5 if rb_stay; prussian_police_loyalty = 1; prussian_police_strength += 25; reichswehr_militancy -= 0.5; papen_strength -= 10; hindenburg_papen_r -= 10
+achievement: bollwerk_der_demokratie
+go-to: defend_2_victory_2
+
+Our forces confront the government troops and their <span style="color: #808080;">reactionary</span> auxiliaries on their way to seize government offices, and somehow, our enemies retreat without a fight! They were overwhelmed by our display of strength, and have chosen to slink away. Chancellor [+ chancellor +] withdraws the dismissal of the Prussian government, at least for now.
+
+The show of force has reinvigorated support for the republic and for the <span style="color: #c00000;">**SPD**</span>, and has weakened the <span style="color: #7A3C00;">fascists</span>. It’s anticipated that Chancellor Papen will either resign or be deposed by the Camarilla for his embarrassing failure, as Hindenburg’s confidence in him has been utterly shattered.
+
+@defend_2_victory_2
+achievement: drei_pfeile
+
+
+@defend_2_civil_war
+
+Our forces confront the government troops and their supporters on the streets of Berlin, and armed fighting erupts. The <span style="color: #808080;">reactionaries</span> do not budge from their positions. We are caught at a disadvantage.
+
+- @civil_war: It is a civil war.
+
+@defend_3
+view-if: not ((nsdap_votes >= 25 or rb_militancy < 0.2) and ((reichswehr_strength*reichswehr_militancy*(1-reichswehr_loyalty)) >= rb_strength*rb_militancy) and (spd_votes < 26 or rb_militancy < 0.2) and rb_militancy < 0.3)
+on-arrival: papen_strength -= 1; hindenburg_papen_r -= 1; pro_republic += 5
+achievement: bollwerk_der_demokratie
+
+Papen has backed down without a fight! With Severing and the Prussian government standing firm, declaring they would only respond to force, Papen has refused to press ahead with his plan, unwilling to risk civil war. Hindenburg is reportedly displeased with Papen's weakness but believes another opportunity will come soon.
+
+For now, we remain in control of the democratic bulwark.
+
+@surrender
+title: Give up on the Prussian government.
+subtitle: We will attempt to fight this out legally.
+on-arrival: older_prussia_leader = prussia_leader; prussia_coup_lose = 1; pre_in_weimar_coalition_prussia = 1 if ((in_weimar_coalition_prussia == 1 or in_minority_weimar_coalition_prussia == 1) or (in_grand_coalition_prussia == 1 and lvp_formed)); pre_in_grand_coalition_prussia = 1 if (in_grand_coalition_prussia == 1 or in_minority_grand_coalition_prussia == 1); in_right_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_center_right_coalition_prussia = 0; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; prussia_leader = "Papen"; workers_spd -= 5; new_middle_spd -= 5; new_middle_ddp -= 3; unemployed_spd -= 3; left_dissent += 10; labor_dissent += 10; neorevisionist_dissent += 20; rb_militancy *= 0.8; rb_strength -= 200; prussian_police_loyalty -= 0.5; next_election_time_prussia = time + 48; next_election_year_prussia = year + 4; papen_strength += 1
+
+On the morning of the coup, the decree is presented to the Prussian government. Despite fierce objections to its constitutionality—and Severing’s vow to yield only to force—a hundred thousand Reichswehr troops occupy key government buildings in Berlin. One by one, Severing and the police chiefs allow themselves to be removed without resistance.
+
+A pall of hopelessness and despair descends over <span style="color: #c00000;">Social Democracy</span>. We have failed. Many in the Reichsbanner simply quit, demoralized by their leaders' lack of a call to action. 
+
+President Hindenburg appoints the <span style="color: #808080;">reactionary</span> Franz von Papen as <i>Reichskommissar</i> of Prussia, tasked with dismantling the democratic structures we fought to preserve. This furthers Papen’s ambition for a “New State”—one that unites the chancellorship and the Prussian premiership under a single authoritarian hand.

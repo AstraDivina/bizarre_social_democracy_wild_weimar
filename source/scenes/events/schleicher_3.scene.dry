@@ -1,0 +1,27 @@
+title: Schleicher and the Trade Unions
+subtitle: The General meets with the ADGB once more.
+view-if: chancellor == "Papen" and papen_time == 24 and papen_post_2 and red_general_unlock
+new-page: true
+tags: event
+max-visits: 1
+face-image: img/portraits/schleicher.jpg
+
+= Schleicher and the Trade Unions
+
+A few months back, a line of communication was opened between the General and the ADGB's leadership, with the understanding of further meetings.
+
+Following the results of the last election, von Schleicher has reached out to the various <span style="color: #000000;">Christian</span> and <span style="color: #c00000;">socialist</span> unions once again, presumably in an attempt to broker a political truce.
+
+- @schleicher
+
+@schleicher
+title: Hear what the general has to say.
+on-arrival: schleicher_spd_support += 2; schleicher_spd_r += 1
+
+ADGB leaders Theodor Leipart and Wilhelm Eggert have met with Chancellor-designate Schleicher, who promised to rescind Papen’s most offensive emergency wage decrees, launch a public works program, and abandon the former chancellor’s plans to impose his “New State” via presidential decree.
+
+We are pleasantly surprised by these concessions, and Schleicher has earned some goodwill among the union leadership. Still, deep distrust remains—after all, he was the one controlling Papen when those very decrees and the unconstitutional postponement of elections were proposed.
+
+> *"Republic or monarchy is not the question now, but rather what should this republic look like."*
+
+ - Kurt von Schleicher

@@ -1,0 +1,26 @@
+title: Panzerkreuzer A
+subtitle: A planned new battleship construction
+tags: event
+max-visits: 1
+face-image: img/panzerkreuzer.jpg
+view-if: year = 1928 and month == 3
+new-page: true
+
+= Panzerkreuzer
+
+The Reichswehr Ministry is lobbying for a naval modernization program centered on the construction of a new battlecruiser, Panzerschiff A. The bourgeois parties are united in support, and the <span style="color: #D3C24D;">**[+ ddp_name +]**</span> is likely to yield to right-wing pressure. A vote on the project is expected once a new government is formed after the May elections.
+
+This presents us with an opportunity: we could campaign against the ship’s construction and demand its cancellation in favor of greater social spending. The workers have rallied behind our slogan, "Children's Meals Instead of Armored Cruisers", but the mire of coalition politics may yet force us to backtrack—should we enter government.
+
+- @anti_ship: Children's meals instead of armored cruisers!
+- @pro_ship: Stay relatively silent on the matter—we can’t break a promise we never made.
+
+@anti_ship
+on-arrival: workers_spd += 4*(1-dissent); unemployed_spd += 2*(1-dissent); panzerkreuzer_campaign = 1
+
+Our catchy slogan has helped rally the workers’ vote and limit defections to the <span style="color: #700000;">**KPD**</span>.
+
+@pro_ship
+on-arrival: workers_kpd += 2; unemployed_kpd += 2; labor_dissent += 5; left_dissent += 5; kpd_relation -= 6; panzerkreuzer_campaign = 0
+
+Our silence has left the <span style="color: #700000;">**KPD**</span> as the sole party vocally opposing the ship’s construction—and they waste no time accusing us of betrayal. The Left and Labor factions voice their displeasure.

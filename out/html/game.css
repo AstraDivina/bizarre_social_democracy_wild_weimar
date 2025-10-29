@@ -1,0 +1,925 @@
+body {
+  --bg-color: #f3f3e3;
+  --border-color: #000;
+  --content-bg-color: #f3f3f3;
+  --text-color: #431;
+  --link-color: #900;
+  --link-hover-color: rgba(255, 0, 0, 0.1);
+  --unavailable-bg-color: rgba(0, 0, 0, 0.1);
+  --unavailable-color: #999;
+  --tab-bg-color: #dedede;
+  --tab-color: #ddd;
+  --tab-hover-color: #ececec;
+  --card-border-color: #ccc; 
+  --card-bg-color: #ddd; 
+  font-family: "Minion Pro", Georgia, serif;
+  background-color: var(--bg-color);
+  padding: 0;
+  line-height: 155%;
+  overflow-y: scroll;
+}
+body.dark-mode {
+  --bg-color: #000;
+  --border-color: #fff;
+  --content-bg-color: #242424;
+  --text-color: #fff;
+  --link-color: #ff8080;
+  --link-hover-color: rgba(255, 0, 0, 0.1);
+  --tab-bg-color: #555555;
+  --tab-color: #505050;
+  --tab-hover-color: #242424;
+  --card-border-color: #4c4c4c;
+  --card-bg-color: #3f3f3f;
+}
+body.dark-mode #content {
+  border-style: double;
+  border-width: 4px;
+  border-color: #888;
+}
+body.dark-mode .tools {
+  border-style: double;
+  border-width: 4px;
+  border-color: #888;
+}
+header,
+#content,
+footer {
+  color: var(--text-color);
+  max-width: 540px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+#content {
+  position: relative;
+  background-color: var(--content-bg-color);
+  font-size: 1.1em;
+  padding: 1em 1.5em 1.5em 1.5em;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  margin-top: 1em;
+  font-size: 0.8em;
+  position: relative;
+}
+
+footer a {
+  padding-right: 1em;
+}
+
+header {
+  text-align: right
+}
+
+#header-links {
+  text-align: left;
+  float: left;
+  display: inline-block;
+  margin-bottom: 0.5em;
+  padding-left: 1em;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  background-color: var(--bg-color);
+}
+
+#header-links a {
+  padding-right: 1em;
+}
+
+header h1,
+header h2 {
+  display: inline-block;
+  font-weight: normal;
+  margin: 0;
+  font-size: 1em;
+}
+
+header h1 {
+  font-weight: bold;
+}
+
+header h2:before {
+  content: "by";
+  font-style: italic;
+  padding: 0 0.3em 0 0;
+}
+
+#content #read-marker {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  height: 1px;
+  width: 20%;
+  clear: left;
+}
+
+#content h1:first-child {
+  margin-top: 0.5em;
+}
+
+#content h1 {
+  margin: 2em 0 1em 0;
+  font-size: 1.35em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: rgba(85, 85, 85, 0.75) 1px 1px 1px,
+    rgba(0, 0, 0, 0.1) -1px -1px 2px;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 0.9em;
+  text-indent: 1em;
+}
+
+p.dnvp {
+  display: none;
+}
+
+p.other {
+  display: block;
+}
+
+.scrollable-box {
+  width: 540px;
+  /* Default width */
+  height: 200px;
+  /* Fixed height */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+}
+
+/* Adjust only the width for smaller screens */
+@media (max-width: 600px) {
+  .scrollable-box {
+    width: 102%;
+    /* Make it adapt to screen size */
+    max-width: 540px;
+    /* Prevent it from getting too wide */
+  }
+}
+
+p.game-over {
+  border: 2px solid #bbb;
+  padding: 0.5em;
+  margin: 0.5em 0 0 0;
+  border-radius: 4px;
+  color: #999;
+}
+
+ul.choices {
+  border: 2px solid #876;
+  padding: 0;
+  margin: 0.25em 0 0 0;
+  list-style-type: none;
+  border-radius: 4px;
+  clear: left;
+}
+
+ul.choices li {
+  border-bottom: 1px solid #876;
+  padding: 0.5em;
+}
+
+ul.choices li div.subtitle {
+  margin-left: 2em;
+  font-style: italic;
+}
+
+ul.choices li.unavailable {
+  color: var(--unavailable-color);
+  background-color: var(--unavailable-bg-color) !important;
+  cursor: default !important;
+}
+
+ul.choices li:hover {
+  background-color: var(--link-hover-color);
+  cursor: pointer;
+}
+
+ul.choices li:last-child {
+  border-bottom: none;
+}
+
+ul.choices a {
+  text-decoration: none;
+}
+
+blockquote {
+  margin: 1em 2em;
+}
+
+blockquote.attribution {
+  margin-left: 4em;
+}
+
+blockquote+blockquote.attribution {
+  margin-top: -1em;
+}
+
+/* This is mostly copied from undum. */
+#mid_panel {
+  margin: 0 16rem;
+}
+
+#page {
+  margin: 0 auto;
+  position: relative;
+}
+
+#tools_wrapper {
+  position: absolute;
+  width: 100%;
+  max-width: 69em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.tools {
+  padding: 0.6em;
+  width: 14rem;
+  color: var(--text-color);
+  background-color: var(--content-bg-color);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tools.left {
+  float: left;
+  left: 0.4em;
+}
+
+.tools.right {
+  float: right;
+  right: 0.4em;
+  display: none;
+  margin-right: -6em;
+}
+
+#qualities {
+  text-indent: 0;
+  line-height: 1.3em;
+}
+
+#qualities p {
+  text-indent: 0;
+}
+
+#qualities h1 {
+  font-size: 1.1em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px,
+    rgba(0, 0, 0, 0.1) -1px -1px 2px;
+}
+
+#qualities h1+p:first-line {
+  font-weight: normal;
+}
+
+#qualities_right {
+  text-indent: 0;
+  line-height: 1.3em;
+}
+
+#qualities_right p {
+  text-indent: 0;
+}
+
+#qualities_right h1 {
+  font-size: 1.1em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px,
+    rgba(0, 0, 0, 0.1) -1px -1px 2px;
+}
+
+#qualities_right h1+p:first-line {
+  font-weight: normal;
+}
+
+/* tabs */
+.tab_container {
+  background-color: var(--tab-bg-color);
+  margin-top: -0.6em;
+  margin-left: -0.6em;
+  margin-right: -0.6em;
+}
+
+.tab_button {
+  font-family: "Minion Pro", Georgia, serif;
+  background-color: var(--tab-color);
+  color: var(--text-color);
+  /*float: left;*/
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+
+.tab_button.active {
+  background-color: var(--content-bg-color);
+}
+
+.tab_button:hover {
+  background-color: var(--tab-hover-color);
+}
+
+#emergency_tab {
+  width: 100%;
+}
+
+#scheming_tab {
+  display: none;
+}
+
+
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  overflow: scroll;
+}
+
+.overlay_top {
+  position: relative;
+  max-width: 540px;
+  margin: 100px auto;
+  background: rgba(50, 50, 50, 0.7);
+  border: 2px solid;
+  color: white;
+}
+
+.save_info {
+  min-width: 10em;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--bg-color);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/*
+ * This is used for overlaying transparencies
+ * only transition on fade-in
+ * */
+#bg2 {
+  z-index: -100;
+}
+
+#bg1 {
+  z-index: -99;
+}
+
+.b {}
+
+.save_button {}
+
+.delete_button {}
+
+/*
+ * Card stuff for dendrynexus
+ * 
+ */
+
+ul.decks,
+ul.hand,
+ul.pinned-cards {
+  list-style: none;
+  padding-left: 0;
+}
+
+.hand {}
+
+.pinned-cards {}
+
+.deck {}
+
+a.card {
+  display: inline-block;
+  width: 120px;
+  height: 150px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border: 10px solid var(--card-border-color);
+  margin-bottom: 0.5em;
+  position: relative;
+}
+
+a.card:hover {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  left: -5px;
+  top: -5px;
+}
+
+div.blank-card {
+  display: inline-block;
+  width: 120px;
+  height: 150px;
+  background-color: var(--card-bg-color);
+  border: 10px solid var(--card-border-color);
+  margin-bottom: 0.5em;
+}
+
+.card-in-hand,
+.pinned-card,
+.deck {
+  display: inline-block;
+  position: relative;
+  max-width: 150px;
+  margin-right: 1em;
+  vertical-align: top;
+}
+
+.unavailable-card {
+  color: var(--unavailable-color);
+  background-color: var(--unavailable-bg-color) !important;
+  cursor: default !important;
+}
+
+.card-caption {
+  text-align: center;
+  display: block;
+  font-size: 1em;
+}
+
+.card-tooltip {
+  position: absolute;
+  visibility: hidden;
+  width: 150px;
+  max-width: 200px;
+  font-size: 0.9em;
+  z-index: 2;
+  padding: 0.2em;
+  border: 1px solid var(--border-color);;
+  background-color: var(--content-bg-color);;
+  left: 105%;
+}
+
+.card-img {
+  height: 150px;
+  width: 120px;
+  object-fit: cover;
+}
+
+a.card:focus .card-tooltip,
+a.card:hover .card-tooltip {
+  visibility: visible;
+  position: absolute;
+}
+
+/* Unlike cards, face images can have different sizes. */
+.face-figure {
+  /*vertical-align: top;*/
+  display: inline-block;
+  border: 5px solid var(--card-border-color);
+  float: left;
+  max-width: 35%;
+  /*max-height: 180px;*/
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  overflow: hidden;
+}
+
+.face-figure2 {
+  /*vertical-align: top;*/
+  display: inline-block;
+  border: 5px solid #ccc;
+  float: left;
+  /*max-height: 180px;*/
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  overflow: hidden;
+}
+
+.face-img {
+  /*max-width: 150px;*/
+  vertical-align: bottom;
+  object-fit: cover;
+}
+
+/*
+ * sprite stuff- feel free to comment out/remove if not using
+ */
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#contentSpriteContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  max-width: 62em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: -97;
+}
+
+.sprite {
+  position: absolute;
+  width: 180px;
+}
+
+#topLeftSprite {
+  float: left;
+  top: -1em;
+  left: 0.4em;
+}
+
+#topRightSprite {
+  float: right;
+  top: -1em;
+  right: 0.4em;
+}
+
+#bottomLeftSprite {
+  float: left;
+  left: 0.4em;
+  top: 50%;
+}
+
+#bottomRightSprite {
+  float: right;
+  right: 0.4em;
+  top: 50%;
+}
+
+/* smaller screens: hide left margin */
+@media screen and (max-width: 1200px) {
+  .tools {
+    margin-right: 0.4em;
+    margin-left: 0.4em;
+  }
+
+  #mid_panel {
+    margin-right: 0.4em;
+  }
+}
+
+/* mobile: move the stat box to the top if the screen is too small,
+ * and reduce font size slightly. */
+@media screen and (max-width: 560px) {
+  #page {
+    position: static;
+  }
+
+  #content {
+    position: static;
+    font-size: 1em;
+    line-height: 160%;
+    padding: 1em 1em 1.5em 1em;
+  }
+
+  #qualities {
+    font-size: 1em;
+  }
+
+  #content td.small-font {
+    font-size: 0.8em !important;
+  }
+
+  #tools_wrapper {
+    position: static;
+  }
+
+  .tools {
+    width: 90%;
+    margin: 2em 0 1em 0;
+    margin: 0.4em;
+  }
+
+  .tools.left {
+    float: none;
+    left: 0;
+  }
+
+  .tools.right {
+    display: none;
+    float: none;
+    right: 0;
+    marginRight: -6em;
+  }
+
+  #mid_panel {
+    margin: 0 auto;
+  }
+
+  /* cards are smaller on mobile */
+  .card-img {
+    height: 125px;
+    width: 100px;
+  }
+
+  a.card {
+    width: 100px;
+    height: 125px;
+    border: 8px solid #ccc;
+    margin-bottom: 0.5em;
+    position: relative;
+  }
+
+  div.blank-card {
+    width: 100px;
+    height: 125px;
+    border: 8px solid #ccc;
+    margin-bottom: 0.5em;
+  }
+
+  .card-in-hand,
+  .pinned-card,
+  .deck {
+    max-width: 120px;
+    margin-right: 1em;
+    vertical-align: top;
+  }
+}
+
+
+/* New stuff just for this game */
+
+/* colored box div */
+.box {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+}
+
+.box2 {
+  display: inline-block;
+  height: 1em;
+  width: 0.5em;
+}
+
+.box3 {
+  display: inline-block;
+  height: 1em;
+  width: 0.75em;
+}
+
+table {
+  table-layout: fixed;
+  border-spacing: 0.5em;
+}
+
+td,
+th {
+  white-space: nowrap;
+  /* Prevents text from wrapping */
+}
+
+/* Styles for parties */
+.seat.kpd {
+  fill: #700000;
+}
+
+.seat.spd {
+  fill: #E3000F;
+  stroke: var(--border-color);
+  stroke-width: 1.5px;
+}
+
+.seat.ddp {
+  fill: #D3C24D;
+}
+
+.seat.z {
+  fill: #000;
+}
+
+.seat.bvp {
+  fill: #A2D8E0;
+}
+
+.seat.dvp {
+  fill: #D5AC27;
+}
+
+.seat.other {
+  fill: #909090;
+}
+
+.seat.dnvp {
+  fill: #3E88B3;
+}
+
+.seat.nsdap {
+  fill: #7A3C00;
+}
+
+.seat.dsu {
+  fill: #6A1E1E;
+}
+
+.seat.nvf {
+  fill: #142e20;
+}
+
+.seat.sapd {
+  fill: #9B0000;
+}
+
+.seat.dnf {
+  fill: #003755;
+}
+
+.seat.kvp {
+  fill: #0087DC;
+}
+
+.seat.lvp {
+  fill: #FFCC00;
+}
+
+.seat.dnef {
+  fill: #BFC8CC;
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
+.seat.right_dnef {
+  fill: #5F7278;
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
+.seat.left_dnef {
+  fill: #B86558;
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
+.seat.dnvp_wholesome {
+  fill: #3E88B3;
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
+
+.seat.fkp {
+  fill: #00C0FF;
+}
+
+.seat.farm {
+  fill: #38C538;
+}
+
+.seat.farm2 {
+  fill: #006400;
+}
+
+.seat.farm3 {
+  fill: #7FCEB1;
+}
+
+.seat.farm4 {
+  fill: #11DD11;
+}
+
+.seat.wp {
+  fill: #b8996f;
+}
+
+.seat.vrp {
+  fill: #0075EB;
+}
+
+.seat.aspd {
+  fill: #fe9e00;
+}
+
+.seat.csvd {
+  fill: #8ED8E4;
+}
+
+.seat.vnr {
+  fill: #D3D3A9;
+}
+
+.seat.rdp {
+  fill: #E0B0FF;
+}
+
+.seat.pcf {
+  fill: #88001A;
+}
+
+.seat.pup {
+  fill: #B22222;
+}
+
+.seat.sfio {
+  fill: #ff0000;
+}
+
+.seat.prs {
+  fill: #FF6699;
+}
+
+.seat.rad {
+  fill: #E0B0FF;
+}
+
+.seat.rad2 {
+  fill: #aa4fff;
+}
+
+.seat.ad {
+  fill: #FFBF00;
+}
+
+.seat.pdp {
+  fill: #00CCCC;
+}
+
+.seat.fr {
+  fill: #005ACA;
+}
+
+.seat.fr2 {
+  fill: #ADC1FD;
+}
+
+.tooltip-text {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.pinned-text-description {
+  margin-left: -10px;
+  white-space: nowrap;
+}
+
+.gray-mode span {
+  color: inherit !important;
+}
+
+.achievement_subtitle {
+  font-size: 90%;
+  color: #444;
+  white-space: normal;
+}
+
+.progress-container {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  border: 2px solid #000;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.flag-block {
+  flex: 1;
+  height: 100%;
+}
+
+.black { background-color: black; }
+.red { background-color: red; }
+.gold { background-color: gold; }
+
+.progress-fill {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0; 
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.progress-fill .flag-block {
+  flex: 1;
+  height: 100%;
+}
+
+.progress-text {
+  margin-top: 10px;
+}

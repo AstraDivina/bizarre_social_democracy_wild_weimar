@@ -1,0 +1,41 @@
+title: Fundraising
+new-page: true
+view-if: fundraising_timer <= 0
+on-arrival: fundraising_timer = 12
+is-card: true
+card-image: img/poster_2.jpg
+tags: party_affairs
+
+= Fundraising
+
+For better or for worse, the party cannot exist without money. Without the support of wealthy industrialists, we depend on membership dues to sustain our efforts.
+
+We receive dues at the end of each year, but can adjust them throughout. Low party dissent can secure more funds, and vice versa.
+
+- @maintain: Maintain our current dues.
+- @reduce: Reduce dues.
+- @increase: Increase dues.
+- @easy_discard
+
+@maintain
+subtitle: We gain [+ dues +] resources per year.
+
+We maintain our current dues.
+
+@reduce
+subtitle: We will gain [+ dues - 1 +] resources per year. -1 resource
+unavailable-subtitle: We lack resources.
+choose-if: dues > 1 and resources >= 1
+on-arrival: dues -= 1; resources -= 1; left_dissent -= 8; center_dissent -= 8; reformist_dissent -= 8; labor_dissent -= 8; resources += 1 if dissent_percent < 5; resources -= 1 if dissent_percent > 30; month_actions += 1
+
+Our current members appreciate this, but no one decides to join a party because of the low dues.
+
+@increase
+subtitle: We will gain [+ dues + 1 +] resources per year. +1 resource [? if unemployed >= 15 : Given the present economic situation, this may be painful. ?][? if dues >= 4 : Dues are already rather high; increasing them might reduce our membership. ?]
+on-arrival: dues += 1; resources += 1; workers_spd -= 3; unemployed_spd -= 3; workers_spd -= 10 if unemployed >= 15; unemployed_spd -= 10 if unemployed >= 15; workers_spd -= 3*dues if dues >= 5; unemployed_spd -= 3*dues if dues >= 5; month_actions += 1
+view-if: dues <= 4
+
+Our members grumble at this, and some of the less committed members leave. But now, we have access to additional resources.
+
+[? if unemployed >= 15 : Because of the presently high unemployment, our members are feeling the extra burden hard. ?] The higher dues will make it more difficult for the <span style="color: #c00000;">**SPD**</span> to expand electorally.
+

@@ -1,0 +1,51 @@
+title: <span style="color: #7A3C00;">**SA**</span> Leader Ernst Röhm's <span style="color: red;">Ho</span><span style="color: orange;">mo</span><span style="color: yellow;">se</span><span style="color: green;">xu</span><span style="color: blue;">al</span><span style="color: purple;">ity</span> Exposed
+subtitle: The Prussian Ministry of the Interior uncovers shocking revelations about the <span style="color: #7A3C00;">Nazi</span> leader...
+view-if: year == 1932 and month == 3 and not hindenburg_term_extended and spd_prussia and not repealed_175
+priority: 3
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: nazi_urgency += 1
+face-image: img/portraits/rohm.jpg
+
+= <span style="color: #7A3C00;">**SA**</span> Leader Ernst Röhm's <span style="color: red;">Ho</span><span style="color: orange;">mo</span><span style="color: yellow;">se</span><span style="color: green;">xu</span><span style="color: blue;">al</span><span style="color: purple;">ity</span> Exposed
+
+Wilhelm Abegg from the Prussian Ministry of the Interior has approached the <span style="color: #c00000;">**SPD**</span> and informed us about three letters written by <span style="color: #7A3C00;">**SA**</span> leader Ernst Röhm to Berlin nerve specialist Karl-Günther Heimsoth during his self-imposed exile in Bolivia. These letters, confiscated by the Prussian state police, are notable not for their political content but for Röhm’s candid discussions about his <span style="color: red;">ho</span><span style="color: orange;">mo</span><span style="color: yellow;">se</span><span style="color: green;">xu</span><span style="color: blue;">al</span><span style="color: purple;">ity</span>—potentially exposing him to legal action.
+
+Röhm has never concealed his <span style="color: red;">ho</span><span style="color: orange;">mo</span><span style="color: yellow;">se</span><span style="color: green;">xu</span><span style="color: blue;">al</span><span style="color: purple;">ity</span>, and Hitler has never taken offense at it. Despite Röhm facing multiple prosecutions under Paragraph 175 in the past, none have been successful. However, this time we now have definitive proof.
+
+What shall be our next move regarding these letters?
+
+> *"We oppose the disgraceful Paragraph 175 wherever we can; therefore we must not join the choir of those among us who want to banish a man from society because he is homosexual".*
+
+ - Die Weltbühne, German weekly magazine
+
+- @expose_rohm: We will publish the letters, as the revelation of such a high-ranking <span style="color: #7A3C00;">Nazi</span> official being <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> will undoubtedly harm their appeal among core demographics.
+- @no_expose_rohm: The <span style="color: #c00000;">**SPD**</span> is nominally in favor of <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> rights, and it would be in poor taste to expose such a personal matter.
+
+@expose_rohm
+on-arrival: hindenburg_angry_bruning -= 10; old_middle_nsdap -= 2; rural_nsdap -= 2; catholics_nsdap -= 2; new_middle_spd -= 0.01; z_relation += 3; left_dissent += 5
+
+We have published the Röhm letters under the title *Der Fall Röhm* (The Röhm Affair), distributing the pamphlet across all corners of Germany. This has damaged the <span style="color: #7A3C00;">Nazi</span> Party’s appeal among its more socially reactionary supporters and has even sparked a plot among some <span style="color: #7A3C00;">Nazi</span> members to murder Röhm.
+
+The pamphlet argues that a party tolerating <span style="color: red;">ho</span><span style="color: orange;">mo</span><span style="color: yellow;">se</span><span style="color: green;">xu</span><span style="color: blue;">al</span><span style="color: purple;">ity</span> at its highest levels must seek to "poison the people and destroy its moral strength." It warns that this would lead to Germany’s decline, akin to the fall of ancient Rome, and claims that by keeping Röhm in power, the Nazis are complicit in "knowingly and intentionally furthering the seduction of German youths into becoming <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> minions."
+
+Despite this, Hitler has swiftly come to Röhm’s defense, publicly reaffirming his position as leader of the <span style="color: #7A3C00;">**SA**</span>. The electoral performance of the <span style="color: #7A3C00;">Nazis</span> remains largely unaffected, but the impression this controversy leaves on President Hindenburg may yet prove significant.
+
+Meanwhile, the pamphlet’s publisher, Helmuth Klotz, has been brutally beaten by <span style="color: #7A3C00;">Nazi</span> deputies inside the Reichstag building as an act of revenge—an event that has overshadowed the scandal itself.
+
+- @persecute_rohm: Attempt to persecute Röhm! <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> acts are prohibited by Paragraph 175, allowing us to open up legal action against him.
+
+@no_expose_rohm
+on-arrival: old_middle_nsdap -= 2; left_dissent -= 5; wholesome_point += 1; rohm_join_rb_time = time + 6
+
+It would be in poor taste for a party advocating for <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> rights to attack someone for being gay. We’ve taken the high road, but many within our party feel we’ve missed an opportunity.
+
+@persecute_rohm
+unavailable-subtitle: Despite the widespread distaste for <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span>, the judiciary is too reactionary to be able to convict a top <span style="color: #7A3C00;">Nazi</span>.
+choose-if: judicial_reform >= 3
+on-arrival: rohm_explode = 1; new_middle_nsdap -= 2; old_middle_nsdap -= 4; rural_nsdap -= 2; catholics_nsdap -= 4; left_dissent += 3; sa_strength *= 0.9; hindenburg_angry_bruning -= 10
+
+With definitive proof of Röhm violating Paragraph 175, the law criminalizing <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> acts, we have been able to initiate legal action against him once more. Röhm is unable to deny the authenticity of the letters, and many have taken that as confirmation of their legitimacy.
+
+In the end, Röhm has been convicted under Paragraph 175 and sentenced to one year in prison. This has brought the scandal back into the spotlight, severely damaging the public perception of the <span style="color: #7A3C00;">**NSDAP**</span> and <span style="color: #7A3C00;">**SA**</span>.

@@ -1,0 +1,58 @@
+title: Homosexual Rights
+new-page: true
+is-card: true
+card-image: img/hirschfeld.jpg
+frequency: 25
+max-visits: 3
+view-if: spd_in_government == 1 and (progressive_coalition >= 50) and chancellor_party == "SPD" and homosexual_rights_timer == 0 and homosexual_rights < 3 and not cvp_women_accepted
+on-arrival: homosexual_rights_timer += 11; month_actions += 1
+tags: govt_affairs, cabinet
+
+= <span style="color: red;">Ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> Rights
+
+There is a constellation of different groups that have grown up around divergences in gender and sexuality, including <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">os</span><span style="color: green;">ex</span><span style="color: blue;">ua</span><span style="color: purple;">ls</span>, <span style="color: coral;">les</span><span style="color: linen;">bi</span><span style="color: mediumvioletred;">ans</span>, <span style="color: deepskyblue;">tran</span><span style="color: linen;">sse</span><span style="color: lightpink;">xuals</span>, transvestites, inverts, etc. Our party's policy is to support their right to live freely and free from persecution; Magnus Hirschfeld, the founder of the Institut für Sexualwissenschaft, is a member of our party and a major advocate for <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> rights. 
+
+- @repeal_175: Repeal Paragraph 175.
+- @reform_183: Reform Paragraph 183.
+- @change_sex: Create a legal process for changing sex.
+- @return: Do not enact any changes for now.
+- @easy_discard
+- @cancel_advisor_action
+
+# economic growth due to gay tourism, and creating a new economic niche for the gay populace.
+
+@repeal_175
+subtitle: Paragraph 175 currently criminalizes <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> acts. We can pass a law to change that.
+unavailable-subtitle: We do not have majority support for this policy.
+view-if: repealed_175 == 0
+choose-if: progressive_coalition >= 50 
+on-arrival: repealed_175 = 1; homosexual_rights += 1; z_relation -= 5; kpd_relation += 4*(1-dissent); ddp_relation += 4*(1-dissent); coalition_dissent += 1 if (in_grand_coalition or in_weimar_coalition); catholics_spd -= 4; ddp_left += 1; ddp_cohesion -= 1; economic_growth += 0.1;
+go-to: heuchelei if rohm_explode
+
+Together with the progressives in the <span style="color: #700000;">**KPD**</span> and [? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if lvp_formed: leftist <span style="color: #FFCC00;">**LVP**</span> members?], we have effectively decriminalized <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> sex in Germany. Persecution of <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> for their private acts will stop, as long as the police are loyal to the republic.
+
+Of course, conservatives and the <span style="color: #7A3C00;">far</span> <span style="color: #3E88B3;">right</span> accuse us of "degeneracy".
+
+@heuchelei
+achievement: heuchelei
+
+@reform_183
+subtitle: Paragraph 183 criminalizes public <span style="color: red;">ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> displays and cross-dressing. We can change that.
+unavailable-subtitle: We do not have majority support for this policy.
+view-if: reformed_183 == 0
+choose-if: progressive_coalition >= 50 
+on-arrival: reformed_183 = 1; homosexual_rights += 1; z_relation -= 5; kpd_relation += 4*(1-dissent); ddp_relation += 4*(1-dissent); coalition_dissent += 1 if (in_grand_coalition or in_weimar_coalition); catholics_spd -= 4; ddp_left += 1; ddp_cohesion -= 1; economic_growth += 0.1;
+
+Voting together with the progressives in the <span style="color: #700000;">**KPD**</span> and [? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if lvp_formed: leftist <span style="color: #FFCC00;">**LVP**</span> members?], we have reformed Paragraph 183 so that it no longer criminalizes public <span style="color: red;">ho</span><span style="color: orange;">mo</span><span style="color: yellow;">se</span><span style="color: green;">xu</span><span style="color: blue;">al</span><span style="color: purple;">ity</span> and <span style="color: deepskyblue;">cross</span>-<span style="color: deeppink;">dressing</span>.
+
+
+@change_sex
+subtitle: We can create a legal process for individuals to change their sex, making their lives easier.
+unavailable-subtitle: We do not have majority support for this policy.
+view-if: trans_rights == 0
+choose-if: progressive_coalition >= 50
+on-arrival: trans_rights = 1; homosexual_rights += 1; z_relation -= 5; kpd_relation += 4*(1-dissent); ddp_relation += 4*(1-dissent); coalition_dissent += 1 if (in_grand_coalition or in_weimar_coalition); catholics_spd -= 4; ddp_left += 1; ddp_cohesion -= 1; economic_growth += 0.1;
+
+We have passed a bill to allow legal recognition of <span style="color: deepskyblue;">tran</span><span style="color: linen;">sse</span><span style="color: lightpink;">xuals</span> and transvestite individuals as the sex in which they live, and allow them to change their name, dress as they wish without police persecution, and undergo medical treatment.
+
+Of course, conservatives and the <span style="color: #7A3C00;">far</span> <span style="color: #3E88B3;">right</span> accuse us of "degeneracy".

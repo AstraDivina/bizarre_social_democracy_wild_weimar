@@ -1,0 +1,25 @@
+title: Emergency Decree to Suspend Parliament?
+subtitle: Rumors of a President authorized unconstitutional decree...
+view-if: chancellor = "Papen" and papen_time and (next_reichstag_time - 1) == rubicon_time and next_reichstag_time > 0 and reichstag_pres_rubicon
+on-arrival: reichstag_decree_rubicon = 1; papen_strength += 1; papen_goal = "Postpone elections indefinitely"
+new-page: true
+tags: event
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/reichstag.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Rumored Emergency Decree
+
+It is rumored that by the end of last month, Chancellor von Papen secured Hindenburg's approval for two emergency decrees: one to dissolve the Reichstag, and another—blatantly unconstitutional—to postpone elections beyond the 60-day limit mandated by the <span style="color: #000000;">We</span><span style="color: #DD0000;">im</span><span style="color: #FFCC00;">ar</span> Constitution. These decrees would allow Papen to govern unchallenged, free from the threat of parliamentary repeal or a vote of no confidence.
+
+Papen has quickly become Hindenburg’s favorite, and the president—unwilling to part with him—has signed off on a decree that violates the constitution he swore to uphold. Former Chancellor Brüning, upon learning of this, has threatened Hindenburg with impeachment should he proceed, persuading himself that he'd deterred Papen from presenting the decree in the next session.

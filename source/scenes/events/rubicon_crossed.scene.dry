@@ -1,0 +1,135 @@
+title: The Rubicon is Crossed
+subtitle: The fate of Germany rests in President Hindenburg.
+view-if: chancellor = "Papen" and president == "Hindenburg" and papen_time == 1
+priority: 3
+new-page: true
+tags: event
+max-visits: 1
+on-arrival: {!
+Q.rubicon = 1; 
+Q.week = 1;
+Q.resources = 2;
+const contentElement = document.getElementById('content');
+contentElement.style.backgroundColor = '#645E51';
+
+const header = document.querySelector('header');
+header.style.color = '#0077FF';
+contentElement.style.color = '#FFFFFF';
+
+const isMobile = window.innerWidth <= 768;
+const toolsElements = document.querySelectorAll('.tools');
+
+toolsElements.forEach(tool => {
+    if (isMobile) {
+        tool.style.marginLeft = '';
+        tool.style.padding = '0.6em';
+        tool.style.width = '';
+        tool.style.color = '#FFFFFF';
+        tool.style.backgroundColor = '#645E51';
+        tool.style.boxShadow = '4px 4px 16px rgba(255, 255, 255, 0.4)';
+    } else {
+        tool.style.marginLeft = '-6em';
+        tool.style.padding = '0.6em';
+        tool.style.width = '20rem';
+        tool.style.color = '#FFFFFF';
+        tool.style.backgroundColor = '#645E51';
+        tool.style.boxShadow = '4px 4px 16px rgba(255, 255, 255, 0.4)';
+    }
+});
+
+const qualitiesH1 = document.querySelector('#qualities h1');
+if (qualitiesH1) {
+    qualitiesH1.style.color = 'white';
+}
+
+const emergencyTab = document.getElementById('emergency_tab');
+emergencyTab.style.display = '';
+emergencyTab.style.width = '100%';
+
+const headerLinks = document.querySelectorAll('#header-links a');
+headerLinks.forEach(link => {
+    link.style.color = 'black';
+});
+
+const tabContainer = document.querySelector('.tab_container');
+if (tabContainer) {
+    tabContainer.style.backgroundColor = '#c3b8a0';
+}
+
+const tabButtons = document.querySelectorAll('.tab_button');
+tabButtons.forEach((button) => {
+    button.style.backgroundColor = '#c3b8a0';
+    if (button.id !== 'emergency_tab') {
+        button.style.paddingRight = '59px';
+    }
+    if (button.id == 'main_tab') {
+        button.style.marginLeft = '2px';
+    }
+    if (button.id == 'poll_tab') {
+        button.style.display = 'none';
+    }
+});
+
+const activeTabButton = document.querySelector('.tab_button.active');
+if (activeTabButton) {
+    activeTabButton.style.backgroundColor = '#f3f3f3';
+}
+
+tabButtons.forEach(button => {
+    const computedStyle = window.getComputedStyle(button);
+    const originalBackground = computedStyle.backgroundColor;
+    button.addEventListener('mouseenter', () => {
+        button.style.backgroundColor = '#a89f8b';
+    });
+    button.addEventListener('mouseleave', () => {
+        if (!button.classList.contains('active')) {
+            button.style.backgroundColor = originalBackground;
+        }
+    });
+});
+
+const rightTools = document.querySelector('.tools.right');
+if (rightTools) {
+    rightTools.style.display = 'block';
+}
+
+window.changeTab('status.emergency', 'emergency_tab')
+
+dendryUI.audioPlaylist = []
+
+!}
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/hindie.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+set-bg: img/street.jpg
+audio: music/1930_1933/Backroom_Deal.ogg
+achievement: sturm_und_drang
+go-to: rubicon_crossing
+
+= The Rubicon is Crossed
+
+With the dismissal of Brüning’s government—despite its parliamentary majority—the foundations of democracy are crumbling before our eyes.
+
+Whatever path Hindenburg takes now will be chosen not by the people, but by those who whisper in his ear.
+
+Time slows. We enter the week-by-week struggle.
+
+@rubicon_crossing
+audio: shuffle music/1930_1933/Nation_building.mp3 music/1930_1933/Ugly_American.mp3 music/1930_1933/Exhausted.ogg
+go-to: rubicon_crossing_2
+
+@rubicon_crossing_2
+on-arrival: {!
+
+dendryUI.audioQueue = []
+
+!}

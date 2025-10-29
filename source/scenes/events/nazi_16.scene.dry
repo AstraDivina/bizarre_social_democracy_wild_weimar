@@ -1,0 +1,66 @@
+title: The Decision 2010
+subtitle: The fate of Germany rests in Hindenburg.
+view-if: chancellor = "Schleicher" and schleicher_time == 7 and schleicher_explode and not schleicher_coup
+new-page: true
+tags: event
+priority: -5
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/hindie.jpg";  
+
+    cardEl.appendChild(image);
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+on-arrival: nazi_16_triggered = 1
+
+= Negotiations, Pt. 3
+
+The details of a cabinet headed by [+ nsdap_chancellor +] have begun to take final shape, and Hindenburg took a major step in that direction by summoning General Werner von Blomberg to Berlin to be available to succeed Schleicher as Defense Minister. Hindenburg believed that he had selected an apolitical, professional officer, but he had instead chosen a man highly susceptible to the allures of <span style="color: #7A3C00;">Nazism</span>.
+
+Meanwhile, [+ nsdap_chancellor +] gave in to Hindenburg's insistence that Papen become [? if prussia_leader == "Schleicher": both the Minister-President of Prussia and?] the Vice Chancellor, leading to Papen approving Wilhelm Frick's appointment to the national Interior Ministry, and Göring to the Prussian one. [+ nsdap_leader +] then introduced a new demand: the dissolution of the Reichstag so a new election could be held. And as Chancellor, he would also require the passage of an "enabling act", centralizing authority in the cabinet.
+
+Papen raised no objections to this new demand, although Hugenberg may raise his concerns in an upcoming meeting to secure his participation in the cabinet.
+
+- @nazi_2
+
+@nazi_2
+title: Hugenberg and the <span style="color: #3E88B3;">**Stahlhelm**</span> meet with Papen once again.
+on-arrival: hindenburg_hitler_r += 1
+
+The prospect of personal command over the country’s agriculture and economy is enticing to Hugenberg, who aims to eliminate all forms of <span style="color: #c00000;">socialism</span>, restructure Germany’s economy into a heavily capitalistic and laissez-faire system, and transfer power to an elite few. The offer proves too great for Hugenberg to maintain his stance. Franz Seldte of the <span style="color: #3E88B3;">**Stahlhelm**</span> is now also confirmed as the next Labor Minister.
+
+Papen has refrained from mentioning to Hugenberg [+ nsdap_leader +]’s demand for new elections, where the <span style="color: #7A3C00;">**NSDAP**</span> would have a decisive advantage over his own [? if dnvp_ideology == "Radical": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnvp_ideology == "Moderate": <span style="color: #003755;">**DNF**</span>?]. However, despite Hugenberg’s willingness to join the cabinet, <span style="color: #3E88B3;">**Stahlhelm**</span> leader Theodor Duesterberg leads a group of prominent conservatives to vehemently oppose that step, and urge that he only support another Papen cabinet instead.
+
+However, as is all too common, [+ nsdap_leader +] is underestimated once more. Hugenberg responds, "We’ll box Hitler in," and, "In two months we’ll have pushed Hitler so far into a corner that he’ll squeal." When another conservative warned that [+ nsdap_leader +] sought a dictatorship, Papen dismissively replied, "You’re mistaken. We’ve hired him!"
+
+- @schleicher_cabinet_6
+
+@nazi_3
+on-arrival: hindenburg_hitler_r += 3
+
+= Negotiations, Pt. 4
+
+Hindenburg and his son have suspected the worst of Schleicher and didn’t take the trouble to investigate the rumors. Taking advantage of this atmosphere of crisis, Papen finally secured Hindenburg’s agreement that tomorrow morning, he is to swear in a new cabinet headed by [+ nsdap_chancellor +].
+
+Hindenburg has approved the ministers proposed, but Papen, knowing that Hindenburg will never make [+ nsdap_chancellor +] the chancellor of a presidential cabinet, purposefully avoids disclosing that detail to him—though he knows Hindenburg will realize it soon enough.
+
+By leaving the Justice Ministry vacant on the list of cabinet members, Papen sought to create the impression that it was being reserved for a <span style="color: #000000;">Center Party</span> member, and that its appointment was pending final negotiations. This simple act of deception has convinced Hindenburg that he is appointing a parliamentary chancellor, with the [? if not stegerwald_path: Catholic?][? if stegerwald_path: Christian?] party’s earlier overtures lending credence to the scheme.
+
+- @root: We await tomorrow.
+
+@nazi_4
+on-arrival: hindenburg_hitler_r += 1
+
+= Negotiations, Pt. 4
+
+That evening, Papen once again asked Hindenburg to appoint [+ nsdap_chancellor +] as Chancellor—preferably before Schleicher faces an embarrassing defeat in the Reichstag. However, Hindenburg feels no urgency to remove Schleicher so soon.
+
+Hindenburg has since approved the proposed ministers, but Papen, fully aware that the President would never accept [+ nsdap_chancellor +] as the head of a presidential cabinet, deliberately withholds that detail—though he knows Hindenburg will realize it soon enough.
+
+By leaving the Justice Ministry vacant on the cabinet list, Papen creates the illusion that the post is being reserved for a <span style="color: #000000;">Center Party</span> member and that final negotiations are still ongoing. This simple act of deception convinces Hindenburg that he is appointing a parliamentary Chancellor, with the [? if not stegerwald_path: Catholic?][? if stegerwald_path: Christian?] party’s earlier overtures lending credibility to the ruse.

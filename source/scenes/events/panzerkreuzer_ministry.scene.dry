@@ -1,0 +1,29 @@
+title: Panzerkreuzer A
+subtitle: A political question
+tags: event, govt_affairs
+is-card: true
+on-arrival: panzerkreuzer_seen = 1
+view-if: panzerkreuzer_seen = 0 and year = 1928 and month >= 8 and reichswehr_minister_party = "SPD" and spd_in_government = 1
+new-page: true
+face-image: img/panzerkreuzer.jpg
+
+= Panzerkreuzer
+
+Navy leaders are asking for the construction of a new battlecruiser, as promised by the previous government. Since we control the Reichswehr ministry, it is our decision as to whether to build the battlecruiser or not.
+
+- @vote_yes: Build the battlecruiser.
+- @vote_no: Do not build the battlecruiser.
+
+@vote_yes
+on-arrival: left_dissent += 10; labor_dissent += 10; center_dissent += 5; reformist_dissent += 5; neorevisionist_dissent += 5; workers_spd -= 4 if panzerkreuzer_campaign; unemployed_spd -= 2 if panzerkreuzer_campaign; reichswehr_loyalty += 0.1; panzerkreuzer_funded = 1; dvp_left += 1; ddp_right += 1; ddp_cohesion -= 1; lvp_left += 0.5; goal_spd_cancel += 1; hindenburg_angry -= 5
+
+We have pleased the military by supporting the construction of the battlecruiser. However, our grassroots party members are shocked by our intransigence! Many party branches have begun agitating against the Reichstag delegation. 
+
+[? if panzerkreuzer_campaign: Our working-class base feels betrayed—we had promised to block the ship’s construction and fund children’s meals instead. ?]
+
+@vote_no
+on-arrival: coalition_dissent += 1; reichswehr_loyalty -= 0.05; left_dissent -= 10; labor_dissent -= 10; center_dissent -= 5; reformist_dissent -= 5; neorevisionist_dissent -= 5; nationalism -= 6; pacifism += 2; z_relation -= 5; dvp_relation -= 5; lvp_relation -= 3; kpd_relation += 5; workers_spd += 5*(1-dissent); ddp_left += 1; panzerkreuzer_failed = 1; dvp_right += 1; ddp_left += 2; ddp_cohesion += 1; lvp_right += 1; reichswehr_goal_spd += 1; hindenburg_angry += 10; coup_progress += 1
+
+Military leaders are upset at the Ministry's decision to not construct the battlecruiser, and they have taken the complaints to our coalition partners and President Hindenburg. However, there is not much they can do to force the construction, as we have control over the Reichswehr ministry.
+
+No matter what, the battlecruiser will not be built. We have fulfilled one of our campaign promises, and our supporters are pleased. Pacifism is starting to find support in the [? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if lvp_formed: <span style="color: #FFCC00;">**LVP**</span>?].

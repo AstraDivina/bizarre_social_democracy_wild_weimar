@@ -1,0 +1,71 @@
+title: Brüning's Race against Time
+subtitle: Hindenburg's inner circle is conspiring against him...
+view-if: chancellor = "Brüning" and (year = 1932 and month >= 5) and president = "Hindenburg" and spd_in_government = 0 and (hindenburg_angry_bruning >= 200 or (hindenburg_angry_bruning >= 175 and hindenburg_sacked)) and not presidential_powers and not cvp_formed and not reparations_resolved
+on-arrival: bruning_joever = 1
+new-page: true
+tags: event
+max-visits: 1
+priority: -1
+face-image: img/portraits/BrüningHeinrich.jpg
+
+= Brüning's Race against Time
+
+Brüning's days are numbered. The only reason President Hindenburg is keeping him around is solely by the fact of his foreign policy expertise, and his claim that he's only 'one hundred meters from the finish line' from achieving a huge breakthrough in terms of securing an abolishment of reparations at Lausanne and Germany's rearmament at Geneva, an issue close to Hindenburg's heart. The only hope for Brüning's political salvation rests in those conferences. [? if not hindenburg_sacked: There is also no precedent of the President sacking a government that still enjoys a parliamentary majority. ?]
+
+However, General Kurt von Schleicher sees Brüning as the biggest obstacle in his '<span class="tooltip-text" title="Coined by conservative elites like Schleicher and Papen, this strategy aims to control the dynamic Nazi movement and integrate it into the state by introducing the party to government. In their eyes, this would moderate the Nazis, transforming them into a constructive component of the state.">taming strategy</span>', as Brüning has refused to take serious efforts toward bringing the <span style="color: #7A3C00;">national</span> <span style="color: #3E88B3;">opposition</span> into government. The sense of urgency Schleicher has invoked onto the issue, along with his convincing of Hindenburg's State Secretary Otto Meissner and his son Oskar, has brought Hindenburg to make an early and rash decision on the matter.
+
+- @schleicher_time
+
+@schleicher_time
+title: Chancellor Brüning is sacked!
+subtitle: President Hindenburg dismisses the government.
+go-to: successor_menu
+
+Former Chancellor Brüning has been dismissed—despite commanding a parliamentary majority. It appears Schleicher has struck an unwritten deal with the <span style="color: #7A3C00;">**NSDAP**</span>, promising “fruitful cooperation” with a new right-wing cabinet that[? if sa_nationwide_ban:&nbsp;lifted the ban on the <span style="color: #7A3C00;">**SA**</span> and?] called for new Reichstag elections.
+
+It’s a shame that Schleicher would fall for [+ nsdap_leader +]’s lies. But the real question now is: who will succeed Brüning?
+
+@successor_menu
+
+- @goerdeler
+- @westarp
+- @papen
+
+@goerdeler
+title: Carl Friedrich Goerdeler?
+subtitle: The Reich Price Commissioner and the Mayor of Leipzig. [? if dnvp_ideology == "Radical": Former?] <span style="color: #3E88B3;">**DNVP**</span> member.
+max-visits: 1
+on-arrival: goerdeler_seen = 1
+face-image: img/portraits/goerdeler.jpg
+go-to: successor_menu
+
+To most political observers, Carl Goerdeler, Mayor of Leipzig and the Reich Prize Commissioner, and being a fiscal conservative arguing for a wide reaching reforms of the German welfare state and finances, was the expected successor to Brüning, with his name even being floated around as the Minister-President of Prussia of a <span style="color: #000000;">Center</span>-<span style="color: #7A3C00;">**NSDAP**</span> coalition.
+
+However, his demands for authorization of sweeping fiscal reforms is too similar to that of Brüning in Schleicher's eyes, who supports a public works solution to Germany's economic woes. Goerdeler will not be the new chancellor.
+
+@westarp
+title: Kuno von Westarp?
+subtitle: Hindenburg's preferred choice, and [? if dnvp_leader != "Westarp":former?] <span style="color: #3E88B3;">**DNVP**</span> party leader.
+max-visits: 1
+on-arrival: westarp_seen = 1
+face-image: img/portraits/Kuno_von_Westarp.jpg
+go-to: successor_menu
+
+Hindenburg's personal preference is the [? if dnvp_leader != "Westarp":former?] <span style="color: #3E88B3;">**DNVP**</span> leader that played a critical role in securing Hindenburg's reelection. The two has maintained contact over the past years, and share a hatred of Hugenberg. Despite this, in a meeting with Hindenburg, Westarp has declined the chancellorship and argued against dismissing Brüning, and against new elections that would destroy the German middle parties.
+
+Even when Hindenburg was reduced to tears, a strategy that had worked on Brüning before, Westarp remains firm in his refusal. Westarp will not be the new chancellor.
+
+@papen
+title: Franz von Papen?
+subtitle: An relatively unknown Catholic Conservative from the <span style="color: #000000;">Center Party</span>. Schleicher's preferred candidate.
+on-arrival: spd_toleration = 0; spd_toleration_right = 0; chancellor = "Papen"; chancellor_party = "I"; schleicher_papen_r -= 1
+view-if: westarp_seen and goerdeler_seen
+face-image: img/portraits/PapenFranz.jpg
+
+With Goerdeler and Westarp out of the equation, Hindenburg has grasped the straw Schleicher offered and appointed a far-right Catholic Conservative, Franz von Papen, from the <span style="color: #000000;">Center Party</span>, as chancellor. Papen is relatively unknown, only whose political experience is limited to two terms in the Prussian Landtag. The two have been friends since their days in the Prussian military academy.
+
+Papen's decision to take the chancellorship, despite [+ z_leader +]'s urging and Papen's promise not to, Hindenburg has used the same tactic on him as he used on Brüning, convincing him to accept the position. Due to Papen breaking his promise to [+ z_leader +] just after he made it, expulsion proceedings and against him are interrupted by his resignation from the <span style="color: #000000;">Center Party</span>, forever ruining his relations with the party necessary for a parliamentary majority as they strongly denounce him as the "Ephialtes of the <span style="color: #000000;">Center Party</span>".
+
+It's unknown of the exact reasons why Schleicher would choose a man like Papen as Brüning's successor, but we can assume he was trying to secure the support of the <span style="color: #000000;">Center Party</span> and <span style="color: #7A3C00;">Nazis</span>, as he's a far-right member of the former, and that Papen would be an easy person to control.
+
+Time will tell if the <span style="color: #7A3C00;">**NSDAP**</span> will honor its promises to Schleicher, which they'd purposefully refused to write on paper.

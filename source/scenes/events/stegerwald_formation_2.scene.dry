@@ -1,0 +1,48 @@
+title: [+ year +] [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] Conference 
+subtitle: Stegerwald faces internal opposition.
+view-if: (year == 1929 and month >= 12) or (stegerwald_transformation_timer == 1) and z_leader == "Stegerwald"
+new-page: true
+on-arrival: pro_republic += 5; old_middle_z += 5; rural_z += 10; catholics -= 3; liberal_cooperation += 3
+max-visits: 1
+tags: event
+face-image: img/zentrum_3.jpg
+
+= [+ year +] [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] Conference
+
+The transformation of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] into an interconfessional party is now set in stone, but Stegerwald has made himself some enemies in doing so. Conservative Catholics have jumped ship [? if dnvp_ideology == "Moderate": to the <span style="color: #3E88B3;">**DNVP**</span>.?][? if dnvp_ideology == "Radical": to the various right-wing parties that claim to have Catholic interests at heart.?] The left of the [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] under Joseph Wirth has become a thorn in Stegerwald's side due to his antipathy towards the <span style="color: #c00000;">**SPD**</span>.
+
+The reformation of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] away from its confessional roots has injected a dose of <span class="tooltip-text" title="good mod">dynamism</span> into the party, making it more willing to change and evolve with current conditions. Jakob Kaiser is a rising star on the left, <span style="color: #FF7F00;">Christian Left</span> wing of the party, supporting Stegerwald's vision for a united Christian union but disagreeing with his right-wing policies. 
+
+- @stegerwald: The [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] elects Adam Stegerwald as the party chair.
+- @kaiser: Influence the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] to select Jakob Kaiser as the party chair.
+- @kaiser_campaign: We will hold a campaign in support of Jakob Kaiser as party chair.
+
+@stegerwald
+on-arrival: z_relation -= 6; z_ideology = "Right"; stegerwald_skibidi_time = time + 11
+face-image: img/portraits/stegerwald.jpg
+
+Stegerwald will continue to evolve the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] into a <span style="color: #000000;">Christian</span>, <span style="color: #586593;">democratic</span>, <span style="color: #000000;">German</span>, and <span style="color: #c00000;">social</span> party. Hopefully, Joseph Wirth and the left wing of the party will be able to keep him in check. [? if dnvp_ideology == "Radical": However, the party will continue shifting to the right as it takes the <span style="color: #3E88B3;">**DNVP**</span>'s place on the German right. ?]
+
+[? if dnvp_ideology == "Moderate": Talks of a merger with the <span style='color: #3E88B3;'>**DNVP**</span> are becoming increasingly common—though support is limited to their <span style='color: #0087DC;'>People's Conservatives</span> and <span style='color: #6D5298;'>Christian Socials</span>. A merger remains impossible without one of those factions having strong, centralized leadership within their party. At the same time, we must prevent any government cooperation between them and the <span style='color: #000000;'>Center</span>—lest we allow conditions for such a union to emerge. ?][? if dnvp_ideology == "Radical": A merger with the <span style="color: #3E88B3;">**DNVP**</span> is out of the question—at least with Hugenberg commanding the party. Still, there remains fertile ground on the anti-Hugenberg right. ?]
+
+@kaiser
+choose-if: z_relation >= 70 and pro_republic >= 75
+unavailable-subtitle: [? if z_relation < 70 : Our relations are not high enough. ?] [? if pro_republic < 75 : The party isn't left-wing enough for someone like him. ?]
+on-arrival: z_relation += 10; z_ideology = "Left"; z_leader = "Kaiser"; liberal_cooperation += 2; workers_z += 5; workers_spd -= 5; unemployed_z += 5; rural_z -= 4; old_middle_z -= 8; rural_dnvp += 4 if dnvp_ideology == "Moderate"; old_middle_dnvp += 8 if dnvp_ideology == "Moderate"; catholics_dnvp += 4 if dnvp_ideology == "Moderate"; rural_kvp += 4 if kvp_formed; old_middle_kvp += 8 if kvp_formed; catholics_kvp += 4 if kvp_formed; rural_other += 4 if not kvp_formed and dnvp_ideology == "Radical"; old_middle_other += 8 if not kvp_formed and dnvp_ideology == "Radical"; catholics_other += 4 if not kvp_formed and dnvp_ideology == "Radical"; prussia_leader = "Stegerwald" if prussia_leader == "Brüning"; kaiser_time = time + 11
+face-image: img/portraits/kaiser.jpg
+
+With our grassroots connections, we are able to secure the election of Jakob Kaiser to the chairmanship of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?]. This has come as a complete shock to the political landscape, which has been shifting to the right recently. His progressive, left-wing views on contentious subjects like nationalizations and his vehement anti-<span style="color: #7A3C00;">Nazism</span> are ahead of his time. 
+
+Despite this victory, he finds himself at odds with the rest of his party, as his views are out of place. [? if dnvp_ideology == "Radical": Furthermore, this has stopped the flow of <span style="color: #3E88B3;">**DNVP**</span> moderates to the party, whose voters will head back to the [? if not kvp_formed: various smaller parties between the two parties?][? if kvp_formed: the <span style="color: #0087DC;">**KVP**</span>?]. ?][? if dnvp_ideology == "Moderate": Furthermore, this has stopped the process of the [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] taking over the <span style="color: #3E88B3;">**DNVP**</span> of being the party of the right. ?] Due to the party's <span class="tooltip-text" title="good mod">dynamism</span>, he may be deposed if he proves to be too divisive.
+
+@kaiser_campaign
+view-if: z_relation < 70
+choose-if: z_relation >= 65 and pro_republic >= 75 and resources >= 2 
+subtitle: -2 resources.
+unavailable-subtitle: [? if z_relation < 65 : Our relations are not high enough. ?] [? if pro_republic < 75 : The party isn't left-wing enough for someone like him. ?] [? if resources < 2 : We do not have enough resources. ?]
+on-arrival: resources -= 2; z_relation += 10; z_ideology = "Left"; z_leader = "Kaiser"; liberal_cooperation += 2; workers_z += 5; workers_spd -= 5; unemployed_z += 5; rural_z -= 4; old_middle_z -= 8; rural_dnvp += 4 if dnvp_ideology == "Moderate"; old_middle_dnvp += 8 if dnvp_ideology == "Moderate"; catholics_dnvp += 4 if dnvp_ideology == "Moderate"; rural_dnvp += 4 if kvp_formed; old_middle_dnvp += 8 if kvp_formed; catholics_dnvp += 4 if kvp_formed; rural_other += 4 if not kvp_formed and dnvp_ideology == "Radical"; old_middle_other += 8 if not kvp_formed and dnvp_ideology == "Radical"; catholics_other += 4 if not kvp_formed and dnvp_ideology == "Radical"; prussia_leader = "Stegerwald" if prussia_leader == "Brüning"; kaiser_time = time + 11
+face-image: img/portraits/kaiser.jpg
+
+With our grassroots connections, as well as a professional campaign, we are able to secure the election of Jakob Kaiser to the chairmanship of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?]. This has come as a complete shock to the political landscape, which has been shifting to the right recently. His progressive, left-wing views on contentious subjects like nationalizations and his vehement anti-<span style="color: #7A3C00;">Nazism</span> are ahead of his time. 
+
+Despite this victory, he finds himself at odds with the rest of his party, as his views are out of place. [? if dnvp_ideology == "Radical": Furthermore, this has stopped the flow of <span style="color: #3E88B3;">**DNVP**</span> moderates to the party, whose voters will head back to the various smaller parties between the two parties. ?][? if dnvp_ideology == "Moderate": Furthermore, this has stopped the process of the [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] taking over the <span style="color: #3E88B3;">**DNVP**</span> of being the party of the right. ?] Due to the party's <span class="tooltip-text" title="good mod">dynamism</span>, he may be deposed if he proves to be too divisive.

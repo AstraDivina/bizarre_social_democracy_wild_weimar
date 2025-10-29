@@ -1,0 +1,57 @@
+title: End of the [+ chancellor +] government
+subtitle: Chancellor [+ chancellor +] proposes a controversial tax bill.
+new-page: true
+view-if: bruning_event_timer = 2 and (kvp_formed or dnvp_split_2) and not bourgeois_coalition >= 50 and not cvp_formed
+tags: event
+max-visits: 1
+
+= Tax reform
+
+Due to the crisis of the Great Depression, government budgets have fallen and welfare spending has risen substantially. Chancellor [+ chancellor +] has proposed another reform of German finances featuring unpopular tax increases and welfare cuts.
+
+Chancellor [+ chancellor +] has used Article 48 of the constitution for the first time in order to pass the bill. In response, a motion has been put forward to rescind the government's emergency powers, and if it succeeds, [+ chancellor +] is prepared to dissolve the Reichstag and call for new elections.
+
+- @vote_no
+- @vote_yes
+
+@vote_no
+title: Vote for this motion, ending the coalition.
+on-arrival: time_to_election = 2; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0; spd_toleration_right = 0; pro_republic -= 3; bruning_vonc_2_kvp = 1; bruning_event_timer = 0
+call: set_next_election_time_2
+go-to: recalculate
+
+We have voted against the [+ chancellor +] government in a vote of no confidence. 
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+
+@vote_yes
+title: Vote against the motion and to start a toleration agreement.
+subtitle: Our parliamentary delegation may refuse to obey our orders.
+on-arrival: time_to_election = 2; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0; spd_toleration_right = 0; pro_republic -= 3; bruning_event_timer = 0; center_dissent += 20; labor_dissent += 20; left_dissent += 20
+call: set_next_election_time_2
+go-to: recalculate
+
+We have once again voted in favor of the [+ chancellor +] government in a vote of no confidence. However, our parliamentary delegation is in open revolt over this decision and has announced they will disobey our orders, ultimately bringing down the [+ chancellor +] government regardless.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+
+@recalculate
+on-arrival: {!
+if (Q.year >= 1930 && Q.year < 1932 && !Q.spd_in_government && Q.chancellor == "Brüning" && Q.bourgeois_negotiations == 0 && Q.dvp_exist) {
+    Q.bourgeois_negotiations = 1;
+    Q.bourgeois_negotiations_1 = 1;
+    Q.bourgeois_negotiations_1930_timer = 6;
+}
+
+if (Q.bourgeois_negotiations_1930_timer > 0 && Q.bourgeois_negotiations <= 1 && Q.next_election_time - Q.time < 4 && Q.dvp_exist) {
+    Q.bourgeois_negotiations = 2;
+    Q.bourgeois_negotiations_1_election = 1;
+    Q.bourgeois_negotiations_elections_1930_timer = 2;
+}
+
+if (Q.bourgeois_negotiations_elections_1930_timer > 0 && Q.bourgeois_negotiations_1930_timer > 0 && Q.dvp_exist) {
+    Q.bourgeois_negotiations_election_soon = 1;
+}
+!}

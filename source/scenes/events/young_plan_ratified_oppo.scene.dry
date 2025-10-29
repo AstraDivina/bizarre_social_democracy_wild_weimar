@@ -1,0 +1,16 @@
+title: Young Plan Ratified
+new-page: true
+tags: event
+view-if: year = 1930 and month >= 3 and not spd_in_government and not young_plan_ratified
+on-arrival: dvp_right += 3; ddp_right += 1; dvp_relation -= 5; lvp_right += 3; lvp_relation -= 5; young_plan_ratified = 1
+max-visits: 1
+
+= Young Plan Ratified
+
+The Young Plan is finally ratified, and with that, the main reason President Hindenburg and the [? if not lvp_formed: <span style="color: #C0A054;">**DVP**</span>?][? if lvp_formed: bourgeois right?] has even considered governing with us. Chancellor [+ chancellor +] is likely to enact a sweeping reform of German finances in order to make the payments, likely including cuts to social spending.
+
+- @joever: If this year couldn't get any worse...
+
+@joever
+
+This is outside of our control.

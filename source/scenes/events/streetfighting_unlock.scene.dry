@@ -1,0 +1,13 @@
+title: Streetfighting
+new-page: true
+view-if: year >= 1930
+max-visits: 1
+tags: event
+
+= Streetfighting
+
+Battles rage on the streets between the <span style="color: #7A3C00;">Nazi</span> <span style="color: #7A3C00;">**SA**</span>, nationalist <span style="color: #3E88B3;">**Stahlhelm**</span>, communist <span style="color: #8B0000;">Rotfrontkämpferbund</span> (<span style="color: #8B0000;">**RFB**</span>), and our own Reichsbanner.
+
+The economic crisis has radicalized many into joining the paramilitaries of the extremist parties. The Distribution of Power mechanic has been unlocked. Defense tab on the sidebar.
+
+- @root: Ok.

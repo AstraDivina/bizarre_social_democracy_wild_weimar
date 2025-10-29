@@ -1,0 +1,17 @@
+title: Young Plan Ratified
+new-page: true
+subtitle: They don't need us anymore.
+tags: event
+view-if: year = 1930 and month >= 3 and spd_in_government and not young_plan_ratified
+on-arrival: dvp_right += 3; ddp_right += 1; dvp_relation -= 5; lvp_right += 3; lvp_relation -= 5; hindenburg_angry += 10; young_plan_ratified = 1
+max-visits: 1
+
+= Young Plan Ratified
+
+The Young Plan is finally ratified, and with that, the main reason President Hindenburg and the [? if not lvp_formed and in_grand_coalition: <span style="color: #C0A054;">**DVP**</span>?][? if lvp_formed or not in_grand_coalition: bourgeois right?] has been keeping us around is gone. Hindenburg has notified Chancellor [+ chancellor +] that he expects a sweeping reform of German finances soon, a challenging task in a government like this.
+
+- @joever: If this year couldn't get any worse...
+
+@joever
+
+[? if in_grand_coalition or (in_weimar_coalition and lvp_formed): The [? if not lvp_formed: <span style="color: #C0A054;">**DVP**</span>?][? if lvp_formed: <span style="color: #FFCC00;">**LVP**</span>?] may bring up the unemployment insurance issue again.?][? if in_popular_front or in_left_front or (in_weimar_coalition and not lvp_formed): Hindenburg's inner circle is determined to have him expel us from government[? if in_popular_front or in_left_front:, especially with our cooperation with the <span style="color: #700000;">**Communists**</span>?]. ?]

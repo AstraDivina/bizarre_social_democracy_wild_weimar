@@ -1,0 +1,23 @@
+title: Strasser and Hindenburg
+subtitle: A rumored meeting between the two men?
+view-if: chancellor = "Schleicher" and schleicher_time == 4
+on-arrival: nazi_explode += 1; schleicher_goal = "Pray that Strasser does something";
+new-page: true
+tags: event
+priority: -2
+max-visits: 1
+face-image: img/strasser.jpg
+
+= Strasser and Hindenburg
+
+With Strasser’s return from vacation, many of his loyalists—and [+ nsdap_leader +] himself—interpret his prolonged silence as quiet scheming. Frustration is beginning to boil over among his supporters, who have grown impatient with his inaction and are now publicly criticizing the party's all-or-nothing strategy.
+
+[+ nsdap_leader +]'s suspicions are confirmed when Schleicher purposefully leaks news of a private meeting between Strasser and President Hindenburg. The President is said to have expressed relief at finding “nothing radical” about Strasser and signaled willingness to appoint him as vice chancellor. Schleicher, however, prefers to keep him outside the cabinet—believing that such an appointment would trigger an irreparable rift between Strasser and the party over his betrayal.
+
+Still, most of Strasser’s followers aren’t seeking a break. They hope for reconciliation, blaming Goebbels and Göring—his chief rivals—for leading Hitler down a ruinous path. Schleicher appears to share that hope, intending to use Strasser as a lever to shift [+ nsdap_leader +] once the two reconciled.
+
+> *"Strasser is plotting. He was with Hindenburg... That’s what I call a traitor. I always saw through him."*
+
+ - Joseph Goebbels, to his diary, [+ year +]
+
+ 

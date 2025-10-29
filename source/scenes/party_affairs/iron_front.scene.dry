@@ -1,0 +1,68 @@
+title: The Iron Front
+new-page: true
+is-card: true
+view-if: iron_front_formed == 1 and iron_front_timer = 0
+on-arrival: iron_front_timer = 7; month_actions += 1; month_actions -= 1 if harzburg_front_time = time; rb_militarization_cost = 2 if rb_militancy > 0.1 else rb_militarization_cost = 1; rb_militarization_cost = 3 if rb_militancy > 0.25
+card-image: img/iron_front.png
+frequency: 200
+tags: party_affairs, antifascism
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/tnoreference.png";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span>
+
+The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> is our new anti-<span style="color: #7A3C00;">fascists</span> coordination front, consisting of the <span style="color: #c00000;">**SPD**</span>, the trade unions, and the Reichsbanner. How should we use the <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span>?
+
+[? if workers_spd < 45 or workers_spd < workers_nsdap or workers_spd < workers_kpd : Unfortunately, the <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span>'s effectiveness is dragged down by the <span style="color: #c00000;">**SPD**</span>'s unpopularity, as the <span style="color: #c00000;">**SPD**</span> is no longer the dominant party among the workers. Many Reichsbanner members have left, and many workers are not interested. ?]
+
+- @defense: Rally for defense against the <span style="color: #7A3C00;">fascists</span> with the Reichsbanner.
+- @pacifism: Rally for pacifism, against nationalism and war.
+- @republic: Rally to save the democratic republic against <span style="color: #7A3C00;">dictatorship</span>.
+- @wtb: Rally for economic change and the WTB-Plan.
+- @antisemitism
+- @easy_discard
+
+@defense
+subtitle: -[+ rb_militarization_cost +] resources
+choose-if: resources >= rb_militarization_cost
+view-if: not rb_explode
+on-arrival: resources -= rb_militarization_cost; rb_strength += 50; rb_militancy += 0.05; z_relation -= 3 if strife < 5; ddp_relation -= 3 if strife < 5; lvp_relation -= 3 if strife < 5
+
+The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> rallies for the militant defense of the republic against the <span style="color: #7A3C00;">fascists</span> paramilitaries, strengthening the Reichsbanner.
+
+[? if not cvp_leave_reichsbanner and not rb_exit: [? if strife < 5: The [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] decries the militarization of the Reichsbanner, and its members are leaving the <span style="color: #000000;">rep</span><span style="color: #DD0000;">ubl</span><span style="color: #FFCC00;">ican</span> organization. ?][? if strife >= 5: Seeing the strife that has filled Germany's streets, the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] and [? if not lvp_formed:<span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if lvp_formed:<span style="color: #FFCC00;">**LVP**</span>?] seem to be convinced that it is necessary for the Reichsbanner to be militarized, and mute their criticisms. ?] ?]
+
+@pacifism
+on-arrival: pacifism += 1; nationalism -= 5 if pacifism >= 3; workers_spd += 5*(1-dissent) if pacifism >= 4; unemployed_spd += 4*(1-dissent) if pacifism >= 4; new_middle_spd += 4*(1-dissent) if pacifism >= 4
+
+The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> rallies against nationalism and war.
+
+@republic
+on-arrival: pro_republic += 3*(1-dissent); democratization += 1; workers_spd += 3*(1-dissent) if democratization >= 4; unemployed_spd += 2*(1-dissent) if democratization >= 4; new_middle_spd += 3*(1-dissent) if democratization >= 4; ddp_left += 0.5 if democratization >= 4; lvp_left += 0.5 if democratization >= 4
+
+The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> rallies in defense of the democratic republic and against <span style="color: #7A3C00;">dictatorship</span>.
+
+@wtb
+view-if: wtb_adopted == 1
+choose-if: return_to_normalcy = 0 and (wtb_implemented >= wtb_rally or (not spd_in_government and not spd_toleration))
+unavailable-subtitle: [? if return_to_normalcy == 1: The economic crisis is largely over now, and the public is no longer interested in hearing about it. ?] [? if wtb_rally > wtb_implemented: Rhetoric alone has its limits; further implementation of the WTB plan is necessary to continue an effective campaign. ?]
+on-arrival: workers_spd += 4*(1-dissent); unemployed_spd += 4*(1-dissent); new_middle_spd += 2*(1-dissent); old_middle_spd += 1*(1-dissent); rural_spd += 1*(1-dissent); workers_spd += 4*(1-dissent) if wtb_implemented; unemployed_spd += 4*(1-dissent) if wtb_implemented; rural_spd += 2*(1-dissent) if wtb_implemented; new_middle_spd += 3*(1-dissent) if wtb_implemented; old_middle_spd += 2*(1-dissent) if wtb_implemented; wtb_rally += 1
+
+The WTB-Plan is the rallying point for the entire <span style="color: #c00000;">**SPD**</span> and its affiliated organizations, including the <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span>. [? if not wtb_implemented: However, many still believe that the plan is merely an empty slogan and will remain skeptical until we actually implement it. ?]
+
+@antisemitism
+title: Rally against antisemitism and in defense of <span style="color: #005EB8;">Jewish</span> Germans.
+view-if: confronting_antisemitism > 1
+on-arrival: nationalism -= 4*(1-dissent); pro_republic += 1.5*(1-dissent); confronting_antisemitism += 1; workers_nsdap -= 4*(1-dissent); unemployed_nsdap -= 4*(1-dissent); ddp_left += 0.5; lvp_left += 1
+
+The <span style="color: #7A3C00;">Nazis</span> and other <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> political movements are increasingly turning their hatred against the <span style="color: #005EB8;">Jewish</span> community of Germany. The <span style="color: #c00000;">**Iron**</span> <span style="color: #1A1A1A;">**Front**</span> rallies in defense of individual <span style="color: #005EB8;">Jews</span> and the broader community against violence.

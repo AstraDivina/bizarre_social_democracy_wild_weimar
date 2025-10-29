@@ -1,0 +1,35 @@
+title: Papen Proposes his Plan to Hindenburg
+subtitle: The old man will never appoint [+ nsdap_chancellor +]! This will go nowhere.
+view-if: chancellor = "Schleicher" and schleicher_time == 7 and schleicher_explode
+new-page: true
+tags: event
+priority: 3
+max-visits: 1
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/papen_hindenburg.jpg";  
+
+    cardEl.appendChild(image);
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Papen and Hindenburg
+
+At the meeting between [+ nsdap_leader +], Göring, Papen, Meissner, and Hindenburg’s son, everyone—except Oskar—backs the appointment of [+ nsdap_chancellor +] as Chancellor. Meissner’s shift is especially significant; once wary, he now lends weight to the schemers’ influence. The President, who once vowed never to appoint [+ nsdap_chancellor +], begins to waver.
+
+The next morning, Papen presents his plan to Hindenburg. His call for Schleicher’s dismissal meets no resistance. But when he names [+ nsdap_chancellor +] as the preferred successor—rather than himself, as Hindenburg would prefer—the old man recoils. He remains scornful and deeply distrustful of [+ nsdap_chancellor +], deeming him fit, at best, to oversee the postal ministry.
+
+- @nazi_2
+
+@nazi_2
+title: Meissner and Oskar are called in.
+on-arrival: hindenburg_hitler_r += 1
+
+The President summons his chief of staff Meissner and his son Oskar to join the discussion. Meissner backs Papen’s proposal that [+ nsdap_chancellor +] be appointed Chancellor, with Papen serving as Vice Chancellor. He argues that this arrangement is the only viable path out of the political deadlock—and the best way to tame the <span style="color: #7A3C00;">Nazis</span>, pointing to the considerable number of cabinet posts [+ nsdap_leader +] has agreed to hand over to conservatives.
+
+By the meeting’s end, however, both Hindenburg and his son remain unconvinced. They continue to press for Papen’s own return to the chancellorship instead.

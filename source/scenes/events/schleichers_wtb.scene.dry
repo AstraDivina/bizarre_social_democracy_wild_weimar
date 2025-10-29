@@ -1,0 +1,44 @@
+title: Schleicher's Proposal
+subtitle: General Kurt von Schleicher contacts our party...
+view-if: year >= 1930 and president = "Hindenburg" and spd_in_government and not in_left_front and not in_popular_front and not presidential_powers and wtb_adopted and not unions_independent and reformist_strength + labor_strength >= left_strength + center_strength and reichswehr_loyalty >= 0.2 and (not panzerkreuzer_no or panzerkreuser_seen) and not rearmament_exposed and reparations_negotiation >= 3 and not weltbuhne_dropped and kpd_relation < 35 and reichswehr_minister_party != "SPD" and pacifism < 5 and nationalization_progress < 5 and not works_program
+on-arrival: schleicher_wtb_proposal_seen = 1
+new-page: true
+max-visits: 1
+#tags: event
+face-image: img/portraits/SchleicherKurt.jpg
+
+= Schleicher's Proposal
+
+General Kurt von Schleicher, head of the Reichswehr's Office of Ministerial Affairs and a major member of President Hindenburg's inner circle, has requested a meeting with the <span style="color: #c00000;">**SPD**</span>'s leadership. The <span style="color: #c00000;">Red</span> General, as he is called, has established contact with our trade unions, supporting our public works projects over austerity and deflationary policies.
+
+He claims that he can put in a good word for us and our WTB Plan to President Hindenburg—perhaps even securing its passage through emergency powers. However, Schleicher is a known schemer and a staunch anti-leftist. Should we trust what he has to say?
+
+- @schleicher_yay
+- @schleicher_nay
+
+@schleicher_yay
+title: Desperate times calls for desperate measures.
+subtitle: We'll hear him out and see what he has to offer.
+
+We have agreed to meet with Schleicher, who, alongside our affiliated trade unions, supports the WTB Plan. However, he has one key demand: a revitalization of the military industry and an increase in army funding.
+
+This would require shifting public work funds away from infrastructure and civic development toward military production and Germany’s rearmament. He also stipulates that the <span style="color: #c00000;">**SPD**</span> must support Hindenburg's reelection campaign. In his view, revitalizing both the economy and the Reichswehr is essential for Germany’s return to great power status. Schleicher claims that our progress in negotiating a pause in reparations—along with our willingness to turn a blind eye to militarism—has earned his trust. 
+
+Now, the decision is ours. Do we accept his offer?
+
+- @schleicher_yay_2
+- @schleicher_nay
+
+@schleicher_yay_2
+title: We are defenseless—defenseless and without honor.
+subtitle: This is the point of no return.
+on-arrival: schleicher_spd = 1; hindenburg_angry = 0; hindenburg_angry_pause_time = time + 12; nationalism += 20; pacifism -= 5; democratization -= 5; pro_republic -= spd_votes / 2; left_dissent += 50; center_dissent += 30; reformist_dissent += 10; nsdap_radicalization += 5; nsdap_strasser_time = time + 6; data_miner_detected = 1; kpd_relation -= 100; communist_coalition -= 5; reichswehr_loyalty += 0.05
+
+We have been given one year to implement the WTB Plan, and Schleicher—once an active schemer calling for Hindenburg to dismiss the [+ chancellor +] government—is now working to prevent Hindenburg from dismissing us. Unfortunately, Schleicher has failed to convince Hindenburg to grant us emergency powers.
+
+The public hasn’t noticed—at least, not yet. We must immediately begin implementing the WTB Plan.
+
+@schleicher_nay
+title: Schleicher's words cannot be trusted, he'll backstab us at any moment.
+
+We have rejected Schleicher’s request for a meeting. His offer is simply too good to be true, and aligning ourselves with a militarist and reactionary like him would betray everything we stand for.

@@ -1,0 +1,45 @@
+title: Excessive Militarization of the Reichsbanner
+subtitle: Many argue that its militarization is no longer necessary now that we have established dominance over the streets.
+view-if: rb_militancy >= 0.15 and democracy_paramilitary_highest and year >= 1931 and not rb_massive
+new-page: true
+tags: event
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/reichsbanner_flag.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+
+= Excessive Militarization of the Reichsbanner
+
+The argument that the militarization of the Reichsbanner is necessary to defend against the <span style="color: #7A3C00;">far</span>-<span style="color: #3E88B3;">right</span> <span style="color: #7A3C00;">**SA**</span> and <span style="color: #3E88B3;">**Stahlhelm**</span> no longer holds, given our dominance of the streets. With the threat now eliminated, the bourgeois parties fear it may instead function as a <span style="color: #c00000;">socialist</span> militia.
+
+[? if not rb_exit: The [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] [? if not lvp_formed:and <span style="color: #D3C24D;">**[+ ddp_name +]**</span>&nbsp;?][? if not lvp_leave_reichsbanner and lvp_formed:and <span style="color: #FFCC00;">**LVP**</span>&nbsp;?]have threatened drastic consequences if the Reichsbanner isn't disarmed.?]
+[? if rb_exit and not cvp_formed: The [? if z_party_name != "CVP": <span style="color: #000000;">Center</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?][? if not lvp_formed: and <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if not lvp_leave_reichsbanner and lvp_formed: and <span style="color: #FFCC00;">**LVP**</span>?] have condemned the organization as nothing more than a <span style="color: #c00000;">socialist</span> militia and have abandoned their strong opposition to the <span style="color: #3E88B3;">**Stahlhelm**</span>.?][? if (rb_exit or cvp_leave_reichsbanner) and cvp_formed: The <span style="color: #000000;">**CVP**</span> [? if not lvp_formed: and <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if not lvp_leave_reichsbanner and lvp_formed: and <span style="color: #FFCC00;">**LVP**</span>?] have condemned the organization as nothing more than a <span style="color: #c00000;">socialist</span> militia and are getting noticeably friendly with the <span style="color: #3E88B3;">**Stahlhelm**</span>.?]
+
+If no action is taken, we risk permanently alienating the bourgeois parties.
+
+- @let_go: Refuse to take any action, keeping the Reichsbanner the way it is.
+- @lower_militancy: We must lower the Reichsbanner's militancy.
+
+@let_go
+subtitle: The Reichsbanner is still needed, as the police cannot be trusted to do their job. [? if president == "Hindenburg" and spd_in_government: Hindenburg has threatened to sack our government if no action is taken. ?][? if spd_in_government and not in_left_front and not in_spd_majority: Our coalition partners will call a vote of no confidence. ?] The bourgeois parties will be forever antagonistic.
+unavailable-subtitle: The reformist wing of the party is able to dissuade the party from endorsing this option.
+choose-if: left_strength + neorevisionist_strength >= reformist_strength
+on-arrival: rb_strength *= 0.8; z_relation -= 20; ddp_relation -= 20; lvp_relation -= 20; rb_exit = 1; left_strength += 10*(1-dissent); neorevisionist_strength += 20*(1-dissent); ddp_right += 8; lvp_right += 10; dvp_right += 10; ddp_cohesion -= 5; pro_republic -= 10; coalition_dissent += 5; rb_massive = 1; hindenburg_angry += 100
+
+We must not let our guard down; the Reichsbanner must remain militarized. Whether they like it or not, paramilitaries are here to stay.
+
+Unfortunately, the bourgeois parties[? if president == "Hindenburg":, and especially President Hindenburg?] now plainly see the Reichsbanner for what it is: our <span style="color: #c00000;">socialist</span> militia. Non-<span style="color: #c00000;">socialist</span> members of the paramilitary leave en masse, and the political establishment will be forever antagonistic to us.
+
+@lower_militancy
+subtitle: The necessity for paramilitaries is over; we can now let the Prussian police do its job.
+on-arrival: rb_militancy *= 0.5
+
+Bowing to the other parties' demands, we reduce the Reichsbanner's military training, thus inducing them to stay.

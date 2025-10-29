@@ -1,0 +1,36 @@
+title: Hitler appointed Chancellor!
+subtitle: The beginning of the end...
+view-if: year >= 1933 and president = "Hindenburg" and (chancellor = "Papen" or chancellor = "Schleicher") and schleicher_chancellor_timer == 1 and in_grand_coalition = 0 and spd_in_government = 0 and largest_party = "NSDAP" and hitler_deported = 0 and not presidential_powers and not schleichers_scheme_success
+on-departure: chancellor = "Hitler"; chancellor_party = "NSDAP"
+#tags: event
+new-page: true
+
+= Hitler Appointed Chancellor!
+
+Internal scheming by the camarilla surrounding the president has caused President Hindenburg to appoint Hitler as chancellor, replacing the unpopular [+ chancellor +]. [? if hitler_deported : Despite his earlier deportation, the <span style="color: #7A3C00;">Nazi</span> leaders and their <span style="color: #3E88B3;">reactionary</span> allies have connived for the president to give him German citizenship after all. ?] Some of the <span style="color: #808080;">reactionaries</span> surrounding Hindenburg believe that he will restore Germany to its supposed former glory, while others believe that they can control him and his movement.
+
+He has promised a campaign of revenge against the <span style="color: #c00000;">socialists</span>, and the <span style="color: #7A3C00;">Nazis</span> have already spilled blood. In his published manifesto, he promises a campaign of <span style="color: #7e0000;">**unspeakable**</span> <span style="color: #3f0000;">**horror**</span> against <span style="color: #005EB8;">Jews</span>, and endless wars of violent expansion that will ruin all of Europe.
+
+What are we to do now?
+
+- @fight: We will fight on the streets to prevent Hitler from taking power.
+- @give_up: We will vote against the <span style="color: #7A3C00;">Nazis</span> in the Reichstag.
+
+
+@fight
+
+Do we realize that this means civil war, against the full force of the state?
+
+- @civil_war: Yes.
+- @give_up: We are not ready for war. Instead, we will vote against the nazis in the Reichstag.
+
+@give_up
+on-arrival: in_right_coalition_prussia = 0; in_weimar_coalition_prussia = 0; in_grand_coalition_prussia = 0; in_minority_grand_coalition_prussia = 0; in_popular_front_prussia = 0; in_left_front_prussia = 0; in_spd_majority_prussia = 0; in_center_right_coalition_prussia = 0; in_minority_weimar_coalition_prussia = 0; spd_prussia = 0; right_prussia = 0; prussia_leader = "Papen"
+
+Speeches are made. Votes are held. Bullets fly in the streets. Some <span style="color: #c00000;">socialists</span> are killed or jailed. Others flee the country. What can votes even do at this juncture?
+
+The Reichstag is burned, ostensibly by a foreign <span style="color: #700000;">communist</span>. In the wake, the <span style="color: #7A3C00;">Nazis</span> pass decrees giving them unlimited power. They, combined with the [? if dnvp_ideology == "Radical": <span style="color: #3E88B3;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?], will win a majority at the next elections.
+
+Germany is lost.
+
+- @game_over
