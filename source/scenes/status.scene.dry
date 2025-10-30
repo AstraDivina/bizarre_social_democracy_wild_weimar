@@ -50,34 +50,276 @@ Chancellor: [? if chancellor_party == "SPD": <span style="color: #c00000;">[+ ch
 
 Prussian Minister-President: [? if prussia_leader = "Braun" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #c00000;">Braun</span> (<span style="color: #c00000;">**SPD**</span>)?][? if prussia_leader = "Rosenfeld" and not left_split and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #c00000;">Rosenfeld</span> (<span style="color: #c00000;">**SPD**</span>)?][? if prussia_leader = "Rosenfeld" and left_split and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #9B0000;">Rosenfeld</span> (<span style="color: #9B0000;">**SAPD**</span>)?][? if prussia_leader = "Stegerwald" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #000000;">Stegerwald</span> (<span style="color: #000000;">**[+ z_party_name +]**</span>)?][? if prussia_leader = "Brüning" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #000000;">Brüning</span> (<span style="color: #000000;">**[+ z_party_name +]**</span>)?][? if prussia_leader = "Luther" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)) and not lvp_formed and dvp_exist: <span style="color: #C0A054;">Luther</span> (<span style="color: #C0A054;">**DVP**</span>)?][? if prussia_leader = "Luther" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)) and not lvp_formed and not dvp_exist: <span style="color: #D3C24D;">Luther</span> (<span style="color: #D3C24D;">**DVP**</span>)?][? if prussia_leader = "Luther" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)) and lvp_formed: <span style="color: #FFCC00;">Luther</span> (<span style="color: #FFCC00;">**LVP**</span>)?][? if prussia_leader = "Goring": <span style="color: #7A3C00;">Göring</span> (<span style="color: #7A3C00;">**NSDAP**</span>)?][? if (prussia_leader = "Papen" or (chancellor == nsdap_chancellor and (not rubicon_mini or game_over)) and not prussia_leader == "Goring") and started: <span style="color: #808080;">Papen</span> (<span style="color: #808080;">I</span>)?][? if prussia_leader = "Schleicher" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): [? if not dnef_formed: <span style="color: #808080;">Schleicher</span>?][? if dnef_formed: <span style="color: #BFC8CC;">Schleicher</span>?] ([? if not dnef_formed: <span style="color: #808080;">I</span>?][? if dnef_formed: <span style="color: #BFC8CC;">**DNEF**</span>?])?][? if prussia_leader = "Goerdeler" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #808080;">Goerdeler</span> (<span style="color: #808080;">I</span>)?][? if prussia_leader = "Strasser" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #6A1E1E;">Strasser</span> (<span style="color: #6A1E1E;">**DSU**</span>)?][? if prussia_leader = "joavig" and (chancellor != nsdap_chancellor or (rubicon_mini and not game_over)): <span style="color: #700000;">joavig</span> (<span style="color: #7A3C00;">**NSDAP**</span>)?]
 
-Reichstag composition:
+= Reichstag
 
 # 1928: 30, 1930: 25, 1932: 22
 
-[? if dnef_formed: <span class="tooltip-text" title="German National Unity Front" style="color: #BFC8CC;">**DNEF**</span>: [+ dnef_r +]% ?]
-<span class="tooltip-text" title="Social Democratic Party of Germany" style="color: #c00000;">**SPD**</span>: [+ spd_r +]%
-[? if sapd_formed and sapd_r > 0: <span class="tooltip-text" title="Socialist Workers' Party of Germany" style="color: #9B0000;">**SAPD**</span>: [+ sapd_r +]% ?]
-# 1928: 15, 1930: 15, 1932: 
-[? if started: [? if z_party_name != "CVP": <span class="tooltip-text" title="Center Party + Bavarian People's Party"><span style="color: #000000;">**[+ z_party_name +]**</span> + <span style="color: #A2D8E0;">**BVP**</span></span>?][? if z_party_name == "CVP": <span class="tooltip-text" title="Christian People's Party + Bavarian People's Party"><span style="color: #000000;">**[+ z_party_name +]**</span> + <span style="color: #A2D8E0;">**BVP**</span></span>?]?][? if not started: <span class="tooltip-text" title="Center Party + Bavarian People's Party"><span style="color: #000000;">**Z**</span> + <span style="color: #A2D8E0;">**BVP**</span></span> ?]: [+ z_r +]%
-# 1928: 10, 1930: 13
-<span class="tooltip-text" title="Communist Party of Germany" style="color: #700000;">**KPD**</span>: [+ kpd_r +]%
-# 1928: 5, 1930: 4 (as DStP)
-[? if lvp_formed: <span class="tooltip-text" title="Liberal People's Party" style="color: #FFCC00;">**LVP**</span>: [+ lvp_r +]% ?]
-[? if (not lvp_formed or not ddp_name) : [? if not ddp_name:<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**DDP**</span>?][? if ddp_name = "DDP":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if ddp_name = "DStP":<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_r +]% ?]
-# 1928: 9, 1930: 5
-[? if not lvp_formed and dvp_exist : <span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: [+ dvp_r +]% ?]
-[? if kvp_formed and not dnvp_dvp_formed : <span class="tooltip-text" title="Conservative People's Party" style="color: #0087DC;">**KVP**</span>: [+ kvp_r +]% ?]
-[? if dnvp_dvp_formed: <span class="tooltip-text" title="Free Conserative Party" style="color: #00C0FF;">**FKP**</span>: [+ kvp_r +]% ?]
-# 1928: 14, 1930: 7
-[? if not cvp_formed and not dnvp_defunct: <span class="tooltip-text" title="German National People's Party" style="color: #3E88B3;">**DNVP**</span>: [+ dnvp_r +]%?]
-[? if dnf_formed: <span class="tooltip-text" title="German National Front" style="color: #003755;">**DNF**</span>: [+ dnf_r +]% ?]
-# 1928: 3, 1930: 18
-[? if dsu_exist: <span class="tooltip-text" title="German Social Union" style="color: #6A1E1E;">**DSU**</span>: [+ dsu_r +]%?]
-[? if not nsdap_split: <span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)" style="color: #7A3C00;">**NSDAP**</span>: [+ nsdap_r +]%?]
-[? if nsdap_split: <span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)" style="color: #7A3C00;">**NSDAP**</span>: [+ nsdap_hitler_r +]%?]
-[? if nvf_exist: <span class="tooltip-text" title="National People's Front" style="color: #142e20;">**NVF**</span>: [+ nvf_r +]%?]
-# 1928: 9, 1930: 10
-**Others**: [+ other_r +]%
+if (Q.kpd_r) {
+    data.push({
+        "id": "kpd",
+        "legend": "KPD",
+        "name": "KPD",
+        "seats": Math.round(Q.kpd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.sapd_r && Q.sapd_formed) {
+    data.push({
+        "id": "sapd",
+        "legend": "SAPD",
+        "name": "SAPD",
+        "seats": Math.round(Q.sapd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.spd_r && !Q.rdp_r) {
+    data.push({
+        "id": "spd",
+        "legend": "SPD",
+        "name": "SPD",
+        "seats": Math.round(Q.spd_r * Q.reichstag_size),
+    });
+} else if (Q.spd_r && Q.rdp_r) {
+    data.push({
+        "id": "spd",
+        "legend": "SPD",
+        "name": "SPD",
+        "seats": Math.round((Q.spd_r - Q.rdp_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.rdp_r) {
+    data.push({
+        "id": "rdp",
+        "legend": "RDP",
+        "name": "RDP",
+        "seats": Math.round(Q.rdp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dnvp_r && Q.dnvp_wholesome) {
+    data.push({
+        "id": "dnvp_wholesome",
+        "legend": "DNVP",
+        "name": "DNVP",
+        "seats": Math.round(Q.dnvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.ddp_r && !Q.lvp_formed) {
+    data.push({
+        "id": "ddp",
+        "legend": Q.ddp_name,
+        "name": Q.ddp_name,
+        "seats": Math.round(Q.ddp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.lvp_r && Q.lvp_formed) {
+    data.push({
+        "id": "lvp",
+        "legend": "LVP",
+        "name": "LVP",
+        "seats": Math.round(Q.lvp_r * Q.reichstag_size),
+    });
+}
+
+
+if (Q.z_minus_bvp_r) {
+    data.push({
+        "id": "z",
+        "legend": "Center",
+        "name": "Center",
+        "seats": Math.round(Q.z_minus_bvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.bvp_r) {
+    data.push({
+        "id": "bvp",
+        "legend": "BVP",
+        "name": "BVP",
+        "seats": Math.round(Q.bvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dvp_r && !Q.lvp_formed && Q.dvp_exist) {
+    data.push({
+        "id": "dvp",
+        "legend": "DVP",
+        "name": "DVP",
+        "seats": Math.round(Q.dvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.left_dnef_r && Q.left_dnef) {
+    data.push({
+        "id": "left_dnef",
+        "legend": "Left_DNEF",
+        "name": "Left_DNEF",
+        "seats": Math.round(Q.left_dnef_r * Q.reichstag_size),
+    });
+}
+
+if (Q.true_dnef_r && Q.dnef_formed && !Q.right_dnef && !Q.left_dnef) {
+    data.push({
+        "id": "dnef",
+        "legend": "DNEF",
+        "name": "DNEF",
+        "seats": Math.round(Q.true_dnef_r * Q.reichstag_size),
+    });
+}
+
+if (Q.true_dnef_r && Q.dnef_formed && Q.right_dnef && !Q.left_dnef) {
+    data.push({
+        "id": "dnef",
+        "legend": "DNEF",
+        "name": "DNEF",
+        "seats": Math.round((Q.true_dnef_r - Q.right_dnef_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.true_dnef_r && Q.dnef_formed && !Q.right_dnef && Q.left_dnef) {
+    data.push({
+        "id": "dnef",
+        "legend": "DNEF",
+        "name": "DNEF",
+        "seats": Math.round((Q.true_dnef_r - Q.left_dnef_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.right_dnef_r && Q.right_dnef) {
+    data.push({
+        "id": "right_dnef",
+        "legend": "Right_DNEF",
+        "name": "Right_DNEF",
+        "seats": Math.round(Q.right_dnef_r * Q.reichstag_size),
+    });
+}
+
+if (Q.wp_r) {
+    data.push({
+        "id": "wp",
+        "legend": "WP",
+        "name": "WP",
+        "seats": Math.round(Q.wp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.cnblp_r) {
+    data.push({
+        "id": "farm3",
+        "legend": "CNBLP",
+        "name": "CNBLP",
+        "seats": Math.round(Q.cnblp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.csvd_r && Q.csvd_formed) {
+    data.push({
+        "id": "csvd",
+        "legend": "CSVD",
+        "name": "CSVD",
+        "seats": Math.round(Q.csvd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.other_r) {
+    data.push({
+        "id": "other",
+        "legend": "Other",
+        "name": "Other",
+        "seats": Math.round(Q.true_other_r * Q.reichstag_size),
+    });
+}
+
+if (Q.true_aspd_r && (Q.aspd_other || Q.aspd_kvp)) {
+    data.push({
+        "id": "aspd",
+        "legend": "ASPD",
+        "name": "ASPD",
+        "seats": Math.round(Q.true_aspd_r * Q.reichstag_size),
+    });
+}
+
+if (Q.kvp_formed && Q.kvp_r && !Q.aspd_kvp && !Q.dnvp_dvp_formed) {
+    data.push({
+        "id": "kvp",
+        "legend": "KVP",
+        "name": "KVP",
+        "seats": Math.round(Q.kvp_r * Q.reichstag_size),
+    });
+} else if (Q.kvp_formed && Q.kvp_r && Q.aspd_kvp && !Q.dnvp_dvp_formed) {
+    data.push({
+        "id": "kvp",
+        "legend": "KVP",
+        "name": "KVP",
+        "seats": Math.round((Q.kvp_r - Q.true_aspd_r) * Q.reichstag_size),
+    });
+}
+
+if (Q.dnvp_dvp_formed) {
+    data.push({
+        "id": "fkp",
+        "legend": "FKP",
+        "name": "FKP",
+        "seats": Math.round(Q.kvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dnvp_r && !Q.dnvp_wholesome) {
+    data.push({
+        "id": "dnvp",
+        "legend": "DNVP",
+        "name": "DNVP",
+        "seats": Math.round(Q.dnvp_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dnf_formed && Q.dnf_r) {
+    data.push({
+        "id": "dnf",
+        "legend": "DNF",
+        "name": "DNF",
+        "seats": Math.round(Q.dnf_r * Q.reichstag_size),
+    });
+}
+
+if (Q.dsu_exist && Q.dsu_r) {
+    data.push({
+        "id": "dsu",
+        "legend": "DSU",
+        "name": "DSU",
+        "seats": Math.round(Q.dsu_r * Q.reichstag_size),
+    });
+}
+
+if (Q.nsdap_split && Q.nsdap_hitler_r) {
+    data.push({
+        "id": "nsdap",
+        "legend": "NSDAP",
+        "name": "NSDAP",
+        "seats": Math.round(Q.nsdap_hitler_r * Q.reichstag_size),
+    });
+}
+
+if (!Q.nsdap_split && Q.nsdap_r) {
+    data.push({
+        "id": "nsdap",
+        "legend": "NSDAP",
+        "name": "NSDAP",
+        "seats": Math.round(Q.nsdap_r * Q.reichstag_size),
+    });
+}
+
+if (Q.nvf_exist && Q.nvf_r) {
+    data.push({
+        "id": "nvf",
+        "legend": "NVF",
+        "name": "NVF",
+        "seats": Math.round(Q.nvf_r * Q.reichstag_size),
+    });
+}
 
 Next election: [+ next_election_month : month +] [+ next_election_year +]
 
@@ -153,89 +395,89 @@ Economic growth: [+ economic_growth_2 +]%
 @politics
 
 = Inter-party Relations
-// KPD
+
 <span class="tooltip-text" title="Communist Party of Germany" style="color: #700000;">**KPD**</span>: [+ kpd_relation : relationships +]
-// DDP
+
 [? if not lvp_formed or not ddp_name: [? if not ddp_name:<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**DDP**</span>?][? if ddp_name = "DDP":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if ddp_name = "DStP":<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_relation : relationships +] ?]
-// LVP
+
 [? if lvp_formed: <span class="tooltip-text" title="Liberal People's Party" style="color: #FFCC00;">**LVP**</span>: [+ lvp_relation : relationships +]?]
-// Z
+
 [? if z_party_name != "CVP": <span class="tooltip-text" title="Center Party" style="color: #000000;">**[+ z_party_name +]**</span>?][? if z_party_name == "CVP": <span class="tooltip-text" title="Christian People's Party" style="color: #000000;">**[+ z_party_name +]**</span>?]: [+ z_relation : relationships +]
-// DVP
+
 [? if not lvp_formed and dvp_exist: <span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: [+ dvp_relation : relationships +] ?]
-// KVP
+
 [? if kvp_formed and not dnvp_dvp_formed : <span class="tooltip-text" title="Conservative People's Party" style="color: #0087DC;">**KVP**</span>: [+ kvp_relation : relationships +] ?]
-// FKP
+
 [? if dnvp_dvp_formed: <span class="tooltip-text" title="Free Conserative Party" style="color: #00C0FF;">**FKP**</span>: [+ fkp_relation : relationships +]?]
-// DNEF
+
 [? if dnef_formed: <span class="tooltip-text" title="German National Unity Front" style="color: #BFC8CC;">**DNEF**</span>: [+ dnef_relation : relationships +] ?]
-// DNVP
+
 [? if not cvp_formed and not dnvp_defunct: <span class="tooltip-text" title="German National People's Party" style="color: #3E88B3;">**DNVP**</span>: [+ dnvp_relation : relationships +]?]
-// DNF
+
 [? if dnf_formed : <span class="tooltip-text" title="German National Front" style="color: #003755;">**DNF**</span>: [+ dnf_relation : relationships +] ?]
-// NSDAP
+
 <span class="tooltip-text" title="National-Socialist German Worker's Party" style="color: #7A3C00;">**NSDAP**</span>[? if nsdap_split: (and its splinters)?]: [+ nsdap_relation : relationships +]
 
 = Party Leadership
-// KPD
+
 [? if not ddp_name: UNINITIALIZED ?][? if ddp_name != 0: <span class="tooltip-text" title="Communist Party of Germany" style="color: #700000;">**KPD**</span>: [? if kpd_leader = "Conciliators": United Front Marxism-Leninism?][? if kpd_leader = "Thälmann": Third Period Marxism-Leninism?] ([+ kpd_leader +])?]
-// DDP
+
 [? if not ddp_name and not lvp_formed: UNINITIALIZED ?][? if not lvp_formed and ddp_name != 0 and not dstp_dnef: [? if ddp_name = "DDP" and ddp_ideology == "Right":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>: Classical Liberalism ([+ ddp_leader +])?][? if ddp_name = "DDP" and ddp_ideology == "Moderate":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>: Left Liberalism ([+ ddp_leader +])?][? if ddp_name = "DDP" and ddp_ideology == "Left":<span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>: Progressive Liberalism ([+ ddp_leader +])?]?][? if not lvp_formed and ddp_name = "DDP" and dstp_dnef: <span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>: Liberal Corporatism ([+ ddp_leader +])?]
-// DStP
+
 [? if ddp_name = "DStP" and not lvp_formed and (not dstp_collapsed or dstp_dnef):<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>: Liberal Corporatism ([+ ddp_leader +])?][? if ddp_name = "DStP" and not lvp_formed and dstp_collapsed and not dstp_dnef:<span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>: [? if ddp_ideology == "Right": Statist Liberalism ?][? if ddp_ideology == "Moderate": Classical Liberalism ?][? if ddp_ideology == "Left": Left Liberalism?] ([+ ddp_leader +])?]
-// LVP
+
 [? if lvp_formed and not lvp_dnef: <span class="tooltip-text" title="Liberal People's Party" style="color: #FFCC00;">**LVP**</span>: [? if lvp_ideology == "Left": Left Liberalism ([+ lvp_leader +])?][? if lvp_ideology == "Moderate": Classical Liberalism ([+ lvp_leader +])?][? if lvp_ideology == "Right": National Liberalism ([+ lvp_leader +])?]?]
-// LVP
+
 [? if lvp_formed and lvp_dnef: <span class="tooltip-text" title="Liberal People's Party" style="color: #FFCC00;">**LVP**</span>: Liberal Corporatism ([+ lvp_leader +])?]
-// Z
+
 [? if not ddp_name: UNINITIALIZED ?][? if ddp_name != 0: [? if z_party_name != "CVP": <span class="tooltip-text" title="Center Party" style="color: #000000;">**[+ z_party_name +]**</span>?][? if z_party_name == "CVP": <span class="tooltip-text" title="Christian People's Party" style="color: #000000;">**[+ z_party_name +]**</span>?]: [? if not cvp_formed: [? if z_ideology == "Right" and not cvp_kvp_formed and z_leader != "Joos" and z_leader != "Bracht": Center to Center-Right?][? if z_ideology == "Right" and cvp_kvp_formed: Christian Democracy?][? if z_leader == "Joos": Center-Left to Center-Right?][? if z_leader == "Kaiser": Center-Left to Center?][? if z_leader == "Bracht": Catholic Conservatism?]?][? if cvp_formed: [? if cvp_leader == "Lambach": Christian Corporatism?][? if cvp_leader == "Stegerwald": Paternalistic Conservatism?][? if cvp_leader == "Gereke": Agrarian Conservatism?][? if cvp_leader == "Westarp" or cvp_leader == "Goerdeler" or cvp_leader = "Lejeune-Jung" or cvp_leader == "Lettow-Vorbeck": National Conservatism?][? if cvp_leader == "Adenauer": Christian Democracy?][? if cvp_leader == "Bolz": Christian Conservatism?][? if cvp_leader == "Treviranus": Tory Democracy?]?] ([? if not cvp_formed:[+ z_leader +]?][? if cvp_formed:[+ cvp_leader +]?])?]
-// DVP
+
 [? if not ddp_name and not lvp_formed: UNINITIALIZED ?][? if not lvp_formed and dvp_exist and ddp_name != 0 and not dvp_dnef: [? if ddp_name != 0 and dvp_leader != "Thiel" and dvp_leader != "Glatzel": <span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: [? if dvp_ideology = "Left": Classical Liberalism ?][? if dvp_ideology = "Moderate": Conservative Liberalism?][? if dvp_ideology = "Right" and (dvp_right - dvp_left < 10 or dvp_leader == "Stresemann"): National Liberalism?][? if dvp_ideology = "Right" and dvp_right - dvp_left >= 10 and dvp_leader != "Stresemann": National Capitalism?] ([+ dvp_leader +])?][? if ddp_name != 0 and (dvp_leader == "Thiel" or dvp_leader == "Glatzel"): <span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: Paternalistic Liberalism ([+ dvp_leader +])?]?]
-// DVP
+
 [? if not lvp_formed and dvp_exist and ddp_name != 0 and dvp_dnef: <span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: National Liberalism ([+ dvp_leader +])?]
-// KVP
+
 [? if kvp_formed and not dnvp_dvp_formed: <span class="tooltip-text" title="Conservative People's Party" style="color: #0087DC;">**KVP**</span>: [? if not kvp_dnef: Christian Conservatism?][? if kvp_dnef: National Conservatism?] ([+ kvp_leader +])?]
-// FKP
+
 [? if dnvp_dvp_formed: <span class="tooltip-text" title="Free Conserative Party" style="color: #00C0FF;">**FKP**</span>: [+ fkp_ideology +]: ([+ fkp_leader +])?]
-// DNEF
+
 [? if dnef_formed: <span class="tooltip-text" title="German National Unity Front" style="color: #BFC8CC;">**DNEF**</span>: [? if dnef_ideology == "Left": Syncretic?][? if dnef_ideology == "Moderate": Syncretic?][? if dnef_ideology == "Right": Syncretic?] ([+ dnef_leader +])?]
-// DNVP
+
 [? if not ddp_name: UNINITIALIZED ?][? if ddp_name != 0 and not cvp_formed and not dnvp_dnef and not dnvp_defunct: <span class="tooltip-text" title="German National People's Party" style="color: #3E88B3;">**DNVP**</span>: [? if dnvp_leader = "Hugenberg" or dnvp_leader = "Triumvirate": Authoritarian Conservatism?][? if dnvp_leader = "Westarp" or dnvp_leader = "Hergt" or dnvp_leader == "Lejeune-Jung" or dnvp_leader == "Keudell": National Conservatism?][? if dnvp_leader = "Lambach": Christian Corporatism?][? if dnvp_leader = "Treviranus" and not true_christian_democracy: National Conservatism?][? if dnvp_leader = "Treviranus" and true_christian_democracy: Tory Democracy?][? if dnvp_leader = "Schiele": Agrarian Conservatism?] ([+ dnvp_leader +])?]
-// DNVP
+
 [? if ddp_name != 0 and not cvp_formed and dnvp_dnef: <span class="tooltip-text" title="German National People's Party" style="color: #3E88B3;">**DNVP**</span>: [? if dnvp_leader == "Lambach": Christian Corporatism?][? if dnvp_leader == "Treviranus": National Conservatism?] ([+ dnvp_leader +])?]
-// DNF
+
 [? if dnf_formed : <span class="tooltip-text" title="German National Front" style="color: #003755;">**DNF**</span>: Authoritarian Conservatism (Hugenberg) ?]
-// DSU
+
 [? if dsu_exist: <span class="tooltip-text" title="German Social Union" style="color: #6A1E1E;">**DSU**</span>: [? if not dsu_alt: Strasserism?][? if dsu_alt: Center Nazism?] ([+ dsu_leader +])?]
-// NSDAP
+
 [? if not ddp_name: UNINITIALIZED ?][? if ddp_name != 0: <span class="tooltip-text" title="National-Socialist German Worker's Party" style="color: #7A3C00;">**NSDAP**</span>: National Socialism ([+ nsdap_leader +])?]
-// NVF
+
 [? if nvf_exist: <span class="tooltip-text" title="National People's Front" style="color: #142e20;">**NVF**</span>: Revolutionary Volkism (Röhm)?]
 
 = Industrial Backing
-// DDP
+
 [? if not lvp_formed: [? if ddp_name == "DStP": <span class="tooltip-text" title="German State Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if ddp_name == "DDP": <span class="tooltip-text" title="German Democratic Party" style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [? if industrial_ddp_backing == 0: none?][? if industrial_ddp_backing == 1: low?][? if industrial_ddp_backing == 2: medium?]  ?]
-// LVP
+
 [? if lvp_formed: <span class="tooltip-text" title="Liberal People's Party" style="color: #FFCC00;">**LVP**</span>: [? if industrial_lvp_backing == 2: medium?][? if industrial_lvp_backing == 3: high?][? if industrial_lvp_backing == 4: highest?] ?]
-// Z
+
 [? if z_party_name == "CVP": <span class="tooltip-text" title="Christian People's Party" style="color: #000000;">**[+ z_party_name +]**</span>: [? if industrial_z_backing == 3: high?][? if industrial_z_backing == 4: highest?]  ?]
-// DVP
+
 [? if not lvp_formed and dvp_exist: <span class="tooltip-text" title="German People's Party" style="color: #C0A054;">**DVP**</span>: [? if industrial_dvp_backing == 1: low?][? if industrial_dvp_backing == 2: medium?][? if industrial_dvp_backing == 3: high?] ?]
-// DNEF
+
 [? if dnef_formed: <span class="tooltip-text" title="German National Unity Front" style="color: #BFC8CC;">**DNEF**</span>: [? if industrial_dnef_backing == 3: high?][? if industrial_dnef_backing == 4: highest?] ?]
-// DNVP
+
 [? if not cvp_formed and not dnvp_defunct: <span class="tooltip-text" title="German National People's Party" style="color: #3E88B3;">**DNVP**</span>: [? if industrial_dnvp_backing == 4: highest?][? if industrial_dnvp_backing == 3: high?][? if industrial_dnvp_backing == 2: medium?][? if industrial_dnvp_backing == 1: low?][? if industrial_dnvp_backing == 0: [? if dnvp_ideology == "Moderate": none?][? if dnvp_ideology == "Radical": Hugenberg funded?]?]?]
-// KVP
+
 [? if kvp_formed and not dnvp_dvp_formed: <span class="tooltip-text" title="Conservative People's Party" style="color: #0087DC;">**KVP**</span>: high ?]
-// FKP
+
 [? if dnvp_dvp_formed: <span class="tooltip-text" title="Free Conserative Party" style="color: #00C0FF;">**FKP**</span>: high ?]
-// DNF
+
 [? if dnvp_ideology == "Moderate": <span class="tooltip-text" title="German National Front" style="color: #003755;">**DNF**</span>: Hugenberg funded ?]
-// DSU
+
 [? if dsu_exist: <span class="tooltip-text" title="German Social Union" style="color: #6A1E1E;">**DSU**</span>: none ?]
-// NSDAP
+
 <span class="tooltip-text" title="National-Socialist German Worker's Party" style="color: #7A3C00;">**NSDAP**</span>: [? if industrial_nsdap_backing == 0: none?][? if industrial_nsdap_backing == 1: low?][? if industrial_nsdap_backing == 2: medium?]
-// NVF
+
 [? if nvf_exist: <span class="tooltip-text" title="National People's Front" style="color: #142e20;">**NVF**</span>: none ?]
 
 = Internal Factions of the <span style="color: #c00000;">**SPD**</span>

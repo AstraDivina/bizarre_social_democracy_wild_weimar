@@ -27,10 +27,10 @@ With talks having collapsed, new elections are scheduled for May, and the govern
 - @bad
 
 @good
-title: Nice knowing you, Marx.
+title: Nice having you, Marx.
 on-arrival: next_election_month = 5; next_election_time = 5
 
-We suspect Wilhelm Marx to step down as chairman of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] soon. In any case, our task is to prepare for the next elections, where we stand to gain.
+We suspect Marx will step down as chairman of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] following the election. In any case, our task is to prepare for said election, where we stand to gain.
 
 New elections have been set for May 1928.
 
