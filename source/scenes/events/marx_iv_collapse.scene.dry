@@ -37,7 +37,6 @@ New elections have been set for May 1928.
 @bad
 title: Reach out to Marx offering to form a governing majority.
 subtitle: I'm sorry, what?
-on-arrival: next_election_month = 5; next_election_time = 5
 go-to: confirmation
 
 We *could* reach out to the <span style="color: #000000ff;">Center</span> in possibly negotiating a coalition without the <span style="color: #3E88B3;">**DNVP**</span>, offering to mediate their disputes over the regulation of school law, but should we really?
@@ -57,11 +56,7 @@ subtitle: We will attempt to form a 'Grand Coalition' with the <span style="colo
 on-arrival: z_relation += 2; ddp_relation += 1; dvp_relation += 1; ddp_left += 0.5; dbp_left += 0.5; pro_republic += 1*(1-dissent);
 go-to: confirmation2
 
-Fine. We reach out to the outgoing <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> cabinet as well as President Hindenburg, offering to negotiate a 'Grand Coalition' in order to preserve stability. While we were expected to be laughed out of the room and told to get lost, Wilhem Marx actually appeared quite supportive of our intiative to salvage his Chancellorship, and pushed the <span style="color: #000000ff;">Center</span> to the negotiation table, bringing Stresemann and Koch-Weser along for the ride.
-
-The negotiations were quite predictably short-lived, as any sort of compromise seemed impossible on the issue as neither side was willing to budge. Still, our attempt at mediating the dispute has earned us some goodwill amogst the <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> parties.
-
-In the end, this was all a waste of time and resources, as President Hindenburg made it apparent he would not tolerate a glorified caretaker government with the <span style="color: #c00000;">Social Democrats</span>, a sentiment not too surprising considering the President's track record.
+Fine. We reach out to the outgoing <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> cabinet as well as President Hindenburg, offering to negotiate a 'Grand Coalition' to bail out the Marx Cabinet. While we were expected to be laughed out of the room and told to get lost, Wilhem Marx actually appeared quite supportive of our intiative to salvage his Chancellorship, and pushed the <span style="color: #000000ff;">Center</span> to the negotiation table, bringing Stresemann and Koch-Weser along for the ride.
 
 @nah
 title: Actually, let's not do that.
@@ -75,23 +70,25 @@ New elections have been set for May 1928.
 
 @confirmation2
 
+- @negotiate
+
+@negotiate
+title: Negotiations begin.
+subtitle: Is Marx V a possibility?
+go-to: confirmation3
+
+The negotiations were quite predictably short-lived, as any sort of compromise seemed impossible on the issue as neither side was willing to budge. Still, our attempt at mediating the dispute has earned us some goodwill amogst the <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> parties.
+
+In the end, this was all a waste of time and resources, as President Hindenburg made it apparent he would not tolerate a glorified caretaker government with the <span style="color: #c00000;">Social Democrats</span>, a sentiment not too surprising considering the President's track record.
+
+@confirmation3
+
 - @death
 
 @death
-title: At least we tried.
+title: Well... at least we tried.
 subtitle: Due to our shenanigans, the elections will be held in June.
-on-display: {!  
-    var cardEl = document.createElement('div');  
-    cardEl.className = "face-figure2";  
-
-    var image = new Image();  
-    image.className = "face-img";  
-    image.src = "img/poster_3.jpg";  
-
-    cardEl.appendChild(image);  
-    var contentDiv = document.querySelector("#page #mid_panel #content");
-    contentDiv.appendChild(cardEl);
-!}
+face-image: img/poster_3.jpg
 on-arrival: next_election_month = 6; next_election_time = 6; workers_kpd += 1; unemployed_kpd += 2; left_dissent += 2
 
 Quite expectedly, our attempt at forming a Government that would be defunct in 10 months failed and wasted precious political capital which could've been used on campainging. The <span style="color: #A61610;">**Left**</span> are starting to question the party leadership's ability to further <span style="color: #c00000;">Social Democracy</span>, as a few of our core supporters have moved to the <span style="color: #700000;">**Communists**</span>.
