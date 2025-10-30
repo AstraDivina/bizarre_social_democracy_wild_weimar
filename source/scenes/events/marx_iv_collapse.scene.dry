@@ -4,6 +4,7 @@ new-page: true
 view-if: year = 1928 and month >= 2
 tags: event
 max-visits: 1
+face-image: img/boxheim.jpg
 
 = Right-wing Coalition Dissolved
 
