@@ -19,7 +19,7 @@ if (d3 && window && Q.started) {
     var data = Q.parliament_diagram;
     var screenWidth = document.getElementById('qualities').offsetWidth;
 
-    var width = Math.max(Math.min(screenWidth 250), 120);
+    var width = Math.max(Math.min(screenWidth , 250), 120);
     var heightRatio = screenWidth < 350 ? 0.5 : 0.6;
     var height = width * heightRatio;
 
