@@ -53,7 +53,7 @@ Are we really going through with this?
 @yeah
 title: The stability of the <span style="color: #000000;">We</span><span style="color: #c00000;">im</span><span style="color: #D3C24D;">ar</span> system is more important; reach out to the <span style="color: #000000;">Center</span>.
 subtitle: We will attempt to form a 'Grand Coalition' with the <span style="color: #A2D8E0;">**BVP**</span> and <span style="color: #C0A054;">**DVP**</span>. The <span style="color: #A61610;">**Left**</span> will be greatly displeased.
-on-arrival: z_relation += 2; ddp_relation += 1; dvp_relation += 1; ddp_left += 0.5; dbp_left += 0.5; pro_republic += 1*(1-dissent);
+on-arrival: z_relation += 2; ddp_relation += 1; dvp_relation += 1; ddp_left += 0.5; dbp_left += 0.5; pro_republic += 1;
 go-to: confirmation2
 
 Fine. We reach out to the outgoing Marx Cabinet as well as President Hindenburg, offering to mediate the disputes that brought down the Government, in exchange for the <span style="color: #c00000;">**SPD**</span>'s entry. While we were expected to be laughed out of the room and told to get lost, Marx actually appeared quite supportive of our intiative to salvage his Chancellorship, and pushed the <span style="color: #000000ff;">Center</span> to the negotiation table, bringing Stresemann and Koch-Weser along for the ride.
@@ -89,7 +89,7 @@ In the end, this was all a waste of time and resources, as President Hindenburg 
 title: At least we tried.
 subtitle: Due to our shenanigans, the election will be held in June.
 face-image: img/poster_3.jpg
-on-arrival: next_election_month = 6; next_election_time = 6; workers_kpd += 1; unemployed_kpd += 2; left_dissent += 2
+on-arrival: next_election_month = 6; next_election_time = 6; workers_kpd += 3; unemployed_kpd += 5; left_dissent += 3
 
 Quite expectedly, our attempt at forming a Government that would be defunct in 10 months failed and wasted precious political capital which could have been allocated on campainging. The <span style="color: #A61610;">**Left**</span> is understandably quite upset over the whole ordeal, and have begun questioning the eadership's ability to further <span style="color: #c00000;">Social Democracy</span>, as a few of our core supporters have moved to the <span style="color: #700000;">**Communists**</span> due to our actions.
 
