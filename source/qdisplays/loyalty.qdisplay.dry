@@ -1,10 +1,10 @@
 
 # loyalty for police + reichswehr
-(..0.06) completely disloyal
-(0.06..0.19) very disloyal
-(0.19..0.31) generally disloyal
-(0.31..0.41) mostly disloyal
-(0.41..0.54) divided
-(0.54..0.71) mostly loyal
-(0.71..0.95) generally loyal
-(0.95..) completely loyal
+(..0.06) <span style="color: #d42f2f;">Completely Disloyal</span>
+(0.06..0.19) <span style="color: #FFB74D;">Very Disloyal</span>
+(0.19..0.31) <span style="color: #FFB74D;">Generally Disloyal</span>
+(0.31..0.41) <span style="color: #FFD54F;">Mostly Disloyal</span>
+(0.41..0.54) <span style="color: #FFD54F;">Divided</span>
+(0.54..0.71) <span style="color: #81C784;">Mostly Loyal</span>
+(0.71..0.95) <span style="color: #81C784;">Generally Loyal</span>
+(0.95..) <span style="color: #66BB6A;">Completely Loyal</span>
