@@ -4,7 +4,18 @@ new-page: true
 view-if: year = 1928 and month >= 2
 tags: event
 max-visits: 1
-face-image: img/marx_cabinet.jpg
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/marx_cabinet.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
 
 = Right-wing Coalition Dissolved
 
