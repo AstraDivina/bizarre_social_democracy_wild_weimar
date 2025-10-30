@@ -6,7 +6,7 @@ go-to: post_event if started = 1; start_menu if started = 0
 new-page: true
 go-to: start_menu_2
 
-= Bizarre Social Democracy: Wild Weimar
+= Wild Weimar
 
 @start_menu_2
 
