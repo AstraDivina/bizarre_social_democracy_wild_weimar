@@ -13,6 +13,27 @@ if (Q.economic_growth) {
     Q.economic_growth_2 = Q.economic_growth.toFixed(1);
 }
 !}
+on-display: {!
+data = Q.reichstag_diagram;
+if (d3 && window && Q.started) {
+    var data = Q.reichstag_diagram;
+    var screenWidth = document.getElementById('qualities').offsetWidth;
+
+    var width = Math.max(Math.min((screenWidth / 2) - 30, 250), 120);
+    var heightRatio = screenWidth < 350 ? 0.5 : 0.6;
+    var height = width * heightRatio;
+
+    document.getElementById("chamber_status").style.height = height + "px";
+
+    var chamber_status = d3.reichstag();
+    chamber_status.width(width)
+    chamber_status.height(height)
+    chamber_status.innerRadiusCoef(0.4)
+    chamber_status.enter.fromCenter(false).smallToBig(false)
+    chamber_status.exit.toCenter(false).bigToSmall(false);
+    d3.select("#chamber_status").datum(data).call(chamber_status);
+}
+!}
 
 = Status
 
@@ -54,7 +75,7 @@ Prussian Minister-President: [? if prussia_leader = "Braun" and (chancellor != n
 
 # 1928: 30, 1930: 25, 1932: 22
 
-Imagine there's a reichstag diagram here
+{!<svg id="reichstag" style="width: 250px; height: 125px;"> </svg>!}
 
 Next election: [+ next_election_month : month +] [+ next_election_year +]
 
