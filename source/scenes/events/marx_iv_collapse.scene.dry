@@ -54,17 +54,50 @@ Are we really going through with this?
 @yeah
 title: The stability of the <span style="color: #000000;">We</span><span style="color: #c00000;">im</span><span style="color: #D3C24D;">ar</span> system is more important; reach out to the <span style="color: #000000;">Center</span>.
 subtitle: We will attempt to form a 'Grand Coalition' with the <span style="color: #A2D8E0;">**BVP**</span> and <span style="color: #C0A054;">**DVP**</span>. The <span style="color: #A61610;">**Left**</span> will be greatly displeased.
-on-arrival: next_election_month = 5; next_election_time = 5
-go-to: confirmation
+on-arrival: z_relation += 2; ddp_relation += 1; dvp_relation += 1; ddp_left += 0.5; dbp_left += 0.5; pro_republic += 1*(1-dissent);
+go-to: confirmation2
 
-We reach out to the outgoing <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> cabinet and President Hindenburg, offering to form a cabinet, or tolerate a bourgeois one. We were laughed at.
+Fine. We reach out to the outgoing <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> cabinet as well as President Hindenburg, offering to negotiate a 'Grand Coalition' in order to preserve stability. While we were expected to be laughed out of the room and told to get lost, Wilhem Marx actually appeared quite supportive of our intiative to salvage his Chancellorship, and pushed the <span style="color: #000000ff;">Center</span> to the negotiation table, bringing Stresemann and Koch-Weser along for the ride.
+
+The negotiations were quite predictably short-lived, as any sort of compromise seemed impossible on the issue as neither side was willing to budge. Still, our attempt at mediating the dispute has earned us some goodwill amogst the <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> parties.
+
+In the end, this was all a waste of time and resources, as President Hindenburg made it apparent he would not tolerate a glorified caretaker government with the <span style="color: #c00000;">Social Democrats</span>, a sentiment not too surprising considering the President's track record.
 
 @nah
 title: Actually, let's not do that.
 on-arrival: next_election_month = 5; next_election_time = 5
 
-There is no point in forming a government that would expire at the end of the year in the first place. Good thing we came to our senses.
+There is no point in forming a Government that would expire at the end of the year in the first place. Good thing we came to our senses.
 
 We suspect Marx will step down as chairman of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] following the election. In any case, our task is to prepare for said election, where we stand to gain.
 
 New elections have been set for May 1928.
+
+@confirmation2
+
+- @death
+
+@death
+title: At least we tried.
+subtitle: Due to our shenanigans, the elections will be held in June.
+on-display: {!  
+    var cardEl = document.createElement('div');  
+    cardEl.className = "face-figure2";  
+
+    var image = new Image();  
+    image.className = "face-img";  
+    image.src = "img/poster_3.jpg";  
+
+    cardEl.appendChild(image);  
+    var contentDiv = document.querySelector("#page #mid_panel #content");
+    contentDiv.appendChild(cardEl);
+!}
+on-arrival: next_election_month = 6; next_election_time = 6; workers_kpd += 1; unemployed_kpd += 2; left_dissent += 2
+
+Quite expectedly, our attempt at forming a Government that would be defunct in 10 months failed and wasted precious political capital which could've been used on campainging. The <span style="color: #A61610;">**Left**</span> are starting to question the party leadership's ability to further <span style="color: #c00000;">Social Democracy</span>, as a few of our core supporters have moved to the <span style="color: #700000;">**Communists**</span>.
+
+Marx's eagerness to see the <span style="color: #c00000;">**SPD**</span> support his rump cabinet saw whatever influence he had within the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] completely shatter, with many calling for his resignation. Eager to regain the confidence of his colleagues, a party congress has been scheduled for July following the election.
+
+In any case, our task is to salvage whatever we can in the hopes of maintaining our lead. For what it's worth, the <span style="color: #C0A054;">**DVP**</span> appears more willing to negotiate with us.
+
+New elections have been set for June 1928.

@@ -54,7 +54,7 @@ Prussian Minister-President: [? if prussia_leader = "Braun" and (chancellor != n
 
 # 1928: 30, 1930: 25, 1932: 22
 
-{!<svg id="reichstag" style="width: 250px; height: 250px;"> </svg>!}
+Imagine there's a reichstag diagram here
 
 Next election: [+ next_election_month : month +] [+ next_election_year +]
 
