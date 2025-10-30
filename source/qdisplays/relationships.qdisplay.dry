@@ -1,9 +1,11 @@
 
-(..5) hostile
-(5..14.9) frigid
-(14.9..29.9) cold
-(29.9..39.9) cool
-(39.9..54.9) neutral
-(54.9..64.9) warm
-(64.9..74.9) friendly
-(74.9..) very friendly
+# party relations
+
+(..5) <span style="color: #d42f2f;">Hostile</span>
+(5..14.9) <span style="color: #FFB74D;">Frigid</span>
+(14.9..29.9) <span style="color: #FFB74D;">Cold</span>
+(29.9..39.9) <span style="color: #FFD54F;">Cool</span>
+(39.9..54.9) <span style="color: #FFD54F;">Neutral</span>
+(54.9..64.9) <span style="color: #81C784;">Warm</span>
+(64.9..74.9) <span style="color: #81C784;">Friendly</span>
+(74.9..) <span style="color: #66BB6A;">Very Friendly</span>
