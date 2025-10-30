@@ -75,7 +75,7 @@ Prussian Minister-President: [? if prussia_leader = "Braun" and (chancellor != n
 
 # 1928: 30, 1930: 25, 1932: 22
 
-{!<svg id="reichstag" style="width: 250px; height: 125px;"> </svg>!}
+{!<svg id="reichstag_status" style="width: 250px; height: 125px;"> </svg>!}
 
 Next election: [+ next_election_month : month +] [+ next_election_year +]
 

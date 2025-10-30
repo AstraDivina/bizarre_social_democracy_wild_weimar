@@ -195,13 +195,16 @@ window.disableGrayMode = function() {
     }
   };
 
-  window.updateSidebar = function() {
-      $('#qualities').empty();
-      var scene = dendryUI.game.scenes[window.statusTab];
-      dendryUI.dendryEngine._runActions(scene.onArrival);
-      var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
-      $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
-  };
+window.updateSidebar = function () {
+    $('#qualities').empty();
+    var statusScene = dendryUI.game.scenes["status"];
+    var scene = dendryUI.game.scenes[window.statusTab];
+    dendryUI.dendryEngine._runActions(statusScene.onArrival);
+    dendryUI.dendryEngine._runActions(scene.onArrival);
+    var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
+    $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
+    dendryUI.dendryEngine._runActions(scene.onDisplay);
+};
 
   window.updateSidebarRight = function() {
     $('#qualities_right').empty();
