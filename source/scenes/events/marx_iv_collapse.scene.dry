@@ -35,8 +35,36 @@ We suspect Marx will step down as chairman of the [? if z_party_name != "CVP": <
 New elections have been set for May 1928.
 
 @bad
-title: Could we negotiate a Grand Coalition?
-subtitle: <span style="color: #c00000;">**SPD**</span> + <span style="color: #000000;">**[+ z_party_name +]**</span> + <span style="color: #A2D8E0;">**BVP**</span> + [? if not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span> + <span style="color: #C0A054;">**DVP**</span>?][? if lvp_formed:<span style="color: #FFCC00;">**LVP**</span>?] ([+ grand_coalition +]%) - Why the fuck would we do this?
+title: Reach out to Marx offering to form a governing majority.
+subtitle: I'm sorry, what?
 on-arrival: next_election_month = 5; next_election_time = 5
+go-to: confirmation
+
+We *could* reach out to the <span style="color: #000000ff;">Center</span> in possibly negotiating a coalition without the <span style="color: #3E88B3;">**DNVP**</span>, offering to mediate their disputes over the regulation of school law, but should we really?
+
+The collapse of the <span style="color: #000000;">Bourgeois</span>-<span style="color: #3E88B3;">Right</span> cabinet is to see the <span style="color: #c00000;">**SPD**</span> benefit at their expense and attempting to stabilise the government will only harm our electoral prospects.
+
+Are we really going through with this?
+
+@confirmation
+
+- @yeah
+- @nah
+
+@yeah
+title: The stability of the <span style="color: #000000;">We</span><span style="color: #c00000;">im</span><span style="color: #D3C24D;">ar</span> system is more important; reach out to the <span style="color: #000000;">Center</span>.
+subtitle: We will attempt to form a 'Grand Coalition' with the <span style="color: #A2D8E0;">**BVP**</span> and <span style="color: #C0A054;">**DVP**</span>. The <span style="color: #A61610;">**Left**</span> will be greatly displeased.
+on-arrival: next_election_month = 5; next_election_time = 5
+go-to: confirmation
 
 We reach out to the outgoing <span style="color: #000000;">bour</span><span style="color: #C0A054;">geois</span> cabinet and President Hindenburg, offering to form a cabinet, or tolerate a bourgeois one. We were laughed at.
+
+@nah
+title: Actually, let's not do that.
+on-arrival: next_election_month = 5; next_election_time = 5
+
+There is no point in forming a government that would expire at the end of the year in the first place. Good thing we came to our senses.
+
+We suspect Marx will step down as chairman of the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] following the election. In any case, our task is to prepare for said election, where we stand to gain.
+
+New elections have been set for May 1928.
