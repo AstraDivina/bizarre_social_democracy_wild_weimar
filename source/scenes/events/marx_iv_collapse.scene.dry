@@ -91,10 +91,10 @@ subtitle: Due to our shenanigans, the election will be held in June.
 face-image: img/poster_3.jpg
 on-arrival: next_election_month = 6; next_election_time = 6; workers_kpd += 3; unemployed_kpd += 5; left_dissent += 3
 
-Quite expectedly, our attempt at forming a Government that would be defunct in 10 months failed and wasted precious political capital which could have been allocated on campainging. The <span style="color: #A61610;">**Left**</span> is understandably quite upset over the whole ordeal, and have begun questioning the eadership's ability to further <span style="color: #c00000;">Social Democracy</span>, as a few of our core supporters have moved to the <span style="color: #700000;">**Communists**</span> due to our actions.
+Quite expectedly, our attempt at forming a Government that would be defunct in 10 months failed and wasted precious political capital which could have been allocated on campainging. The <span style="color: #A61610;">**Left**</span> is understandably quite upset over the whole ordeal, and have begun questioning the leadership's ability to further <span style="color: #c00000;">Social Democracy</span>, as a few of our core supporters have moved to the <span style="color: #700000;">**Communists**</span> due to our actions.
 
 Marx's eagerness to see the <span style="color: #c00000;">**SPD**</span> support his rump cabinet saw whatever influence he had within the [? if z_party_name != "CVP": <span style="color: #000000;">Center Party</span>?][? if z_party_name == "CVP": <span style="color: #000000;">**CVP**</span>?] completely shatter, with many calling for his resignation. Eager to regain the confidence of his colleagues, a party congress has been scheduled for July following the election.
 
-In any case, our task is to salvage whatever we can in the hopes of maintaining our lead. For what it's worth, the <span style="color: #C0A054;">**DVP**</span> appears more willing to negotiate with us.
+In any case, our task is to salvage whatever we can in the hopes of maintaining our lead. For what it's worth, the <span style="color: #C0A054;">**DVP**</span> appears more willing to enter government with us.
 
 New elections have been set for June 1928.

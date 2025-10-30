@@ -19,7 +19,7 @@ if (d3 && window && Q.started) {
     var data = Q.parliament_diagram;
     var screenWidth = document.getElementById('qualities').offsetWidth;
 
-    var width = Math.max(Math.min((screenWidth / 2) - 30, 250), 120);
+    var width = Math.max(Math.min(screenWidth - 30, 250), 120);
     var heightRatio = screenWidth < 350 ? 0.5 : 0.6;
     var height = width * heightRatio;
 
@@ -75,7 +75,7 @@ Prussian Minister-President: [? if prussia_leader = "Braun" and (chancellor != n
 
 # 1928: 30, 1930: 25, 1932: 22
 
-<div>{!<svg id="reichstag_status" style="width: 1000px; height: 500px;"> </svg>!}</div>
+<div>{!<svg id="reichstag_status" style="width: 500px; height: 250px;"> </svg>!}</div>
 
 Next election: [+ next_election_month : month +] [+ next_election_year +]
 
