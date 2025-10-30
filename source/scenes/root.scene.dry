@@ -340,6 +340,7 @@ Q.cnblp_r = 1.7;
 Q.true_other_r = 1.8;
 Q.reichstag_size = 4.93;
 Q.landtag_size = 4.5;
+Q.z_minus_bvp_r = Q.z_r - Q.bvp_r
 
 // diff from prev
 Q.old_spd_r = 26.5;
@@ -1281,7 +1282,7 @@ if (Q.z_minus_bvp_r) {
     });
 }
 
-if (Q.bvp_r) {
+if (Q.bvp_r ) {
     data.push({
         "id": "bvp",
         "legend": "BVP",
