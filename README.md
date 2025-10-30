@@ -1,2 +1,2 @@
-# bizarre_social_democracy_wild_weimar
+# wild_weimar_bizarre_social_democracy
 Wild.
