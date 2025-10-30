@@ -23,7 +23,7 @@ if (d3 && window && Q.started) {
     var heightRatio = screenWidth < 350 ? 0.5 : 0.6;
     var height = width * heightRatio;
 
-    document.getElementById("creichstag_status").style.height = height + "px";
+    document.getElementById("reichstag_status").style.height = height + "px";
 
     var reichstag_status = d3.parliament();
     reichstag_status.width(width)
