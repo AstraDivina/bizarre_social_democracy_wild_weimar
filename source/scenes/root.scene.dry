@@ -866,6 +866,7 @@ Q.bourgeois_cooperation = 0;
 Q.ui1_compromise = 0;
 Q.panzerkreuser_right_seen = 0;
 Q.black_thursday_seen = 0;
+Q.marx_election_delay = 0;
 Q.grand_coalition_collapsed = 0;
 Q.true_christian_democracy = 0;
 Q.zentrum_disintegration = 0;
