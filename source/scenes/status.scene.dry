@@ -58,7 +58,7 @@ Prussian government: [? if spd_prussia : in government - ?]
 
 Internal dissent: [+ dissent_percent : dissent +]
 
-= Government
+= Reich Government
 
 President: [? if president == "Hindenburg": <span style="color: #808080;">Hindenburg</span> ?][? if president == "Braun" or president == "Schumacher" or president == "Wels" or president == "Grzesinski" or president == "Juchacz" or (president == "Rosenfeld" and not left_split): <span style="color: #c00000;">[+ president +]</span> ?][? if president == "Rosenfeld" and left_split: <span style="color: #9B0000;">[+ president +]</span> ?][? if president == "Thälmann": <span style="color: #700000;">[+ president +]</span> ?][? if president == "Münzenberg": <span style="color: #9B0000;">[+ president +]</span> ?][? if president == "Hitler" or president == "Göring" or president == "Frick": <span style="color: #7A3C00;">[+ president +]</span> ?][? if president == "Eckener": <span style="color: #000000;">Ec</span><span style="color: #DD0000;">ken</span><span style="color: #FFCC00;">er</span> ?][? if (president == "Gessler" or president == "Heuss") and not lvp_formed: <span style="color: #D3C24D;">[+ president +]</span> ?][? if (president == "Luther" or president == "Jarres") and not lvp_formed: <span style="color: #C0A054;">[+ president +]</span> ?][? if (president == "Gessler" or president == "Heuss" or president == "Jarres" or president == "Luther") and lvp_formed: <span style="color: #FFCC00;">[+ president +]</span> ?][? if (president == "Adenauer" or president == "Brüning" or president == "Stegerwald") or ((president == "Westarp" or president == "Lettow-Vorbeck") and cvp_formed): <span style="color: #000000;">[+ president +]</span> ?][? if president == "Seldte" or president == "Hergt" or ((president == "Westarp" or president == "Lettow-Vorbeck") and dnvp_ideology == "Moderate" and not cvp_formed): <span style="color: #3E88B3;">[+ president +]</span> ?][? if (president == "Westarp" or president == "Lettow-Vorbeck") and dnvp_ideology == "Radical" and not cvp_kvp_formed: <span style="color: #0087DC;">[+ president +]</span> ?][? if president == "Großmann (acting)" or president == "Bumke (acting)" or president == "Seeckt": <span style="color: #808080;">[+ president +]</span> ?][? if president == "Hammerstein": <span style="color: #BFC8CC;">[+ president +]</span> ?][? if president == "Mann" or president == "Ossietzky": <span style="color: #E0A0A0;">[+ president +]</span> ?][? if president == "Einstein": <span style="color: #CFC88F;">[+ president +]</span> ?] ([? if (president == "Adenauer" or president == "Brüning" or president == "Stegerwald") or ((president == "Westarp" or president == "Lettow-Vorbeck") and cvp_formed):<span style="color: #000000;">**[+ z_party_name +]**</span>?][? if president == "Braun" or president == "Schumacher" or president == "Wels" or president == "Juchacz" or (president == "Rosenfeld" and not left_split):<span style="color: #c00000;">**SPD**</span>?][? if president == "Rosenfeld" and left_split:<span style="color: #9B0000;">**SAPD**</span>?][? if president == "Thälmann" or president == "Münzenberg":<span style="color: #700000;">**KPD**</span>?][? if president == "Seldte" or president == "Hergt" or ((president == "Westarp" or president == "Lettow-Vorbeck") and dnvp_ideology == "Moderate" and not cvp_formed): <span style="color: #3E88B3;">**DNVP**</span>?][? if (president == "Westarp" or president == "Lettow-Vorbeck") and dnvp_ideology == "Radical" and not cvp_kvp_formed: <span style="color: #0087DC;">**KVP**</span>?][? if president == "Hitler" or president == "Göring" or president == "Frick":<span style="color: #7A3C00;">**NSDAP**</span>?][? if (president == "Gessler" or president == "Heuss") and not lvp_formed: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?][? if (president == "Luther" or president == "Jarres") and not lvp_formed: <span style="color: #C0A054;">**DVP**</span>?][? if (president == "Gessler" or president == "Heuss" or president == "Jarres" or president == "Luther") and lvp_formed: <span style="color: #FFCC00;">**LVP**</span>?][? if president == "Eckener" or president == "Hindenburg" or president == "Großmann (acting)" or president == "Bumke (acting)" or president == "Seeckt": <span style="color: #808080;">I</span>?][? if president == "Hammerstein": <span style="color: #BFC8CC;">**DNEF**</span>?][? if president == "Mann" or president == "Ossietzky": <span style="color: #E0A0A0;">I</span>?][? if president == "Einstein": <span style="color: #CFC88F;">I</span>?])
 
@@ -71,7 +71,7 @@ Prussian Minister-President: [? if prussia_leader = "Braun" and (chancellor != n
 # 1928: 30, 1930: 25, 1932: 22
 
 <div>{!<svg id="reichstag_status" style="width: 500px; height: 250px;"> </svg>!}</div>
-<div></div>
+
 <span style="color: #c00000;">**SPD**</span> position: [? if spd_toleration : toleration ?][? if spd_in_government : in government - ?][? if spd_toleration == 0 and spd_in_government == 0 and spd_caretaker == 0 : opposition ?][? if spd_caretaker : caretaker government ?]
 [? if in_weimar_coalition and not in_social_catholic_coalition and not in_social_liberal_coalition and spd_in_government: [? if lvp_formed: <span> New </span> ?]<span style="color: #000000;">We</span><span style="color: #c00000;">im</span>[? if not lvp_formed: <span style="color: #D3C24D;">ar</span>?][? if lvp_formed: <span style="color: #FFCC00;">ar</span>?] Coalition ?][? if in_social_catholic_coalition and spd_in_government: <span style="color: #c00000;">Social</span>-[? if not stegerwald_path: <span style="color: #000000;">Catholic</span>?][? if stegerwald_path: <span style="color: #000000;">Christian</span>?] Coalition ?][? if in_social_liberal_coalition and spd_in_government: <span style="color: #c00000;">Social</span>-[? if not lvp_formed: <span style="color: #D3C24D;">Liberal</span>?][? if lvp_formed: <span style="color: #FFCC00;">Liberal</span>?] Coalition ?][? if in_grand_coalition and spd_in_government: [? if not in_wholesome_coalition: Grand Coalition?][? if in_wholesome_coalition: Wholesome Coalition?] ?][? if in_popular_front and spd_in_government: Popular Front ?][? if in_left_front and spd_in_government: Left Front ?][? if in_spd_majority and spd_in_government: <span style="color: #c00000;">**SPD**</span> majority ?][? if in_minority_government and spd_in_government: minority government ?][? if in_emergency_government and spd_in_government: emergency government ?]
 
@@ -323,27 +323,25 @@ Q.socialism_disp = Math.round(Q.socialism);
 
 = Projected election results
 
-(if the election were to be held now):
-
-[? if dnef_formed: <span style="color: #BFC8CC;">**DNEF**</span>: [+ dnef_votes +]% ?]
-
-<span style="color: #c00000;">**SPD**</span>: [+ spd_votes +]%
+<span style="color: #700000;">**KPD**</span>: [+ kpd_votes +]%
 
 [? if sapd_formed: <span style="color: #9B0000;">**SAPD**</span>: [+ sapd_votes +]% ?]
 
-<span style="color: #000000;">**[+ z_party_name +]**</span> + <span style="color: #A2D8E0;">**BVP**</span>: [+ z_votes +]%
-
-<span style="color: #700000;">**KPD**</span>: [+ kpd_votes +]%
+<span style="color: #c00000;">**SPD**</span>: [+ spd_votes +]%
 
 [? if not lvp_formed: [? if not ddp_name: <span style="color: #D3C24D;">**DDP**</span>?][? if ddp_name != 0: <span style="color: #D3C24D;">**[+ ddp_name +]**</span>?]: [+ ddp_votes +]% ?]
 
 [? if lvp_formed: <span style="color: #FFCC00;">**LVP**</span>: [+ lvp_votes +]% ?]
+
+<span style="color: #000000;">**[+ z_party_name +]**</span> + <span style="color: #A2D8E0;">**BVP**</span>: [+ z_votes +]%
 
 [? if not lvp_formed and dvp_exist: <span style="color: #C0A054;">**DVP**</span>: [+ dvp_votes +]% ?]
 
 [? if kvp_formed and not dnvp_dvp_formed: <span style="color: #0087DC;">**KVP**</span>: [+ kvp_votes +]% ?]
 
 [? if dnvp_dvp_formed: <span class="tooltip-text" title="Free Conserative Party" style="color: #00C0FF;">**FKP**</span>: [+ kvp_votes +]% ?]
+
+[? if dnef_formed: <span style="color: #BFC8CC;">**DNEF**</span>: [+ dnef_votes +]% ?]
 
 [? if not cvp_formed and not dnvp_defunct: <span style="color: #3E88B3;">**DNVP**</span>: [+ dnvp_votes +]%?]
 
@@ -374,3 +372,7 @@ Rural: [? if dnef_formed: DNEF: [+ rural_dnef_display +]%, ?]SPD: [+ rural_spd_d
 Unemployed: [? if dnef_formed: DNEF: [+ unemployed_dnef_display +]%, ?]SPD: [+ unemployed_spd_display +]%, [+ z_party_name +]: [+ unemployed_z_display +]%, KPD: [+ unemployed_kpd_display +]%, [? if not lvp_formed: [+ ddp_name +]: [+ unemployed_ddp_display +]%, [? if dvp_exist: DVP: [+ unemployed_dvp_display +]%,?]?][? if lvp_formed: LVP: [+ unemployed_lvp_display +]%,?] [? if not cvp_formed: DNVP: [+ unemployed_dnvp_display +]%,?] [? if dnf_formed: DNF: [+ unemployed_dnf_display +]%  ?][? if kvp_formed: KVP: [+ unemployed_kvp_display +]%  ?]NSDAP: [+ unemployed_nsdap_display +]%, Others: [+ unemployed_other_display +]%
 
 Catholics: [? if dnef_formed: DNEF: [+ catholics_dnef_display +]%, ?]SPD: [+ catholics_spd_display +]%, [+ z_party_name +]: [+ catholics_z_display +]%, KPD: [+ catholics_kpd_display +]%, [? if not lvp_formed: [+ ddp_name +]: [+ catholics_ddp_display +]%, [? if dvp_exist: DVP: [+ catholics_dvp_display +]%,?]?][? if lvp_formed: LVP: [+ catholics_lvp_display +]%,?] [? if not cvp_formed: DNVP: [+ catholics_dnvp_display +]%,?] [? if dnf_formed: DNF: [+ catholics_dnf_display +]%  ?][? if kvp_formed: KVP: [+ catholics_kvp_display +]%  ?]NSDAP: [+ catholics_nsdap_display +]%, Others: [+ catholics_other_display +]%
+
+@landers
+
+@policy
