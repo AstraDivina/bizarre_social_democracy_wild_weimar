@@ -1,7 +1,7 @@
 
-(..30) enthusiastic
-(30..60) satisfied
-(60..90) pleased
-(90..120) annoyed
-(120..150) frustrated
-(150..) disillusioned
+(..30) <span style="color: #89d8a8ff;">Enthusiastic</span>
+(30..60) <span style="color: #A8D5BA;">Satisfied</span>
+(60..90) <span style="color: #EBD97D;">Pleased</span>
+(90..120) <span style="color: #F7C27D;">Annoyed</span>
+(120..150) <span style="color: #F4A984;">Frustrated</span>
+(150..) <span style="color: #d42f2f;">Disillusioned</span>
